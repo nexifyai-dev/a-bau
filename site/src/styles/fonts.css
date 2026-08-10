@@ -1,0 +1,15 @@
+/* Self-hosted Fonts (DSGVO: kein Google-Fonts-CDN) — variable woff2 */
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit-var.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-var.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

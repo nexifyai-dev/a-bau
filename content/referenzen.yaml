@@ -1,0 +1,28 @@
+# Referenzen — echte Projektdaten (Ort/Jahr) sind P0-Klärung mit Kunde; bis dahin ehrlich als Projektkategorien ohne erfundene Details
+referenzen:
+  - id: altbau-erhaltung
+    titel: Altbau-Erhaltung & Restaurierung
+    text: "Restaurierung historischer Bausubstanz – Fassaden, Innenräume, denkmalgerechte Sanierung. Projektbeispiele auf Anfrage."
+    bilder: [denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp, denkmal/9f6d2eb8-a33d-4156-8984-8f551d6b422c.webp, sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp, denkmal/d0514d98-2687-421f-a20d-38c4c1905d00.webp]
+  - id: gesundheitsbau
+    titel: Gesundheitsbau-Projekte
+    text: "Komplexe Krankenhaus- und Gesundheitsbauten – schlüsselfertig, dokumentiert, termintreu."
+    bilder: [krankenhaus/IMG_1414.webp, krankenhaus/IMG_1415.webp, krankenhaus/IMG_1416.webp, krankenhaus/IMG_1417.webp]
+    video: 73.mp4
+  - id: raumgestaltung
+    titel: Raumgestaltung & Umbau
+    text: "Innovative Umbauten und Innenausbauten – Wohn- und Geschäftsräume mit Charakter."
+    bilder: [innenausbau/b1b9855e-0abd-4906-b9f0-ecec14474c16.webp, innenausbau/b56a42576fa1de7b3d0428cd1235e9896a2463c9.webp, innenausbau/a2e99676aef046ba96c452e3e512daa9df8157e6.webp, innenausbau/9d72ec3d0d7678fa0187920e07b8653e66143303.webp]
+  - id: schluesselfertig
+    titel: Schlüsselfertige Neubauten
+    text: "Effiziente Neubauten aus einer Hand – vom Rohbau bis zur Übergabe."
+    bilder: [schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp, schlüsselfertig/c9a379bb22e126ce48f2b205dcde080c8fd0dc71.webp, schlüsselfertig/03e8914e59322331bd0508cb6e9029827986c27d.webp, schlüsselfertig/583dbbd10e9b4024478a899507456b565ffca0ae.webp]
+  - id: badezimmer
+    titel: Badezimmer & Nasszellen
+    text: "Hochwertige Badmodernisierung – Fliesen, Installationen, komplette Sanitärräume."
+    bilder: [badezimmer/A-BAU_Badezimmer_02.webp, badezimmer/A-BAU_Badezimmer_04.webp, badezimmer/bd7ae7a8ce64522335ce3e2c02bade91538675dd.webp]
+    video: 160.mp4
+  - id: handwerkskunst
+    titel: Handwerkskunst im Detail
+    text: "Steinmetz-, Fuge-, Mauer- und Ausbauarbeiten – Qualität, die man sieht und spürt."
+    bilder: [sonstiges/IMG_1414-1.webp, sonstiges/IMG_1415.webp, sonstiges/IMG_1416.webp, sonstiges/IMG_1417.webp]

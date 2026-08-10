@@ -1,0 +1,30 @@
+---
+// Cookie-Consent — TDDDG §25: kein Tracking vor Einwilligung; die Seite setzt
+// aktuell nur technisch notwendige Speicherung (Consent-Status). Banner informiert,
+// Wahlmöglichkeit für zukünftige, nicht notwendige Dienste bleibt erhalten.
+---
+
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie-Hinweis" style="position:fixed;left:16px;right:16px;bottom:16px;z-index:90;max-width:520px;margin:0 auto;background:#fff;border:1px solid var(--line,rgba(26,29,33,.14));border-radius:16px;box-shadow:0 12px 32px rgba(26,29,33,.18);padding:20px;display:none">
+  <p style="margin:0 0 14px;font-size:.92rem">
+    <strong>Hinweis zu Cookies:</strong> Diese Website setzt nur technisch notwendige Cookies und
+    keine Tracking-Cookies. Details in der <a href="/datenschutz/">Datenschutzerklärung</a> und
+    <a href="/cookie-richtlinie/">Cookie-Richtlinie</a>.
+  </p>
+  <div class="cookie-actions" style="display:flex;flex-wrap:wrap;gap:10px">
+    <button class="btn btn-primary" data-consent="necessary" style="min-height:44px;padding:10px 18px;font-size:.9rem">Verstanden</button>
+    <button class="btn btn-ghost" data-consent="all" style="min-height:44px;padding:10px 18px;font-size:.9rem;display:none">Alle akzeptieren</button>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  if (banner && !localStorage.getItem('abau_consent')) {
+    setTimeout(() => { banner.style.display = 'block'; }, 700);
+    banner.querySelectorAll('[data-consent]').forEach(b => {
+      b.addEventListener('click', () => {
+        localStorage.setItem('abau_consent', b.getAttribute('data-consent') || 'necessary');
+        banner.style.display = 'none';
+      });
+    });
+  }
+</script>

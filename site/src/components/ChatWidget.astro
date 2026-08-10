@@ -1,0 +1,111 @@
+---
+// AI-Chatbot-Widget — RAG via /api/chat (FastAPI-Service, 9Router-LLM), DSGVO-Hinweis,
+// KI-Offenlegung (EU AI Act Art. 50), Quellen, Fallback auf Kontakt.
+const tel = '+49 2166 9925056';
+---
+
+<button class="chat-fab" id="chat-fab" aria-label="KI-Assistent öffnen" aria-expanded="false" style="position:fixed;right:20px;bottom:20px;z-index:70;width:60px;height:60px;border-radius:50%;border:0;background:var(--accent,#9A4A22);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 12px 32px rgba(26,29,33,.25);display:flex;align-items:center;justify-content:center">💬</button>
+
+<div class="chat-panel" id="chat-panel" role="dialog" aria-label="KI-Assistent A-Bau" style="position:fixed;right:16px;bottom:88px;z-index:69;width:min(380px,calc(100vw - 32px));max-height:min(600px,calc(100vh - 120px));display:flex;flex-direction:column;background:#fff;border-radius:18px;box-shadow:0 12px 32px rgba(26,29,33,.22);border:1px solid var(--line,rgba(26,29,33,.14));overflow:hidden;transform-origin:bottom right;visibility:hidden">
+  <div class="chat-head" style="background:var(--bg-dark,#1A1D21);color:var(--text-inv,#F2EFE9);padding:14px 16px;display:flex;gap:10px;align-items:center">
+    <div>
+      <div class="chat-title" style="font-weight:700;font-size:.95rem">A-Bau KI-Assistent</div>
+      <div class="chat-sub" style="font-size:.75rem;color:rgba(242,239,233,.7)">Antwortet aus dem Wissen dieser Website</div>
+    </div>
+    <button class="chat-close" aria-label="Chat schließen" style="margin-left:auto;min-width:40px;min-height:40px;border:0;background:transparent;color:inherit;border-radius:10px;font-size:1.2rem;cursor:pointer">✕</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bg,#F7F5F1)">
+    <div class="chat-msg bot" style="max-width:86%;padding:10px 14px;border-radius:14px;font-size:.93rem;line-height:1.45;background:#fff;border:1px solid var(--line,rgba(26,29,33,.14));border-bottom-left-radius:4px;align-self:flex-start;white-space:pre-wrap">
+      Guten Tag! Ich beantworte Fragen zu den Leistungen von A-Bau Meisterbetrieb – Restaurierung, Innenausbau, Krankenhausbau, Neubau und mehr. Wie kann ich helfen?
+    </div>
+  </div>
+  <div class="chat-input-row" style="display:flex;gap:8px;padding:12px;border-top:1px solid var(--line,rgba(26,29,33,.14));background:#fff">
+    <input id="chat-input" type="text" maxlength="500" placeholder="Ihre Frage …" aria-label="Ihre Frage an den KI-Assistenten" style="flex:1;min-height:44px;padding:0 14px;border:1.5px solid var(--line,rgba(26,29,33,.14));border-radius:22px;font:inherit">
+    <button class="chat-send" id="chat-send" aria-label="Nachricht senden" style="min-width:48px;min-height:44px;border:0;border-radius:22px;background:var(--accent,#9A4A22);color:#fff;font-weight:700;cursor:pointer">➤</button>
+  </div>
+  <div class="chat-hint" style="padding:8px 14px;font-size:.7rem;color:var(--text-mut,#5C6168);background:var(--bg-soft,#EFEBE3);text-align:center">
+    KI-Assistent – Antworten basieren ausschließlich auf Website-Inhalten. Datenschutz: <a href="/datenschutz/">Datenschutzerklärung</a>.
+  </div>
+</div>
+
+<script>
+  const fab = document.getElementById('chat-fab') as HTMLButtonElement;
+  const panel = document.getElementById('chat-panel') as HTMLElement;
+  const msgs = document.getElementById('chat-msgs') as HTMLElement;
+  const input = document.getElementById('chat-input') as HTMLInputElement;
+  const sendBtn = document.getElementById('chat-send') as HTMLButtonElement;
+  const closeBtn = panel.querySelector('.chat-close') as HTMLButtonElement;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const tel = '+49 2166 9925056';
+  let open = false;
+
+  const addMsg = (html: string, cls: string) => {
+    const d = document.createElement('div');
+    d.className = 'chat-msg ' + cls;
+    d.style.cssText = 'max-width:86%;padding:10px 14px;border-radius:14px;font-size:.93rem;line-height:1.45;white-space:pre-wrap;word-break:break-word' +
+      (cls === 'bot' ? ';background:#fff;border:1px solid var(--line,rgba(26,29,33,.14));border-bottom-left-radius:4px;align-self:flex-start' :
+       cls === 'user' ? ';background:var(--accent,#9A4A22);color:#fff;border-bottom-right-radius:4px;align-self:flex-end' : '');
+    d.innerHTML = html;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+    return d;
+  };
+  const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
+
+  const send = () => {
+    const q = input.value.trim();
+    if (!q || sendBtn.disabled) return;
+    input.value = '';
+    addMsg(esc(q), 'user');
+    sendBtn.disabled = true;
+    const typing = addMsg('…', 'bot');
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: q }),
+    }).then(r => r.json()).then(d => {
+      typing.remove();
+      if (d.answer) {
+        let html = esc(d.answer);
+        if (d.quellen && d.quellen.length) html += '<span class="chat-src" style="display:block;font-size:.72rem;color:var(--text-mut,#5C6168);margin-top:6px">Quelle: ' + esc(d.quellen.join(', ')) + '</span>';
+        addMsg(html, 'bot');
+      } else {
+        addMsg('Entschuldigung, das hat gerade nicht geklappt. Bitte nutzen Sie das <a href="/kontakt/">Kontaktformular</a> oder rufen Sie uns an: ' + esc(tel) + '.', 'bot');
+      }
+    }).catch(() => {
+      typing.remove();
+      addMsg('Der Chat ist kurz nicht erreichbar. Bitte nutzen Sie das <a href="/kontakt/">Kontaktformular</a> oder rufen Sie uns an: ' + esc(tel) + '.', 'bot');
+    }).finally(() => { sendBtn.disabled = false; });
+  };
+
+  const springIn = () => {
+    panel.classList.add('open');
+    panel.style.visibility = 'visible';
+    if (!reduced) {
+      panel.style.transition = 'transform .38s cubic-bezier(.2,.8,.25,1.05), opacity .2s ease';
+      panel.style.transform = 'scale(1) translateY(0)';
+      panel.style.opacity = '1';
+    } else { panel.style.transform = 'none'; panel.style.opacity = '1'; }
+    input.focus();
+  };
+  const springOut = () => {
+    panel.classList.remove('open');
+    if (!reduced) {
+      panel.style.transition = 'transform .28s cubic-bezier(.4,0,.8,.4), opacity .18s ease';
+      panel.style.transform = 'scale(.94) translateY(10px)';
+      panel.style.opacity = '0';
+      setTimeout(() => { panel.style.visibility = 'hidden'; }, 290);
+    } else { panel.style.visibility = 'hidden'; }
+  };
+
+  fab.addEventListener('click', () => {
+    open = !open;
+    fab.setAttribute('aria-expanded', String(open));
+    fab.textContent = open ? '✕' : '💬';
+    if (open) springIn(); else springOut();
+  });
+  sendBtn.addEventListener('click', send);
+  closeBtn.addEventListener('click', () => { open = false; fab.click(); });
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) { open = false; fab.click(); } });
+</script>

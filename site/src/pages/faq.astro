@@ -1,0 +1,64 @@
+---
+import { faq } from '../lib/data.ts';
+import Base from '../layouts/Base.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.faq.map(f => ({
+    '@type': 'Question',
+    name: f.frage,
+    acceptedAnswer: { '@type': 'Answer', text: f.antwort },
+  })),
+};
+---
+
+<Base
+  title="FAQ – Häufige Fragen"
+  description="Antworten auf häufige Fragen zur A-Bau Meisterbetrieb GmbH: Leistungen, Region, Ablauf, Gewährleistung, Kosten und Kontakt."
+  breadcrumb={[{ name: 'FAQ', path: '/faq/' }]}
+  schema={schema}
+>
+  <section class="section">
+    <div class="container" style="max-width:820px">
+      <div class="section-head">
+        <span class="kicker">FAQ</span>
+        <h1>Häufige Fragen</h1>
+        <p>
+          Kurze Antworten auf die wichtigsten Fragen zu unseren Leistungen. Ihre Frage ist
+          nicht dabei? <a href="/kontakt/">Kontaktieren Sie uns</a> – wir antworten persönlich.
+        </p>
+      </div>
+      <div class="accordion" data-accordion>
+        {faq.faq.map(f => (
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false">
+              {f.frage}
+              <span class="chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-panel"><div class="acc-panel-inner"><p>{f.antwort}</p></div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.querySelectorAll('[data-accordion]').forEach(root => {
+    root.querySelectorAll('.acc-item').forEach(item => {
+      const btn = item.querySelector('.acc-btn') as HTMLButtonElement;
+      btn.addEventListener('click', () => {
+        const open = item.classList.contains('open');
+        root.querySelectorAll('.acc-item.open').forEach(o => {
+          o.classList.remove('open');
+          (o.querySelector('.acc-btn') as HTMLButtonElement).setAttribute('aria-expanded', 'false');
+        });
+        if (!open) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>

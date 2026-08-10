@@ -1,0 +1,64 @@
+---
+export async function getStaticPaths() {
+  return leistungen.leistungen.map(l => ({
+    params: { slug: l.slug },
+    props: { leistung: l },
+  }));
+}
+
+const { leistung } = Astro.props;
+const slug = Astro.params.slug!;
+// Passendes Referenzbild aus Kategorie (Fallback: erstes Denkmal-Bild)
+const refKat = referenzen.referenzen.find(r => r.slug === leistung.slug) || referenzen.referenzen[0];
+const imgId = refKat?.bilder?.[0] ?? 94;
+const img = images[imgId] ?? images[94];
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: leistung.titel,
+  description: leistung.beschreibung?.slice(0, 150) ?? leistung.kurz,
+  serviceType: leistung.titel,
+  provider: { '@type': 'LocalBusiness', name: 'A-Bau Meisterbetrieb GmbH' },
+  areaServed: ['Mönchengladbach', 'Nordrhein-Westfalen'],
+};
+import { leistungen, referenzen } from '../../lib/data.ts';
+import Base from '../../layouts/Base.astro';
+import { images, alts } from '../../lib/images';
+---
+
+<Base
+  title={`${leistung.titel} – A-Bau Meisterbetrieb GmbH`}
+  description={leistung.beschreibung ? leistung.beschreibung.trim().slice(0, 155) : leistung.kurz}
+  breadcrumb={[{ name: 'Leistungen', path: '/leistungen/' }, { name: leistung.titel, path: `/leistungen/${slug}/` }]}
+  schema={schema}
+>
+  <section class="section">
+    <div class="container split">
+      <div>
+        <span class="kicker" style="color:var(--accent);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:var(--space-2)">Leistung</span>
+        <h1>{leistung.titel}</h1>
+        <p class="lead" style="color:var(--text-2);font-size:1.1rem">{leistung.subtitel}</p>
+        <p>{leistung.beschreibung}</p>
+        <ul>
+          {leistung.punkte.map(p => <li>{p}</li>)}
+        </ul>
+        <div class="hero-actions" style="margin-top:var(--space-5)">
+          <a class="btn btn-primary" href="/kontakt/">{leistung.cta}</a>
+          <a class="btn btn-ghost" href="/leistungen/">Alle Leistungen</a>
+        </div>
+      </div>
+      <div class="media-frame">
+        {img && <img src={img.src} alt={alts[imgId] ?? `${leistung.titel} – Projektbeispiel A-Bau`} width={900} loading="eager" style="width:100%;height:auto" />}
+      </div>
+    </div>
+  </section>
+  <section class="section-tight" style="background:var(--bg-elev)">
+    <div class="container">
+      <div class="notice">
+        <strong>Hinweis zu Referenzprojekten:</strong> Konkrete Projektdaten (Ort, Jahr, Umfang)
+        werden nach Freigabe durch den Kunden ergänzt. Die gezeigten Bilder stammen aus dem
+        Projektbestand der A-Bau Meisterbetrieb GmbH.
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,54 @@
+---
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: leistungen.leistungen.map((l, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: l.titel,
+      description: l.kurz,
+      provider: { '@type': 'LocalBusiness', name: 'A-Bau Meisterbetrieb GmbH' },
+      areaServed: 'Mönchengladbach & NRW',
+      url: `https://a-bau.nexifyai.cloud/leistungen/${l.slug}/`,
+    },
+  })),
+};
+import { leistungen } from '../../lib/data.ts';
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Leistungen – Bauunternehmen Mönchengladbach"
+  description="Alle Leistungen der A-Bau Meisterbetrieb GmbH: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Installationen, Sanierung und europaweite Direkttransporte."
+  breadcrumb={[{ name: 'Leistungen', path: '/leistungen/' }]}
+  schema={schema}
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Leistungen</span>
+        <h1>Fachgerechte Bauleistungen von A-Bau</h1>
+        <p>
+          Unser moderner Baubetrieb mit langjähriger Erfahrung bietet ein Spektrum von sensiblen
+          Restaurationen bis zum schlüsselfertigen Neubau. Unsere Kunden schätzen handwerkliche
+          Qualität, persönliche Betreuung und transparente Kommunikation – jedes Projekt, ob groß
+          oder klein, wird mit Sorgfalt und Engagement umgesetzt.
+        </p>
+      </div>
+      <div class="card-grid">
+        {leistungen.leistungen.map(l => (
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">◆</span>
+            <h2 style="font-size:1.25rem">{l.titel}</h2>
+            <p>{l.kurz}</p>
+            <a class="card-link" href={`/leistungen/${l.slug}/`}>
+              Mehr erfahren <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

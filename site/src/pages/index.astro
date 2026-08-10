@@ -1,0 +1,177 @@
+---
+import { kontakt, leistungen, faq } from '../lib/data.ts';
+import Base from '../layouts/Base.astro';
+import imgDenkmal from '../assets/img/94.jpeg';
+import imgBad from '../assets/img/149.jpg';
+import imgInnen from '../assets/img/130.jpg';
+
+const heroImg = imgDenkmal;
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.faq.slice(0, 8).map(f => ({
+    '@type': 'Question',
+    name: f.frage,
+    acceptedAnswer: { '@type': 'Answer', text: f.antwort },
+  })),
+};
+---
+
+<Base
+  title="Bauunternehmen Mönchengladbach – Denkmalrestaurierung, Innenausbau, Schlüsselfertigbau"
+  description="A-Bau Meisterbetrieb GmbH, Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen und europaweite Direkttransporte. Meisterbetrieb seit 2019, HRB 18836."
+  schema={faqSchema}
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="hero-kicker">Meisterbetrieb · Mönchengladbach &amp; NRW</span>
+      <h1>Mit Vertrauen bauen – mit Qualität leben</h1>
+      <p class="lead">
+        Wir bauen nicht nur – wir bewahren, gestalten und entwickeln. Mit Erfahrung, Präzision
+        und einem starken Team realisieren wir anspruchsvolle Bauprojekte: von der Restaurierung
+        denkmalgeschützter Bauten bis zum schlüsselfertigen Neubau.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="/kontakt/">Projekt unverbindlich anfragen</a>
+        <a class="btn btn-ghost btn-lg" href="/leistungen/">Leistungen entdecken</a>
+      </div>
+    </div>
+    <div style="position:absolute;inset:0;z-index:0;overflow:hidden" aria-hidden="true">
+      <img
+        src={heroImg}
+        alt=""
+        aria-hidden="true"
+        width={1600}
+                loading="eager"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;opacity:0.35;filter:blur(2px)"
+      />
+    </div>
+  </section>
+
+  <!-- Trust-Bar -->
+  <div class="trust-bar">
+    <div class="container trust-items">
+      <span class="trust-item"><span class="dot"></span> <strong>Meisterbetrieb</strong> GmbH</span>
+      <span class="trust-item"><span class="dot"></span> <strong>HRB 18836</strong> AG Mönchengladbach</span>
+      <span class="trust-item"><span class="dot"></span> Bewertung <strong>5/5</strong> auf 11880.com</span>
+      <span class="trust-item"><span class="dot"></span> {kontakt.kontakt.oeffnungszeiten[0].tage} {kontakt.kontakt.oeffnungszeiten[0].zeiten} Uhr</span>
+    </div>
+  </div>
+
+  <!-- Leistungen -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Leistungen</span>
+        <h2>Fachgerechte Bauleistungen von A-Bau</h2>
+        <p>
+          Von sensiblen Restaurationen bis zum schlüsselfertigen Neubau: Unser Meisterbetrieb
+          bietet ein Spektrum, das Sie bei jedem Bauvorhaben begleitet – mit Zuverlässigkeit,
+          Qualität und handwerklichem Können.
+        </p>
+      </div>
+      <div class="card-grid">
+        {leistungen.leistungen.map(l => (
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">◆</span>
+            <h3>{l.titel}</h3>
+            <p>{l.kurz}</p>
+            <a class="card-link" href={`/leistungen/${l.slug}/`}>
+              Mehr erfahren <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Referenz-Streifen -->
+  <section class="section" style="background:var(--bg-elev)">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Referenzen</span>
+        <h2>Projekte, die für Qualität sprechen</h2>
+        <p>Einblicke in Restaurierung, Innenausbau, Badsanierung, Neubau und Baustellenarbeit.</p>
+      </div>
+      <div style="display:grid;gap:var(--space-4);grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+        <a href="/referenzen/" style="border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--card-border);position:relative;aspect-ratio:4/3;display:block">
+          <img src={imgDenkmal.src} alt="Denkmalrestaurierung – historische Fassade" width={640} loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+          <span style="position:absolute;bottom:0;left:0;right:0;padding:var(--space-3) var(--space-4);background:linear-gradient(to top,rgba(0,0,0,.8),transparent);color:var(--text);font-weight:700">Denkmalrestaurierung</span>
+        </a>
+        <a href="/referenzen/" style="border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--card-border);position:relative;aspect-ratio:4/3;display:block">
+          <img src={imgBad.src} alt="Modernisiertes Badezimmer mit Fliesenarbeiten" width={640} loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+          <span style="position:absolute;bottom:0;left:0;right:0;padding:var(--space-3) var(--space-4);background:linear-gradient(to top,rgba(0,0,0,.8),transparent);color:var(--text);font-weight:700">Badezimmer &amp; Sanitär</span>
+        </a>
+        <a href="/referenzen/" style="border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--card-border);position:relative;aspect-ratio:4/3;display:block">
+          <img src={imgInnen.src} alt="Innenausbau – hochwertige Raumgestaltung" width={640} loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+          <span style="position:absolute;bottom:0;left:0;right:0;padding:var(--space-3) var(--space-4);background:linear-gradient(to top,rgba(0,0,0,.8),transparent);color:var(--text);font-weight:700">Innenausbau</span>
+        </a>
+      </div>
+      <p style="margin-top:var(--space-5);color:var(--text-3);font-size:0.9rem">
+        Konkrete Projektdaten (Ort, Jahr, Umfang) werden nach Freigabe durch den Kunden ergänzt.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ-Teaser -->
+  <section class="section">
+    <div class="container split">
+      <div>
+        <span class="kicker" style="color:var(--accent);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:var(--space-2)">FAQ</span>
+        <h2>Häufige Fragen – kurz beantwortet</h2>
+        <p>
+          Ob Ablauf, Gewährleistung oder Einsatzgebiet: Hier finden Sie die wichtigsten Antworten
+          zu unseren Leistungen. Ihre Frage ist nicht dabei? Sprechen Sie uns direkt an.
+        </p>
+        <a class="btn btn-ghost" href="/faq/">Alle Fragen ansehen</a>
+      </div>
+      <div class="accordion" data-accordion>
+        {faq.faq.slice(0, 4).map(f => (
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false">
+              {f.frage}
+              <span class="chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-panel"><div class="acc-panel-inner"><p>{f.antwort}</p></div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="notice" style="text-align:center;padding:var(--space-7)">
+        <h2 style="margin-bottom:var(--space-3)">Ihr Projekt – unser Handwerk</h2>
+        <p style="max-width:560px;margin-inline:auto;margin-bottom:var(--space-5)">
+          Beschreiben Sie uns Ihr Vorhaben – wir melden uns zeitnah für einen unverbindlichen Termin.
+        </p>
+        <a class="btn btn-primary btn-lg" href="/kontakt/">Jetzt anfragen</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // FAQ-Accordion (Apple: Spring via grid-template-rows, aria-expanded)
+  document.querySelectorAll('[data-accordion]').forEach(root => {
+    root.querySelectorAll('.acc-item').forEach(item => {
+      const btn = item.querySelector('.acc-btn') as HTMLButtonElement;
+      const panel = item.querySelector('.acc-panel') as HTMLElement;
+      btn.addEventListener('click', () => {
+        const open = item.classList.contains('open');
+        root.querySelectorAll('.acc-item.open').forEach(o => {
+          o.classList.remove('open');
+          (o.querySelector('.acc-btn') as HTMLButtonElement).setAttribute('aria-expanded', 'false');
+        });
+        if (!open) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>

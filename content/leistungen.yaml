@@ -1,0 +1,44 @@
+# Leistungen — aus Alt-Site-Inhalten + Register-Gegenstand (NorthData) neu formuliert
+leistungen:
+  - id: denkmalrestaurierung
+    titel: Restaurierung denkmalgeschützter Bauten
+    kurz: "Anspruchsvolle Restaurationsarbeiten – vom historischen Gebäude bis zur stilgerechten Sanierung. Respekt vor dem Bestehenden, moderne Technik."
+    text: "Mit viel Erfahrung und handwerklichem Feingefühl führen wir anspruchsvolle Restaurationsarbeiten durch – vom historischen Gebäude bis zur stilgerechten Sanierung. Wir verbinden Respekt vor dem Bestehenden mit moderner Technik und sorgen dafür, dass wertvolle Bausubstanz erhalten bleibt. Denkmalpflege ist Vertrauenssache: Wir dokumentieren, planen und arbeiten substanzschonend, mit geprüften Materialien und im Abstimmung mit den Vorgaben des Denkmalschutzes."
+    bild: /assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp
+    punkte: [Fassaden- und Innenraumrestaurierung, Denkmalgerechte Sanierung, Substanzschonende Technik, Abstimmung mit Denkmalschutzbehörden]
+  - id: innenausbau
+    titel: Innenausbau
+    kurz: "Echtes Handwerk statt Showroom-Design: Wohnhaus, Gewerbe oder Büro – Räume, die durch Qualität überzeugen."
+    text: "Innenausbau ist für uns echtes Handwerk – keine Showroom-Ästhetik, sondern solide Arbeit mit Liebe zum Detail. Ob Wohnhaus, Geschäft oder Büro: Wir schaffen Räume, die durch Qualität überzeugen. Mit Erfahrung, Sorgfalt und dem richtigen Gespür für Materialien setzen wir Ihre Projekte fachgerecht und zuverlässig um – von der Rohbaufertigstellung bis zur hochwertigen Oberfläche."
+    bild: /assets/innenausbau/b1b9855e-0abd-4906-b9f0-ecec14474c16.webp
+    punkte: [Trockenbau & Akustikbau, Boden-, Fliesen- und Estricharbeiten, Raumausstattung, Komplette Innenraumgestaltung]
+  - id: krankenhausbau
+    titel: Krankenhausbau & Gesundheitsbau
+    kurz: "Komplexe Gesundheitsbauten mit höchster Präzision – von der Planung bis zur schlüsselfertigen Übergabe."
+    text: "Der Bau von Krankenhäusern erfordert höchste Sorgfalt, technische Kompetenz und ein tiefes Verständnis für funktionale Abläufe. Als erfahrenes Bauunternehmen realisieren wir komplexe Gesundheitsbauten mit höchster Präzision – von der Planung über die Umsetzung bis zur schlüsselfertigen Übergabe. Hygiene-, Brandschutz- und Technikvorgaben setzen wir termintreu und dokumentiert um."
+    bild: /assets/krankenhaus/IMG_1414.webp
+    punkte: [Schlüsselfertige Gesundheitsbauten, Sanierung im laufenden Betrieb, Technik- und Hygienekonzepte, Termintreue Übergabe]
+  - id: schluesselfertigbau
+    titel: Schlüsselfertigbau & Neubau
+    kurz: "Vom ersten Spatenstich bis zur Übergabe: moderne Neubauten aus einer Hand – zuverlässig, transparent, termintreu."
+    text: "Mit unserem Service bieten wir schlüsselfertige Lösungen von hoher Zuverlässigkeit. Wir koordinieren Gewerke, Materialien und Termine so, dass Sie ein fertiges Gebäude übernehmen – ohne Baustellenstress. Ob Wohnbau, Gewerbe oder Anbau: Wir stehen für Qualität, Verlässlichkeit und echte Handwerkskunst, vom Rohbau bis zur schlüsselfertigen Übergabe."
+    bild: /assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp
+    punkte: [Rohbau & Ausbau, Fenster, Türen, Zargen (genormte Baufertigteile), Gewerkekoordination, Schlüsselfertige Übergabe]
+  - id: installationen
+    titel: Installationen – Strom & Wasser
+    kurz: "Sämtliche Installationsarbeiten mit höchster Sorgfalt: von der Rohmontage bis zur fertigen Anlage."
+    text: "Ob Strom oder Wasser: Wir übernehmen sämtliche Installationsarbeiten mit höchster Sorgfalt und technischem Know-how. Von der Rohmontage bis zur fertigen Anlage – fachgerecht, zuverlässig und passend zu Ihrem Bauvorhaben. Heizungs-, Wasser- und Elektroinstallationen gehören ebenso zu unserem Leistungsspektrum wie Kabelverlegung im Hochbau."
+    bild: /assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp
+    punkte: [Elektroinstallationen, Wasser- und Heizungsinstallation, Kabelverlegung im Hochbau, Rohmontage bis fertige Anlage]
+  - id: sanierung
+    titel: Restauration & Sanierung von Altbauten
+    kurz: "Altbauten auf den neuesten Stand – technisch, funktional und optisch, ohne den Charakter zu verlieren."
+    text: "Wir bringen Altbauten auf den neuesten Stand – technisch, funktional und optisch. Mit handwerklicher Präzision erneuern wir Bausubstanz, ohne den Charakter zu verlieren. Ob Fassade, Innenraum oder Versorgungstechnik: Wir schaffen neue Qualität im alten Bestand. Dazu gehören Mauer- und Betonarbeiten, Steinmetzarbeiten, Fugarbeiten sowie Asphaltier- und Betonsteinarbeiten im Hochbau."
+    bild: /assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp
+    punkte: [Fassadensanierung, Mauer- und Betonarbeiten, Steinmetz- & Steinbildhauerarbeiten, Fugarbeiten]
+  - id: transport
+    titel: Europaweite Transporte
+    kurz: "Direkttransporte mit unserem firmeneigenen Sprinter – flexibel, schnell, direkt."
+    text: "Als Bauunternehmen wissen wir, wie wichtig es ist, dass Materialien, Werkzeuge oder Bauteile schnell und zuverlässig dort ankommen, wo sie gebraucht werden. Deshalb bieten wir einen besonderen Service: Direkttransporte mit unserem firmeneigenen Sprinter – europaweit. Jetzt anfragen – wir beraten Sie gerne und finden die passende Lösung für Ihren Transportbedarf."
+    bild: /assets/sonstiges/IMG_1415.webp
+    punkte: [Europaweite Direkttransporte, Firmeneigener Sprinter, Flexible Terminplanung, Baustellenlogistik]

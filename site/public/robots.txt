@@ -1,0 +1,8 @@
+# A-Bau Meisterbetrieb — a-bau.nexifyai.cloud
+User-agent: *
+Allow: /
+Disallow: /impressum/
+Disallow: /datenschutz/
+Disallow: /cookie-richtlinie/
+
+Sitemap: https://a-bau.nexifyai.cloud/sitemap-index.xml

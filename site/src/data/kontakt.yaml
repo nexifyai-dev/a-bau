@@ -1,0 +1,106 @@
+# A-Bau Meisterbetrieb GmbH — zentrale Kontaktdaten (EINE Wahrheitsquelle)
+# Quelle: RECHERCHE-FIRMENDATEN.md (Stand 2026-08-10), E3-Verifikation
+# OFFEN = vom Kunden zu bestätigen (P0-Klärung via VP); Go-Live nur mit Kundenwerten.
+firma:
+  name: A-Bau Meisterbetrieb GmbH
+  rechtsform: GmbH
+  kurzname: A-Bau
+  branche: Bauunternehmen / Meisterbetrieb
+  gruendung: "2019" # OFFEN: Gründungsjahr Firma vom Kunden bestätigen
+  slogan: "Mit Vertrauen bauen – mit Qualität leben"
+  register:
+    amtsgericht: Amtsgericht Mönchengladbach
+    hrb: HRB 18836
+    euid: DE.R1504.HRB18836
+    gegenstand: Akustik-/Trockenbau, Fliesen/Platten/Mosaik/Estrich/Bodenleger, Betonstein/Terrazzo, Steinmetz/Steinbildhauer, Mauer-/Beton-/Metallbau (Metallsandstrahlen), Fugerarbeiten, Kabelverlegung, Asphaltierer (ohne Straßenbau), genormte Baufertigteile, Raumausstatter, Gebäudereinigung, Garten-/Landschaftsbau, Heizungs-/Wasser-/Elektroinstallation
+  geschaeftsfuehrer:
+    name: Albert Pfeiffer
+    titel: Geschäftsführer
+    # OFFEN: weitere GF, Prokuristen vom Kunden bestätigen
+  ust_idnr: "OFFEN – vom Kunden zu liefern (Impressum-Pflichtfeld)"
+  handwerkskammer: "OFFEN – zuständige HWK + Meisterbrief-Nachweis vom Kunden (Recherche: nicht öffentlich verifizierbar)"
+  iso_zertifikate: [] # OFFEN: DIN EN ISO 9001 o. ä. nur wenn Kunde Nachweis liefert — NICHT behaupten
+
+adresse:
+  strasse: Luisental 69
+  plz: "41199"
+  ort: Mönchengladbach
+  ortsteil: Geistenbeck
+  bundesland: Nordrhein-Westfalen
+  land: Deutschland
+  # Alt-Adressen (NICHT verwenden, beim Kunden löschen lassen): Pastorsgasse (Cylex), Viersener Str. 53
+
+kontakt:
+  # OFFEN P0: verbindliche Hauptnummer vom Kunden bestätigen (beide recherchiert)
+  telefon:
+    - label: Festnetz
+      nummer: "+49 2166 9925056"
+      display: "(02166) 9925056"
+      quelle: 11880.com (vom Inhaber bestätigt, E3)
+    - label: Mobil
+      nummer: "+49 162 1815229"
+      display: "0162 18 15 229"
+      quelle: a-bau.info/kontakt (E3)
+  email:
+    - label: Allgemein
+      adresse: kontakt@a-bau.info
+      quelle: ProvenExpert (E3), Domain a-bau.info aktiv
+      # HINWEIS: e.pfeiffer@a-bau.de ist TOT (NXDOMAIN) — niemals verwenden
+  oeffnungszeiten:
+    - tage: "Mo–Do"
+      zeiten: "08:00–17:00"
+    - tage: "Fr"
+      zeiten: "07:00–17:00"
+    - tage: "Sa"
+      zeiten: "08:00–13:00"
+    - tage: "So"
+      zeiten: "geschlossen"
+  quelle_oeffnungszeiten: 11880.com, Stand 04.07.2026 (Kunde bestätigt)
+
+region:
+  einsatzgebiet: Mönchengladbach & NRW
+  area_served:
+    - Mönchengladbach
+    - Viersen
+    - Krefeld
+    - Düsseldorf
+    - Aachen
+    - Köln
+    - NRW
+  europaweit: "Transporte europaweit (firmeneigener Sprinter)"
+
+reputation:
+  - portal: 11880.com
+    wert: "5/5 (1 Bewertung)"
+    datum: 2026-04-28
+    text: "zuverlässiges Generalbauunternehmen … schnell, präzise, hohe handwerkliche Qualität"
+  - portal: Google Maps
+    wert: "3/5 (4 Bewertungen)"
+    quelle: 11880-Import
+    # Empfehlung an Kunde: Profil beanspruchen + Rezensionsmanagement
+  - portal: ProvenExpert
+    wert: "1,0/5 (1 Bewertung, importiert 11.08.2025)"
+    hinweis: Profil unbeansprucht; Transparenz + Rezensionsmanagement-Empfehlung
+
+leistungen:
+  - slug: denkmalrestaurierung
+    titel: Denkmalrestaurierung
+    kurz: Restaurierung denkmalgeschützter Bauten mit handwerklichem Feingefühl
+  - slug: innenausbau
+    titel: Innenausbau
+    kurz: Hochwertige Innenausbauten für Wohnhaus, Gewerbe und Büro
+  - slug: krankenhausbau
+    titel: Krankenhausbau
+    kurz: Komplexe Gesundheitsbauten, schlüsselfertig realisiert
+  - slug: schluesselfertigbau
+    titel: Schlüsselfertigbau & Neubau
+    kurz: Effiziente Neubauten und schlüsselfertige Übergabe
+  - slug: installationen
+    titel: Installationen Strom & Wasser
+    kurz: Fachgerechte Elektro- und Sanitärinstallationen
+  - slug: sanierung
+    titel: Sanierung & Altbau-Restauration
+    kurz: Technische, funktionale und optische Instandsetzung
+  - slug: transporte
+    titel: Europaweite Direkttransporte
+    kurz: Eigener Sprinter für zuverlässige Baustellen-Logistik

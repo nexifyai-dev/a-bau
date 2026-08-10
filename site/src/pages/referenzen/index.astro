@@ -1,0 +1,117 @@
+---
+// Galerie: alle Referenz-Bilder mit Kategorie-Label
+const gallery = referenzen.referenzen.flatMap(r =>
+  r.bilder.map(id => ({ id, cat: r.titel }))
+);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  about: { '@type': 'LocalBusiness', name: 'A-Bau Meisterbetrieb GmbH' },
+  hasPart: gallery.slice(0, 20).map(g => ({
+    '@type': 'ImageObject',
+    name: `${g.cat} – Projektbeispiel A-Bau Meisterbetrieb`,
+    contentUrl: `https://a-bau.nexifyai.cloud/referenzen/#bild-${g.id}`,
+  })),
+};
+import { referenzen } from '../../lib/data.ts';
+import Base from '../../layouts/Base.astro';
+import { images, alts } from '../../lib/images';
+---
+
+<Base
+  title="Referenzen – Projekte der A-Bau Meisterbetrieb GmbH"
+  description="Referenzen und Projektbeispiele der A-Bau Meisterbetrieb GmbH: Denkmalrestaurierung, Innenausbau, Badezimmer, Neubau, Baustellenarbeit und Transport."
+  breadcrumb={[{ name: 'Referenzen', path: '/referenzen/' }]}
+  schema={schema}
+>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Referenzen</span>
+        <h1>Projekte, die für Qualität sprechen</h1>
+        <p>
+          Einblicke in unsere Arbeit: Restaurierung historischer Bausubstanz, Innenausbau,
+          Badsanierung, Neubau, Baustellenarbeit und Logistik. Die Bilder stammen aus dem
+          Projektbestand der A-Bau Meisterbetrieb GmbH; konkrete Projektdaten werden nach
+          Freigabe durch den Kunden ergänzt.
+        </p>
+      </div>
+
+      {referenzen.referenzen.map(r => (
+        <section class="section-tight" id={`kategorie-${r.slug}`}>
+          <h2>{r.titel}</h2>
+          <p style="color:var(--text-2)">{r.beschreibung} {r.hinweis}</p>
+          <div class="gallery-grid" data-lightbox-group>
+            {r.bilder.map(id => {
+              const img = images[id];
+              if (!img) return null;
+              return (
+                <button class="gallery-item" type="button" data-lb-img={id} aria-label={`Bild öffnen: ${alts[id] ?? r.titel}`}>
+                  <img src={img.src} alt={alts[id] ?? r.titel} width={640} loading="lazy" />
+                  <figcaption>{r.titel}</figcaption>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+
+      <div class="notice" style="margin-top:var(--space-6)">
+        <strong>Hinweis:</strong> Die gezeigten Projektdaten (Ort, Jahr, Umfang) werden nach
+        Freigabe durch den Kunden ergänzt (P0). Bei Fragen zu einem konkreten Projekt
+        kontaktieren Sie uns gerne direkt.
+      </div>
+    </div>
+  </section>
+</Base>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildvorschau">
+  <button class="lb-btn lb-close" id="lb-close" aria-label="Schließen">✕</button>
+  <button class="lb-btn lb-prev" id="lb-prev" aria-label="Vorheriges Bild">‹</button>
+  <div style="text-align:center">
+    <img id="lb-img" src="" alt="" />
+    <p class="lb-caption" id="lb-caption"></p>
+  </div>
+  <button class="lb-btn lb-next" id="lb-next" aria-label="Nächstes Bild">›</button>
+</div>
+
+<script>
+  // Lightbox — Apple-Prinzipien: räumliche Konsistenz (Zoom am Trigger),
+  // Escape/Tastatur, Momentum-freie Cross-Fade bei reduced-motion.
+  const lb = document.getElementById('lightbox') as HTMLElement;
+  const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+  const lbCap = document.getElementById('lb-caption') as HTMLElement;
+  const imgs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-lb-img]'));
+  const srcs = imgs.map(b => ({
+    id: Number(b.dataset.lbImg),
+    src: (b.querySelector('img') as HTMLImageElement).src,
+    alt: (b.querySelector('img') as HTMLImageElement).alt,
+    cap: b.getAttribute('aria-label') || '',
+  }));
+  let idx = 0;
+
+  const show = (i: number) => {
+    idx = (i + srcs.length) % srcs.length;
+    lbImg.src = srcs[idx].src;
+    lbImg.alt = srcs[idx].alt;
+    lbCap.textContent = srcs[idx].cap;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lb-close')!.focus();
+  };
+  const close = () => {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  imgs.forEach(b => b.addEventListener('click', () => show(imgs.indexOf(b))));
+  document.getElementById('lb-close')!.addEventListener('click', close);
+  document.getElementById('lb-prev')!.addEventListener('click', () => show(idx - 1));
+  document.getElementById('lb-next')!.addEventListener('click', () => show(idx + 1));
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(idx - 1);
+    if (e.key === 'ArrowRight') show(idx + 1);
+  });
+</script>

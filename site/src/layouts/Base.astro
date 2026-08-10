@@ -1,0 +1,84 @@
+---
+import { kontakt } from '../lib/data.ts';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+import '../styles/fonts.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  url?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  breadcrumb?: { name: string; path: string }[];
+  schema?: object;
+}
+
+const {
+  title,
+  description = '',
+  url = '/',
+  ogImage,
+  noindex = false,
+  breadcrumb = [],
+  schema,
+} = Astro.props as Props;
+
+const site = 'https://a-bau.nexifyai.cloud';
+const fullTitle = title.includes('A-Bau') ? title : `${title} – A-Bau Meisterbetrieb GmbH`;
+const schemas = schema ? [schema] : [];
+const breadcrumbSchema: object[] = [];
+if (breadcrumb.length) {
+  const items = [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: `${site}/` },
+    ...breadcrumb.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: b.name,
+      item: `${site}${b.path}`,
+    })),
+  ];
+  breadcrumbSchema.push({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items });
+}
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(url, site).href} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="A-Bau Meisterbetrieb GmbH" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={new URL(url, site).href} />
+    <meta property="og:locale" content="de_DE" />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, site).href} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="theme-color" content="#09090B" />
+    <link rel="preload" href="/fonts/Outfit-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Manrope-var.woff2" as="font" type="font/woff2" crossorigin />
+    {schemas.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+    {breadcrumbSchema.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <CookieConsent />
+    <ChatWidget />
+  </body>
+</html>

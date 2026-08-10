@@ -1,0 +1,19 @@
+# Seiten-Metadaten + Navigation
+site:
+  titel: A-Bau Meisterbetrieb – Bauen, Restaurieren, Gestalten in Mönchengladbach & NRW
+  claim: "Mit Vertrauen bauen – mit Qualität leben"
+  beschreibung: "A-Bau Meisterbetrieb GmbH: Restaurierung denkmalgeschützter Bauten, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach & NRW. Meisterhafte Handwerkskunst seit 2019 – HRB 18836 AG Mönchengladbach."
+  sprache: de-DE
+  domain: a-bau.nexifyai.cloud
+  og_bild: /assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp
+
+nav:
+  - {url: /, titel: Start}
+  - {url: /leistungen/, titel: Leistungen}
+  - {url: /referenzen/, titel: Referenzen}
+  - {url: /ueber-uns/, titel: Über uns}
+  - {url: /faq/, titel: FAQ}
+  - {url: /kontakt/, titel: Kontakt}
+
+footer:
+  rechts: [Impressum, Datenschutz]
