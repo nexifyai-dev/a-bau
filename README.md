@@ -1,7 +1,5 @@
 # Kundenprojekt: A-Bau Meisterbetrieb GmbH — a-bau.info
 
-**Repo:** https://github.com/nexifyai-dev/a-bau (eigenes Kundenprojekt-Repo)
-**Deployment:** VPS 72.62.152.47, Container-Pfad `/workspace/nexifyai/clients/abau` (Spiegel: `/opt/nexifyai/repos/a-bau`), Service Port 8095, Live: https://a-bau.nexifyai.cloud
 **Kunde:** A-Bau Meisterbetrieb GmbH · Luisental 69 · 41199 Mönchengladbach (Geistenbeck)
 **Register:** AG Mönchengladbach HRB 18836 · EUID DER1504.HRB18836 · GF: Albert Pfeiffer
 **Status:** Planung (2026-08-10) → Umsetzung (Kanban `nexify`, Task siehe Board)

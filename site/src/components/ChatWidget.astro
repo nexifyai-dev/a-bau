@@ -4,7 +4,7 @@
 const tel = '+49 2166 9925056';
 ---
 
-<button class="chat-fab" id="chat-fab" aria-label="KI-Assistent öffnen" aria-expanded="false" style="position:fixed;right:20px;bottom:20px;z-index:70;width:60px;height:60px;border-radius:50%;border:0;background:var(--accent,#9A4A22);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 12px 32px rgba(26,29,33,.25);display:flex;align-items:center;justify-content:center">💬</button>
+<button class="chat-fab" id="chat-fab" aria-label="KI-Assistent öffnen" aria-expanded="false" style="position:fixed;right:20px;bottom:20px;z-index:70;width:60px;height:60px;border-radius:50%;border:0;background:var(--accent,#A4501F);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 12px 32px rgba(32,29,25,.28);display:flex;align-items:center;justify-content:center;font-family:var(--font-head,Outfit);font-weight:800">A</button>
 
 <div class="chat-panel" id="chat-panel" role="dialog" aria-label="KI-Assistent A-Bau" style="position:fixed;right:16px;bottom:88px;z-index:69;width:min(380px,calc(100vw - 32px));max-height:min(600px,calc(100vh - 120px));display:flex;flex-direction:column;background:#fff;border-radius:18px;box-shadow:0 12px 32px rgba(26,29,33,.22);border:1px solid var(--line,rgba(26,29,33,.14));overflow:hidden;transform-origin:bottom right;visibility:hidden">
   <div class="chat-head" style="background:var(--bg-dark,#1A1D21);color:var(--text-inv,#F2EFE9);padding:14px 16px;display:flex;gap:10px;align-items:center">
@@ -101,7 +101,7 @@ const tel = '+49 2166 9925056';
   fab.addEventListener('click', () => {
     open = !open;
     fab.setAttribute('aria-expanded', String(open));
-    fab.textContent = open ? '✕' : '💬';
+    fab.textContent = open ? '✕' : 'A';
     if (open) springIn(); else springOut();
   });
   sendBtn.addEventListener('click', send);

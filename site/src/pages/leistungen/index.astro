@@ -17,6 +17,17 @@ const schema = {
 };
 import { leistungen } from '../../lib/data.ts';
 import Base from '../../layouts/Base.astro';
+
+// Bild je Leistung (WebP aus public/assets; gleiche Quelle wie Referenzen)
+const bilder: Record<string, string> = {
+  denkmalrestaurierung: '/assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp',
+  innenausbau: '/assets/innenausbau/b1b9855e-0abd-4906-b9f0-ecec14474c16.webp',
+  krankenhausbau: '/assets/krankenhaus/IMG_1414.webp',
+  schluesselfertigbau: '/assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp',
+  installationen: '/assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp',
+  sanierung: '/assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp',
+  transport: '/assets/sonstiges/IMG_1415.webp',
+};
 ---
 
 <Base
@@ -39,14 +50,23 @@ import Base from '../../layouts/Base.astro';
       </div>
       <div class="card-grid">
         {leistungen.leistungen.map(l => (
-          <article class="card">
-            <span class="card-icon" aria-hidden="true">◆</span>
-            <h2 style="font-size:1.25rem">{l.titel}</h2>
-            <p>{l.kurz}</p>
-            <a class="card-link" href={`/leistungen/${l.slug}/`}>
-              Mehr erfahren <span class="arrow" aria-hidden="true">→</span>
-            </a>
-          </article>
+          <a class="card" href={`/leistungen/${l.slug}/`}>
+            <div class="card-img">
+              <img
+                src={bilder[l.slug] ?? '/assets/sonstiges/IMG_1416.webp'}
+                alt={`${l.titel} – A-Bau Meisterbetrieb Mönchengladbach`}
+                width={800}
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <h3>{l.titel}</h3>
+              <p>{l.kurz}</p>
+              <span class="card-link">
+                Mehr erfahren <span class="arrow" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
         ))}
       </div>
     </div>
