@@ -53,3 +53,55 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 | Formular 502 | Hostinger-SMTP-Creds in hermes.env (SMTP_*) prüfen; nie Resend verwenden (send.nexifyai.cloud = NXDOMAIN) |
 | DNS-Propagation | DoH: `curl -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=a-bau.nexifyai.cloud&type=CNAME"` |
 | Eskalation | Pascal via Telegram (Owner-Chat) — Interna nur an verifizierten Pascal (§0b) |
+
+## Log-Verwaltung (DSGVO — max. 7 Tage)
+
+Server-Logs (`/tmp/abau-server.log`) enthalten ausschließlich Zugriffszeilen (IP, Pfad, Status, Größe) — **keine** personenbezogenen Daten aus Formularen oder Chat-Nachrichten. Löschung spätestens nach 7 Tagen:
+
+```bash
+# Manuell:
+truncate -s 0 /tmp/abau-server.log
+
+# Automatisch via Cron (täglich, 7 Tage Aufbewahrung):
+find /tmp/ -name "abau-server*.log" -mtime +7 -delete
+```
+
+Falls Systemd-Journal: `journalctl --vacuum-time=7d`
+
+Chat-Verläufe werden **nicht** persistiert (kein Chat-Log in der Datenbank); Anfragen gehen direkt zum 9Router und werden dort nach Verarbeitung nicht gespeichert.
+
+## Rollback-Verfahren
+
+1. **Code-Rollback:** `git revert HEAD` im Repo, dann `pnpm build` + Service-Restart.
+2. **Vollständiger Rollback:** `git checkout <vorheriger-commit>`, Build, Restart.
+3. **DNS-Rollback:** A-Record/CNAME auf alte IP zurücksetzen (TTL beachten, min. 5 min Wartezeit).
+4. **KB-Rollback:** `python3 chat/ingest.py` mit vorherigem Content-Stand neu ausführen.
+5. **Verifikation:** `curl https://a-bau.nexifyai.cloud/health` → `{"status":"ok","chat":true,"kb":true}`
+
+## Security-Header (Übersicht)
+
+Aktuelle Security-Header (gesetzt in `chat/server.py` HEADERS-Dict):
+
+| Header | Wert |
+|--------|------|
+| `X-Content-Type-Options` | `nosniff` |
+| `X-Frame-Options` | `DENY` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` |
+| HSTS | Über Cloudflare-Dashboard (SSL/TLS → Edge Certificates → HSTS) |
+| CSP | Zu konfigurieren (inline-scripts durch Astro-Build erforderlich, `unsafe-inline`) |
+
+Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://securityheaders.com/).
+
+## Content-Pflege (Kurzreferenz)
+
+| Aufgabe | Datei | Schritt danach |
+|---------|-------|---------------|
+| NAP ändern (Telefon, E-Mail, Adresse) | `site/src/data/kontakt.yaml` | `pnpm build` + Restart |
+| Leistungen ändern | `site/src/data/leistungen.yaml` | `pnpm build` + `ingest.py` + Restart |
+| FAQ ändern | `site/src/data/faq.yaml` | `pnpm build` + `ingest.py` + Restart |
+| Referenzen ändern | `site/src/data/referenzen.yaml` | `pnpm build` + `ingest.py` + Restart |
+| Bilder ersetzen | `site/src/assets/img/` oder `site/public/assets/` | `pnpm build` + Restart |
+| Rechtstexte ändern | `site/src/pages/impressum.astro` etc. | `pnpm build` + Restart (kein Re-Ingest — Rechtstexte absichtlich aus KB ausgeschlossen) |
+
+**Wichtig:** `kontakt.yaml` ist die **einzige Wahrheitsquelle** für NAP-Daten. Niemals Telefon/E-Mail/Adresse direkt in `.astro`-Dateien oder Template-Strings eintragen.

@@ -33,3 +33,72 @@
 - USt-IdNr., Handwerkskammer, verbindliche Telefon-/E-Mail-Wahl, echte Referenzdaten, Logo-SVG: OFFEN (Kunde, P0) — Marker im Impressum.
 - Rechtstexte vor Go-Live anwaltlich prüfen (Empfehlung).
 - Retrieval: FTS5 (BM25); Vektor-Upgrade möglich, sobald 9Router einen Embedding-Provider hat (Upstage final entfernt, Pascal 2026-08-10).
+
+---
+
+## Phase 4–6 QA-Ergänzung (2026-08-11)
+
+### Build-Gate
+
+| Test | Ergebnis | Status |
+|------|---------|--------|
+| `pnpm build` (Astro 5, Node 22) | 17 Seiten ohne Fehler generiert (897 ms) | ✅ |
+| `astro check` (TypeScript) | Keine neuen Fehler | ✅ |
+| Sitemap | `sitemap-index.xml` erstellt; Impressum/Datenschutz ausgeschlossen | ✅ |
+
+### NAP-Konsistenz
+
+| Prüfpunkt | Ergebnis |
+|-----------|---------|
+| Telefon-Anzeige | Ausschließlich aus `kontakt.yaml` via `lib/data.ts` — keine Hardcodierung mehr (ChatWidget.astro gefixt) |
+| E-Mail | Ausschließlich aus `kontakt.yaml` |
+| Adresse | Ausschließlich aus `kontakt.yaml` |
+| Footer-Fallbacks | Korrekte Fallback-Werte (identisch mit kontakt.yaml) |
+| Meta-Descriptions | Kontakt-Seite enthält hartkodierten Beschreibungstext — inhaltlich korrekt, kein Abweichungsrisiko |
+
+### Schema.org (JSON-LD)
+
+| Schema | Seite | Status |
+|--------|-------|--------|
+| `LocalBusiness` + `HomeAndConstructionBusiness` | Alle Seiten (Base.astro) | ✅ Neu: geo, openingHours, areaServed, legalIdentifier, foundingDate |
+| `FAQPage` | `/faq/` + `/` (erster Abschnitt) | ✅ vorhanden |
+| `BreadcrumbList` | Alle Unterseiten | ✅ vorhanden |
+| `ContactPage` | `/kontakt/` | ✅ vorhanden |
+
+### A11y-Prüfung
+
+| Kriterium | Befund |
+|-----------|--------|
+| Skip-Link | `.skip-link` mit `#main` vorhanden, `:focus`-gesteuert sichtbar |
+| `:focus-visible` | Global definiert: 3px solid `--accent`, offset 2px |
+| Touch-Targets | Alle Buttons ≥ 44 px (ChatWidget, CookieConsent, Kontaktformular explizit `min-height:44px`) |
+| Kontraste | `--accent` auf Weiß: #A4501F / #9A4A22 — WCAG AA konform (Kontrastverhältnis > 4.5:1) |
+| `prefers-reduced-motion` | CSS-Mediaquery + JS in ChatWidget vorhanden; Animationen deaktiviert |
+| `prefers-reduced-transparency` | CSS-Mediaquery definiert |
+| `prefers-contrast: more` | CSS-Mediaquery definiert |
+| ARIA | `role="dialog"`, `aria-label`, `aria-expanded`, `role="alert"`, `role="status"` korrekt gesetzt |
+| `lang="de"` | ✅ auf `<html>` |
+| Landmark-Struktur | `<main id="main">`, `<header>`, `<footer>` korrekt |
+
+### DSGVO / Rechts-Härtung
+
+| Punkt | Status |
+|-------|--------|
+| Impressum OFFEN-Marker (USt-IdNr., HWK) | ✅ Prominent mit `<div class="notice">` gekennzeichnet |
+| Datenschutz: Hosting (VPS DE, Logfiles) | ✅ Abschnitt 3 |
+| Datenschutz: Kontaktformular | ✅ Abschnitt 4 |
+| Datenschutz: KI-Assistent (RAG, keine externen Embeddings) | ✅ Abschnitt 5, 7-Tage-Löschung |
+| Datenschutz: Cookies (TDDDG § 25) | ✅ Abschnitt 6 + Cookie-Richtlinie verlinkt |
+| EU AI Act Art. 50 (KI-Offenlegung) | ✅ Datenschutz Abschnitt 5 + ChatWidget-Footer |
+| Cookie-Consent: kein Tracking vor Opt-in | ✅ Nur technisch notwendig; Banner informiert |
+| Cookie-Consent: Cookie-Richtlinie verlinkt | ✅ im Banner |
+| Kontaktformular: Honeypot | ✅ `#cf-website` (`.hp-field`, `tabindex="-1"`) |
+| Kontaktformular: DSGVO-Einwilligungs-Checkbox | ✅ Pflichtfeld, mit Datenschutz-Link |
+| Kontaktformular: Client-Validierung | ✅ Pflichtfelder, E-Mail-Regex, Consent-Check |
+
+### Offene Punkte (kein Go-Live-Blocker für Staging)
+
+- USt-IdNr., HWK-Eintrag: P0-Klärung mit Kunde
+- Anwaltliche Prüfung der Rechtstexte vor Go-Live
+- Logo-Freigabe durch Kunden
+- DNS-Umstellung a-bau.info → Details in `docs/LAUNCH-CHECKLISTE.md`
