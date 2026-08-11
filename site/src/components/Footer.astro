@@ -2,52 +2,93 @@
 import { kontakt } from '../lib/data.ts';
 
 const k = kontakt as any;
-const firma = k.firma?.name ?? k.firma ?? 'A-Bau Meisterbetrieb GmbH';
-const strasse = k.firma?.adresse?.strasse ?? k.adresse?.strasse ?? 'Luisental 69';
-const plz = k.firma?.adresse?.plz ?? k.adresse?.plz ?? '41199';
-const ort = k.firma?.adresse?.ort ?? k.adresse?.ort ?? 'Mönchengladbach';
-const tel = k.firma?.telefon ?? k.telefon ?? k.telefon_festnetz ?? '+49 2166 9925056';
-const email = k.firma?.email ?? k.email ?? 'kontakt@a-bau.info';
-const hrb = k.firma?.hrb ?? k.hrb ?? 'HRB 18836';
-const zeiten: { tag: string; zeit: string }[] = (k.firma?.oeffnungszeiten ?? k.oeffnungszeiten ?? [
-  { tag: 'Montag–Donnerstag', zeit: '08:00–17:00' },
-  { tag: 'Freitag', zeit: '07:00–17:00' },
-  { tag: 'Samstag', zeit: '08:00–13:00' },
-]) as any;
+const firma      = k.firma?.name    ?? 'A-Bau Meisterbetrieb GmbH';
+const strasse    = k.adresse?.strasse ?? 'Luisental 69';
+const plz        = k.adresse?.plz     ?? '41199';
+const ort        = k.adresse?.ort     ?? 'Mönchengladbach';
+const hrb        = k.firma?.register?.hrb ?? 'HRB 18836';
+const amtsgericht= k.firma?.register?.amtsgericht ?? 'Amtsgericht Mönchengladbach';
+
+const telefonEintraege = k.kontakt?.telefon ?? [];
+const emailEintraege   = k.kontakt?.email   ?? [];
+const festnetz  = telefonEintraege.find((t: any) => t.label === 'Festnetz') ?? telefonEintraege[0];
+const mobil     = telefonEintraege.find((t: any) => t.label === 'Mobil');
+const emailHref = emailEintraege[0]?.adresse ?? 'kontakt@a-bau.info';
+const emailDisp = emailEintraege[0]?.adresse ?? 'kontakt@a-bau.info';
+
+const zeiten = k.kontakt?.oeffnungszeiten ?? [
+  { tage: 'Mo–Do', zeiten: '08:00–17:00' },
+  { tage: 'Fr',    zeiten: '07:00–17:00' },
+  { tage: 'Sa',    zeiten: '08:00–13:00' },
+  { tage: 'So',    zeiten: 'geschlossen' },
+];
+
+const navLinks = [
+  { href: '/',               label: 'Start'           },
+  { href: '/leistungen/',    label: 'Leistungen'      },
+  { href: '/referenzen/',    label: 'Referenzen'      },
+  { href: '/ueber-uns/',     label: 'Über uns'        },
+  { href: '/faq/',           label: 'FAQ'             },
+  { href: '/kontakt/',       label: 'Kontakt'         },
+];
+
 const jahr = new Date().getFullYear();
 ---
 
-<footer class="site-footer" style="background:var(--bg-dark, #1A1D21);color:var(--text-inv, #F2EFE9);margin-top:48px">
-  <div class="container" style="padding:56px 20px 24px">
-    <div class="footer-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px">
-      <div>
-        <h3 style="color:#fff;margin:0 0 10px">{firma}</h3>
-        <p style="color:rgba(242,239,233,.7);font-size:.92rem;max-width:38ch">Restaurierung denkmalgeschützter Bauten, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach &amp; NRW.</p>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-grid">
+
+      <!-- Spalte 1: Marke -->
+      <div class="footer-col-brand">
+        <img class="footer-logo" src="/logo-abau.svg" alt="A-Bau Meisterbetrieb" width="160" height="40" />
+        <p>
+          Restaurierung denkmalgeschützter Bauten, Innenausbau, Schlüsselfertigbau,
+          Sanierung und Installationen — aus Mönchengladbach für ganz NRW.
+        </p>
       </div>
+
+      <!-- Spalte 2: Navigation -->
       <div>
-        <h3 style="color:#fff;margin:0 0 10px">Navigation</h3>
-        <nav style="display:grid;gap:8px" aria-label="Footer">
-          <a href="/">Start</a><a href="/leistungen/">Leistungen</a><a href="/referenzen/">Referenzen</a>
-          <a href="/ueber-uns/">Über uns</a><a href="/faq/">FAQ</a><a href="/kontakt/">Kontakt</a>
+        <h4>Navigation</h4>
+        <nav aria-label="Footer-Navigation">
+          {navLinks.map(l => <a href={l.href}>{l.label}</a>)}
         </nav>
       </div>
+
+      <!-- Spalte 3: Kontakt -->
       <div>
-        <h3 style="color:#fff;margin:0 0 10px">Kontakt</h3>
-        <nav style="display:grid;gap:8px">
-          <a href={`tel:${tel.replace(/[^+\d]/g, '')}`}>{strasse}, {plz} {ort}</a>
-          <a href={`tel:${tel.replace(/[^+\d]/g, '')}`}>Tel: {tel}</a>
-          <a href={`mailto:${email}`}>{email}</a>
+        <h4>Kontakt</h4>
+        <nav aria-label="Kontaktinformationen">
+          <span>{strasse}, {plz} {ort}</span>
+          {festnetz && (
+            <a href={`tel:${festnetz.nummer}`}>{festnetz.display}</a>
+          )}
+          {mobil && (
+            <a href={`tel:${mobil.nummer}`}>{mobil.display}</a>
+          )}
+          <a href={`mailto:${emailHref}`}>{emailDisp}</a>
         </nav>
       </div>
+
+      <!-- Spalte 4: Öffnungszeiten -->
       <div>
-        <h3 style="color:#fff;margin:0 0 10px">Öffnungszeiten</h3>
-        <div style="display:grid;gap:6px;font-size:.95rem">
-          {zeiten.map(z => <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:rgba(242,239,233,.72)">{z.tag}</span><b>{z.zeit}</b></div>)}
+        <h4>Öffnungszeiten</h4>
+        <div class="oeff">
+          {zeiten.map((z: any) => (
+            <div class="oeff-row">
+              <span class="oeff-label">{z.tage}</span>
+              <strong>{z.zeiten}</strong>
+            </div>
+          ))}
         </div>
       </div>
+
     </div>
-    <div class="footer-bottom" style="border-top:1px solid rgba(242,239,233,.16);padding-top:20px;margin-top:28px;font-size:.82rem;color:rgba(242,239,233,.55);display:flex;flex-wrap:wrap;gap:8px 24px">
-      <span>© {jahr} {firma} · {hrb} · Amtsgericht Mönchengladbach</span>
+
+    <!-- Footer-Bottom -->
+    <div class="footer-bottom">
+      <span>© {jahr} {firma} · {hrb} · {amtsgericht}</span>
       <a href="/impressum/">Impressum</a>
       <a href="/datenschutz/">Datenschutz</a>
       <a href="/cookie-richtlinie/">Cookie-Richtlinie</a>

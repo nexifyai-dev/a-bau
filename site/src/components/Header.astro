@@ -1,77 +1,111 @@
 ---
-import { kontakt } from '../lib/data.ts';
-
-const k = kontakt as any;
-const firma = k.firma?.name ?? k.firma ?? 'A-Bau Meisterbetrieb GmbH';
-const tel = k.firma?.telefon ?? k.telefon ?? k.telefon_festnetz ?? '+49 2166 9925056';
-const links = [
-  { href: '/', label: 'Start' },
+const navLinks = [
+  { href: '/',            label: 'Start'      },
   { href: '/leistungen/', label: 'Leistungen' },
   { href: '/referenzen/', label: 'Referenzen' },
-  { href: '/ueber-uns/', label: 'Über uns' },
-  { href: '/faq/', label: 'FAQ' },
+  { href: '/ueber-uns/',  label: 'Über uns'   },
+  { href: '/faq/',        label: 'FAQ'        },
 ];
-const navStyle = 'padding:10px 12px;border-radius:10px;text-decoration:none;color:inherit;font-weight:500;min-height:44px;display:inline-flex;align-items:center';
-const itemStyle = 'display:flex;align-items:center;min-height:52px;padding:0 12px;border-radius:12px;text-decoration:none;color:inherit;font-size:1.05rem;font-weight:600';
+const currentPath = Astro.url?.pathname ?? '/';
+const isCurrent = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 ---
 
 <header class="site-header" id="site-header">
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px">
-    <a class="brand" href="/" aria-label="A-Bau Meisterbetrieb – Startseite" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;min-height:44px">
-      <span class="brand-mark" style="width:40px;height:40px;border-radius:10px;background:var(--accent);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800">A</span>
-      <span>
-        <span class="brand-name" style="display:block;font-weight:700;letter-spacing:-.01em;line-height:1.1">{firma}</span>
-        <span class="brand-sub" style="display:block;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)">Bauen · Restaurieren · Gestalten</span>
-      </span>
-    </a>
-    <nav class="nav-desktop" aria-label="Hauptnavigation" style="display:flex;align-items:center;gap:4px">
-      {links.map(l => <a href={l.href} style={navStyle}>{l.label}</a>)}
-      <a class="btn btn-primary" href="/kontakt/" style="margin-left:8px">Angebot anfordern</a>
-    </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="drawer" style="display:none;min-width:48px;min-height:48px;border:0;background:transparent;border-radius:12px;font-size:1.4rem;cursor:pointer">☰</button>
+  <div class="container">
+    <div class="header-inner">
+      <!-- Logo -->
+      <a class="brand" href="/" aria-label="A-Bau Meisterbetrieb – Startseite">
+        <img
+          class="brand-logo"
+          src="/logo-abau.svg"
+          alt="A-Bau Meisterbetrieb"
+          width="176"
+          height="44"
+        />
+      </a>
+
+      <!-- Desktop-Navigation -->
+      <nav class="nav-desktop" aria-label="Hauptnavigation">
+        {navLinks.map(l => (
+          <a
+            href={l.href}
+            aria-current={isCurrent(l.href) ? 'page' : undefined}
+          >{l.label}</a>
+        ))}
+        <a class="btn btn-primary nav-cta" href="/kontakt/">Angebot anfordern</a>
+      </nav>
+
+      <!-- Mobile Toggle -->
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+        aria-controls="drawer"
+      >☰</button>
+    </div>
   </div>
 </header>
 
-<nav class="drawer-panel" id="drawer" aria-hidden="true" style="position:fixed;top:0;right:0;bottom:0;width:min(340px,86vw);z-index:60;background:var(--bg);box-shadow:var(--shadow-2,0 12px 32px rgba(0,0,0,.18));display:flex;flex-direction:column;padding:64px 20px 20px;transform:translateX(105%);will-change:transform;visibility:hidden">
-  <button class="drawer-close" aria-label="Menü schließen" style="position:absolute;top:12px;right:12px;min-width:48px;min-height:48px;border:0;background:transparent;font-size:1.4rem;cursor:pointer">✕</button>
-  {links.map(l => <a href={l.href} style={itemStyle}>{l.label}</a>)}
-  <a class="btn btn-primary" href="/kontakt/" style="margin-top:auto">Angebot anfordern</a>
+<!-- Mobiler Drawer -->
+<nav class="drawer-panel" id="drawer" aria-hidden="true" aria-label="Mobile Navigation">
+  <button class="drawer-close" aria-label="Menü schließen">✕</button>
+  {navLinks.map(l => (
+    <a
+      href={l.href}
+      aria-current={isCurrent(l.href) ? 'page' : undefined}
+    >{l.label}</a>
+  ))}
+  <a class="btn btn-primary" href="/kontakt/">Angebot anfordern</a>
 </nav>
-<div class="drawer-scrim" aria-hidden="true" style="position:fixed;inset:0;background:rgba(26,29,33,.45);z-index:55;opacity:0;visibility:hidden;transition:opacity .25s ease"></div>
+<div class="drawer-scrim" aria-hidden="true"></div>
 
 <script>
-  const toggle = document.getElementById('nav-toggle') as HTMLButtonElement;
-  const drawer = document.getElementById('drawer') as HTMLElement;
-  const scrim = document.querySelector('.drawer-scrim') as HTMLElement;
-  const close = drawer.querySelector('.drawer-close') as HTMLButtonElement;
+  const toggle  = document.getElementById('nav-toggle')  as HTMLButtonElement;
+  const drawer  = document.getElementById('drawer')       as HTMLElement;
+  const scrim   = document.querySelector('.drawer-scrim') as HTMLElement;
+  const closeBtn= drawer.querySelector('.drawer-close')   as HTMLButtonElement;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (toggle && drawer) {
-    const open = () => {
-      drawer.classList.add('open'); scrim.classList.add('open');
-      drawer.style.visibility = 'visible';
-      if (!reduced) {
-        drawer.style.transition = 'transform .38s cubic-bezier(.2,.8,.25,1.05)';
-        drawer.style.transform = 'translateX(0)';
-      } else { drawer.style.transform = 'translateX(0)'; }
-      drawer.setAttribute('aria-hidden', 'false');
-      const f = drawer.querySelector('a'); if (f) (f as HTMLElement).focus();
-    };
-    const closeDrawer = () => {
-      drawer.classList.remove('open'); scrim.classList.remove('open');
-      if (!reduced) {
-        drawer.style.transition = 'transform .28s cubic-bezier(.4,0,.8,.4)';
-        drawer.style.transform = 'translateX(105%)';
-        setTimeout(() => { drawer.style.visibility = 'hidden'; }, 300);
-      } else { drawer.style.transform = 'translateX(105%)'; drawer.style.visibility = 'hidden'; }
-      drawer.setAttribute('aria-hidden', 'true');
-      toggle.focus();
-    };
-    toggle.addEventListener('click', open);
-    close?.addEventListener('click', closeDrawer);
-    scrim?.addEventListener('click', closeDrawer);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  function openDrawer() {
+    drawer.style.visibility = 'visible';
+    drawer.classList.add('open');
+    scrim.classList.add('open');
+    if (!reduced) {
+      drawer.style.transition = 'transform var(--spring-duration) var(--spring-timing)';
+    }
+    drawer.style.transform = 'translateX(0)';
+    drawer.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    const first = drawer.querySelector('a') as HTMLElement;
+    first?.focus();
   }
-  const header = document.querySelector('.site-header');
+
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    scrim.classList.remove('open');
+    if (!reduced) {
+      drawer.style.transition = 'transform .28s cubic-bezier(.4,0,.8,.4)';
+      drawer.style.transform = 'translateX(105%)';
+      setTimeout(() => { drawer.style.visibility = 'hidden'; }, 300);
+    } else {
+      drawer.style.transform = 'translateX(105%)';
+      drawer.style.visibility = 'hidden';
+    }
+    drawer.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.focus();
+  }
+
+  toggle?.addEventListener('click', openDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  scrim?.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  // Scroll-Schatten
+  const header = document.querySelector('.site-header') as HTMLElement;
   const onScroll = () => header?.classList.toggle('scrolled', window.scrollY > 8);
-  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>
