@@ -32,7 +32,7 @@
   --card-border:   rgba(32, 29, 25, .10);
 
   /* Typografie */
-  --font-head: 'Outfit', system-ui, sans-serif;
+  --font-head: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-body: 'Manrope', system-ui, sans-serif;
 
   /* Layout */
@@ -158,9 +158,11 @@ ul { padding-left: 1.2em; }
 .mt-1   { margin-top: var(--space-1); } .mt-2 { margin-top: var(--space-2); }
 .mt-3   { margin-top: var(--space-3); } .mt-4 { margin-top: var(--space-4); }
 .mt-5   { margin-top: var(--space-5); } .mt-6 { margin-top: var(--space-6); }
-.hp-field, .honeypot {
-  position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden;
-}
+.hp-field, .honeypot { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
+.baustellen-links { list-style: none; padding: 0; margin: var(--space-4) 0 0; display: grid; gap: 10px; }
+.baustellen-links li { padding-left: 20px; position: relative; }
+.baustellen-links li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.baustellen-links a { color: var(--accent-strong); font-weight: 600; }
 .reverse   { direction: rtl; }
 .reverse > * { direction: ltr; }
 
@@ -225,6 +227,18 @@ ul { padding-left: 1.2em; }
 /* ============================================================
    7. HEADER / NAVIGATION
    ============================================================ */
+/* Utility-Bar (GAG-Struktur: dünn, dunkel) */
+.topbar { background: var(--bg-dark); color: var(--text-inv); font-size: .85rem; }
+.topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 38px; }
+.topbar-left { font-weight: 600; letter-spacing: .02em; }
+.topbar-right { display: flex; align-items: center; gap: 16px; }
+.topbar-link { color: var(--text-inv); text-decoration: none; font-weight: 600; }
+.topbar-link:hover { color: #fff; }
+.topbar-status { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+.topbar-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; }
+.topbar-status.open::before { background: #7DB85C; }
+.topbar-status.closed::before { background: #C96A45; }
+
 .site-header {
   position: sticky; top: 0; z-index: var(--z-header);
   height: var(--header-h);
@@ -248,7 +262,7 @@ ul { padding-left: 1.2em; }
   display: flex; align-items: center; gap: 12px;
   text-decoration: none; color: var(--text); min-height: 44px; flex-shrink: 0;
 }
-.brand-logo { height: 44px; width: auto; display: block; }
+.brand-logo { height: 44px; width: 44px; border-radius: 10px; object-fit: contain; display: block; }
 
 /* Desktop-Navigation */
 .nav-desktop { display: flex; align-items: center; gap: 4px; }

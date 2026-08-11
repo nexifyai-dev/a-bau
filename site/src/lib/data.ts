@@ -24,4 +24,5 @@ export const kontakt = load('kontakt.yaml');
 export const leistungen = load('leistungen.yaml');
 export const faq = load('faq.yaml');
 export const referenzen = load('referenzen.yaml');
+export const stadtteile = loadContent('stadtteile.yaml');
 export const siteMeta = loadContent('site.yaml');

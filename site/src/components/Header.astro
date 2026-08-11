@@ -1,24 +1,42 @@
 ---
-import Logo from './Logo.astro';
-
 const navLinks = [
   { href: '/',            label: 'Start'      },
   { href: '/leistungen/', label: 'Leistungen' },
   { href: '/referenzen/', label: 'Referenzen' },
+  { href: '/stadtteile/', label: 'Stadtteile' },
   { href: '/ueber-uns/',  label: 'Über uns'   },
   { href: '/faq/',        label: 'FAQ'        },
 ];
 const currentPath = Astro.url?.pathname ?? '/';
 const isCurrent = (href: string) =>
   href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+const jetzt = new Date();
+const offen = (() => {
+  const w = jetzt.getDay(); // 0=So
+  const h = jetzt.getHours();
+  if (w === 0) return false;
+  if (w === 6) return h >= 8 && h < 13;
+  if (w === 5) return h >= 7 && h < 17;
+  return h >= 8 && h < 17;
+})();
 ---
 
+<!-- Utility-Bar (GAG-Struktur: dünn, dunkel) -->
+<div class="topbar" role="banner">
+  <div class="container topbar-inner">
+    <span class="topbar-left">Meisterbetrieb · Mönchengladbach</span>
+    <div class="topbar-right">
+      <span class={`topbar-status ${offen ? 'open' : 'closed'}`}>{offen ? 'Geöffnet' : 'Geschlossen'}</span>
+      <a class="topbar-link" href="tel:+4921669925056">+49 2166 9925056</a>
+    </div>
+  </div>
+</div>
 <header class="site-header" id="site-header">
   <div class="container">
     <div class="header-inner">
-      <!-- Logo -->
+      <!-- Logo (Kunden-Bild, echtes Logo) -->
       <a class="brand" href="/" aria-label="A-Bau Meisterbetrieb – Startseite">
-        <Logo height={40} />
+        <img class="brand-logo" src="/logo.png" alt="A-Bau Meisterbetrieb GmbH" width="40" height="40" />
       </a>
 
       <!-- Desktop-Navigation -->
