@@ -46,13 +46,13 @@ Aktuell läuft die Site unter `a-bau.nexifyai.cloud`. Nach Go-Live-Freigabe wird
 ```bash
 # 1. CNAME a-bau.info → Cloudflare-Tunnel
 #    Bei Cloudflare DNS (falls a-bau.info dort verwaltet):
-#    Record: CNAME a-bau.info → f0f2b101-ed26-4130-8b04-16c43badf70a.cfargotunnel.com  proxied=true
+#    Record: CNAME a-bau.info → <TUNNEL_UUID>.cfargotunnel.com  proxied=true
 #    Record: CNAME www.a-bau.info → a-bau.info  proxied=true
 
 # 2. Tunnel-Konfiguration erweitern (Caddy-Ingress-Regel vor Catch-All):
 #    hostname: a-bau.info   → http://127.0.0.1:8095
 #    hostname: www.a-bau.info → http://127.0.0.1:8095
-#    (Via CF-API: PUT /accounts/{ID}/cfd_tunnel/{TUNNEL_ID}/configurations)
+#    (Via CF-API: PUT /accounts/{ACCOUNT_ID}/cfd_tunnel/{TUNNEL_UUID}/configurations)
 
 # 3. Verify:
 curl -I https://a-bau.info/

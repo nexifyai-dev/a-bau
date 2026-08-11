@@ -43,7 +43,9 @@ const openingHoursSpec = (k.kontakt?.oeffnungszeiten ?? []).map((o: any) => {
   };
   const days = dayMap[o.tage] ?? [];
   if (!days.length || o.zeiten === 'geschlossen') return null;
-  const [opens, closes] = (o.zeiten as string).split('–');
+  // Unterstützt Trennzeichen: en-dash (–, U+2013) und Bindestrich (-, U+002D)
+  const [opens, closes] = (o.zeiten as string).split(/[–\-]/);
+  if (!opens || !closes) return null;
   return days.map(day => ({
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: `https://schema.org/${day}`,
@@ -76,7 +78,8 @@ const localBusinessSchema = {
     longitude:   6.3960,
   },
   areaServed: (k.region?.area_served ?? []).map((a: string) => ({
-    '@type': 'City',
+    // Generischer Typ da area_served auch Bundesländer (z. B. "NRW") enthält
+    '@type': 'AdministrativeArea',
     name:    a,
   })),
   openingHoursSpecification: openingHoursSpec,
