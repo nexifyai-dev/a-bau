@@ -426,6 +426,9 @@ ul { padding-left: 1.2em; }
 /* Kompakte Karte ohne Bild */
 .card-plain { padding: 24px 22px; }
 .card-plain h3 { font-size: 1.05rem; }
+.process-grid { list-style: none; padding: 0; margin: 0; }
+.process-step { gap: 14px; }
+.process-step-number { width: fit-content; }
 
 
 /* ============================================================
