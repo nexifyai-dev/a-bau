@@ -68,7 +68,7 @@
   --z-scrim:   55;
   --z-drawer:  60;
   --z-chat:    70;
-  --z-lightbox:80;
+  --z-lightbox: 80;
   --z-cookie:  90;
 }
 
@@ -642,7 +642,7 @@ details[open] .arrow { transform: rotate(180deg); }
   gap: 36px 32px;
 }
 .footer-col-brand { max-width: 280px; }
-.footer-logo { height: 44px; width: auto; margin-bottom: var(--space-4); filter: brightness(0) invert(1) opacity(.9); }
+.footer-logo { height: 38px; width: auto; margin-bottom: var(--space-4); display: block; }
 .site-footer p  { color: var(--text-inv-2); font-size: .92rem; max-width: 38ch; }
 .site-footer h4 { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(245,241,234,.5); margin: 0 0 var(--space-4); }
 .site-footer nav { display: grid; gap: 8px; }

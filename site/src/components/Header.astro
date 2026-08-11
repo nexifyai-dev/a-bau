@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const navLinks = [
   { href: '/',            label: 'Start'      },
   { href: '/leistungen/', label: 'Leistungen' },
@@ -16,13 +18,7 @@ const isCurrent = (href: string) =>
     <div class="header-inner">
       <!-- Logo -->
       <a class="brand" href="/" aria-label="A-Bau Meisterbetrieb – Startseite">
-        <img
-          class="brand-logo"
-          src="/logo-abau.svg"
-          alt="A-Bau Meisterbetrieb"
-          width="176"
-          height="44"
-        />
+        <Logo height={40} />
       </a>
 
       <!-- Desktop-Navigation -->

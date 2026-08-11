@@ -1,5 +1,6 @@
 ---
 import { kontakt } from '../lib/data.ts';
+import Logo from './Logo.astro';
 
 const k = kontakt as any;
 const firma      = k.firma?.name    ?? 'A-Bau Meisterbetrieb GmbH';
@@ -13,8 +14,7 @@ const telefonEintraege = k.kontakt?.telefon ?? [];
 const emailEintraege   = k.kontakt?.email   ?? [];
 const festnetz  = telefonEintraege.find((t: any) => t.label === 'Festnetz') ?? telefonEintraege[0];
 const mobil     = telefonEintraege.find((t: any) => t.label === 'Mobil');
-const emailHref = emailEintraege[0]?.adresse ?? 'kontakt@a-bau.info';
-const emailDisp = emailEintraege[0]?.adresse ?? 'kontakt@a-bau.info';
+const email = emailEintraege[0]?.adresse ?? 'kontakt@a-bau.info';
 
 const zeiten = k.kontakt?.oeffnungszeiten ?? [
   { tage: 'Mo–Do', zeiten: '08:00–17:00' },
@@ -41,7 +41,7 @@ const jahr = new Date().getFullYear();
 
       <!-- Spalte 1: Marke -->
       <div class="footer-col-brand">
-        <img class="footer-logo" src="/logo-abau.svg" alt="A-Bau Meisterbetrieb" width="160" height="40" />
+        <Logo height={38} variant="dark" class="footer-logo" />
         <p>
           Restaurierung denkmalgeschützter Bauten, Innenausbau, Schlüsselfertigbau,
           Sanierung und Installationen — aus Mönchengladbach für ganz NRW.
@@ -67,7 +67,7 @@ const jahr = new Date().getFullYear();
           {mobil && (
             <a href={`tel:${mobil.nummer}`}>{mobil.display}</a>
           )}
-          <a href={`mailto:${emailHref}`}>{emailDisp}</a>
+          <a href={`mailto:${email}`}>{email}</a>
         </nav>
       </div>
 
