@@ -1,5 +1,5 @@
 ---
-import { kontakt } from '../lib/data.ts';
+import { kontakt, siteMeta } from '../lib/data.ts';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
@@ -14,7 +14,7 @@ interface Props {
   ogImage?: string;
   noindex?: boolean;
   breadcrumb?: { name: string; path: string }[];
-  schema?: object;
+  schema?: object | object[];
 }
 
 const {
@@ -29,7 +29,9 @@ const {
 
 const site = 'https://a-bau.nexifyai.cloud';
 const fullTitle = title.includes('A-Bau') ? title : `${title} – A-Bau Meisterbetrieb GmbH`;
-const schemas = schema ? [schema] : [];
+const defaultOgImage = siteMeta?.site?.og_bild;
+const resolvedOgImage = ogImage ?? defaultOgImage;
+const schemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
 const breadcrumbSchema: object[] = [];
 
 // LocalBusiness / LocalService — JSON-LD (Schema.org), nur verifizierte Daten aus kontakt.yaml
@@ -117,11 +119,14 @@ if (breadcrumb.length) {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={new URL(url, site).href} />
     <meta property="og:locale" content="de_DE" />
-    {ogImage && <meta property="og:image" content={new URL(ogImage, site).href} />}
+    {resolvedOgImage && <meta property="og:image" content={new URL(resolvedOgImage, site).href} />}
+    {resolvedOgImage && <meta property="og:image:width" content="1200" />}
+    {resolvedOgImage && <meta property="og:image:height" content="1600" />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="theme-color" content="#09090B" />
+    {resolvedOgImage && <meta name="twitter:image" content={new URL(resolvedOgImage, site).href} />}
+    <meta name="theme-color" content="#A4501F" />
     <link rel="preload" href="/fonts/Outfit-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Manrope-var.woff2" as="font" type="font/woff2" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />

@@ -9,6 +9,38 @@ import imgRef1    from '../assets/img/72.jpeg';
 import imgRef2    from '../assets/img/149.jpg';
 import imgRef3    from '../assets/img/35.jpg';
 
+const processSteps = [
+  {
+    number: '01',
+    title: 'Erstkontakt & unverbindliche Besichtigung',
+    text: 'Nennen Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah für einen unverbindlichen Termin und eine Besichtigung.',
+  },
+  {
+    number: '02',
+    title: 'Transparentes Angebot',
+    text: 'Nach Besichtigung erhalten Sie ein transparentes Angebot mit Leistungsbeschreibung.',
+  },
+  {
+    number: '03',
+    title: 'Ausführung durch unseren Meisterbetrieb',
+    text: 'Die Ausführung erfolgt mit fester Ansprechperson; bei größeren Vorhaben erhalten Sie eine laufende Projektdokumentation.',
+  },
+  {
+    number: '04',
+    title: 'Übergabe & Gewährleistung',
+    text: 'Nach der Übergabe betreuen wir Projekte weiter; Bauleistungen unterliegen den gesetzlichen Gewährleistungsregelungen.',
+  },
+];
+
+const testimonial = kontakt.reputation.find((entry: any) => entry.portal === '11880.com') ?? kontakt.reputation[0];
+const testimonialDate = testimonial?.datum
+  ? new Date(testimonial.datum).toLocaleDateString('de-DE', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    })
+  : '';
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -32,8 +64,8 @@ const leistungIcons: Record<string, string> = {
 ---
 
 <Base
-  title="Bauunternehmen Mönchengladbach – Denkmalrestaurierung, Innenausbau, Schlüsselfertigbau"
-  description="A-Bau Meisterbetrieb GmbH, Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen und europaweite Direkttransporte. Meisterbetrieb, HRB 18836."
+  title="Bauunternehmen Mönchengladbach – A-Bau Meisterbetrieb"
+  description="A-Bau Meisterbetrieb GmbH ist Ihr Bauunternehmen in Mönchengladbach für Denkmalrestaurierung, Innenausbau, Krankenhausbau und Schlüsselfertigbau in NRW."
   schema={faqSchema}
 >
 
@@ -139,6 +171,32 @@ const leistungIcons: Record<string, string> = {
 
 
   <!-- =====================================================
+       SO ARBEITEN WIR — Prozess in 4 Schritten
+       ===================================================== -->
+  <section class="section" aria-labelledby="prozess-heading">
+    <div class="container">
+      <header class="section-head">
+        <span class="kicker">So arbeiten wir</span>
+        <h2 id="prozess-heading">Klarer Ablauf für Ihr Bauvorhaben</h2>
+        <p>
+          Von der ersten Anfrage bis zur Übergabe: Unser Ablauf orientiert sich an
+          den Informationen aus FAQ, Angebot und Projektbetreuung.
+        </p>
+      </header>
+      <ol class="card-grid process-grid">
+        {processSteps.map((step) => (
+          <li class="card card-plain process-step">
+            <span class="badge process-step-number">{step.number}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
        ÜBER UNS — Split-Sektion
        ===================================================== -->
   <section class="section bg-soft" aria-labelledby="about-heading">
@@ -236,6 +294,31 @@ const leistungIcons: Record<string, string> = {
 
 
   <!-- =====================================================
+       TESTIMONIAL — echte 11880-Bewertung
+       ===================================================== -->
+  {testimonial && (
+    <section class="section bg-soft" aria-labelledby="testimonial-heading">
+      <div class="container">
+        <header class="section-head">
+          <span class="kicker">Das sagen Kunden</span>
+          <h2 id="testimonial-heading">Vertrauen aus echten Bewertungen</h2>
+          <p>
+            Wir zeigen hier ausschließlich die vorhandene Bewertung aus dem Eintrag auf 11880.com.
+          </p>
+        </header>
+        <article class="card card-plain">
+          <span class="badge">11880.com · {testimonial.wert}</span>
+          <p class="lead" style="margin:18px 0 12px">„{testimonial.text}“</p>
+          <p class="text-3" style="margin:0">
+            Quelle: {testimonial.portal}{testimonialDate ? ` · Bewertung vom ${testimonialDate}` : ''}
+          </p>
+        </article>
+      </div>
+    </section>
+  )}
+
+
+  <!-- =====================================================
        FAQ — Split-Teaser + Accordion
        ===================================================== -->
   <section class="section" aria-labelledby="faq-heading">
@@ -281,7 +364,7 @@ const leistungIcons: Record<string, string> = {
         für einen unverbindlichen Termin.
       </p>
       <div class="cta-actions">
-        <a class="btn btn-lg btn-inv" href="/kontakt/">Jetzt anfragen</a>
+        <a class="btn btn-lg btn-inv" href="/kontakt/">Projekt unverbindlich anfragen</a>
         <a class="btn btn-ghost btn-lg" href="/leistungen/">Leistungen ansehen</a>
       </div>
     </div>
