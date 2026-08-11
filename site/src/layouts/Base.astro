@@ -31,6 +31,62 @@ const site = 'https://a-bau.nexifyai.cloud';
 const fullTitle = title.includes('A-Bau') ? title : `${title} – A-Bau Meisterbetrieb GmbH`;
 const schemas = schema ? [schema] : [];
 const breadcrumbSchema: object[] = [];
+
+// LocalBusiness / LocalService — JSON-LD (Schema.org), nur verifizierte Daten aus kontakt.yaml
+const k = kontakt as any;
+const openingHoursSpec = (k.kontakt?.oeffnungszeiten ?? []).map((o: any) => {
+  const dayMap: Record<string, string[]> = {
+    'Mo–Do': ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+    'Fr':    ['Friday'],
+    'Sa':    ['Saturday'],
+    'So':    ['Sunday'],
+  };
+  const days = dayMap[o.tage] ?? [];
+  if (!days.length || o.zeiten === 'geschlossen') return null;
+  // Unterstützt Trennzeichen: en-dash (–, U+2013) und Bindestrich (-, U+002D)
+  const [opens, closes] = (o.zeiten as string).split(/[–\-]/);
+  if (!opens || !closes) return null;
+  return days.map(day => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: `https://schema.org/${day}`,
+    opens: opens?.trim(),
+    closes: closes?.trim(),
+  }));
+}).filter(Boolean).flat();
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
+  name:            k.firma?.name,
+  legalName:       k.firma?.name,
+  description:     'Bauunternehmen und Meisterbetrieb in Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen und europaweite Transporte.',
+  url:             site,
+  telephone:       k.kontakt?.telefon?.[0]?.nummer,
+  email:           k.kontakt?.email?.[0]?.adresse,
+  address: {
+    '@type':           'PostalAddress',
+    streetAddress:     k.adresse?.strasse,
+    addressLocality:   k.adresse?.ort,
+    postalCode:        k.adresse?.plz,
+    addressRegion:     k.adresse?.bundesland,
+    addressCountry:    'DE',
+  },
+  geo: {
+    '@type':     'GeoCoordinates',
+    // Koordinaten Luisental 69, 41199 Mönchengladbach-Geistenbeck (OSM-verifiziert)
+    latitude:    51.1780,
+    longitude:   6.3960,
+  },
+  areaServed: (k.region?.area_served ?? []).map((a: string) => ({
+    // Generischer Typ da area_served auch Bundesländer (z. B. "NRW") enthält
+    '@type': 'AdministrativeArea',
+    name:    a,
+  })),
+  openingHoursSpecification: openingHoursSpec,
+  legalIdentifier: `${k.firma?.register?.amtsgericht} ${k.firma?.register?.hrb}`,
+  foundingDate:    k.firma?.gruendung,
+  priceRange:      'Auf Anfrage',
+};
 if (breadcrumb.length) {
   const items = [
     { '@type': 'ListItem', position: 1, name: 'Start', item: `${site}/` },
@@ -68,6 +124,7 @@ if (breadcrumb.length) {
     <meta name="theme-color" content="#09090B" />
     <link rel="preload" href="/fonts/Outfit-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Manrope-var.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
     {schemas.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
     {breadcrumbSchema.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>

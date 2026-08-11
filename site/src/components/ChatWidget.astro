@@ -1,7 +1,10 @@
 ---
 // AI-Chatbot-Widget — RAG via /api/chat (FastAPI-Service, 9Router-LLM), DSGVO-Hinweis,
 // KI-Offenlegung (EU AI Act Art. 50), Quellen, Fallback auf Kontakt.
-const tel = '+49 2166 9925056';
+import { kontakt } from '../lib/data.ts';
+const k = kontakt as any;
+const tel = k.kontakt?.telefon?.[0]?.nummer ?? '+49 2166 9925056';
+const telDisplay = k.kontakt?.telefon?.[0]?.display ?? '(02166) 9925056';
 ---
 
 <button class="chat-fab" id="chat-fab" aria-label="KI-Assistent öffnen" aria-expanded="false" style="position:fixed;right:20px;bottom:20px;z-index:70;width:60px;height:60px;border-radius:50%;border:0;background:var(--accent,#A4501F);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 12px 32px rgba(32,29,25,.28);display:flex;align-items:center;justify-content:center;font-family:var(--font-head,Outfit);font-weight:800">A</button>
@@ -24,11 +27,11 @@ const tel = '+49 2166 9925056';
     <button class="chat-send" id="chat-send" aria-label="Nachricht senden" style="min-width:48px;min-height:44px;border:0;border-radius:22px;background:var(--accent,#9A4A22);color:#fff;font-weight:700;cursor:pointer">➤</button>
   </div>
   <div class="chat-hint" style="padding:8px 14px;font-size:.7rem;color:var(--text-mut,#5C6168);background:var(--bg-soft,#EFEBE3);text-align:center">
-    KI-Assistent – Antworten basieren ausschließlich auf Website-Inhalten. Datenschutz: <a href="/datenschutz/">Datenschutzerklärung</a>.
+    KI-Assistent (gem. Art. 50 EU AI Act) – Antworten basieren auf Website-Inhalten und sind unverbindlich. <a href="/datenschutz/">Datenschutzerklärung</a>.
   </div>
 </div>
 
-<script>
+<script define:vars={{ tel, telDisplay }}>
   const fab = document.getElementById('chat-fab') as HTMLButtonElement;
   const panel = document.getElementById('chat-panel') as HTMLElement;
   const msgs = document.getElementById('chat-msgs') as HTMLElement;
@@ -36,7 +39,6 @@ const tel = '+49 2166 9925056';
   const sendBtn = document.getElementById('chat-send') as HTMLButtonElement;
   const closeBtn = panel.querySelector('.chat-close') as HTMLButtonElement;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const tel = '+49 2166 9925056';
   let open = false;
 
   const addMsg = (html: string, cls: string) => {
@@ -70,11 +72,11 @@ const tel = '+49 2166 9925056';
         if (d.quellen && d.quellen.length) html += '<span class="chat-src" style="display:block;font-size:.72rem;color:var(--text-mut,#5C6168);margin-top:6px">Quelle: ' + esc(d.quellen.join(', ')) + '</span>';
         addMsg(html, 'bot');
       } else {
-        addMsg('Entschuldigung, das hat gerade nicht geklappt. Bitte nutzen Sie das <a href="/kontakt/">Kontaktformular</a> oder rufen Sie uns an: ' + esc(tel) + '.', 'bot');
+        addMsg('Entschuldigung, das hat gerade nicht geklappt. Bitte nutzen Sie das <a href="/kontakt/">Kontaktformular</a> oder rufen Sie uns an: <a href="tel:' + esc(tel) + '">' + esc(telDisplay) + '</a>.', 'bot');
       }
     }).catch(() => {
       typing.remove();
-      addMsg('Der Chat ist kurz nicht erreichbar. Bitte nutzen Sie das <a href="/kontakt/">Kontaktformular</a> oder rufen Sie uns an: ' + esc(tel) + '.', 'bot');
+      addMsg('Der Chat ist kurz nicht erreichbar. Bitte nutzen Sie das <a href="/kontakt/">Kontaktformular</a> oder rufen Sie uns an: <a href="tel:' + esc(tel) + '">' + esc(telDisplay) + '</a>.', 'bot');
     }).finally(() => { sendBtn.disabled = false; });
   };
 
