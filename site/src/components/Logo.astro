@@ -1,0 +1,53 @@
+---
+/**
+ * A-Bau SVG-Logo — als Inline-SVG eingebunden, damit Schriftart
+ * (Outfit) aus dem Dokument genutzt wird (kein img-Embedding-Problem).
+ * Accessible: role="img" + title
+ */
+interface Props {
+  height?: number;
+  class?: string;
+  /** 'dark' = helle Darstellung auf dunklem Hintergrund (Footer) */
+  variant?: 'light' | 'dark';
+}
+const { height = 44, class: cls = '', variant = 'light' } = Astro.props;
+const textFill   = variant === 'dark' ? '#F5F1EA' : '#201D19';
+const accentFill = '#A4501F';
+const width = Math.round(height * (220 / 56));
+---
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 220 56"
+  width={width}
+  height={height}
+  fill="none"
+  role="img"
+  aria-label="A-Bau Meisterbetrieb"
+  class={cls}
+>
+  <title>A-Bau Meisterbetrieb</title>
+  <!-- Haus-Symbol: Giebeldach + Mauer + Tür -->
+  <polygon points="24,8 44,28 4,28" fill={accentFill}/>
+  <rect x="8" y="28" width="32" height="20" rx="2" fill={accentFill}/>
+  <rect x="18" y="36" width="12" height="12" rx="1" fill="#FAF8F5"/>
+  <!-- Wortmarke (font aus Dokument) -->
+  <text
+    x="54"
+    y="31"
+    font-family="Outfit, system-ui, sans-serif"
+    font-size="22"
+    font-weight="800"
+    fill={textFill}
+    letter-spacing="-0.5"
+  >A-Bau</text>
+  <!-- Subline -->
+  <text
+    x="55"
+    y="45"
+    font-family="Outfit, system-ui, sans-serif"
+    font-size="9"
+    font-weight="700"
+    fill={accentFill}
+    letter-spacing="1.8"
+  >MEISTERBETRIEB</text>
+</svg>
