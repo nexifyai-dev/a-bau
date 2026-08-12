@@ -25,7 +25,7 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 ## Content-Änderungen
 1. Inhalte editieren: `data/kontakt.yaml` (NAP — EINE Quelle!), `content/*.yaml` + `*.md` (Leistungen/Referenzen/FAQ/Recht).
 2. Site bauen: `cd site && npm run build` (Next.js 16, static export → `out/`; Node 22; pnpm-Store im Container defekt — npm nutzen).
-3. Chat-Wissen aktualisieren: `python3 chat/ingest.py` (Rechtstexte automatisch ausgeschlossen).
+3. Chat-Wissen aktualisieren: `python3 chat/ingest.py` (liest `content/` + `site/src/data/`, inkl. `kontakt.yaml`; Rechtstexte automatisch ausgeschlossen).
 4. Service neu starten (siehe Betrieb).
 5. Verifikation: Routen-200 + ein Chat-Test + `https://a-bau.nexifyai.cloud/health`.
 
