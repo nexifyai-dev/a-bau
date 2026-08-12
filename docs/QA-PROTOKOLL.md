@@ -842,3 +842,24 @@
 **Gegentest (§5.4):** Negativ: `"${SITE_URL}`-Literale 0; TS2304 0 (Build-Gate); `a-bau.nexifyai.cloud`-Hardcodes in src/ nur noch site.ts-Konstante ✓ · Regression: canonicals/JSON-LD/robots/sitemap byte-gleich zur Vor-Refactor-Zeit (gleiche URLs) ✓ · Datenintegrität: kein Content-/KB-Change außer site.yaml-Kommentar ✓.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 32)**
+
+---
+
+## Runde 33 (2026-08-12, Fortsetzung Tiefenprüfung — Wissenssicherung, Kontraste, @id)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: Skill-Wissensstand (C.20), FAQ-Neu-Kontraste, JSON-LD-@id-Konsistenz, AGENTS/Handbuch-Sync.
+
+| Prüfung/Fix | Status |
+|---|---|
+| **Skill `embedded-ai-chat-server-ops` veraltet (R31–32 fehlten)** | §12 ergänzt: FAQ-165/Kategorien-Muster (0 Sonstiges, h2-Gruppen, Sprunganker), automatisierte Checks inkl. Cron-Bündel (§15a), W3C-Vollscan-Muster (25/25, h3→h2), SITE_URL-Refactor-Pitfalls (Literal-Interpolation, Imports, site.ts-Selbstref.), noindex-Strategie | ✅ |
+| **AGENTS.md ohne Quality-Check-Pflicht** | Schritt 7: `abau-quality-check.sh` Exit-0-Pflicht vor Abschluss | ✅ |
+| **Betriebshandbuch ohne Quality-Cron/SITE_URL** | Betrieb-Abschnitt ergänzt (Quality-Cron, Domain-Zentralisierung + Go-Live-Schritte) | ✅ |
+| FAQ-Neu-Kontraste (B.36) | faq-nav-Chips `--color-accent-hover` #007A36 auf Weiß = 5.46:1 (AA); Gruppen-h2 erbt body-text (dunkel) ✓ | ✅ kein Fix |
+| JSON-LD-@id-Konsistenz (B.21) | @id `…/#business` nur im Home-LocalBusiness (einziges Haupt-Schema); Detailseiten ohne @id = korrekt (keine Duplikat-IDs) | ✅ kein Fix |
+| Quality-Cron-E2E | `abau-quality-check.sh` → Exit 0 (alle 5 Checks) | ✅ |
+
+**E2E:** Build unverändert (kein Site-Code-Change) · Quality-Check OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok.
+
+**Gegentest (§5.4):** Negativ: Skill erwähnt keine überholten Zustände mehr („Chat entfernt" = 0, „502 ehrlich" = 0 — 202+queued-Muster dokumentiert) ✅ · Regression: R13–R32 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 33)**
