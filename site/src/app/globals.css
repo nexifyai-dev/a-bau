@@ -163,7 +163,7 @@ button, input, textarea, select { font: inherit; }
 .consent-label input { margin-top: 3px; min-width: 18px; min-height: 18px; }
 .notice { border: 1px solid var(--color-line); background: var(--color-bg-soft); border-radius: var(--r-md); padding: var(--space-4) var(--space-5); }
 .section-dark .btn-ghost-dark { color: #fff; border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.12); }
-.section-dark .btn-ghost-dark:hover { border-color: #fff; background: rgba(255,255,255,.22); }
+.section-dark .btn-ghost-dark:hover { border-color: #fff; background: rgba(255,255,255,.22); color: #fff; }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -175,14 +175,14 @@ button, input, textarea, select { font: inherit; }
 }
 .btn:active { transform: scale(.97); }
 .btn-primary { background: var(--color-cta); color: var(--color-borussia-white); }
-.btn-primary:hover { background: var(--color-cta-hover); }
+.btn-primary:hover { background: var(--color-cta-hover); color: var(--color-borussia-white); }
 .btn-dark { background: var(--color-neutral-dark); color: var(--color-text-inv); }
-.btn-dark:hover { background: #000; }
+.btn-dark:hover { background: #000; color: var(--color-text-inv); }
 .btn-ghost { background: transparent; color: var(--color-text); border: 1.5px solid var(--color-line); }
 .btn-ghost:hover { border-color: var(--color-accent); color: var(--color-accent-hover); }
 .btn-lg { min-height: 56px; padding: 16px 28px; font-size: 1.05rem; border-radius: 14px; }
 .btn-city { background: var(--color-accent-city); color: #fff; }
-.btn-city:hover { background: #a00d26; }
+.btn-city:hover { background: #a00d26; color: #fff; }
 
 /* ---------- Header (GAG: zweistufig) ---------- */
 .utility-bar {
@@ -271,7 +271,7 @@ button, input, textarea, select { font: inherit; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-actions-center { justify-content: center; }
 .hero-actions .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, .6); background: rgba(0, 0, 0, .35); }
-.hero-actions .btn-ghost:hover { border-color: #fff; background: rgba(0, 0, 0, .5); }
+.hero-actions .btn-ghost:hover { border-color: #fff; background: rgba(0, 0, 0, .5); color: #fff; }
 
 .section-head { max-width: 720px; margin-bottom: var(--space-7); }
 .section-head h2 { margin-bottom: var(--space-3); }
