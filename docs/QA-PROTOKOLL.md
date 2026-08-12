@@ -481,3 +481,25 @@
 **Gegentest (§5.4):** Negativ: Quellen-Regel nicht im SSR (korrekt client-seitig), kein „entfernt"-Text mehr im Nutzerhandbuch ✅ · Regression: Chat-Antworten, R13–R15-Fixes unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 16)**
+
+---
+
+## Runde 17 (2026-08-12, Fortsetzung Tiefenprüfung — KB-Integrität, Chat-Qualität, DSGVO-Wahrheit, Detailseiten)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: Chat-Wissensbasis (Doppel-Ingest), Chat-Antwortqualität (10-Fragen-Protokoll), Datenschutz-Wahrheitsgehalt (Drittland), Detailseiten-Vollcheck, robots/sitemap, Performance-Payload.
+
+| Befund/Fix | Status |
+|---|---|
+| **KB-Doppel-Ingest:** ingest.py las content/ UND site/src/data/ (seit R10 inhaltlich identisch) → 46 Chunks statt ~23, doppelte BM25-Gewichtung + doppelte Quellen-Labels im Widget („FAQ · Leistungen · FAQ · Leistungen") | Dedupe: content/ kanonisch, src/data/ nur für kontakt.yaml → **25 Chunks aus 7 Dokumenten**, Quellen eindeutig | ✅ live (Chat-Test E3) |
+| **Datenschutz §6 behauptete „Rechenzentrum EU"** — für DeepSeek-API (VR China) unbelegt (Art. 5 Abs. 1 lit. a DSGVO: Richtigkeit) | Ehrlicher Hinweis: Drittland möglich, Art. 13 Abs. 1 lit. f + Art. 49 Abs. 1 lit. b DSGVO, Auskunft auf Anfrage. Anbieter-Standort final via Infra/Pascal zu klären (9Router-Route) | ✅ live |
+| Detailseiten-Vollcheck (11 Seiten) | Alle: h1=1, Titel ≤60, canonical==URL, og:image, JSON-LD (Service/LocalBusiness bzw. Breadcrumb/Service) — **keine Issues** | ✅ |
+| robots.txt | Vollständig (CF-Managed AI-Signals + eigene Disallows + Sitemap) — kein Befund | ✅ |
+| Sitemap | 20 URLs, alle 200; Home ohne Trailing-Slash (kosmetisch, Google-normalisiert) — kein Handlungsbedarf | ✅ |
+| Performance-Payload | JS ~587 KB (gzip ≈170 KB) + CSS 33 KB, keine Drittanbieter-Bundles — akzeptabel | ✅ |
+| **Chat-Qualitätsprotokoll (10 Fragen, A.29)** | Preise → kein Fake, verweist auf Angebot; Termin → Kontaktformular; Adresse/Öffnungszeiten korrekt; Garantie → ehrlich „keine verbindliche Aussage" (Boundary); Antworten 2–6,5 s; Quellen eindeutig | ✅ live |
+
+**E2E:** Build ✅ · Datenschutz live: Drittland-Hinweis 2×, „Rechenzentrum EU" = 0 · Datenschutz live==Build (nur CF-Mail-Obfuscation) · Route-Smoke ALLE OK · Öffnungszeiten-Test 12/12 · /health ok · KB 25 Chunks.
+
+**Gegentest (§5.4):** Negativ: Duplikat-Quellen 0 im Chat, „Rechenzentrum EU" 0 im Live-HTML ✅ · Regression: Chat-Antworten inhaltlich korrekt nach KB-Shrink (5 Fragen nachgereicht), R13–R16-Fixes unverändert ✅ · Datenintegrität: KB-Inhalte identisch (nur dedupliziert), keine Content-Änderung außer §6 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 17)**

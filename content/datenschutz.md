@@ -62,7 +62,9 @@ Wenn Sie uns über das Kontaktformular kontaktieren, verarbeiten wir die von Ihn
 
 Auf dieser Website bieten wir einen KI-gestützten Chat-Assistenten an („A-Bau KI-Assistent", unten rechts). Gemäß Art. 50 der EU-KI-Verordnung (EU AI Act) weisen wir Sie deutlich darauf hin, dass Sie beim Chat mit einer KI kommunizieren.
 
-**Was wird verarbeitet?** Ihre im Chat eingegebenen Nachrichten werden an einen KI-Dienst (Large Language Model, Anbieter als Auftragsverarbeiter nach Art. 28 DSGVO, Rechenzentrum EU) übermittelt, um Ihre Frage auf Basis des Inhalts dieser Website zu beantworten. Die Antworten werden aus den Website-Inhalten (Wissensbasis) generiert.
+**Was wird verarbeitet?** Ihre im Chat eingegebenen Nachrichten werden an einen KI-Dienst (Large Language Model) übermittelt, der als Auftragsverarbeiter nach Art. 28 DSGVO eingebunden ist, um Ihre Frage auf Basis des Inhalts dieser Website zu beantworten. Die Antworten werden aus den Website-Inhalten (Wissensbasis) generiert.
+
+**Hinweis zu Drittland-Übermittlung:** Der eingesetzte KI-Dienst kann Verarbeitungen außerhalb der EU/des EWR vornehmen (insbesondere Standorte in Drittländern ohne Angemessenheitsbeschluss der EU-Kommission). Wir weisen hierauf nach Art. 13 Abs. 1 lit. f DSGVO hin; soweit eine solche Übermittlung erfolgt, geschieht sie nur im Rahmen der Beantwortung Ihrer konkreten Chat-Anfrage (Art. 49 Abs. 1 lit. b DSGVO). Nähere Auskünfte zu Anbieter und Standorten erteilen wir auf Anfrage unter kontakt@a-bau.info.
 
 **Speicherung:** Chat-Verläufe werden serverseitig nicht gespeichert. Ihre Nachrichten werden nur für die Dauer der Beantwortung verarbeitet und nicht mit Ihrer Person verknüpft (keine Konten, keine Cookies).
 

@@ -41,19 +41,23 @@ def chunks(text, size=700, overlap=80):
 def main():
     docs = []
     EXCLUDE = {"impressum.md", "datenschutz.md"}
-    # Zwei Quellen: content/ (hist.) + site/src/data/ (Next.js-NAP-Quelle) — kontakt.yaml nur dort.
+    # EINDEUTIGE Dokumente: content/ ist kanonisch (R10-Sync hält content/ == src/data/).
+    # src/data/ wird nur für Dateien genutzt, die es in content/ nicht gibt (kontakt.yaml).
+    # Doppelte Ingests (46 statt 23 Chunks) verfälschen BM25-Gewichtung und Quellen-Anzeige.
     DIRS = [CONTENT, os.path.join(ROOT, "site", "src", "data")]
+    seen = set()
     for d in DIRS:
         if not os.path.isdir(d):
             continue
         for fn in sorted(os.listdir(d)):
-            if fn in EXCLUDE:
-                continue  # Rechtstexte gehören nicht ins Chat-Wissen
+            if fn in EXCLUDE or fn in seen:
+                continue  # content/ gewinnt (kanonisch); kein Doppel-Ingest
             p = os.path.join(d, fn)
             if fn.endswith(".yaml"): txt = yaml_to_text(p)
             elif fn.endswith(".md"): txt = md_to_text(p)
             else: continue
             if len(txt) < 40: continue
+            seen.add(fn)
             docs.append((f"{os.path.basename(d)}/{fn}", txt))
     rows = []
     for fn, txt in docs:
