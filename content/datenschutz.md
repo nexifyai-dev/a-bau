@@ -106,7 +106,7 @@ Eine Weitergabe Ihrer personenbezogenen Daten an Dritte erfolgt nur, wenn:
 - wir gesetzlich dazu verpflichtet sind (z. B. an Finanzbehörden, Baubehörden, Strafverfolgungsbehörden, Art. 6 Abs. 1 lit. c DSGVO) oder
 - das berechtigte Interesse dies erfordert (Art. 6 Abs. 1 lit. f DSGVO).
 
-Auftragsverarbeiter (Hosting, E-Mail, KI-Dienst) sind vertraglich nach Art. 28 DSGVO an unsere Weisungen gebunden. Eine Übermittlung in Drittländer außerhalb der EU/EWR findet nur statt, soweit in dieser Erklärung beschrieben (KI-Dienst) und durch geeignete Garantien (Standardvertragsklauseln) abgesichert.
+Auftragsverarbeiter (Hosting, E-Mail, KI-Dienst) sind vertraglich nach Art. 28 DSGVO an unsere Weisungen gebunden. Eine Übermittlung in Drittländer außerhalb der EU/EWR erfolgt ausschließlich im Rahmen der in dieser Erklärung beschriebenen Verarbeitungen (KI-Assistent, siehe Ziffer 6) und der dort genannten Rechtsgrundlage (Art. 49 Abs. 1 lit. b DSGVO).
 
 ## 11. Fotodokumentation von Bauvorhaben
 

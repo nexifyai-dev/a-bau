@@ -940,3 +940,24 @@
 **Gegentest (§5.4):** Negativ: HSTS-Artefakt via HTTP/1.1 reproduziert + via HTTP/2 widerlegt; kein LD-Parsefehler, kein Thin-Content, kein Markdown-Rest ✅ · Regression: unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 37)**
+
+---
+
+## Runde 38 (2026-08-12, Fortsetzung Tiefenprüfung — Performance-Messung, DSGVO-Wahrheit, Restprüfungen)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: echte Performance-Messung (A.33/D.9 — größter Restpunkt), DSGVO-Abschnitt-10-Konsistenz, Cookie-Richtlinie, 404-W3C.
+
+| Prüfung/Fix | Status |
+|---|---|
+| **PageSpeed-Insights-API getestet (öffentlicher Messweg für LCP/CLS/INP)** | Key-lose API: **429/Tageskontingent erschöpft** (Shared-IP) → ehrlich: Messung weiterhin offen; konkreter Weg dokumentiert (Google-API-Key → `pagespeedonline/v5/runPagespeed?strategy=mobile/desktop`) | ⚠️ extern (Key) |
+| **TTFB-Messreihe (6 Requests Median, Container — nicht Endnutzer)** | Home 80 ms/73 KB · FAQ 168 ms/344 KB · Referenzen 37 ms/47 KB · Denkmal 100 ms/34 KB · Kontakt 413 ms/28 KB — keine Befunde | ✅ |
+| **Datenschutz §10: „Standardvertragsklauseln"-Behauptung** — unbelegt UND widersprüchlich zu §6 (Art. 49 Abs. 1 lit. b = Ausnahme, keine SCCs; Art. 5 Abs. 1 lit. a: Richtigkeit) | §10 angeglichen: „ausschließlich im Rahmen der beschriebenen Verarbeitungen (Ziffer 6) und der dort genannten Rechtsgrundlage (Art. 49 Abs. 1 lit. b DSGVO)" — live: SCCs = 0 | ✅ live |
+| Cookie-Richtlinie (Inhalt erstmals voll gelesen) | TDDDG § 25, nur abau_consent-LocalStorage, keine Tracking-Cookies — konform | ✅ |
+| 404-Seite W3C (2 Routen) | 0 Fehler | ✅ |
+| PSI-Weg in Matrix | A.33/Restpunkt: Messung via PageSpeed-API-Key möglich — neuer konkreter Lösungsweg dokumentiert | ⚠️ extern |
+
+**E2E:** Build ✅ · Datenschutz live korrigiert · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok.
+
+**Gegentest (§5.4):** Negativ: „Standardvertragsklauseln" = 0 live; PSI-429 reproduziert (kein Fake-Wert) ✅ · Regression: R13–R37 unverändert ✅ · Datenintegrität: keine KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 38)**
