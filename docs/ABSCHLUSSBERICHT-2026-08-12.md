@@ -184,3 +184,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 27
 
 **Repo main:** `560cb39` · Behoben: Chat aria-live (A.28), No-JS-Formular-Hinweis, Doku-Sync (README, Handbuch, AGENTS, Nutzerhandbuch, Launch-Checkliste inkl. AGB/Nutzung). Verifiziert: aria-live im Live-Bundle, alle Checks grün. Restpunkte unverändert.
+
+# NACHTRAG RUNDE 30
+
+**Repo main:** `515dfca` · Behoben: immutable-Cache für _next/static + Icons (A.33, war no-store), /suche-Doku-Fix. Verifiziert: br/gzip-Kompression, Dropdown-Tastatur (Minor Pfeiltasten), Leistungstexte. Restpunkte unverändert (a-bau.info-Host-Schritt vorbereitet).

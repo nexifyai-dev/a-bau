@@ -254,3 +254,13 @@
 - CNAME `_domainconnect`: optional (harmlos)
 
 **Blockierender Host-Schritt (Token nur auf Host, nicht im Container — E3):** Tunnel-Ingress kennt `www.a-bau.info` (und `a-bau.info`) noch nicht → Live-Test: keine Antwort (Timeout). Nötig: (1) CF-API `PUT /accounts/{acc}/cfd_tunnel/{tunnel_id}/configurations` — Ingress-Einträge `a-bau.info` + `www.a-bau.info` → `http://127.0.0.1:8095`; (2) Custom-Hostname-Zertifikat (Cloudflare for SaaS) für beide Hostnames — sonst 526/404 am Edge. Exakte Calls: `docs/BETRIEBSHANDBUCH.md` § Deploy-Änderungen.
+
+---
+
+# NACHTRAG RUNDE 30 (2026-08-12) — Cache-Strategie (A.33), Doku-Wahrheit
+
+**Neu behoben (P1):** `/_next/static/*` + `/favicon.ico*` + Root-Icons + manifest → `public, max-age=31536000, immutable` (war no-store — Browser lud hashed Chunks bei jeder Navigation neu). HTML/API bleiben no-store. Live verifiziert. Nutzerhandbuch: `/suche` existiert nicht → entfernt.
+
+**Verifiziert:** Kompression aktiv (Edge br/gzip), Dropdown-Tastatur erfüllt WAIRA-Menu-Button (Pfeiltasten optional — Minor dokumentiert), Leistungs-Detail-Texte qualitativ stark.
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung (final extern) · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung · Feiertags-Logik · a-bau.info Tunnel-Ingress + Zertifikat (Host-Schritt, Anleitung `docs/ABAU-INFO-TUNNEL-HOST-SCHRITT.md`).
