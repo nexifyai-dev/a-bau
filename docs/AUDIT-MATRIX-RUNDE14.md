@@ -166,3 +166,15 @@
 **Gegenprobe ohne Fix:** Drawer (Fokus-Transfer/Trap/Escape/Scroll-Lock) und Lightbox (dialog/aria-modal/Trap/Rückkehr) vollständig konform.
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort-Klärung.
+
+---
+
+# NACHTRAG RUNDE 20 (2026-08-12) — FAQ-150, AGB/Rechtstexte, CTA-Kaskaden-Root-Cause
+
+**P0-Root-Cause (Kundenmeldung „CTA nie grün"):** `.nav-desktop > a` (0,1,1, `background:none`) überschrieb `.nav-cta` (0,1,0) — Header-Button war im Browser nie grün. Alle früheren CSS-Verifies prüften nur Regel-Existenz statt Kaskaden-Wirkung (ehrliche Lektion: **Kaskaden-Spezifität gegen alle Vorfahr-Selektoren prüfen**). Fix: `.nav-desktop > a.nav-cta` (0,2,1) + Hover (0,3,1) — live.
+
+**Neu:** FAQ 14→166 (Chat-Wissensspektrum, KB 67 Chunks), `/agb/` + `/nutzungsbedingungen/` (BGB-Bestpraxis, Recherche: Art. 50 KI-VO seit 02.08.2026), Formular 202+queued (ehrlich statt „fehlgeschlagen", detail-Leak entfernt), Denkmal-Restaurierung (15×), Sitemap 22 mit Slash/Priority-Fix, ingest-EXCLUDE Rechtstexte.
+
+**Gegenprobe ohne Fix:** Impressum/Datenschutz vollständig (IHK-§-5-DDG-Checkliste, LDI-NRW, ODR-Abschaltung korrekt).
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Endprüfung der neuen Rechtstexte (Empfehlung).
