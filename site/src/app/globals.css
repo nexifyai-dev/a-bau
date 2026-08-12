@@ -42,8 +42,8 @@
   --color-line-inv: rgba(255, 255, 255, .16);
 
   /* Typografie */
-  --font-head: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-head: var(--font-playfair), Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-manrope), system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Layout */
   --maxw: 1200px;

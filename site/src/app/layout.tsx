@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import "./fonts.css";
 import Header from "@/components/Header";
@@ -6,6 +7,20 @@ import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import CookieConsent from "@/components/CookieConsent";
 import A11yWidget from "@/components/A11yWidget";
+
+const playfair = localFont({
+  src: "./fonts/PlayfairDisplay-var.woff2",
+  variable: "--font-playfair",
+  weight: "100 900",
+  display: "swap",
+});
+
+const manrope = localFont({
+  src: "./fonts/Manrope-var.woff2",
+  variable: "--font-manrope",
+  weight: "100 900",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -38,7 +53,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className="h-full">
+    <html lang="de" className={`h-full ${playfair.variable} ${manrope.variable}`}>
       <body className="min-h-full flex flex-col">
         <a className="skip-link" href="#main">Zum Inhalt springen</a>
         <Header />
