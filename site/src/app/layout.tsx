@@ -5,6 +5,7 @@ import "./fonts.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import ChatWidget from "@/components/ChatWidget";
 import { kontakt as kontaktYaml } from "@/lib/data";
 import { KONTAKT } from "@/lib/kontakt";
 
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main" className="flex-1">{children}</main>
         <Footer />
         <CookieConsent />
+        <ChatWidget />
       </body>
     </html>
   );

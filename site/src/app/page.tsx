@@ -262,11 +262,11 @@ export default function Home() {
 
       {/* CTA-BAND */}
       <section className="section-dark section" aria-labelledby="cta-heading">
-        <div className="container">
+        <div className="container text-center">
           <span className="kicker kicker-gold">Kontakt</span>
           <h2 id="cta-heading">Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah mit einer ehrlichen Einschätzung.</p>
-          <div className="hero-actions">
+          <div className="hero-actions hero-actions-center">
             <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>
             <a className="btn btn-ghost btn-lg btn-ghost-dark" href={telHref(KONTAKT.tel)}>
               Rufen Sie an: {KONTAKT.tel}

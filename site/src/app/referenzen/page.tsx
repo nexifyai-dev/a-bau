@@ -59,11 +59,11 @@ export default function Referenzen() {
       </section>
 
       <section className="section section-dark">
-        <div className="container">
+        <div className="container text-center">
           <span className="kicker kicker-gold">Kontakt</span>
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
-          <div className="hero-actions">
+          <div className="hero-actions hero-actions-center">
             <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>
           </div>
         </div>

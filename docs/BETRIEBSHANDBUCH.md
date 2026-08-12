@@ -17,8 +17,8 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 ```
 
 ## Betrieb
-- **Start/Stop:** `cd /workspace/nexifyai/repos/a-bau && PORT=8095 /app/venv/bin/python3 chat/server.py` (Log `/tmp/abau-server.log`). Stop: Prozess `chat/server.py` beenden.
-- **Watchdog:** KEIN aktiver Auto-Restart (Hermes-Cron-Job `abau-server-watchdog` 34b673d104dc war tot und wurde 2026-08-12 entfernt; kein cron-Daemon im Container). Nach Container-/Prozess-Neustart manuell starten (siehe oben). Host-seitiger Watchdog nicht verifizierbar (kein SSH). Bei Ausfall: Health-Check `curl http://127.0.0.1:8095/health` → falls down, Start-Kommando oben ausführen.
+- **Start/Stop (setsid, überlebt Session-Ende):** `bash /tmp/start-abau.sh` (= `cd /workspace/nexifyai/repos/a-bau && PORT=8095 setsid /app/venv/bin/python3 chat/server.py >> /tmp/abau-server.log 2>&1 < /dev/null &`). Stop: Prozess `chat/server.py` beenden.
+- **Watchdog AKTIV (seit 2026-08-12 15:59 E3):** Hermes-Cron-Job `abau-server-watchdog` (id `a1a70191e61a`, every 5m, no_agent, Script `~/.hermes/scripts/abau-watchdog.sh` — startet via setsid aus `repos/a-bau` mit venv-Python). Voraussetzung: Hermes-Gateway läuft im Container (Cron-Scheduler). Start Gateway: `bash /tmp/start-gateway.sh` (setsid `hermes gateway`), Status: `hermes cron status` — „✓ Gateway is running". **Ausfall 2026-08-12:** Container-Gateway war ~09:06 MESZ gestorben → alle Cron-Jobs feuerten nicht → Server-Ausfall ohne Auto-Restart (Host-Error, 502 über Domain). Fix: Gateway per setsid gestartet; Watchdog-Job lief 15:59 completed/ok (Gegentest bestanden). Scheduler-Tick prüfen: `hermes cron status` (Ticker heartbeat < 60 s) + `hermes cron runs`/executions.db für `a1a70191e61a`.
 - **Health:** `curl http://127.0.0.1:8095/health` bzw. `https://a-bau.nexifyai.cloud/health` → `{"status":"ok","chat":true,"kb":true}`.
 - **Backup:** Repo (git) = Backup der Inhalte; `site/out` ist Build-Artefakt (reproduzierbar via `npm run build`); `chat/data/kb.db` aus `chat/ingest.py` regenerierbar.
 
@@ -30,10 +30,12 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 5. Verifikation: Routen-200 + ein Chat-Test + `https://a-bau.nexifyai.cloud/health`.
 
 ## Wartung Chatbot
+- **Widget (seit 2026-08-12, ADR-004):** Floating „A-Bau KI-Assistent" (unten rechts, `site/src/components/ChatWidget.tsx`, in layout.tsx). KI-Offenlegung Art. 50 EU AI Act im Widget + Datenschutz §6. API: `POST /api/chat {message}` → `{answer, quellen}`; kein Konversationsgedächtnis serverseitig (stateless), Verlauf nur im Client-State.
 - Wissensquelle = `content/` (gleiche Dateien wie Site). Nach jedem Content-Update Re-Ingest Pflicht.
 - Modell: `ds/deepseek-v4-flash` via 9Router (Think-Max); System-Prompt in `chat/server.py` (RAG-only, keine Preise, Quellen, Kontakt-Fallback, Injection-Schutz).
 - Logs: nur Zugriffszeilen, keine PII; Rate-Limit 20/min/IP.
-- Bei 9Router-Ausfall: /api/chat → 503, Widget zeigt Fallback (Kontakt/Telefon).
+- Bei 9Router-Ausfall: /api/chat → 503, Widget zeigt Fehlermeldung (Kontakt/Telefon).
+- Key: `_secret()` liest `/home/hermeswebui/.hermes/.env` (CUSTOM_API_KEY = 9Router-Key, verifiziert 2026-08-12). Kein Key im Client.
 
 ## Deploy-Änderungen (Domain/Port)
 - Tunnel-Route: CF-API `PUT /accounts/{ACCOUNT_ID}/cfd_tunnel/{TUNNEL_ID}/configurations` (Token `CLOUDFLARE_API_TOKEN`; Ingress vor Catch-All einfügen).
@@ -50,7 +52,7 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 | Symptom | Ursache/Fix |
 |---|---|
 | Site 502/404 über Domain | Tunnel-Ingress/DNS prüfen (obige API-Schritte); `server: cloudflare`-Header checken |
-| /health nicht ok | Prozess tot → manuell: Start-Kommando oben (kein Watchdog aktiv, s. Betrieb) |
+| /health nicht ok | Prozess tot → Watchdog (every 5m, s. Betrieb) startet binnen 5 min neu; sofort: `bash /tmp/start-abau.sh` |
 | **Chat 401 (LLM-Fallback)** | **Root Cause 2026-08-12 behoben:** `_secret()` las Dateien in Datei-Reihenfolge mit `k in names` → die ERSTE passende Zeile in `/home/hermeswebui/.hermes/.env` gewann; dort steht `DEEPSEEK_API_KEY` VOR `CUSTOM_API_KEY` → Server nutzte den Direkt-Key → 401. Fix in `chat/server.py`: Namens-Reihenfolge (`for n in names`) — `CUSTOM_API_KEY` aus der Datei gewinnt jetzt. Zusätzlich: `asyncio.to_thread` für retrieve/LLM/SMTP (Event-Loop nicht blockieren), SQLite WAL + busy_timeout, LLM-Timeout 30s, `reasoning_effort: high` (Tunnel-Timeout-Falle). Key-Check: `curl -X POST http://127.0.0.1:20128/v1/chat/completions -H "Authorization: Bearer $(grep -m1 '^CUSTOM_API_KEY=' /home/hermeswebui/.hermes/.env | cut -d= -f2)" -d '{"model":"ds/deepseek-v4-flash","messages":[{"role":"user","content":"OK"}],"max_tokens":5}'` → 200. Danach Live-Test: `curl -X POST https://a-bau.nexifyai.cloud/api/chat -d '{"message":"test"}'` → echte Antwort statt `401`. Start: `setsid /app/venv/bin/python3 chat/server.py` (überlebt Session-Ende; Hermes-Background-Kinder werden sonst gekillt). |
 | Chat 503 | 9Router down (curl 127.0.0.1:20128/v1/models) oder KB fehlt → `python3 chat/ingest.py` |
 | Formular 502 | **Regression Container-Umzug (2026-08-12):** SMTP-Creds liegen nur auf Host (`/etc/nexifyai/*.env`, root-only) — Container-lesbare Quellen (`/home/hermeswebui/.hermes/.env`, `/root/...`) enthalten keine `SMTP_*`-Keys → `_secret()` liefert leer → Versand schlägt fehl. Fix: `SMTP_HOST`/`SMTP_PORT`/`SMTP_USER`/`SMTP_PASSWORD` in `/home/hermeswebui/.hermes/.env` eintragen (Werte vom Host spiegeln) + Server-Neustart + `python3 chat/flush_contact_queue.py` (Nachversand gesammelter Anfragen). **Kein Datenverlust seit 2026-08-12:** fehlgeschlagene Formulare landen in `chat/data/contact_queue.jsonl` (gitignored, DSGVO: nur Formularfelder). Nie Resend verwenden (send.nexifyai.cloud = NXDOMAIN) |
