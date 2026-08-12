@@ -140,3 +140,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 **Neu behoben:** Chat-503-Error-Leak (`detail` raus, A.38) · Stadtteil-Titel (B.20, ≤60, absolute) · Stadtteil-JSON-LD Breadcrumb/Service (B.21) · ContactPage auf /kontakt (B.21, NAP aus KONTAKT-Quelle, C.8).
 
 **Ehrlich offen (extern):** SMTP-Creds-Spiegelung (Container ohne Host-Zugriff; Queue leer, Daten geschützt) · reale Gerätetests + Lighthouse (kein Browser-Tooling) · Kundendaten (Tel-Variante, Referenz-Metadaten, Logo, Rechtstext-Prüfung) · Brain NXDOMAIN (Infra).
+
+# NACHTRAG RUNDE 15 (Tiefenprüfung, ehrlich)
+
+**Repo main:** `9c5001a` · Behoben: Öffnungsstatus A.11 (Berlin-TZ, SSR-korrekter Init, Unit-Test 12/12 in `scripts/test-oeffnungszeiten.js`), Organization-JSON-LD /ueber-uns (B.21). Ausgeräumte Audit-Artefakte: Umlaut-Assets + CF-email-decode (beide 200, HEAD-Falschpositive). Externe Links 6/6, Formular-Client + Cookie-Banner konform. **Ehrlich offen:** Browser-Ebene (Console/LCP/INP/Mobile-Matrix) mangels System-Libs/Root nicht testbar — nur mit Host-Zugriff lösbar; SMTP-Spiegelung; Kundendaten.

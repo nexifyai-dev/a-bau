@@ -115,3 +115,15 @@
 2. **Reale Gerätetests + Lighthouse/INP:** kein Browser-Tooling im Container.
 3. **Kundendaten:** verbindliche Tel-Nr.-Variante, Referenz-Metadaten, Logo-SVG, Google-Business, anwaltliche Rechtstext-Prüfung.
 4. **Brain (brain.nexifyai.cloud):** NXDOMAIN — Infra-Thema, Ersatz dokumentiert.
+
+---
+
+# NACHTRAG RUNDE 15 (2026-08-12) — Tiefenprüfung A.11/B.21/B.17/B.3–B.7/B.31/Browser-Ebene
+
+**Neu behoben:**
+- **A.11 Öffnungsstatus** (3-fach): SSR zeigte immer „Geschlossen" (`useState(false)`); Browser-Lokalzeit statt Kundenzeit; weekday-Mapping-Bug. Fix: Berlin-TZ via `Intl`, lazy Init, Unit-Test `scripts/test-oeffnungszeiten.js` (12/12 PASS) — Regression-Schutz (C.12).
+- **B.21 Organization** auf /ueber-uns ergänzt (NAP aus KONTAKT-Quelle, C.8). Damit JSON-LD je Seite: Home (LocalBusiness+FAQPage), Leistungen (Service+LocalBusiness), Leistungs-Details (Service), Stadtteile (Breadcrumb+Service), Stadtteil-Details (Breadcrumb+Service), /ueber-uns (Organization), /kontakt (ContactPage), FAQ (FAQPage).
+
+**Verifiziert, kein Bug (Audit-Artefakte ausgeräumt):** Umlaut-Assets 200 (urllib-HEAD-Encoding), CF-email-decode 200 (HEAD-404 ist CF-Edge-Verhalten), externe Links 6/6 200, Formular-Client komplett konform (B.3–B.7), Cookie-Banner konform (B.31/A.39).
+
+**Ehrlicher Restpunkt (R15 bestätigt):** Browser-Ebene (Console/Hydration/LCP/INP/Mobile-Matrix) im Container nicht testbar — Playwright-Chromium vorhanden, aber 20 System-Libs fehlen, kein Root/apt. Kein Ersatz ohne Host-Zugriff.
