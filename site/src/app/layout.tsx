@@ -50,9 +50,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     siteName: "A-Bau Meisterbetrieb GmbH",
-    title: "A-Bau Meisterbetrieb GmbH – Bauunternehmen Mönchengladbach",
-    description:
-      "Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach & NRW. Meisterbetrieb seit 2019.",
+    // R35: KEIN globales title/description — Next übernimmt je Seite metadata.title/description
+    // (sonst hätten alle Detailseiten den Home-Titel als og:title, B.25)
     images: [{ url: "/logo.png", width: 512, height: 512, alt: "A-Bau Meisterbetrieb GmbH" }],
   },
   twitter: { card: "summary_large_image" },

@@ -883,3 +883,23 @@
 **Gegentest (§5.4):** Negativ: kein Access-Control-Header (bewusst), kein localStorage im Widget-Bundle (`grep` 0) ✅ · Regression: unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 34)**
+
+---
+
+## Runde 35 (2026-08-12, Fortsetzung Tiefenprüfung — OG je Seite, reduced-motion, Social)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: OG-Titel je Seite (B.25), reduced-motion-Vollständigkeit (D.11), Footer-Social, sitemap-Priorities.
+
+| Befund/Fix | Status |
+|---|---|
+| **og:title/og:description global im Layout gesetzt → ALLE Detailseiten hatten den Home-Titel als OG-Titel** (B.25) | Layout openGraph ohne title/description → Next übernimmt je Seite metadata.title/description; Live: Innenausbau/Geistenbeck = Seitentitel, Home unverändert | ✅ live |
+| reduced-motion (D.11) | Vollständig: scroll-behavior auto, animation/transition .01ms + 1 Iteration, card-hover none; zusätzlich prefers-reduced-transparency + prefers-contrast-more | ✅ kein Fix |
+| Footer-Social-Links | Keine Social-Profile gefunden (Recherche R1) — bewusst keine Fake-Links (A.40); Ergänzung bei Kunden-Profilen möglich | ✅ dokumentiert |
+| sitemap-Priorities | Home 1.0 / statisch 0.8 / Leistungen 0.7 / Stadtteile 0.6 — sinnvoll | ✅ |
+| Chat-Konversation | Stateless (kein Reset nötig, keine Persistenz) — Design-Entscheidung dokumentiert | ✅ |
+
+**E2E:** Build ✅ · og:title je Seite live · Quality-Check OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok.
+
+**Gegentest (§5.4):** Negativ: globaler OG-Default = 0 auf Detailseiten (Seitentitel statt Home-Titel) ✅ · Regression: Home-OG unverändert, R13–R34 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 35)**
