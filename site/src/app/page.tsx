@@ -59,7 +59,7 @@ const LEISTUNGS_BILDER: Record<string, string> = {
   innenausbau: "/assets/innenausbau/b1b9855e-0abd-4906-b9f0-ecec14474c16.webp",
   krankenhausbau: "/assets/krankenhaus/IMG_1414.webp",
   schluesselfertigbau: "/assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp",
-  installationen: "/assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp",
+  installationen: "/assets/sonstiges/151e86b5-8c33-4ccd-be9d-4bc1cd222894.webp",
   sanierung: "/assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp",
   transport: "/assets/sonstiges/PHOTO-2025-02-11-16-15-13.webp",
 };
@@ -270,11 +270,11 @@ export default function Home() {
 
       {/* CTA-BAND */}
       <section className="section-dark section" aria-labelledby="cta-heading">
-        <div className="container text-center">
+        <div className="container">
           <span className="kicker kicker-gold">Kontakt</span>
           <h2 id="cta-heading">Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah mit einer ehrlichen Einschätzung.</p>
-          <div className="hero-actions hero-actions-center">
+          <div className="hero-actions">
             <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>
             <a className="btn btn-ghost btn-lg btn-ghost-dark" href={telHref(KONTAKT.tel)}>
               Rufen Sie an: {KONTAKT.tel}

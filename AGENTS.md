@@ -16,8 +16,11 @@
 5. QA-Protokoll + ggf. ADR aktualisieren (Code+Doku = ein Change, C.18).
 
 ## Verboten
-- Kein neuer Font/neue Farbe ohne `--font-*`/`--color-*`-Token (ADR-003).
+- Kein neuer Font/keine neue Farbe ohne `--font-*`/`--color-*`-Token (ADR-003).
 - Kein Button ohne explizite `:hover`-Farbe (Hover-Lesbarkeits-Regel, ADR-003).
+- **Formular-Spacing-Regel (merken):** `.form-grid` gap = `--space-5`, `.form-field` gap = 8px,
+  Inputs min-height 48px / padding 12px 14px — NICHT pro Feld individuell ändern (Auftrag B.3).
+- CTA-Bänder: linksbündig (kein `text-center`), Button-Abstand via `.section-dark .hero-actions` margin-top `--space-5`.
 - Keine Preise/Referenzdaten/Fakten erfinden — fehlende Kundendaten als offen dokumentieren.
 - Keine Secrets in Code/Logs/Doku; Keys nur via `_secret()` (hermes.env), nie ausgeben.
 - Chat-KI-Widget nicht ohne Datenschutz-Abschnitt + ADR wieder einbauen.

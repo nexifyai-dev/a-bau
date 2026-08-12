@@ -5,7 +5,6 @@ import "./fonts.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
-import A11yWidget from "@/components/A11yWidget";
 
 const fraunces = localFont({
   src: "./fonts/Fraunces-var.woff2",
@@ -59,7 +58,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main" className="flex-1">{children}</main>
         <Footer />
         <CookieConsent />
-        <A11yWidget />
       </body>
     </html>
   );
