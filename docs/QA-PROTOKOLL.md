@@ -223,3 +223,30 @@
 **Gegentest (§5.4):** Live-vs-Repo-Abgleich aus anderer Richtung: byteweiser Diff `live-index.html` vs `out/index.html` — einzige Abweichung = Cloudflare-Email-Obfuscation (mailto → `/cdn-cgi/l/email-protection` + decode-JS); alle übrigen Bytes identisch → Live-Stand = geprüfter Code (E3). Negativpfade (404), Assets, Borussia-Grep 0, Glyphen-Grep 0.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 5)**
+
+---
+
+## Proaktive Runde 6 (2026-08-12, Pascal-Aufträge + Voll-Audit)
+
+**Aufträge (OOB):** CTA-Band-Text zentriert + mehr Button-Abstand (alle Seiten) · neue Schriftfamilie · Baustellen-Card-Innenabstand · Kontaktformular-Abstand/Verzerrung · Referenzen: Bilder 404, Abstände, Videos besser.
+
+| Befund | Fix | Status |
+|---|---|---|
+| Referenz „Handwerkskunst im Detail": 4 Bilder 404 (`sonstiges/IMG_1414-1…` existieren nicht) — nur Alt-Texte sichtbar | 4 reale Baustellenfotos aus Asset-Bestand (`FB_IMG_1731878…`); Kunden-Bestätigung der Motive offen | ✅ live |
+| Videos: `preload="metadata"` + Inline-Styles, kein sauberer Fallback | `<figure class="ref-video">` + `preload="none"` (Datenvolumen D.8), Poster `r.bilder[0]`, figcaption, CSS-Klasse | ✅ live |
+| Galerie-Caption nur bei Hover (Touch unsichtbar) | `:focus-within` + `@media (hover:none)` immer sichtbar | ✅ |
+| Schriftfamilie passt nicht (Pascal) | Fraunces/WorkSans → **Lora** (Head) + **Inter** (Body), self-hosted, kleiner (85 KB vs. 117 KB), `--font-lora/--font-inter` | ✅ live |
+| Kontaktformular „innen ohne Abstand, verzerrt" | Root-Cause: `.card-plain` hatte KEIN padding → `padding: var(--space-6)` + `.card-plain > .card-body/.media-clip { padding: 0 }` | ✅ live |
+| CTA-Band linksbündig (alte Regel) | `.section-dark` `text-align:center` + `.hero-actions` margin-top `--space-7` + center; `hero-actions-center` ebenso; AGENTS.md aktualisiert | ✅ live |
+| Baustellen-Card Innenabstand | `.baustellen-card` padding space-5 (mobile) / space-7 (≥768px) | ✅ live |
+| Footer/Kontakt „Tel:" ohne Punkt (DIN 5008, Review P2-9) | „Tel." überall | ✅ |
+| CookieConsent „undCookie-Richtlinie" (Review P2-13) | `{" "}`-Separator | ✅ |
+| `lib/kontakt.ts` (hartkodiert) vs. `kontakt.yaml` — Drift-Fehlerklasse | **NAP-Drift-Guard** in layout.tsx: Build bricht bei Abweichung (C.7/C.8) | ✅ Build getestet |
+| Inline-Styles Reste (ueber-uns Fakten, Baustellen-Section, Referenzen-Sections, Kontakt-Farbe/Karte) | Klassen `.fact-list`, `.text-inv-muted`, `.media-clip`, `.baustellen-card`, `.section-flat` | ✅ |
+| Toter Lightbox-CSS (0 Nutzer) | gelöscht (YAGNI) | ✅ |
+
+**E2E:** Build ✅ · Route-Smoke 15/15 ✅ · Crawl: 26 Seiten, 38 Links, 37 Assets, Anker — 0 Fehler ✅ · 10 externe Links 200 ✅ · Chat + Honeypot ✅ · Negativ-404 + kaputte Bild-URL 404 ✅ · Referenzen 4 Bilder + preload=none live ✅ · Fonts Lora/Inter live ✅ · tel:+49 ✅ · neue CSS-Regeln live verifiziert ✅.
+
+**Gegentest (§5.4):** Byte-Diff Live vs `out/index.html` mit beidseitiger Obfuscation-Normalisierung → **IDENTISCH: True** (Live = geprüfter Build; einzige Abweichung CF-Email-Obfuscation). Regression Runde-5-Fixes (Teaser, lead, /angebot, tel) unverändert grün.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 6)**

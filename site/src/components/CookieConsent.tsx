@@ -15,7 +15,7 @@ export default function CookieConsent() {
     <div className="cookie-banner show" role="dialog" aria-label="Cookie-Hinweis">
       <p>
         <strong>Hinweis zu Cookies:</strong> Diese Website setzt nur technisch notwendige Cookies und
-        keine Tracking-Cookies. Details in der <a href="/datenschutz/">Datenschutzerklärung</a> und
+        keine Tracking-Cookies. Details in der <a href="/datenschutz/">Datenschutzerklärung</a> und{" "}
         <a href="/cookie-richtlinie/">Cookie-Richtlinie</a>.
       </p>
       <div className="cookie-actions">

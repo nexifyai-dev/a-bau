@@ -27,7 +27,7 @@ export default function Referenzen() {
           </div>
 
           {referenzen.referenzen.map((r: any) => (
-            <div className="section" key={r.slug || r.id} id={r.slug || r.id} style={{ paddingTop: 0 }}>
+            <div className="section section-flat" key={r.slug || r.id} id={r.slug || r.id}>
               <div className="section-head">
                 <span className="kicker">Referenz</span>
                 <h2>{r.titel}</h2>
@@ -56,17 +56,19 @@ export default function Referenzen() {
                 ))}
               </div>
               {r.video && (
-                <video
-                  controls
-                  preload="metadata"
-                  poster={r.bilder[0] ? `/assets/${r.bilder[0]}` : "/assets/krankenhaus/IMG_1414.webp"}
-                  style={{ width: "100%", maxWidth: 560, borderRadius: "var(--r-md)", marginTop: 16 }}
-                  title={`Projektvideo ${r.titel}`}
-                >
-                  <source src={`/assets/videos/${r.video}?v=20260812`} type="video/mp4" />
-                  Das Projektvideo kann in Ihrem Browser nicht abgespielt werden – wir zeigen Ihnen
-                  die Arbeiten gern persönlich: <Link href="/kontakt/">Kontakt aufnehmen</Link>.
-                </video>
+                <figure className="ref-video">
+                  <video
+                    controls
+                    preload="none"
+                    poster={r.bilder[0] ? `/assets/${r.bilder[0]}` : "/assets/krankenhaus/IMG_1414.webp"}
+                    title={`Projektvideo ${r.titel}`}
+                  >
+                    <source src={`/assets/videos/${r.video}?v=20260812`} type="video/mp4" />
+                    Das Projektvideo kann in Ihrem Browser nicht abgespielt werden – wir zeigen Ihnen
+                    die Arbeiten gern persönlich: <Link href="/kontakt/">Kontakt aufnehmen</Link>.
+                  </video>
+                  <figcaption>Projektvideo: {r.titel}</figcaption>
+                </figure>
               )}
             </div>
           ))}

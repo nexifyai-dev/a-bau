@@ -52,7 +52,7 @@ export default function Stadtteile() {
             ))}
           </div>
 
-          <section className="section section-soft card-plain mt-7" id="baustellen" style={{borderRadius:"var(--r-lg)",padding:"var(--space-7)"}}>
+          <section className="section section-soft card-plain mt-7 baustellen-card" id="baustellen">
             <span className="kicker">Stadt-Info</span>
             <h2>Aktuelle Baustellen &amp; Baumaßnahmen in Mönchengladbach</h2>
             <p>

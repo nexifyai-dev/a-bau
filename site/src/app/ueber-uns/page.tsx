@@ -50,7 +50,7 @@ export default function UeberUns() {
             </div>
             <div>
               <h2>Zahlen &amp; Fakten</h2>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 10 }}>
+              <ul className="fact-list">
                 <li><strong>Rechtsform:</strong> GmbH, eingetragen</li>
                 <li><strong>Handelsregister:</strong> {KONTAKT.registergericht} {KONTAKT.hrb}</li>
                 <li><strong>Geschäftsführer:</strong> {KONTAKT.gf}</li>

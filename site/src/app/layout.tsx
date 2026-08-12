@@ -5,18 +5,32 @@ import "./fonts.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import { kontakt as kontaktYaml } from "@/lib/data";
+import { KONTAKT } from "@/lib/kontakt";
 
-const fraunces = localFont({
-  src: "./fonts/Fraunces-var.woff2",
-  variable: "--font-fraunces",
-  weight: "300 900",
+// NAP-Drift-Guard (C.7/C.8): kontakt.yaml (Wahrheitsquelle) vs. lib/kontakt.ts (Client-Sicherung).
+// Bei Abweichung bricht der Build — verhindert die FAQ-Fehlerklasse (Feldnamen-Drift) für Kontaktdaten.
+if (
+  kontaktYaml?.telefon_festnetz !== KONTAKT.tel ||
+  kontaktYaml?.telefon_mobil !== KONTAKT.telMobil ||
+  kontaktYaml?.email !== KONTAKT.email ||
+  kontaktYaml?.ust_idnr !== KONTAKT.ustIdnr ||
+  `${kontaktYaml?.register ?? ""} ${kontaktYaml?.hrb ?? ""}` !== `${KONTAKT.registergericht} ${KONTAKT.hrb}`
+) {
+  throw new Error("NAP-Drift: site/src/data/kontakt.yaml ≠ src/lib/kontakt.ts — EINE Quelle pflegen (C.8).");
+}
+
+const lora = localFont({
+  src: "./fonts/Lora-var.woff2",
+  variable: "--font-lora",
+  weight: "400 700",
   display: "swap",
 });
 
-const worksans = localFont({
-  src: "./fonts/WorkSans-var.woff2",
-  variable: "--font-worksans",
-  weight: "300 800",
+const inter = localFont({
+  src: "./fonts/Inter-var.woff2",
+  variable: "--font-inter",
+  weight: "400 700",
   display: "swap",
 });
 
@@ -51,7 +65,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`h-full ${fraunces.variable} ${worksans.variable}`}>
+    <html lang="de" className={`h-full ${lora.variable} ${inter.variable}`}>
       <body className="min-h-full flex flex-col">
         <a className="skip-link" href="#main">Zum Inhalt springen</a>
         <Header />

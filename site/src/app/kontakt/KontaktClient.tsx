@@ -90,11 +90,11 @@ export default function KontaktClient() {
                   {KONTAKT.plz} {KONTAKT.ort} ({KONTAKT.stadtteil})
                 </p>
                 <p>
-                  <a href={telHref(KONTAKT.tel)}>Tel: {KONTAKT.tel}</a><br />
+                  <a href={telHref(KONTAKT.tel)}>Tel. {KONTAKT.tel}</a><br />
                   <a href={telHref(KONTAKT.telMobil)}>Mobil: {KONTAKT.telMobil}</a><br />
                   <a href={`mailto:${KONTAKT.email}`}>{KONTAKT.email}</a>
                 </p>
-                <p className="text-3" style={{color:"rgba(255,255,255,.65)"}}>
+                <p className="text-3 text-inv-muted">
                   {KONTAKT.hrb} · {KONTAKT.registergericht} · GF {KONTAKT.gf}
                 </p>
                 <div className="oeffnungszeiten-list">
@@ -108,7 +108,7 @@ export default function KontaktClient() {
                 </div>
               </div>
             </div>
-            <div className="card card-plain" style={{ overflow: "hidden" }}>
+            <div className="card card-plain media-clip">
               <iframe
                 title="Karte: Standort A-Bau in Mönchengladbach"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=6.4285%2C51.1365%2C6.4645%2C51.1565&layer=mapnik&marker=51.146391%2C6.446307"

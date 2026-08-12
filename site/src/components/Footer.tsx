@@ -41,7 +41,7 @@ export default function Footer() {
           <div>
             <h3>Kontakt</h3>
             <nav>
-              <Link href={telHref(KONTAKT.tel)}>Tel: {KONTAKT.tel}</Link>
+              <Link href={telHref(KONTAKT.tel)}>Tel. {KONTAKT.tel}</Link>
               <Link href={telHref(KONTAKT.telMobil)}>Mobil: {KONTAKT.telMobil}</Link>
               <Link href={`mailto:${KONTAKT.email}`}>{KONTAKT.email}</Link>
               <Link href="/kontakt/">Kontaktformular</Link>
