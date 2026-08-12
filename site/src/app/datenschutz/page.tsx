@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import ReactMarkdown from "react-markdown";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Datenschutz – A-Bau",
   description: "Datenschutzerklärung der Website a-bau.nexifyai.cloud – Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.",
-  alternates: { canonical: "/datenschutz/", languages: { de: "https://a-bau.nexifyai.cloud/datenschutz/", "x-default": "https://a-bau.nexifyai.cloud/datenschutz/" } },
+  alternates: { canonical: "/datenschutz/", languages: { de: `${SITE_URL}/datenschutz/`, "x-default": `${SITE_URL}/datenschutz/` } },
   robots: { index: false, follow: false },
 };
 

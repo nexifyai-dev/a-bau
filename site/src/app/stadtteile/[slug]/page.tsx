@@ -6,6 +6,7 @@ import { stadtteile } from "@/lib/data";
 import { leistungen } from "@/lib/data";
 import { KONTAKT, telHref } from "@/lib/kontakt";
 import { clip } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return stadtteile.stadt.quartiere.map((q: any) => ({ slug: slugify(q.name) }));
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // das Layout-Template ("%s – A-Bau") nicht doppelt anhängt
   const title = clip(`${name} – A-Bau Meisterbetrieb Mönchengladbach`, 60);
   return {
-    alternates: { canonical: `/stadtteile/${slug}/`, languages: { de: `https://a-bau.nexifyai.cloud/stadtteile/${slug}/`, "x-default": `https://a-bau.nexifyai.cloud/stadtteile/${slug}/` } },
+    alternates: { canonical: `/stadtteile/${slug}/`, languages: { de: `${SITE_URL}/stadtteile/${slug}/`, "x-default": `${SITE_URL}/stadtteile/${slug}/` } },
     title: { absolute: title },
     description: `${clip(q.text, 45)} A-Bau Meisterbetrieb in ${name}, Mönchengladbach. ${clip(q.schwerpunkt, 15)}. Angebot anfragen.`,
   };
@@ -94,8 +95,8 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Start", item: "https://a-bau.nexifyai.cloud/" },
-                { "@type": "ListItem", position: 2, name: "Stadtteile", item: "https://a-bau.nexifyai.cloud/stadtteile/" },
+                { "@type": "ListItem", position: 1, name: "Start", item: `${SITE_URL}/` },
+                { "@type": "ListItem", position: 2, name: "Stadtteile", item: `${SITE_URL}/stadtteile/` },
                 { "@type": "ListItem", position: 3, name: name },
               ],
             },

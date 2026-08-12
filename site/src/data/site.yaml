@@ -4,7 +4,7 @@ site:
   claim: "Mit Vertrauen bauen – mit Qualität leben"
   beschreibung: "A-Bau Meisterbetrieb GmbH: Restaurierung denkmalgeschützter Bauten, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach & NRW. Meisterhafte Handwerkskunst seit 2019 – HRB 18836 AG Mönchengladbach."
   sprache: de-DE
-  domain: a-bau.nexifyai.cloud
+  # domain: Datenquelle (im Rendering ungenutzt); kanonische Site-URL = src/lib/site.ts (SITE_URL)
   og_bild: /assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp
 
 nav:

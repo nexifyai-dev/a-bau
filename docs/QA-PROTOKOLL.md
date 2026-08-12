@@ -820,3 +820,25 @@
 **Gegentest (§5.4):** Negativ: 0 „Sonstiges"-Gruppe; Gruppen-Titel = 10 (keine Duplikate); W3C 0 Fehler ✅ · Regression: FAQ-LD/Teaser/KB unverändert ✅ · Datenintegrität: content/ == src/data/ (sync), KB 71 Chunks, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 31)**
+
+---
+
+## Runde 32 (2026-08-12, Tiefenprüfung + Prio-1-Vorbereitung a-bau.info-Go-Live)
+
+**Anlass:** Pascal-Auftrag Tiefenprüfung + OOB „a-bau.info noch nicht online — Das und alle Abhängigkeiten + anzupassende Bereiche Prio 1".
+
+| Befund/Fix | Status |
+|---|---|
+| **Checks existierten, liefen aber nicht automatisch (§15a)** | Cron-Job `abau-quality-check` (täglich 04:10, no_agent): Route-Smoke + CHAT-CHECK + CONTENT-SYNC + Öffnungszeiten + Health; Direkttest Exit 0 (QUALITY-CHECK OK) | ✅ |
+| **FAQ-165 ohne Sprung-Navigation (B.16/UX)** | Sprunganker-Leiste oben (10 Kategorien-Chips mit Anker + Anzahl), h2-IDs, scroll-margin greift | ✅ live |
+| **W3C-Vollscan** (erstmals alle 25 Seiten) | **0 Fehler über 25 Seiten** | ✅ |
+| **Go-Live-Vorbereitung (Prio 1): Domain hartcodiert in 19 Dateien** (sitemap, metadataBase, canonical/hreflang, JSON-LD @id/url/item, robots, Meta-Descriptions) | `src/lib/site.ts` → `SITE_URL` zentral; alle 19 Dateien auf Template-Interpolation umgestellt (Refactor-Bug 2× gefunden + gefixt: Literal-`${SITE_URL}` + fehlende Imports; Build-Gate + Live-Verify: canonical/@id/hreflang/robots/sitemap korrekt) | ✅ live |
+| site.yaml `domain` | Kommentar: Datenquelle, Rendering ungenutzt; kanonisch = SITE_URL | ✅ |
+| Chat-Kategorie-Stresstest (165-Fragen-KB) | Badsanierung (Preis ehrlich) + Denkmal-Genehmigung (Behörde, Maßnahmenbeschreibung) korrekt mit Quellen | ✅ live |
+| **a-bau.info ONLINE: weiterhin blockiert durch Host-Schritt** (Tunnel-Ingress + Custom-Hostname-Zertifikat; Token/cloudflared 3× E3-geprüft nicht im Container) | Anleitung `docs/ABAU-INFO-TUNNEL-HOST-SCHRITT.md`; **ergänzt:** nach Go-Live `SITE_URL` auf Produktions-URL ändern + `X-Robots-Tag: noindex` in server.py entfernen (HEADERS) — beide als „damit anzupassende Bereiche" dokumentiert | ⚠️ Host (blockierend) |
+
+**E2E:** Build ✅ · alle 5 Checks grün · W3C 25/25 0 Fehler · Interpolation live verifiziert · Chat 2/2 Kategorie-Fragen korrekt.
+
+**Gegentest (§5.4):** Negativ: `"${SITE_URL}`-Literale 0; TS2304 0 (Build-Gate); `a-bau.nexifyai.cloud`-Hardcodes in src/ nur noch site.ts-Konstante ✓ · Regression: canonicals/JSON-LD/robots/sitemap byte-gleich zur Vor-Refactor-Zeit (gleiche URLs) ✓ · Datenintegrität: kein Content-/KB-Change außer site.yaml-Kommentar ✓.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 32)**

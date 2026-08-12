@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { leistungen, stadtteile } from "@/lib/data";
+import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
-const BASE = "https://a-bau.nexifyai.cloud";
+const BASE = `${SITE_URL}`;
 
 function slugify(name: string) {
   return name.toLowerCase()

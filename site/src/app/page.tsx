@@ -5,9 +5,10 @@ import { KONTAKT, telHref } from "@/lib/kontakt";
 import { leistungen, faq, referenzen, stadtteile } from "@/lib/data";
 import { ld } from "@/lib/schema";
 import { LEISTUNGS_BILDER } from "@/lib/leistungs-bilder";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/", languages: { de: "https://a-bau.nexifyai.cloud/", "x-default": "https://a-bau.nexifyai.cloud/" } },
+  alternates: { canonical: "/", languages: { de: `${SITE_URL}/`, "x-default": `${SITE_URL}/` } },
   title: "A-Bau Meisterbetrieb GmbH – Bauunternehmen Mönchengladbach",
   description:
     "A-Bau Meisterbetrieb GmbH in Mönchengladbach: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen. Seit 2019.",
@@ -16,11 +17,11 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-  "@id": "https://a-bau.nexifyai.cloud/#business",
+  "@id": `${SITE_URL}/#business`,
   name: "A-Bau Meisterbetrieb GmbH",
   description:
     "Bauunternehmen und Meisterbetrieb in Mönchengladbach: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen und europaweite Transporte.",
-  url: "https://a-bau.nexifyai.cloud",
+  url: `${SITE_URL}`,
   telephone: KONTAKT.tel,
   email: KONTAKT.email,
   address: {

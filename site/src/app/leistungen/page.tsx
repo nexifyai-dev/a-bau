@@ -4,9 +4,10 @@ import Image from "next/image";
 import { leistungen } from "@/lib/data";
 import { ld } from "@/lib/schema";
 import { LEISTUNGS_BILDER } from "@/lib/leistungs-bilder";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/leistungen/", languages: { de: "https://a-bau.nexifyai.cloud/leistungen/", "x-default": "https://a-bau.nexifyai.cloud/leistungen/" } },
+  alternates: { canonical: "/leistungen/", languages: { de: `${SITE_URL}/leistungen/`, "x-default": `${SITE_URL}/leistungen/` } },
   title: { absolute: "Leistungen – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "Alle Leistungen der A-Bau Meisterbetrieb GmbH: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen.",
@@ -24,7 +25,7 @@ const schema = {
       description: l.kurz,
       provider: { "@type": "LocalBusiness", name: "A-Bau Meisterbetrieb GmbH" },
       areaServed: "Mönchengladbach & NRW",
-      url: `https://a-bau.nexifyai.cloud/leistungen/${(l.slug || l.id)}/`,
+      url: `${SITE_URL}/leistungen/${(l.slug || l.id)}/`,
     },
   })),
 };
@@ -33,7 +34,7 @@ export default function Leistungen() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(schema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://a-bau.nexifyai.cloud/leistungen/"}]}) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": `${SITE_URL}/`}, {"@type": "ListItem", "position": 2, "name": "Leistungen", "item": `${SITE_URL}/leistungen/`}]}) }} />
       <section className="section">
         <div className="container">
           <div className="section-head">

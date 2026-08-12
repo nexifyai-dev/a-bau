@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { KONTAKT } from "@/lib/kontakt";
 import { ld } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/ueber-uns/", languages: { de: "https://a-bau.nexifyai.cloud/ueber-uns/", "x-default": "https://a-bau.nexifyai.cloud/ueber-uns/" } },
+  alternates: { canonical: "/ueber-uns/", languages: { de: `${SITE_URL}/ueber-uns/`, "x-default": `${SITE_URL}/ueber-uns/` } },
   title: { absolute: "Über uns – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "A-Bau Meisterbetrieb GmbH aus Mönchengladbach: eingetragenes Bauunternehmen (HRB 18836), GF Albert Pfeiffer. Restaurierung, Innenausbau, Neubau.",
@@ -20,7 +21,7 @@ const PROZESS = [
 export default function UeberUns() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Über uns", "item": "https://a-bau.nexifyai.cloud/ueber-uns/"}]}) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": `${SITE_URL}/`}, {"@type": "ListItem", "position": 2, "name": "Über uns", "item": `${SITE_URL}/ueber-uns/`}]}) }} />
       <section className="section">
         <div className="container">
           <div className="section-head">
@@ -100,8 +101,8 @@ export default function UeberUns() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: KONTAKT.firma,
-            url: "https://a-bau.nexifyai.cloud/",
-            logo: "https://a-bau.nexifyai.cloud/logo.png",
+            url: `${SITE_URL}/`,
+            logo: `${SITE_URL}/logo.png`,
             founder: { "@type": "Person", name: KONTAKT.gf },
             address: { "@type": "PostalAddress", streetAddress: KONTAKT.strasse, postalCode: KONTAKT.plz, addressLocality: KONTAKT.ort, addressCountry: "DE" },
             contactPoint: { "@type": "ContactPoint", telephone: KONTAKT.tel, email: KONTAKT.email, contactType: "customer service", areaServed: "DE", availableLanguage: "de" },

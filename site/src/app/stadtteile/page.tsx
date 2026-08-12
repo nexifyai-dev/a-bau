@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { stadtteile } from "@/lib/data";
 import { ld } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/stadtteile/", languages: { de: "https://a-bau.nexifyai.cloud/stadtteile/", "x-default": "https://a-bau.nexifyai.cloud/stadtteile/" } },
+  alternates: { canonical: "/stadtteile/", languages: { de: `${SITE_URL}/stadtteile/`, "x-default": `${SITE_URL}/stadtteile/` } },
   title: { absolute: "Stadtteile – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "A-Bau in Mönchengladbach: Denkmal-Restaurierung, Sanierung und Neubau in allen Stadtteilen – Geistenbeck, Eicken, Rheydt, City und mehr.",
@@ -30,7 +31,7 @@ export default function Stadtteile() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(schema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Stadtteile", "item": "https://a-bau.nexifyai.cloud/stadtteile/"}]}) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": `${SITE_URL}/`}, {"@type": "ListItem", "position": 2, "name": "Stadtteile", "item": `${SITE_URL}/stadtteile/`}]}) }} />
       <section className="section">
         <div className="container">
           <div className="section-head">

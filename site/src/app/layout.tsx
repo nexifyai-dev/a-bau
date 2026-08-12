@@ -8,6 +8,7 @@ import CookieConsent from "@/components/CookieConsent";
 import ChatWidget from "@/components/ChatWidget";
 import { kontakt as kontaktYaml } from "@/lib/data";
 import { KONTAKT } from "@/lib/kontakt";
+import { SITE_URL } from "@/lib/site";
 
 // NAP-Drift-Guard (C.7/C.8): kontakt.yaml (Wahrheitsquelle) vs. lib/kontakt.ts (Client-Sicherung).
 // Bei Abweichung bricht der Build — verhindert die FAQ-Fehlerklasse (Feldnamen-Drift) für Kontaktdaten.
@@ -43,8 +44,8 @@ export const metadata: Metadata = {
   description:
     "A-Bau Meisterbetrieb GmbH: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach & NRW. Meisterbetrieb seit 2019.",
   applicationName: "A-Bau Meisterbetrieb",
-  authors: [{ name: "A-Bau Meisterbetrieb GmbH", url: "https://a-bau.nexifyai.cloud" }],
-  metadataBase: new URL("https://a-bau.nexifyai.cloud"),
+  authors: [{ name: "A-Bau Meisterbetrieb GmbH", url: `${SITE_URL}` }],
+  metadataBase: new URL(`${SITE_URL}`),
   openGraph: {
     type: "website",
     locale: "de_DE",

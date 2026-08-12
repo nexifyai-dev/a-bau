@@ -3,9 +3,10 @@ import Link from "next/link";
 import { referenzen } from "@/lib/data";
 import { ld } from "@/lib/schema";
 import RefGallery from "@/components/RefGallery";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/referenzen/", languages: { de: "https://a-bau.nexifyai.cloud/referenzen/", "x-default": "https://a-bau.nexifyai.cloud/referenzen/" } },
+  alternates: { canonical: "/referenzen/", languages: { de: `${SITE_URL}/referenzen/`, "x-default": `${SITE_URL}/referenzen/` } },
   title: { absolute: "Referenzen – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "Referenzen der A-Bau Meisterbetrieb GmbH: Altbau-Erhaltung, Gesundheitsbau, Raumgestaltung, Schlüsselfertigbau, Badezimmer und Handwerkskunst im Detail.",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default function Referenzen() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Referenzen", "item": "https://a-bau.nexifyai.cloud/referenzen/"}]}) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": `${SITE_URL}/`}, {"@type": "ListItem", "position": 2, "name": "Referenzen", "item": `${SITE_URL}/referenzen/`}]}) }} />
       <section className="section">
         <div className="container">
           <div className="section-head">

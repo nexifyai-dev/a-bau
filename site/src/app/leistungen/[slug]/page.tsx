@@ -8,6 +8,7 @@ import { KONTAKT, telHref } from "@/lib/kontakt";
 import { ld } from "@/lib/schema";
 import { LEISTUNGS_BILDER } from "@/lib/leistungs-bilder";
 import { clip } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 
 function slugifyName(name: string) {
   return name.toLowerCase()
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const l = leistungen.leistungen.find((x: any) => (x.slug || x.id) === slug);
   if (!l) return {};
   return {
-    alternates: { canonical: `/leistungen/${slug}/`, languages: { de: `https://a-bau.nexifyai.cloud/leistungen/${slug}/`, "x-default": `https://a-bau.nexifyai.cloud/leistungen/${slug}/` } },
+    alternates: { canonical: `/leistungen/${slug}/`, languages: { de: `${SITE_URL}/leistungen/${slug}/`, "x-default": `${SITE_URL}/leistungen/${slug}/` } },
     title: { absolute: clip(`${l.titel} – A-Bau Meisterbetrieb Mönchengladbach`, 60) },
     description: `${clip(l.kurz, 100)} – A-Bau Meisterbetrieb Mönchengladbach.`,
   };

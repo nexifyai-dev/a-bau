@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { faq } from "@/lib/data";
 import { ld } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/faq/", languages: { de: "https://a-bau.nexifyai.cloud/faq/", "x-default": "https://a-bau.nexifyai.cloud/faq/" } },
+  alternates: { canonical: "/faq/", languages: { de: `${SITE_URL}/faq/`, "x-default": `${SITE_URL}/faq/` } },
   title: { absolute: "FAQ – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "Häufige Fragen zu Leistungen, Ablauf, Region, Angeboten und Öffnungszeiten von A-Bau Meisterbetrieb in Mönchengladbach.",
@@ -41,7 +42,7 @@ export default function Faq() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(schema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://a-bau.nexifyai.cloud/faq/"}]}) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": `${SITE_URL}/`}, {"@type": "ListItem", "position": 2, "name": "FAQ", "item": `${SITE_URL}/faq/`}]}) }} />
       <section className="section">
         <div className="container container-narrow">
           <div className="section-head">
@@ -52,9 +53,14 @@ export default function Faq() {
               Ihre Frage ist nicht dabei? <Link href="/kontakt/">Kontaktieren Sie uns</Link>.
             </p>
           </div>
+          <nav className="faq-nav" aria-label="FAQ-Kategorien">
+            {gruppen.map((g) => (
+              <a key={g.kat} href={`#${g.kat.replace(/\W+/g, "-").toLowerCase()}`}>{g.kat} ({g.fragen.length})</a>
+            ))}
+          </nav>
           {gruppen.map((g) => (
             <div key={g.kat} className="faq-gruppe">
-              <h2 className="faq-gruppen-titel">{g.kat}</h2>
+              <h2 className="faq-gruppen-titel" id={g.kat.replace(/\W+/g, "-").toLowerCase()}>{g.kat}</h2>
               <div className="faq accordion">
                 {g.fragen.map((f: any) => (
                   <details key={f.f} className="acc-item">

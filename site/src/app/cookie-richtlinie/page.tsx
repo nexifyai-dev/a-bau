@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Cookie-Richtlinie – A-Bau",
@@ -7,8 +8,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/cookie-richtlinie/",
     languages: {
-      de: "https://a-bau.nexifyai.cloud/cookie-richtlinie/",
-      "x-default": "https://a-bau.nexifyai.cloud/cookie-richtlinie/",
+      de: `${SITE_URL}/cookie-richtlinie/`,
+      "x-default": `${SITE_URL}/cookie-richtlinie/`,
     },
   },
   robots: { index: false, follow: false },
