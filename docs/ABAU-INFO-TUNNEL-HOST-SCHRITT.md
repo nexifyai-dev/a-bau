@@ -57,3 +57,36 @@ curl -s https://a-bau.nexifyai.cloud/health         # Backend lebt
 ## 4. Danach (Kunde)
 - WordPress-Paket bei IONOS kündigen (A/AAAA @ + _dep_ws_mutex + _domainconnect können dann entfernt werden).
 - Launch-Checkliste (anwaltliche Rechtstext-Prüfung) bleibt offen.
+
+---
+
+# UPDATE 2026-08-12 (R36): Zone liegt JETZT bei Cloudflare (brynne.ns.cloudflare.com, E3 via DoH)
+
+Damit entfällt der Custom-Hostname-Weg (Edge-Zertifikate automatisch). Offen ist NUR noch die Tunnel-Route:
+
+## 1. Tunnel-Route — Dashboard-Weg (2 Minuten, kein API-Token nötig)
+Cloudflare-Dashboard → Zero Trust → Networks → Tunnels → Tunnel `f0f2b101-ed26-4130-8b04-16c43badf70a` → **Public Hostnames → Add**:
+| Hostname | Service |
+|---|---|
+| `www.a-bau.info` | `http://127.0.0.1:8095` |
+| `a-bau.info` | `http://127.0.0.1:8095` |
+
+(API-Alternative: `PUT /accounts/{acc}/cfd_tunnel/{tunnel_id}/configurations` — Ingress-Einträge ergänzen, bestehende MERGEN.)
+
+## 2. Apex vereinfachen (optional, empfohlen)
+Zone liegt bei CF → Apex-CNAME-Flattening verfügbar:
+- In CF-DNS: `a-bau.info` → **CNAME** `f0f2b101-…cfargotunnel.com` (CF flattet Apex) — ersetzt A 217.160.0.117 + IONOS-Forwarding + _dep_ws_mutex
+- `www.a-bau.info` → CNAME Tunnel (existiert bereits)
+- Danach bei IONOS: A/AAAA @ + _dep_ws_mutex + _domainconnect löschen (WP-Paket kündigen)
+
+## 3. Nach Route-Setzung testen
+```bash
+curl -sI https://www.a-bau.info/ | head -3    # erwartet 200 (Site)
+curl -sI https://a-bau.info/ | head -3        # erwartet 200 oder 301 → www
+curl -s https://a-bau.info/health             # Backend
+```
+
+## 4. Danach (Go-Live-Freigabe)
+- `site/src/lib/site.ts` → `SITE_URL = "https://www.a-bau.info"` + Rebuild
+- `server.py` HEADERS: `X-Robots-Tag: noindex, nofollow` entfernen (bis dahin noindex = korrekt, sonst indexiert Google die Staging-URL)
+- E-Mail-Empfang testen (MX unverändert IONOS/CF)
