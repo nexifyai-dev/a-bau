@@ -99,3 +99,36 @@ AUDIT-UMSETZUNGSAUFTRAG-2026-08-12.md. Projektisolation: Kundenwissen nur im Rep
 - Inputmode tel/email ergänzt, autocomplete vorhanden, Touch-Targets ≥48 px, Container-Padding 16 px ≤480 px,
   keine user-scalable-Sperre, Floating-UI konsolidiert (Chat entfernt, A11y mobil aus), H1-<br> auf Mobile geprüft.
 - Offen: reale Geräte-/Browser-Tests (320/375/390) + LCP/INP-Messung unter Drosselung — ohne Browser-Tooling im Container nicht ausführbar (dokumentiert, Gate D.13 teilweise offen).
+
+---
+
+# NACHTRAG Runden 11–13 (2026-08-12)
+
+**Repo main:** `129ff1f` → `3e24e65` (R12b) → `HEAD` (R13)
+
+## STATUS
+**PASS MIT RESTPUNKTEN** — P0/P1 = 0, P2 = 0 (bekannt). Restpunkte: SMTP-Spiegelung (extern Host-Creds), reale Gerätetests/Lighthouse (kein Browser-Tooling im Container), Kundendaten (Tel-Nr.-Variante, Referenz-Metadaten, Logo-SVG, anwaltliche Rechtstext-Prüfung).
+
+## Runde 11 (Voll-Audit Gesamtauftrag A–D, Online-Tiefenrecherche Recht)
+Hero H1 → Denkmalrestaurierung/Altbausanierung-Positionierung; Gründung 2019 belegt (HWK Düsseldorf); `/angebot` 301 → `/kontakt/#angebot` (server.py) + Anker `id="angebot"`; `scroll-margin-top` 112/84px (Sticky-Header); Lint 33→0 Errors; Hostinger-Sitz → Vilnius LT (DSGVO); PAngV/BFSG-Recherche dokumentiert. Vollständige Matrix: `docs/AUDIT-MATRIX-RUNDE11.md`.
+
+## Runde 12/12b (Kunden-Feedback: Button-Hover, CTA-Zentrierung, Chat-Live)
+- Header-CTA Hover: doppelte Regel aufgelöst → EINE: `--color-cta-hover-bright` (#00A64A, weiß 3.18:1, ADR-003-Token) für `.nav-cta`/`.drawer-cta` (R12b: Wechsel #008035→#009A44 war unsichtbar → helleres Grün)
+- CTA-Bänder alle 5 Seiten: `container text-center` + `hero-actions hero-actions-center`; `.section-dark p { text-align:center }` explizit
+- Chat-Widget-Integration committet (ChatWidget.tsx, layout.tsx, ADR-004) — Live-AI via 9Router (`ds/deepseek-v4-flash`), RAG über Site-KB, Art.-50-Hinweis im Widget
+- Live-Verifikation: CSS byte-identisch, Live-HTML == Build (nur CF-Mail-Obfuscation), Route-Smoke alle OK
+
+## Runde 13 (Punkt-für-Punkt-Prüfung inkl. Chat — A.9/A.29/D.5/B.8)
+| Befund | Fix | Beleg (E3) |
+|---|---|---|
+| Chat-Button/Fenster `z-index: 9999` hardcoded → lag ÜBER Cookie-Banner (90) + Lightbox (80) — A.9/D.5-Verstoß | Token `--z-chat: 70` (unter Cookie/Lightbox, über Drawer) für Button + Fenster | CSS live `z-index:var(--z-chat)` |
+| Keine Safe-Area-Insets (iOS Notch/Home-Indicator) — D.5 | `env(safe-area-inset-*)` auf Button/Fenster, Basis + ≤480px-Media-Query | CSS live, byte-identisch |
+| Hover-Farben hardcoded `#007a37` (Button, Send, DSGVO-Link) — B.8/ADR-003 | `var(--color-cta-hover)` / `var(--color-cta-hover-bright)`; `#007a37` = 0 Treffer | CSS live |
+| Chat-Datenschutz §6 (Art. 50/DSGVO) | Live vorhanden (KI-Assistent, Anbieter als AV, keine Speicherung, Art. 6 lit. f) | Live-HTML 4× „KI-Assistent" + 2× Art. 50 |
+| A.29 Chat-E2E | Knowledge-Boundary („überfragt"-Fallback), Prompt-Injection abgewehrt, Rate-Limit 18×200→429, Health ok, Server stabil | Live-POSTs |
+
+## Chat-Sektion (A.29 geprüft)
+Position/Z-Index: unter Cookie-Banner (Consent priorisiert), safe-area-beachtet · Fehlerzustände: Widget zeigt Meldung, Server 503-Fallback · Timeout 30 s · Rate-Limit 20/min · Prompt-Injection: getestet abgewehrt · Knowledge-Boundary: „keine Informationen"-Verhalten · Datenschutz: §6 + Art.-50-Hinweis im Widget + keine Persistenz · „basiert auf Website-Wissen": korrekt (RAG über content/).
+
+## Mobile-Gate (D.13)
+Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konfliktfrei (z-Skala), Touch ≥44px, tel:-CTA, Formulare 1-spaltig. Offen: reale Gerätematrix + Lighthouse (kein Browser-Tooling im Container) — Restpunkt.

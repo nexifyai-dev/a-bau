@@ -90,6 +90,7 @@
   --z-drawer: 60;
   --z-lightbox: 80;
   --z-cookie: 90;
+  --z-chat: 70; /* Chat-Widget: unter Cookie-Banner (90) + Lightbox (80), über Drawer (60) — keine Überlagerung (A.9/D.5) */
 }
 
 /* ---------- Reset & Base ---------- */
@@ -489,9 +490,9 @@ h3 { letter-spacing: -0.005em; }
 /* ---------- Chat-Widget (ADR-004, CI: Brand-Tokens) ---------- */
 .abau-chat-btn {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 9999;
+  right: calc(20px + env(safe-area-inset-right));
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: var(--z-chat);
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -507,7 +508,7 @@ h3 { letter-spacing: -0.005em; }
 }
 .abau-chat-btn:hover {
   transform: scale(1.05);
-  background-color: #007a37;
+  background-color: var(--color-cta-hover-bright);
 }
 .abau-chat-btn:focus-visible {
   outline: 3px solid var(--color-mg-gold);
@@ -515,9 +516,9 @@ h3 { letter-spacing: -0.005em; }
 }
 .abau-chat-win {
   position: fixed;
-  right: 20px;
-  bottom: 92px;
-  z-index: 9999;
+  right: calc(20px + env(safe-area-inset-right));
+  bottom: calc(92px + env(safe-area-inset-bottom));
+  z-index: var(--z-chat);
   width: 360px;
   max-width: calc(100vw - 40px);
   height: 500px;
@@ -630,7 +631,7 @@ h3 { letter-spacing: -0.005em; }
   justify-content: center;
   transition: background-color 0.2s ease;
 }
-.abau-chat-send:hover { background-color: #007a37; }
+.abau-chat-send:hover { background-color: var(--color-cta-hover); }
 .abau-chat-send:disabled { opacity: 0.6; cursor: default; }
 .abau-chat-send:focus-visible {
   outline: 2px solid var(--color-mg-gold);
@@ -646,8 +647,8 @@ h3 { letter-spacing: -0.005em; }
   color: var(--color-brand-green);
   text-decoration: underline;
 }
-.abau-chat-dsgvo a:hover { color: #007a37; }
+.abau-chat-dsgvo a:hover { color: var(--color-cta-hover); }
 @media (max-width: 480px) {
-  .abau-chat-btn { right: 14px; bottom: 14px; }
-  .abau-chat-win { right: 14px; bottom: 86px; }
+  .abau-chat-btn { right: calc(14px + env(safe-area-inset-right)); bottom: calc(14px + env(safe-area-inset-bottom)); }
+  .abau-chat-win { right: calc(14px + env(safe-area-inset-right)); bottom: calc(86px + env(safe-area-inset-bottom)); }
 }
