@@ -20,7 +20,24 @@ const schema = {
   })),
 };
 
+// Anzeige-Reihenfolge der Kategorien (stabil; Daten: faq.faq[].kategorie)
+const KAT_REIHENFOLGE = [
+  "Leistungen",
+  "Denkmal & Restaurierung",
+  "Sanierung & Renovierung",
+  "Ablauf & Angebot",
+  "Termine & Zeiten",
+  "Recht & Gewährleistung",
+  "Region & Einsatzgebiet",
+  "Unternehmen",
+  "Pflege & Nachbetreuung",
+  "Kontakt & Service",
+];
+
 export default function Faq() {
+  const gruppen = KAT_REIHENFOLGE
+    .map((kat) => ({ kat, fragen: faq.faq.filter((f: any) => (f.kategorie || "Sonstiges") === kat) }))
+    .filter((g) => g.fragen.length > 0);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(schema) }} />
@@ -35,14 +52,19 @@ export default function Faq() {
               Ihre Frage ist nicht dabei? <Link href="/kontakt/">Kontaktieren Sie uns</Link>.
             </p>
           </div>
-          <div className="faq accordion">
-            {faq.faq.map((f: any) => (
-              <details key={f.f} className="acc-item">
-                <summary className="acc-btn">{f.f}<span className="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6"/></svg></span></summary>
-                <div className="acc-panel"><div className="acc-panel-inner">{f.a}</div></div>
-              </details>
-            ))}
-          </div>
+          {gruppen.map((g) => (
+            <div key={g.kat} className="faq-gruppe">
+              <h2 className="faq-gruppen-titel">{g.kat}</h2>
+              <div className="faq accordion">
+                {g.fragen.map((f: any) => (
+                  <details key={f.f} className="acc-item">
+                    <summary className="acc-btn">{f.f}<span className="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6"/></svg></span></summary>
+                    <div className="acc-panel"><div className="acc-panel-inner">{f.a}</div></div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          ))}
           <p className="mt-6"><Link className="btn btn-primary" href="/kontakt/">Projekt anfragen</Link></p>
         </div>
       </section>

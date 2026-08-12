@@ -1,331 +1,496 @@
 faq:
 - f: Welche Leistungen bietet A-Bau Meisterbetrieb an?
   a: Wir realisieren Restaurierung denkmalgeschützter Bauten, Innenausbauten, Krankenhaus- und Gesundheitsbau, Schlüsselfertigbau, Sanierung von Altbauten, Installationen (Strom & Wasser) sowie europaweite Transporte mit unserem eigenen Sprinter. Details finden Sie auf der Seite Leistungen.
+  kategorie: Leistungen
 - f: In welcher Region arbeitet A-Bau?
   a: Unser Firmensitz ist Mönchengladbach (Luisental 69, 41199 Mönchengladbach-Geistenbeck). Wir arbeiten schwerpunktmäßig in Mönchengladbach und NRW – Transporte und Sonderprojekte realisieren wir europaweit.
+  kategorie: Region & Einsatzgebiet
 - f: Ist A-Bau auf Denkmalschutz spezialisiert?
   a: Ja. Die Erhaltung und Restaurierung historischer Bauwerke ist unsere Priorität. Wir arbeiten substanzschonend, dokumentiert und in Abstimmung mit den Vorgaben des Denkmalschutzes.
+  kategorie: Denkmal & Restaurierung
 - f: Wie erhalte ich ein Angebot?
   a: Am schnellsten über das Kontaktformular oder telefonisch unter +49 2166 9925056. Beschreiben Sie kurz Ihr Vorhaben – wir melden uns zeitnah mit einer Einschätzung und einem transparenten Angebot.
+  kategorie: Ablauf & Angebot
 - f: Übernimmt A-Bau auch schlüsselfertige Neubauten?
   a: 'Ja. Schlüsselfertigbau gehört zu unseren Kernleistungen: Wir koordinieren alle Gewerke und übergeben das Gebäude bezugsfertig – vom Rohbau bis zur Übergabe.'
+  kategorie: Leistungen
 - f: Was kostet eine Sanierung oder ein Umbau?
   a: Das hängt von Umfang, Zustand und Anforderungen ab. Nach einer kurzen Besichtigung oder aussagekräftigen Unterlagen erstellen wir ein transparentes, verbindliches Angebot – ohne versteckte Kosten.
+  kategorie: Sanierung & Renovierung
 - f: Bietet A-Bau auch Elektro- und Wasserinstallationen an?
   a: Ja. Strom- und Wasserinstallationen gehören zu unserem Leistungsspektrum – von der Rohmontage bis zur fertigen Anlage, inklusive Heizungsinstallation und Kabelverlegung im Hochbau.
+  kategorie: Leistungen
 - f: Wie sind die Öffnungszeiten?
   a: Montag bis Donnerstag 08:00–17:00 Uhr, Freitag 07:00–17:00 Uhr, Samstag 08:00–13:00 Uhr. Außerhalb der Zeiten erreichen Sie uns gern per Kontaktformular oder E-Mail.
+  kategorie: Termine & Zeiten
 - f: Ist A-Bau im Handelsregister eingetragen?
   a: Ja. A-Bau Meisterbetrieb GmbH, Amtsgericht Mönchengladbach, HRB 18836. Geschäftsführer ist Albert Pfeiffer. Details finden Sie im Impressum.
+  kategorie: Recht & Gewährleistung
 - f: Arbeitet A-Bau auch in Krankenhäusern und Gesundheitseinrichtungen?
   a: 'Ja. Krankenhausbau ist eine Spezialdisziplin von uns: komplexe Gesundheitsbauten mit höchster Präzision – von der Planung bis zur schlüsselfertigen Übergabe, auch im laufenden Betrieb.'
+  kategorie: Leistungen
 - f: Kann A-Bau Materialien und Bauteile transportieren?
   a: Ja, europaweit. Mit unserem firmeneigenen Sprinter transportieren wir Materialien, Werkzeuge und Bauteile flexibel und direkt zur Baustelle.
+  kategorie: Leistungen
 - f: Wie lange dauert ein typisches Projekt?
   a: Das ist projektabhängig. Nach der Besichtigung erhalten Sie einen realistischen Zeitplan mit Meilensteinen – wir kommunizieren transparent und halten Termine ein.
+  kategorie: Termine & Zeiten
 - f: Gibt es eine Gewährleistung auf die Bauleistungen?
   a: Ja. Bauleistungen unterliegen den gesetzlichen Gewährleistungsregelungen; darüber hinaus vereinbaren wir im Angebot individuelle Zusagen. Qualität und Verlässlichkeit sind unser Anspruch.
+  kategorie: Recht & Gewährleistung
 - f: Warum sollte ich A-Bau beauftragen?
   a: 'Weil wir Handwerk mit Verantwortung verbinden: Erfahrung im Denkmal- und Gesundheitsbau, ein eingetragenes Unternehmen (HRB 18836), transparente Kommunikation und persönliche Betreuung – vom ersten Gespräch bis zur Übergabe.'
+  kategorie: Ablauf & Angebot
 - f: Wer ist Geschäftsführer der A-Bau Meisterbetrieb GmbH?
   a: Geschäftsführer ist Albert Pfeiffer. Die A-Bau Meisterbetrieb GmbH ist eingetragen im Handelsregister des Amtsgerichts Mönchengladbach (HRB 18836).
+  kategorie: Unternehmen
 - f: Seit wann gibt es die A-Bau Meisterbetrieb GmbH?
   a: 'Das Unternehmen wurde 2019 gegründet und ist als Meisterbetrieb bei der Handwerkskammer Düsseldorf eingetragen. Schwerpunkt: Denkmal-Restaurierung und Altbausanierung in Mönchengladbach und NRW.'
+  kategorie: Unternehmen
 - f: Ist A-Bau ein Meisterbetrieb?
   a: Ja. Die A-Bau Meisterbetrieb GmbH ist als Meisterbetrieb bei der Handwerkskammer Düsseldorf eingetragen (Betriebsnummer 1841351).
+  kategorie: Unternehmen
 - f: Wo genau sitzt die A-Bau Meisterbetrieb GmbH?
   a: Luisental 69, 41199 Mönchengladbach-Geistenbeck, Nordrhein-Westfalen.
+  kategorie: Unternehmen
 - f: Welche USt-IdNr. hat das Unternehmen?
   a: Die Umsatzsteuer-Identifikationsnummer lautet DE327030612. Weitere Angaben finden Sie im Impressum.
+  kategorie: Recht & Gewährleistung
 - f: Ist die Firma versichert?
   a: Als eingetragenes Bauunternehmen verfügt A-Bau über die gesetzlich erforderlichen Versicherungen im Baubereich. Konkrete Nachweise stellen wir im Rahmen der Auftragsabwicklung bereit.
+  kategorie: Unternehmen
 - f: Gibt es eine Betriebshaftpflicht?
   a: Ja, als Bauunternehmen besteht eine Betriebshaftpflichtversicherung; Nachweise werden bei Bedarf für Projekte zur Verfügung gestellt.
+  kategorie: Unternehmen
 - f: Wie viele Mitarbeiter hat A-Bau?
   a: A-Bau arbeitet mit einem festen Fachteam aus eigenen Gewerken und langjährig geprüften Partnerbetrieben. Konkrete Personalzahlen nennen wir im Rahmen der Angebotsphase.
+  kategorie: Unternehmen
 - f: Bietet A-Bau auch Leistungen außerhalb von Mönchengladbach an?
   a: Ja. Schwerpunkt ist Mönchengladbach und NRW. Transporte und Sonderprojekte realisieren wir europaweit.
+  kategorie: Region & Einsatzgebiet
 - f: Wie erreiche ich A-Bau am schnellsten?
   a: Per Telefon +49 2166 9925056 (Mo–Do 08:00–17:00, Fr 07:00–17:00, Sa 08:00–13:00), per E-Mail kontakt@a-bau.info oder über das Kontaktformular auf dieser Website.
+  kategorie: Kontakt & Service
 - f: Wie schnell bekomme ich eine Rückmeldung auf meine Anfrage?
   a: In der Regel melden wir uns innerhalb weniger Werktage – bei dringenden Anliegen rufen Sie uns direkt an.
+  kategorie: Termine & Zeiten
 - f: Spricht A-Bau auch Englisch?
   a: Die Beratung erfolgt in deutscher Sprache. Bei internationalen Projekten sprechen wir das Vorgehen individuell ab.
+  kategorie: Kontakt & Service
 - f: Ist A-Bau ein familiengeführtes Unternehmen?
   a: A-Bau ist ein persönlich geführtes Bauunternehmen mit Geschäftsführer Albert Pfeiffer – Entscheidungswege sind kurz, die Betreuung persönlich.
+  kategorie: Unternehmen
 - f: Was bedeutet Denkmal-Restaurierung?
   a: Denkmal-Restaurierung bedeutet die fachgerechte Erhaltung und Wiederherstellung denkmalgeschützter Bausubstanz – substanzschonend, dokumentiert und in Abstimmung mit den Vorgaben der Denkmalbehörden.
+  kategorie: Denkmal & Restaurierung
 - f: Welche Arbeiten gehören zur Denkmal-Restaurierung?
   a: Typische Arbeiten sind Fassadenrestaurierung, Steinrestaurierung, Fugenarbeiten, Putz- und Stuckarbeiten, Fenster- und Türsanierung, Innenrestaurierung sowie die Sanierung historischer Dächer und Gewölbe.
+  kategorie: Denkmal & Restaurierung
 - f: Brauche ich eine Genehmigung für Arbeiten am denkmalgeschützten Gebäude?
   a: Ja, bei denkmalgeschützten Gebäuden sind Arbeiten in der Regel genehmigungspflichtig. A-Bau berät Sie und stimmt die Maßnahmen frühzeitig mit der zuständigen Denkmalbehörde ab.
+  kategorie: Denkmal & Restaurierung
 - f: Was ist der Unterschied zwischen Denkmal-Restaurierung und normaler Sanierung?
   a: Bei der Denkmal-Restaurierung stehen Erhalt und Wiederherstellung der historischen Substanz im Vordergrund – mit behördlichen Auflagen und dokumentierter Arbeitsweise. Die Sanierung modernisiert dagegen Bestandsgebäude ohne Denkmalschutzauflagen.
+  kategorie: Denkmal & Restaurierung
 - f: Kann A-Bau bei Fördermitteln für Denkmalpflege helfen?
   a: A-Bau informiert über förderfähige Maßnahmen und erstellt die dafür nötigen Angebote und Dokumentationen. Die Fördermittelentscheidung trifft die zuständige Stelle – wir begleiten das Verfahren mit den erforderlichen Unterlagen.
+  kategorie: Pflege & Nachbetreuung
 - f: Wie arbeitet A-Bau an historischen Fassaden?
   a: 'Substanzschonend: Bestandsaufnahme, Materialanalyse, schonende Reinigung, fachgerechte Reparatur mit historisch passenden Materialien und abschließende Dokumentation.'
+  kategorie: Denkmal & Restaurierung
 - f: Werden bei der Restaurierung historische Materialien verwendet?
   a: Wir verwenden materialgerechte, für die Bausubstanz geeignete Materialien – nach Möglichkeit historisch passende Kalk-, Lehm- oder Natursteinprodukte.
+  kategorie: Denkmal & Restaurierung
 - f: Wie lange dauert eine Fassadenrestaurierung?
   a: Das hängt von Größe, Zustand und Auflagen ab. Nach der Besichtigung erhalten Sie einen realistischen Zeitplan mit Meilensteinen.
+  kategorie: Denkmal & Restaurierung
 - f: Dokumentiert A-Bau Restaurierungsarbeiten?
   a: Ja. Bei Denkmal- und Restaurierungsprojekten dokumentieren wir die Maßnahmen sorgfältig – das ist Voraussetzung für viele Behörden und Fördermittelgeber.
+  kategorie: Denkmal & Restaurierung
 - f: Übernimmt A-Bau auch die Abstimmung mit dem Denkmalschutz?
   a: 'Ja, das gehört zu unserem Service: Wir stimmen Maßnahmen und Dokumentation frühzeitig mit den zuständigen Behörden ab.'
+  kategorie: Denkmal & Restaurierung
 - f: Was kostet eine Denkmal-Restaurierung?
   a: Die Kosten hängen stark von Objekt, Zustand, Auflagen und Umfang ab. Nach Besichtigung oder aussagekräftigen Unterlagen erstellen wir ein transparentes, verbindliches Angebot.
+  kategorie: Denkmal & Restaurierung
 - f: Kann auch nur ein Teilbereich (z. B. ein Fenster) restauriert werden?
   a: Ja, wir übernehmen auch Teilmaßnahmen wie einzelne Fenster, Türen, Fassadenabschnitte oder Gewölbe – angepasst an Ihre Prioritäten.
+  kategorie: Denkmal & Restaurierung
 - f: Ist A-Bau auf Kirchen oder öffentliche Gebäude spezialisiert?
   a: A-Bau restauriert denkmalgeschützte Bauten verschiedener Art – von Wohngebäuden über Gewerbeobjekte bis zu öffentlichen Gebäuden. Konkrete Referenzprojekte nennen wir auf Anfrage.
+  kategorie: Denkmal & Restaurierung
 - f: Welche Leistungen bietet A-Bau im Überblick?
   a: Denkmal-Restaurierung, Innenausbau, Krankenhaus- und Gesundheitsbau, Schlüsselfertigbau, Sanierung von Altbauten, Installationen (Strom & Wasser) sowie europaweite Transporte mit eigenem Sprinter.
+  kategorie: Leistungen
 - f: Kann A-Bau ein komplettes Projekt aus einer Hand übernehmen?
   a: Ja. Vom Rohbau über Ausbau, Installationen und Innenausbau bis zur Übergabe – wir koordinieren alle Gewerke und arbeiten mit geprüften Partnern.
+  kategorie: Ablauf & Angebot
 - f: Übernimmt A-Bau auch kleine Aufträge?
   a: Ja, auch kleinere Aufträge wie Einzelreparaturen, Teilmodernisierungen oder Restaurierungsmaßnahmen übernehmen wir gern.
+  kategorie: Ablauf & Angebot
 - f: Plant A-Bau das Projekt mit oder reicht die Ausführung?
   a: 'Beides: Wir beraten, planen und kalkulieren das Projekt und führen es anschließend mit eigenen Gewerken und Partnern aus.'
+  kategorie: Ablauf & Angebot
 - f: Wie läuft ein Bauprojekt mit A-Bau ab?
   a: 1) Beratung und Besichtigung, 2) transparentes Angebot mit festen Preisen, 3) Ausführung durch eigene Gewerke und geprüfte Partner, 4) saubere Übergabe mit Dokumentation und Gewährleistung.
+  kategorie: Ablauf & Angebot
 - f: Bekomme ich einen festen Ansprechpartner?
   a: Ja, Sie haben während des gesamten Projekts einen festen Ansprechpartner – vom ersten Gespräch bis zur Übergabe.
+  kategorie: Unternehmen
 - f: Wie wird die Baustelle organisiert?
   a: Wir koordinieren Gewerke, Material und Termine zentral. Bei größeren Vorhaben erhalten Sie eine laufende Projektdokumentation.
+  kategorie: Ablauf & Angebot
 - f: Ist eine Baustellenbesichtigung möglich?
   a: Ja, nach Absprache besichtigen wir gerne gemeinsam mit Ihnen die Baustelle oder Ihr Objekt.
+  kategorie: Ablauf & Angebot
 - f: Wie kommuniziert A-Bau während des Projekts?
   a: Persönlich, telefonisch und per E-Mail – mit klaren Meilensteinen und offener Kommunikation bei allen Schritten.
+  kategorie: Ablauf & Angebot
 - f: Was ist der Unterschied zwischen Sanierung und Renovierung?
   a: Sanierung erhält oder stellt die Substanz eines Gebäudes wieder her (z. B. Statik, Feuchtigkeit, Dach, Leitungen). Renovierung ist die optische Auffrischung wie Streichen oder neuer Bodenbelag.
+  kategorie: Sanierung & Renovierung
 - f: Wann sollte ich eine Altbausanierung machen lassen?
   a: 'Typische Anzeichen: Feuchtigkeit, Risse, veraltete Leitungen, schlechte Dämmung oder ein sanierungsbedürftiges Dach. Wir prüfen den Zustand bei einer Besichtigung und empfehlen ehrlich.'
+  kategorie: Sanierung & Renovierung
 - f: Was kostet eine Altbausanierung?
   a: Die Kosten hängen von Umfang, Zustand und Anforderungen ab. Nach Besichtigung oder aussagekräftigen Unterlagen erhalten Sie ein transparentes, verbindliches Angebot – ohne versteckte Kosten.
+  kategorie: Sanierung & Renovierung
 - f: Wie lange dauert eine Wohnungssanierung?
   a: Je nach Umfang von wenigen Wochen bis mehrere Monate. Den realistischen Zeitplan erhalten Sie mit dem Angebot.
+  kategorie: Termine & Zeiten
 - f: Kann ich während der Sanierung in der Wohnung bleiben?
   a: Das hängt vom Umfang ab. Bei Teilmaßnahmen oft möglich – bei umfassenden Sanierungen empfehlen wir, das Vorgehen gemeinsam zu planen. Wir beraten Sie ehrlich.
+  kategorie: Sanierung & Renovierung
 - f: Übernimmt A-Bau auch die Sanierung von Feuchtigkeit und Schimmel?
   a: Ja, wir ermitteln die Ursachen (z. B. undichte Leitungen, fehlende Abdichtung) und sanieren fachgerecht – inklusive Trockenlegung und Abdichtung.
+  kategorie: Sanierung & Renovierung
 - f: Wird auch der Keller saniert?
   a: 'Ja, wir sanieren Keller: Abdichtung, Entwässerung, Trockenlegung und Innenausbau.'
+  kategorie: Sanierung & Renovierung
 - f: Sanieren Sie auch Badezimmer?
   a: 'Ja, komplette Badmodernisierung: Rückbau, Fliesen, Installationen (Strom & Wasser), Sanitär und Oberflächen.'
+  kategorie: Leistungen
 - f: Was kostet eine Badsanierung?
   a: Das hängt von Größe, Ausstattung und Zustand ab. Ein transparentes Angebot erhalten Sie nach Besichtigung oder anhand aussagekräftiger Unterlagen.
+  kategorie: Sanierung & Renovierung
 - f: Wie lange dauert eine Badsanierung?
   a: In der Regel einige Wochen inklusive Trocknungszeiten. Den konkreten Zeitplan erhalten Sie mit dem Angebot.
+  kategorie: Termine & Zeiten
 - f: Übernimmt A-Bau auch Dachsanierung?
   a: 'Ja, wir sanieren Dächer: Abdichtung, Dämmung, Deckung und Dachausbau – auch bei historischer Bausubstanz in Abstimmung mit dem Denkmalschutz.'
+  kategorie: Sanierung & Renovierung
 - f: Wird auch die Fassade saniert?
   a: 'Ja, Fassadensanierung: Reinigung, Putzarbeiten, Dämmung, Anstrich und die Reparatur von Rissen.'
+  kategorie: Leistungen
 - f: Macht A-Bau auch energetische Sanierung?
   a: 'Ja, wir führen energetische Maßnahmen aus: Dämmung, Fenstertausch, Heizungserneuerung und die Koordination mit Fördermittelstellen.'
+  kategorie: Sanierung & Renovierung
 - f: Kann ich Fördermittel für die energetische Sanierung bekommen?
   a: Für viele energetische Maßnahmen gibt es Förderprogramme (z. B. KfW, BAFA). Wir informieren über förderfähige Maßnahmen und unterstützen mit den nötigen Unterlagen – die Entscheidung trifft die Fördermittelstelle.
+  kategorie: Sanierung & Renovierung
 - f: Wird auch die Heizung erneuert?
   a: Ja, wir erneuern Heizungsanlagen und führen Installationen für Strom, Wasser und Heizung aus – von der Rohmontage bis zur fertigen Anlage.
+  kategorie: Leistungen
 - f: Übernimmt A-Bau den Fenster- und Türentausch?
   a: Ja, wir tauschen Fenster und Türen – inklusive fachgerechtem Einbau, Abdichtung und, bei Denkmalschutz, in Abstimmung mit den Auflagen.
+  kategorie: Leistungen
 - f: Was gehört zum Innenausbau?
   a: 'Wände, Decken, Böden, Türen, Treppen, Einbauten und Installationen – kurz: alles, was ein Gebäude innen fertig und nutzbar macht.'
+  kategorie: Leistungen
 - f: Kann A-Bau auch Wohnungen komplett ausbauen?
   a: 'Ja, vom Rohbau zur bezugsfertigen Wohnung: Trockenbau, Elektrik, Sanitär, Böden, Malerarbeiten und Endmontage.'
+  kategorie: Leistungen
 - f: Übernimmt A-Bau auch Büro- und Gewerbeausbau?
   a: Ja, wir gestalten Büros, Praxen, Läden und Gewerbeflächen – von der Planung über den Trockenbau bis zur Übergabe.
+  kategorie: Leistungen
 - f: Was kostet ein Innenausbau pro Quadratmeter?
   a: Das ist stark von Ausstattung und Zustand abhängig. Ein verbindliches Angebot erhalten Sie nach Besichtigung – pauschale Quadratmeterpreise nennen wir bewusst nicht, weil sie irreführen.
+  kategorie: Leistungen
 - f: Wie lange dauert der Innenausbau einer Wohnung?
   a: Je nach Größe und Umfang von wenigen Wochen bis mehrere Monate. Den Zeitplan erhalten Sie mit dem Angebot.
+  kategorie: Termine & Zeiten
 - f: Macht A-Bau auch Trockenbauarbeiten?
   a: 'Ja, Trockenbau gehört zu unserem Ausbauprogramm: Wände, Decken, Verkleidungen und abgehängte Decken.'
+  kategorie: Leistungen
 - f: Werden auch Fußböden verlegt?
   a: Ja, wir verlegen Parkett, Laminat, Fliesen, Vinyl und Estrich – inklusive Trittschalldämmung und Abdichtung im Nassbereich.
+  kategorie: Leistungen
 - f: Übernimmt A-Bau auch Maler- und Lackierarbeiten?
   a: Ja, als Teil des Innenausbaus führen wir Maler- und Lackierarbeiten aus.
+  kategorie: Leistungen
 - f: Was bedeutet schlüsselfertig?
   a: 'Schlüsselfertig heißt: Sie erhalten das Gebäude bezugsfertig übergeben – vom Rohbau über Ausbau und Installationen bis zu Bodenbelägen und Türen. Sie können einziehen.'
+  kategorie: Leistungen
 - f: Baut A-Bau auch Einfamilienhäuser?
   a: Ja, wir realisieren schlüsselfertige Neubauten, darunter Einfamilien- und Mehrfamilienhäuser.
+  kategorie: Leistungen
 - f: Wer übernimmt die Koordination der Gewerke beim Schlüsselfertigbau?
   a: 'Wir: Als Generalunternehmer koordinieren wir alle Gewerke und geprüften Partner und übergeben termingerecht.'
+  kategorie: Leistungen
 - f: Was ist im Schlüsselfertigpreis enthalten?
   a: Im verbindlichen Angebot sind alle vereinbarten Leistungen enthalten – von der Baugrube bis zur Übergabe. Sie wissen vorab, was Sie bekommen.
+  kategorie: Leistungen
 - f: Wie lange dauert ein schlüsselfertiges Haus?
   a: Abhängig von Größe und Ausstattung – üblich sind mehrere Monate bis rund ein Jahr. Den Zeitplan mit Meilensteinen erhalten Sie im Angebot.
+  kategorie: Termine & Zeiten
 - f: Übernimmt A-Bau auch die Bauplanung für Neubauten?
   a: Wir beraten, kalkulieren und koordinieren; die Genehmigungsplanung erfolgt in Zusammenarbeit mit Fachplanern.
+  kategorie: Leistungen
 - f: Was kostet ein schlüsselfertiges Haus?
   a: Die Kosten hängen von Größe, Grundstück, Ausstattung und regionalen Faktoren ab. Ein transparentes, verbindliches Angebot erstellen wir nach der Besichtigung bzw. anhand Ihrer Unterlagen.
+  kategorie: Leistungen
 - f: Kann A-Bau auch Anbauten und Aufstockungen bauen?
   a: Ja, wir bauen Anbauten und Aufstockungen im Bestand – inklusive Statik, Rohbau, Ausbau und Anschluss an die bestehende Substanz.
+  kategorie: Leistungen
 - f: Baut A-Bau auch Gewerbe- und Industriehallen?
   a: Ja, wir realisieren Gewerbe- und Industriebauten – von der Halle bis zum Bürogebäude, schlüsselfertig aus einer Hand.
+  kategorie: Leistungen
 - f: Was zeichnet den Krankenhausbau bei A-Bau aus?
   a: 'Komplexe Gesundheitsbauten mit höchster Präzision: Planung, Koordination aller Gewerke und schlüsselfertige Übergabe – auch bei laufendem Betrieb.'
+  kategorie: Leistungen
 - f: Baut A-Bau auch im laufenden Klinikbetrieb?
   a: Ja, wir führen Maßnahmen in Gesundheitseinrichtungen so aus, dass der Betrieb möglichst wenig gestört wird – mit Rücksicht auf Hygiene- und Sicherheitsvorgaben.
+  kategorie: Leistungen
 - f: Welche Arbeiten führt A-Bau in Krankenhäusern aus?
   a: Umbauten, Sanierungen, Innenausbau, Installationen und Neubau von Stationen, Funktionsbereichen und Technikflächen.
+  kategorie: Leistungen
 - f: Werden bei A-Bau Hygieneauflagen im Krankenhausbau eingehalten?
   a: Ja, Hygiene- und Sicherheitsvorgaben von Gesundheitseinrichtungen sind fester Bestandteil unserer Arbeitsplanung.
+  kategorie: Leistungen
 - f: Kann A-Bau auch Arztpraxen und Pflegeeinrichtungen bauen?
   a: Ja, Praxis- und Pflegeeinrichtungen bauen und sanieren wir mit denselben Standards wie den Krankenhausbau.
+  kategorie: Pflege & Nachbetreuung
 - f: Welche Installationen führt A-Bau aus?
   a: Strom- und Wasserinstallationen, Heizungsinstallation sowie Kabelverlegung – von der Rohmontage bis zur fertigen Anlage.
+  kategorie: Leistungen
 - f: Macht A-Bau auch Elektroinstallationen?
   a: Ja, Elektroinstallationen gehören zu unserem Leistungsspektrum – von der Rohmontage bis zur fertigen, geprüften Anlage.
+  kategorie: Leistungen
 - f: Werden auch Sanitärinstallationen erneuert?
   a: Ja, wir erneuern Sanitärinstallationen – Leitungen, Anschlüsse und Armaturen.
+  kategorie: Leistungen
 - f: Übernimmt A-Bau auch Heizungsinstallationen?
   a: Ja, Heizungsinstallation inklusive Heizkörper, Fußbodenheizung und Anschluss an die Wärmequelle.
+  kategorie: Leistungen
 - f: Wird die Kabelverlegung im Hochbau übernommen?
   a: Ja, Kabelverlegung im Hochbau gehört zu unseren Installationsarbeiten.
+  kategorie: Leistungen
 - f: Können Installationen auch nachträglich erneuert werden?
   a: Ja, wir erneuern Leitungen und Anschlüsse auch im Bestand – z. B. bei Altbausanierung oder Badmodernisierung.
+  kategorie: Leistungen
 - f: Bietet A-Bau Transporte an?
   a: Ja, europaweite Direkttransporte mit unserem firmeneigenen Sprinter – für Materialien, Werkzeuge und Bauteile.
+  kategorie: Leistungen
 - f: Was kann mit dem A-Bau-Sprinter transportiert werden?
   a: Baumaterialien, Werkzeuge und Bauteile – direkt und flexibel zur Baustelle oder zum Abholort.
+  kategorie: Leistungen
 - f: Wie schnell kann ein Transport organisiert werden?
   a: Kurzfristig – sprechen Sie uns telefonisch an, wir finden eine passende Lösung.
+  kategorie: Termine & Zeiten
 - f: Kostet der Transport extra?
   a: Transportleistungen werden projektbezogen kalkuliert und transparent im Angebot ausgewiesen.
+  kategorie: Leistungen
 - f: Wie läuft die Angebotserstellung ab?
   a: Sie beschreiben Ihr Vorhaben (Formular, E-Mail oder Telefon), wir besichtigen bzw. prüfen die Unterlagen und erstellen ein transparentes, verbindliches Angebot.
+  kategorie: Ablauf & Angebot
 - f: Welche Unterlagen brauche ich für ein Angebot?
   a: Hilfreich sind Grundrisse, Fotos, ggf. Gutachten und eine Beschreibung des Vorhabens mit gewünschtem Zeitrahmen.
+  kategorie: Ablauf & Angebot
 - f: Wie lange ist ein Angebot gültig?
   a: Die Gültigkeit wird im Angebot ausgewiesen – üblich sind 4 bis 6 Wochen.
+  kategorie: Termine & Zeiten
 - f: Ist die Besichtigung kostenlos?
   a: Ja, die Erstberatung und Besichtigung ist unverbindlich. Erst mit dem Auftrag entstehen Kosten.
+  kategorie: Ablauf & Angebot
 - f: Gibt es versteckte Kosten im Angebot?
   a: Nein. Sie erhalten feste Preise und klare Leistungen – ohne versteckte Kosten.
+  kategorie: Ablauf & Angebot
 - f: Wie wird bezahlt?
   a: Die Zahlungsmodalitäten werden vertraglich vereinbart – im Baubereich üblich sind Abschlagszahlungen nach Baufortschritt gemäß Vertrag.
+  kategorie: Ablauf & Angebot
 - f: Ist eine Anzahlung nötig?
   a: Das regelt der Werkvertrag. Üblich sind Abschlagszahlungen nach erbrachten Leistungen statt hoher Vorauszahlungen.
+  kategorie: Ablauf & Angebot
 - f: Was passiert, wenn sich während des Baus etwas ändert?
   a: 'Änderungswünsche besprechen wir offen: Sie erhalten eine transparente Aufstellung der Mehr- oder Minderkosten, bevor wir fortfahren.'
+  kategorie: Ablauf & Angebot
 - f: Bekomme ich eine Rechnung mit ausgewiesenen Leistungen?
   a: Ja, Sie erhalten eine ordnungsgemäße Rechnung mit ausgewiesenen Leistungen – wie gesetzlich vorgeschrieben.
+  kategorie: Leistungen
 - f: Kann ich den Auftrag stornieren?
   a: Vor Vertragsschluss jederzeit unverbindlich. Nach Auftragserteilung gelten die gesetzlichen Regelungen des Werkvertrags.
+  kategorie: Recht & Gewährleistung
 - f: Wie lange ist die gesetzliche Gewährleistung bei Bauleistungen?
   a: Für Bauleistungen gilt die gesetzliche Gewährleistungsfrist von 5 Jahren (§ 634a BGB) bei erheblichen Mängeln; im Vertrag können individuelle Regelungen vereinbart werden.
+  kategorie: Termine & Zeiten
 - f: Was ist bei Mängeln nach der Übergabe zu tun?
   a: Melden Sie den Mangel schriftlich mit Fotos. Wir prüfen, beheben und dokumentieren – innerhalb der Gewährleistungsfrist.
+  kategorie: Recht & Gewährleistung
 - f: Gibt A-Bau eine eigene Garantie?
   a: Zusätzlich zur gesetzlichen Gewährleistung können individuelle Garantien vereinbart werden – Details regelt der Vertrag.
+  kategorie: Recht & Gewährleistung
 - f: Was ist der Unterschied zwischen Garantie und Gewährleistung?
   a: Die Gewährleistung ist gesetzlich (5 Jahre bei Bauleistungen) und deckt Mängel ab. Eine Garantie ist eine freiwillige, vertraglich definierte Zusage.
+  kategorie: Recht & Gewährleistung
 - f: Wer haftet bei Schäden auf der Baustelle?
   a: Das regelt das Vertrags- und Versicherungsrecht. Als Bauunternehmen sind wir für unsere Leistungen und die Koordination verantwortlich; Details stehen im Vertrag.
+  kategorie: Recht & Gewährleistung
 - f: Bekomme ich eine Bauabnahme?
   a: Ja, nach Abschluss der Arbeiten findet eine gemeinsame Abnahme statt – mit Protokoll und Übergabe der Dokumentation.
+  kategorie: Recht & Gewährleistung
 - f: Was ist bei der Abnahme zu beachten?
   a: Prüfen Sie gemeinsam mit uns die erbrachten Leistungen, notieren Sie offene Punkte im Abnahmeprotokoll – danach beginnt die Gewährleistungsfrist.
+  kategorie: Recht & Gewährleistung
 - f: Wird die Baustelle nach Abschluss gereinigt?
   a: Ja, die Übergabe erfolgt besenrein bzw. wie vertraglich vereinbart – inklusive Beseitigung des Bauschutts.
+  kategorie: Ablauf & Angebot
 - f: Wie ist A-Bau im Handelsregister eingetragen?
   a: A-Bau Meisterbetrieb GmbH, Amtsgericht Mönchengladbach, HRB 18836 – mit EUID DER1504.HRB18836.
+  kategorie: Recht & Gewährleistung
 - f: Gibt es eine Datenschutzerklärung für die Website?
   a: Ja, unter /datenschutz/ finden Sie die Datenschutzerklärung – inklusive Informationen zum KI-Assistenten und zur Kontaktformular-Verarbeitung.
+  kategorie: Recht & Gewährleistung
 - f: Werden meine Kontaktdaten weitergegeben?
   a: Nein. Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
+  kategorie: Kontakt & Service
 - f: In welchen Stadtteilen von Mönchengladbach arbeitet A-Bau?
   a: In allen Stadtteilen von Mönchengladbach – von Geistenbeck über Eicken, Rheydt, Odenkirchen, Hardt, Niers und Volksgarten bis zur City.
+  kategorie: Region & Einsatzgebiet
 - f: Was ist das Einsatzgebiet in Geistenbeck?
   a: 'Geistenbeck ist der Heimat-Stadtteil von A-Bau: Denkmal-Restaurierung, Altbau-Sanierung und Wohnmodernisierung.'
+  kategorie: Region & Einsatzgebiet
 - f: Was macht A-Bau in der Mönchengladbach City?
   a: In der City (Nordstadt/Südstadt) sind Gewerbe-Innenausbau, Sanierung im Bestand und Reparaturen typische Projekte.
+  kategorie: Region & Einsatzgebiet
 - f: Was macht A-Bau in Eicken und Wickrath?
   a: Typisch sind Badsanierung, Ausbau, Fenster- und Türenarbeiten sowie schlüsselfertige Projekte für Familienhäuser.
+  kategorie: Region & Einsatzgebiet
 - f: Was macht A-Bau in Rheydt?
   a: In Rheydt liegen Schwerpunkte auf der Sanierung von Altbauten, Denkmal-Restaurierung und Gewerbeausbau.
+  kategorie: Region & Einsatzgebiet
 - f: Was macht A-Bau in Odenkirchen, Wickrathberg und Hardt?
   a: In den grünen Randlagen sind Sanierung, Umbau und Ausbau von Einfamilienhäusern typische Projekte.
+  kategorie: Denkmal & Restaurierung
 - f: Was macht A-Bau im Bereich Niers und Volksgarten?
   a: 'Dort stehen Wohnqualität und Naherholung im Fokus: Wohnmodernisierung, Sanierung und Innenausbau.'
+  kategorie: Region & Einsatzgebiet
 - f: Kommt A-Bau auch nach Düsseldorf, Köln oder Krefeld?
   a: Ja, wir arbeiten schwerpunktmäßig in Mönchengladbach und ganz NRW – auch in Düsseldorf, Köln und Krefeld.
+  kategorie: Region & Einsatzgebiet
 - f: Arbeitet A-Bau auch außerhalb von NRW?
   a: Transporte und Sonderprojekte realisieren wir europaweit; Bauprojekte außerhalb NRWs prüfen wir projektbezogen.
+  kategorie: Region & Einsatzgebiet
 - f: Wo kann ich in Mönchengladbach parken, wenn Sie bei mir arbeiten?
   a: Das klären wir vor Projektbeginn – wir stimmen Anlieferung und Parkmöglichkeiten mit Ihnen und der Stadt ab.
+  kategorie: Region & Einsatzgebiet
 - f: Gibt es Baustelleninfos zu Mönchengladbach?
   a: Ja, auf der Seite Stadtteile verlinken wir aktuelle Baustellen-Informationen der Stadt und lokaler Medien.
+  kategorie: Region & Einsatzgebiet
 - f: Fährt A-Bau auch zu Notfällen (z. B. Wasserrohrbruch)?
   a: Bei akuten Notfällen wie Wasserrohrbruch kontaktieren Sie uns direkt telefonisch – wir organisieren schnell Hilfe.
+  kategorie: Kontakt & Service
 - f: Wie schnell kann ein Projekt starten?
   a: Nach Angebot und Auftragserteilung planen wir gemeinsam den Start – je nach Auslastung und Genehmigungslage.
+  kategorie: Termine & Zeiten
 - f: Was passiert, wenn sich ein Termin verzögert?
   a: Wir kommunizieren Verzögerungen offen und frühzeitig mit Begründung und neuem Zeitplan.
+  kategorie: Termine & Zeiten
 - f: Wie wird die Termintreue sichergestellt?
   a: Durch klare Meilensteine, enge Koordination der Gewerke und laufende Abstimmung mit Ihnen.
+  kategorie: Termine & Zeiten
 - f: Arbeitet A-Bau auch samstags?
   a: 'Unsere Öffnungszeiten: Mo–Do 08:00–17:00, Fr 07:00–17:00, Sa 08:00–13:00. Baustellenarbeiten richten sich nach den vertraglichen Vereinbarungen.'
+  kategorie: Termine & Zeiten
 - f: Gibt es Wartezeiten für Besichtigungstermine?
   a: In der Regel finden Besichtigungen kurzfristig statt – sprechen Sie uns an, wir finden einen Termin.
+  kategorie: Termine & Zeiten
 - f: Wie lange im Voraus sollte ich einen Termin planen?
   a: Je früher, desto besser – gerade bei Saisonprojekten und Denkmalarbeiten. Eine frühzeitige Anfrage hilft uns, den Wunschtermin einzuplanen.
+  kategorie: Termine & Zeiten
 - f: Bietet A-Bau nach der Übergabe auch Wartung an?
   a: Ja, für viele Leistungen bieten wir nach Absprache Wartung und Nachbetreuung an – z. B. für Installationen und Sanierungen.
+  kategorie: Pflege & Nachbetreuung
 - f: Wie pflege ich eine restaurierte Fassade?
   a: Wir geben Ihnen nach Abschluss konkrete Pflegehinweise – passend zum verwendeten Material.
+  kategorie: Denkmal & Restaurierung
 - f: Was ist bei frisch sanierten Böden zu beachten?
   a: Beachten Sie die Trocknungs- und Pflegehinweise aus der Übergabedokumentation – wir informieren Sie im Detail.
+  kategorie: Pflege & Nachbetreuung
 - f: Kann A-Bau nachträglich kleinere Reparaturen übernehmen?
   a: Ja, auch nach Projektabschluss sind wir für kleinere Reparaturen erreichbar.
+  kategorie: Pflege & Nachbetreuung
 - f: Wie verhalte ich mich bei Bauschäden nach der Übergabe?
   a: Melden Sie den Schaden mit Fotos schriftlich – innerhalb der Gewährleistung prüfen wir und beheben fachgerecht.
+  kategorie: Pflege & Nachbetreuung
 - f: Wie lautet die E-Mail-Adresse von A-Bau?
   a: 'kontakt@a-bau.info – wir antworten in der Regel innerhalb weniger Werktage. Bei dringenden Anliegen rufen Sie uns an: +49 2166 9925056.'
+  kategorie: Kontakt & Service
 - f: Wie lautet die Telefonnummer von A-Bau?
   a: Festnetz +49 2166 9925056, Mobil +49 162 1815229.
+  kategorie: Kontakt & Service
 - f: Gibt es ein Kontaktformular?
   a: Ja, auf der Seite /kontakt/ – mit Name, E-Mail, optionaler Telefonnummer und Ihrer Nachricht.
+  kategorie: Kontakt & Service
 - f: Wie schnell beantworte ich meine E-Mail?
   a: In der Regel innerhalb weniger Werktage – bei Dringlichkeit rufen Sie an.
+  kategorie: Termine & Zeiten
 - f: Kann ich A-Bau auch außerhalb der Öffnungszeiten erreichen?
   a: Außerhalb der Zeiten erreichen Sie uns per Kontaktformular oder E-Mail – wir melden uns zum nächsten Werktag.
+  kategorie: Termine & Zeiten
 - f: Gibt es einen Vor-Ort-Termin außerhalb der Öffnungszeiten?
   a: Nach Vereinbarung sind wir flexibel – sprechen Sie uns an.
+  kategorie: Termine & Zeiten
 - f: Welche Behörde ist in Mönchengladbach für Denkmalschutz zuständig?
   a: Zuständig ist die Untere Denkmalbehörde der Stadt Mönchengladbach. A-Bau stimmt Maßnahmen frühzeitig mit ihr ab.
+  kategorie: Denkmal & Restaurierung
 - f: Was passiert, wenn Arbeiten ohne Genehmigung ausgeführt werden?
   a: Bei denkmalgeschützten Gebäuden können unerlaubte Veränderungen ordnungsrechtliche Folgen haben. Lassen Sie sich vor Beginn von uns beraten.
+  kategorie: Denkmal & Restaurierung
 - f: Wie läuft ein Antrag auf denkmalrechtliche Genehmigung ab?
   a: Sie reichen die Maßnahmenbeschreibung ein; wir unterstützen mit Unterlagen, Fotos und Kostenschätzung. Die Behörde entscheidet dann.
+  kategorie: Denkmal & Restaurierung
 - f: Sind auch Innenarbeiten in einem Denkmal genehmigungspflichtig?
   a: Das hängt vom Einzelfall und der Denkmalverordnung ab – auch Innenarbeiten können genehmigungspflichtig sein. Wir klären das vorab.
+  kategorie: Denkmal & Restaurierung
 - f: Darf ich ein denkmalgeschütztes Gebäude energetisch dämmen?
   a: Nur in Abstimmung mit der Denkmalbehörde – wir beraten zu denkmalverträglichen Lösungen (z. B. Innendämmung).
+  kategorie: Denkmal & Restaurierung
 - f: Ist die Website auch auf dem Handy nutzbar?
   a: Ja, die Website ist vollständig für mobile Geräte optimiert – inklusive Kontaktformular, Anruf-Links und Chat.
+  kategorie: Kontakt & Service
 - f: Bietet A-Bau eine kostenlose Erstberatung?
   a: Ja, die Erstberatung und Besichtigung ist unverbindlich – Sie erfahren ehrlich, was möglich und sinnvoll ist.
+  kategorie: Ablauf & Angebot
 - f: Kann ich Referenzen einsehen?
   a: Auf der Seite /referenzen/ finden Sie Projektkategorien mit Bildern und Videos. Konkrete Referenzprojekte nennen wir auf Anfrage.
+  kategorie: Leistungen
 - f: Gibt es einen Newsletter?
   a: Nein, wir versenden keinen Newsletter – Ihre Daten bleiben bei uns.
+  kategorie: Kontakt & Service
 - f: Wird meine Anfrage über das Formular verschlüsselt?
   a: Die Übertragung erfolgt über HTTPS (TLS-verschlüsselt). Ihre Daten werden vertraulich behandelt.
+  kategorie: Kontakt & Service
 - f: Kann ich Bauleistungen von der Steuer absetzen?
   a: Handwerkerleistungen können unter bestimmten Voraussetzungen steuerlich absetzbar sein (§ 35a EStG). Bitte klären Sie das mit Ihrem Steuerberater – wir stellen die nötigen Rechnungen aus.
+  kategorie: Leistungen
 - f: Bietet A-Bau auch Musterhäuser an?
   a: Nein, wir realisieren individuelle Projekte nach Ihren Anforderungen – keine Musterhauskataloge.
+  kategorie: Leistungen
 - f: Kann ich A-Bau auf einer Baustelle besuchen?
   a: Nach Absprache zeigen wir Ihnen gern laufende oder abgeschlossene Projekte – bitte fragen Sie an.
+  kategorie: Unternehmen
 - f: Wie nachhaltig arbeitet A-Bau?
   a: 'Wir arbeiten ressourcenschonend: fachgerechte Wiederverwendung bei Restaurierungen, geprüfte Materialien und saubere Entsorgung des Bauschutts.'
+  kategorie: Unternehmen
 - f: Werden Baustellen sauber hinterlassen?
   a: Ja, die Übergabe erfolgt besenrein bzw. wie vereinbart – inklusive Beseitigung von Bauschutt.
+  kategorie: Ablauf & Angebot
 - f: Was ist beim Abschluss eines Werkvertrags zu beachten?
   a: Achten Sie auf klare Leistungsbeschreibung, Preise, Termine und Zahlungsplan – all das erhalten Sie in unserem transparenten Angebot.
+  kategorie: Recht & Gewährleistung
 - f: Kann A-Bau auch nur Beraten ohne Ausführung?
   a: Ja, wir beraten auch unabhängig von der Ausführung – eine ehrliche Einschätzung bekommen Sie immer.
+  kategorie: Ablauf & Angebot
 - f: Wie finde ich heraus, ob mein Gebäude unter Denkmalschutz steht?
   a: Auskunft gibt die Untere Denkmalbehörde der Stadt Mönchengladbach bzw. die Denkmalliste. Wir helfen Ihnen bei der Klärung.
+  kategorie: Denkmal & Restaurierung

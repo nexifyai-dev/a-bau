@@ -801,3 +801,22 @@
 **Gegentest (§5.4):** Negativ: `/_next/static` nicht mehr no-store; `/suche`-Erwähnung = 0 im Nutzerhandbuch ✅ · Regression: HTML-no-store bleibt (Frisch-Deploys), R13–R29 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 30)**
+
+---
+
+## Runde 31 (2026-08-12, Fortsetzung Tiefenprüfung — FAQ-165 nutzbar machen, Kategorien)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Befund aus R30-Review: FAQ-Seite mit 165 ungruppierten Akkordeons war unübersichtlich (B.30/B.43: SEO+UX nicht gegeneinander).
+
+| Befund/Fix | Status |
+|---|---|
+| **FAQ-165 ohne Struktur:** eine unendliche Akkordeon-Liste, keine Navigation, Heading-Hierarchie nur h1→footer-h2 | **10 Kategorien eingeführt** (Deterministisches Keyword-Mapping + 28 explizite Korrekturen; 0 „Sonstiges"): Leistungen 42, Denkmal 21, Ablauf 20, Termine 19, Recht 13, Region 12, Sanierung 11, Unternehmen 11, Kontakt 10, Pflege 6 | ✅ live |
+| FAQ-Seite: Gruppierung + Übersichtlichkeit | Stabile Anzeige-Reihenfolge, `<h2 class="faq-gruppen-titel">` je Gruppe (bessere Heading-Hierarchie h1→h2), Akkordeons je Gruppe | ✅ live |
+| FAQPage-JSON-LD / Home-Teaser / Chat | Unverändert funktionsfähig (LD alle 165, Teaser slice(0,4), KB re-ingested 71 Chunks, CHAT-CHECK OK) | ✅ |
+| W3C | /faq + 3 Stichproben: 0 Fehler (Heading-Sprung durch h2-Gruppen auch strukturell behoben) | ✅ |
+
+**E2E:** Build ✅ · 10 Gruppen live · 165 Akkordeons · Route-Smoke ALLE OK · Öffnungszeiten 12/12 · CHAT-CHECK OK · /health ok.
+
+**Gegentest (§5.4):** Negativ: 0 „Sonstiges"-Gruppe; Gruppen-Titel = 10 (keine Duplikate); W3C 0 Fehler ✅ · Regression: FAQ-LD/Teaser/KB unverändert ✅ · Datenintegrität: content/ == src/data/ (sync), KB 71 Chunks, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 31)**
