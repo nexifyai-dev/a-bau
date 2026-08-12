@@ -1002,3 +1002,21 @@
 **Gegentest (§5.4):** Negativ: „verpflichtet, offensichtliche" = 0; `#recht-gew-hrleistung` = 0; Anker-Check: alle Links → existierende IDs (Skip-Link #main ausgenommen) ✅ · Regression: R13–R39 unverändert ✅ · Datenintegrität: keine KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 40)**
+
+---
+
+## Runde 41 (2026-08-12, Fortsetzung Tiefenprüfung — Server-Validierung Trust-Boundary)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: server-seitige Eingabe-Validierung (Client-maxLength ist kein Schutz, A.38).
+
+| Befund/Fix | Status |
+|---|---|
+| **Server akzeptierte beliebig lange name/tel** (5000-Zeichen-Name → 202 + Queue; Client maxLength 120/40 wirkt nur im Browser) | Server-Limits nach Strip: `len(name) > 120 or len(tel) > 40` → 400 „Eingabe zu lang." — E3: 5000 → 400, normal → 202 | ✅ live |
+| Test-Einträge | Queue nach Tests geleert (0) | ✅ |
+| E-Mail-Validierung / nachricht-Limit / Honeypot / Rate-Limit | Bereits vorhanden (re.fullmatch, 4000, honeypot, 20/min) — komplett | ✅ |
+
+**E2E:** Health ok · 400/202-Matrix korrekt · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12.
+
+**Gegentest (§5.4):** Negativ: 5000-Name → 400 (kein 202); Queue 0 nach Cleanup ✅ · Regression: R13–R40 unverändert ✅ · Datenintegrität: keine KB-/Content-Änderung ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 41)**

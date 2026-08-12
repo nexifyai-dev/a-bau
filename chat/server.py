@@ -233,6 +233,9 @@ async def contact(req: Request):
     email = (body.get("email") or "").strip()
     tel = (body.get("telefon") or "").strip()
     nachricht = (body.get("nachricht") or "").strip()
+    # R41: server-seitige Längen-Limits (Trust-Boundary; Client maxLength ist kein Schutz)
+    if len(name) > 120 or len(tel) > 40:
+        return JSONResponse({"error": "Eingabe zu lang."}, status_code=400)
     if not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", email):
         return JSONResponse({"error": "Bitte eine gültige E-Mail-Adresse angeben."}, status_code=400)
     if not name or not nachricht or not body.get("einwilligung"):
