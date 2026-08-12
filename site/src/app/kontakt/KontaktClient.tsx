@@ -45,7 +45,7 @@ export default function KontaktClient() {
           <span className="kicker">Kontakt</span>
           <h1>Sprechen wir über Ihr Bauvorhaben</h1>
           <p>
-            Ob Denkmalrestaurierung, Umbau oder Neubau: Beschreiben Sie Ihr Anliegen – wir melden
+            Ob Denkmal-Restaurierung, Umbau oder Neubau: Beschreiben Sie Ihr Anliegen – wir melden
             uns zeitnah mit einer ersten Einschätzung.
           </p>
         </div>

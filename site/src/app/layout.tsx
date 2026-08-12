@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     template: "%s – A-Bau",
   },
   description:
-    "A-Bau Meisterbetrieb GmbH: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach & NRW. Meisterbetrieb seit 2019.",
+    "A-Bau Meisterbetrieb GmbH: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach & NRW. Meisterbetrieb seit 2019.",
   applicationName: "A-Bau Meisterbetrieb",
   authors: [{ name: "A-Bau Meisterbetrieb GmbH", url: "https://a-bau.nexifyai.cloud" }],
   metadataBase: new URL("https://a-bau.nexifyai.cloud"),
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: "A-Bau Meisterbetrieb GmbH",
     title: "A-Bau Meisterbetrieb GmbH – Bauunternehmen Mönchengladbach",
     description:
-      "Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach & NRW. Meisterbetrieb seit 2019.",
+      "Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach & NRW. Meisterbetrieb seit 2019.",
     images: [{ url: "/logo.png", width: 512, height: 512, alt: "A-Bau Meisterbetrieb GmbH" }],
   },
   twitter: { card: "summary_large_image" },

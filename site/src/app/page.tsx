@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/", languages: { de: "https://a-bau.nexifyai.cloud/", "x-default": "https://a-bau.nexifyai.cloud/" } },
   title: "A-Bau Meisterbetrieb GmbH – Bauunternehmen Mönchengladbach",
   description:
-    "A-Bau Meisterbetrieb GmbH in Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen. Seit 2019.",
+    "A-Bau Meisterbetrieb GmbH in Mönchengladbach: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen. Seit 2019.",
 };
 
 const localBusinessSchema = {
@@ -19,7 +19,7 @@ const localBusinessSchema = {
   "@id": "https://a-bau.nexifyai.cloud/#business",
   name: "A-Bau Meisterbetrieb GmbH",
   description:
-    "Bauunternehmen und Meisterbetrieb in Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen und europaweite Transporte.",
+    "Bauunternehmen und Meisterbetrieb in Mönchengladbach: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen und europaweite Transporte.",
   url: "https://a-bau.nexifyai.cloud",
   telephone: KONTAKT.tel,
   email: KONTAKT.email,
@@ -79,7 +79,7 @@ export default function Home() {
         <div className="hero-inner">
           <div className="container">
             <span className="hero-kicker">Meisterbetrieb · Mönchengladbach &amp; NRW</span>
-            <h1>Denkmalrestaurierung &amp; Altbausanierung – Meisterhandwerk aus Mönchengladbach</h1>
+            <h1>Denkmal-Restaurierung &amp; Altbausanierung – Meisterhandwerk aus Mönchengladbach</h1>
             <p className="lead">
               A-Bau Meisterbetrieb GmbH: substanzschonende Restaurierung denkmalgeschützter Bauten,
               Sanierung und Ausbau – persönlich, termintreu, mit geprüften Materialien. Von der
@@ -146,7 +146,7 @@ export default function Home() {
             <span className="kicker">Stadtteile &amp; Quartiere</span>
             <h2 id="stadtteile-heading">A-Bau in Mönchengladbach</h2>
             <p>
-              Wir bauen hier für die Menschen, die in Mönchengladbach leben, feiern und arbeiten. Von Geistenbeck bis Rheydt: Denkmalrestaurierung, Sanierung, Neubau
+              Wir bauen hier für die Menschen, die in Mönchengladbach leben, feiern und arbeiten. Von Geistenbeck bis Rheydt: Denkmal-Restaurierung, Sanierung, Neubau
               und Innenausbau in allen Quartieren.
             </p>
           </div>

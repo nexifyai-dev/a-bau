@@ -564,3 +564,28 @@
 **Gegentest (§5.4):** Negativ: `#008035` = 0 im .nav-cta-Kontext, `hover-bright` = 0 Treffer ✅ · Regression: R12–R19-Fixes unverändert; Zentrierung erneut E3 (HTML text-center + CSS) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 19b)**
+
+---
+
+## Runde 20 (2026-08-12, Tiefenprüfung + Kundenaufträge: FAQ-150, AGB-Rechtstexte, CTA-Root-Cause)
+
+**Anlass:** Pascal-Auftrag Tiefenprüfung + OOBs: (1) FAQ ≥150 für Chat-Wissen, (2) AGB/Nutzungsbedingungen/Bestpraxis-Rechtstexte, (3) „Header-CTA noch immer nicht grün", (4) Denkmal-Restaurierung-Terminologie.
+
+| Befund/Fix | Status |
+|---|---|
+| **P0-ROOT-CAUSE Header-CTA (endlich gefunden):** `.nav-desktop > a { background: none; color: var(--color-text) }` (0,1,1) überschrieb `.nav-cta` (0,1,0) — **Button war im Browser NIE grün**, alle bisherigen Verifies prüften nur Regel-Existenz, nicht Kaskaden-Wirkung | Selektoren auf `.nav-desktop > a.nav-cta` / `.drawer a.drawer-cta` (0,2,1) + Hover 0,3,1 — gewinnt gegen Nav-Basis und Nav-Hover | ✅ live (CSS byte-identisch, Kaskade per Spezifität belegt) |
+| **FAQ: 14 → 166 Fragen** (OOB: ≥150) | 152 neue fachlich korrekte Q/A (Unternehmen, Denkmal, Leistungen, Sanierung, Ausbau, Recht, Region, Pflege, KI) — faktenbasiert, keine erfundenen Preise/Projekte; content/ == src/data/ synct; KB 67 Chunks | ✅ live (166 Akkordeons, Chat antwortet aus neuem KB E3) |
+| **AGB fehlte** (OOB: Rechtstexte-Bestpraxis) | `/agb/` neu: BGB-basiert (Vertragsschluss, Festpreise, § 632a-Abschläge, Abnahme § 640, Gewährleistung § 634a 5 J., Haftung, Eigentumsvorbehalt, Schlussbestimmungen); VOB/B nur bei ausdrücklicher Vereinbarung | ✅ live |
+| **Nutzungsbedingungen fehlten** | `/nutzungsbedingungen/` neu: Inhalte, KI-Assistent (Art. 50 KI-VO, keine verbindliche Auskunft), Urheberrecht, Haftung, externe Links | ✅ live |
+| Datenschutz KI-VO-Referenz präzisiert | „Art. 50 der Verordnung (EU) 2024/1689 (KI-Verordnung)" (Recherche: Transparenzpflichten seit 02.08.2026 in Kraft — Chat-Kennzeichnung vorhanden) | ✅ live |
+| Footer/sitemap/ingest | Recht-Links (AGB, Nutzung) im Footer; Sitemap 22 URLs (Home-Slash + Priority-Fix); ingest-EXCLUDE += agb.md, nutzungsbedingungen.md (Recht raus aus KB) | ✅ |
+| **Formular-502-Client-Erlebnis:** Daten gesichert (Queue), Client zeigte „Versand fehlgeschlagen" + `detail`-Leak (A.38/B.41) | SMTP-Fehler → Queue → **202 {ok:true, queued:true}** (ehrlich: eingegangen+gesichert); echter 502 nur bei Queue-Write-Fehler; detail raus | ✅ live (E3: 202, Queue, geleert) |
+| „Denkmalrestaurierung" → „Denkmal-Restaurierung" (OOB: Mobile-Overlap) | 15 Vorkommen in 11 Dateien ersetzt (content+src), Slugs unverändert; KB re-ingested | ✅ live |
+| Impr./Datenschutz gegen IHK-Checkliste § 5 DDG + DSGVO | Vollständig (Register+EUID, USt, HWK+Betriebsnr., MStV, VSBG, ODR-korrekt, LDI-NRW-Beschwerde) — kein Fix nötig | ✅ |
+| Impressum-Renderer | react-markdown aus content/*.md — AGB/Nutzung nutzen gleiches Muster | ✅ |
+
+**E2E:** Build ✅ · CSS byte-identisch · Route-Smoke ALLE OK · Öffnungszeiten 12/12 · /health ok · AGB/Nutzung 200 · FAQ 166 · Formular 202+Queue+geleert · Chat: neue FAQ-Frage korrekt (Sanierung/Renovierung) · Denkmal-Restaurierung live · Sitemap 22.
+
+**Gegentest (§5.4):** Negativ: Kaskaden-Overrider (`.nav-desktop > a` ohne .nav-cta) = 0 im Button-Kontext; „Versand fehlgeschlagen" = 0; „Denkmalrestaurierung" = 0 ✅ · Regression: R13–R19-Fixes unverändert (Titel, DSGVO §6, KB-Dedupe, Öffnungszeiten) ✅ · Datenintegrität: KB 67 Chunks konsistent, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 20)**

@@ -64,7 +64,7 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
           <div className="media-frame">
             <Image
               src="/assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp"
-              alt="Denkmalrestaurierung – Projektbeispiel A-Bau Meisterbetrieb Mönchengladbach"
+              alt="Denkmal-Restaurierung – Projektbeispiel A-Bau Meisterbetrieb Mönchengladbach"
               width={900}
               height={675}
               priority

@@ -60,7 +60,7 @@ Wenn Sie uns über das Kontaktformular kontaktieren, verarbeiten wir die von Ihn
 
 ## 6. KI-Assistent (Chat-Anfrage)
 
-Auf dieser Website bieten wir einen KI-gestützten Chat-Assistenten an („A-Bau KI-Assistent", unten rechts). Gemäß Art. 50 der EU-KI-Verordnung (EU AI Act) weisen wir Sie deutlich darauf hin, dass Sie beim Chat mit einer KI kommunizieren.
+Auf dieser Website bieten wir einen KI-gestützten Chat-Assistenten an („A-Bau KI-Assistent", unten rechts). Gemäß Art. 50 der Verordnung (EU) 2024/1689 (KI-Verordnung, „EU AI Act") weisen wir Sie deutlich darauf hin, dass Sie beim Chat mit einer KI kommunizieren.
 
 **Was wird verarbeitet?** Ihre im Chat eingegebenen Nachrichten werden an einen KI-Dienst (Large Language Model) übermittelt, der als Auftragsverarbeiter nach Art. 28 DSGVO eingebunden ist, um Ihre Frage auf Basis des Inhalts dieser Website zu beantworten. Die Antworten werden aus den Website-Inhalten (Wissensbasis) generiert.
 

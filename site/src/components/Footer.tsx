@@ -17,7 +17,7 @@ export default function Footer() {
           <div>
             <h3>Leistungen</h3>
             <nav>
-              <Link href="/leistungen/denkmalrestaurierung/">Denkmalrestaurierung</Link>
+              <Link href="/leistungen/denkmalrestaurierung/">Denkmal-Restaurierung</Link>
               <Link href="/leistungen/innenausbau/">Innenausbau</Link>
               <Link href="/leistungen/krankenhausbau/">Krankenhausbau</Link>
               <Link href="/leistungen/schluesselfertigbau/">Schlüsselfertigbau</Link>
@@ -52,6 +52,8 @@ export default function Footer() {
           <span>© {jahr} {KONTAKT.firma} · {KONTAKT.hrb} · {KONTAKT.registergericht}</span>
           <Link href="/impressum/">Impressum</Link>
           <Link href="/datenschutz/">Datenschutz</Link>
+          <Link href="/agb/">AGB</Link>
+          <Link href="/nutzungsbedingungen/">Nutzungsbedingungen</Link>
           <Link href="/cookie-richtlinie/">Cookie-Richtlinie</Link>
         </div>
       </div>

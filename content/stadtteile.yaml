@@ -5,7 +5,7 @@ stadt:
   quartiere:
     - name: Geistenbeck
       text: "Unser Heimat-Stadtteil. Hier sitzen wir, hier restaurieren wir Altbauten, sanieren Wohnungen und bauen weiter. Charakter: Wohnviertel mit historischer Substanz."
-      schwerpunkt: "Denkmalrestaurierung, Altbau-Sanierung, Wohnmodernisierung"
+      schwerpunkt: "Denkmal-Restaurierung, Altbau-Sanierung, Wohnmodernisierung"
     - name: Mönchengladbach City (Nordstadt/Südstadt)
       text: "Das Zentrum: Münster, Abteiberg, Marktplatz. Hier sind Gewerbe, Verwaltung und urbane Nachverdichtung gefragt."
       schwerpunkt: "Gewerbe-Innenausbau, Sanierung im Bestand, Reparaturen"

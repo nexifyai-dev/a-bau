@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import fs from "fs";
+import path from "path";
+import ReactMarkdown from "react-markdown";
+
+export const metadata: Metadata = {
+  title: "Nutzungsbedingungen – A-Bau Meisterbetrieb Mönchengladbach",
+  description: "Nutzungsbedingungen der Website der A-Bau Meisterbetrieb GmbH: Inhalte, KI-Assistent, Haftung und Urheberrecht.",
+  alternates: { canonical: "/nutzungsbedingungen/", languages: { de: "https://a-bau.nexifyai.cloud/nutzungsbedingungen/", "x-default": "https://a-bau.nexifyai.cloud/nutzungsbedingungen/" } },
+};
+
+export default function Nutzungsbedingungen() {
+  const raw = fs.readFileSync(path.join(process.cwd(), "..", "content", "nutzungsbedingungen.md"), "utf8");
+  return (
+    <section className="section">
+      <div className="container prose">
+        <ReactMarkdown>{raw}</ReactMarkdown>
+      </div>
+    </section>
+  );
+}

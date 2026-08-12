@@ -40,7 +40,7 @@ def chunks(text, size=700, overlap=80):
 
 def main():
     docs = []
-    EXCLUDE = {"impressum.md", "datenschutz.md"}
+    EXCLUDE = {"impressum.md", "datenschutz.md", "agb.md", "nutzungsbedingungen.md"}
     # EINDEUTIGE Dokumente: content/ ist kanonisch (R10-Sync hält content/ == src/data/).
     # src/data/ wird nur für Dateien genutzt, die es in content/ nicht gibt (kontakt.yaml).
     # Doppelte Ingests (46 statt 23 Chunks) verfälschen BM25-Gewichtung und Quellen-Anzeige.

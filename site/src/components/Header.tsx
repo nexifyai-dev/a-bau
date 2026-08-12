@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { KONTAKT, telHref, istGeoeffnet } from "@/lib/kontakt";
 
 const LEISTUNGEN = [
-  { href: "/leistungen/denkmalrestaurierung/", title: "Denkmalrestaurierung", sub: "Historische Bausubstanz erhalten" },
+  { href: "/leistungen/denkmalrestaurierung/", title: "Denkmal-Restaurierung", sub: "Historische Bausubstanz erhalten" },
   { href: "/leistungen/innenausbau/", title: "Innenausbau", sub: "Wohnung, Gewerbe, Büro" },
   { href: "/leistungen/krankenhausbau/", title: "Krankenhausbau", sub: "Komplexe Gesundheitsbauten" },
   { href: "/leistungen/schluesselfertigbau/", title: "Schlüsselfertigbau", sub: "Neubau aus einer Hand" },

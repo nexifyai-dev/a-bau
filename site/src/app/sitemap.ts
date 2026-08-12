@@ -13,9 +13,9 @@ function slugify(name: string) {
 export default function sitemap(): MetadataRoute.Sitemap {
   const leistungsSlugs = leistungen.leistungen.map((l: any) => l.slug || l.id);
   const stadtteilSlugs = stadtteile.stadt.quartiere.map((q: any) => slugify(q.name));
-  const staticPages = ["", "/leistungen/", "/referenzen/", "/stadtteile/", "/ueber-uns/", "/faq/", "/kontakt/"];
+  const staticPages = ["/", "/leistungen/", "/referenzen/", "/stadtteile/", "/ueber-uns/", "/faq/", "/kontakt/", "/agb/", "/nutzungsbedingungen/"];
   const routes: MetadataRoute.Sitemap = [
-    ...staticPages.map((p) => ({ url: `${BASE}${p}`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: p === "" ? 1 : 0.8 })),
+    ...staticPages.map((p) => ({ url: `${BASE}${p}`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: p === "/" ? 1 : 0.8 })),
     ...leistungsSlugs.map((s: string) => ({ url: `${BASE}/leistungen/${s}/`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 })),
     ...stadtteilSlugs.map((s: string) => ({ url: `${BASE}/stadtteile/${s}/`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 })),
   ];

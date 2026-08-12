@@ -241,6 +241,8 @@ async def contact(req: Request):
     except Exception as e:
         # Kein Datenverlust: Nachricht lokal persistieren (Queue) für Nachversand,
         # sobald SMTP-Creds im Container verfügbar sind (Regression Container-Umzug 2026-08-12).
+        # A.38/B.41: Fehlerdetails nur ins Log, nie an den Besucher.
+        print(f"[contact-smtp-error] {type(e).__name__}: {str(e)[:200]}", flush=True)
         try:
             q = Path(__file__).resolve().parent / "data" / "contact_queue.jsonl"
             q.parent.mkdir(parents=True, exist_ok=True)
@@ -248,8 +250,12 @@ async def contact(req: Request):
                 fh.write(json.dumps({"ts": time.time(), "name": name, "email": email,
                                      "telefon": tel, "nachricht": nachricht}, ensure_ascii=False) + "\n")
         except OSError:
-            pass
-        return JSONResponse({"error": "Versand fehlgeschlagen. Bitte anrufen: +49 2166 9925056.", "detail": str(e)[:120]}, status_code=502)
+            # Ehrlicher Fehler NUR wenn auch die Sicherung scheitert (Datenverlust-Risiko)
+            print("[contact-queue-error] Queue-Write fehlgeschlagen", flush=True)
+            return JSONResponse({"error": "Nachricht konnte nicht gespeichert werden. Bitte rufen Sie uns an: +49 2166 9925056."}, status_code=502)
+        # 202 Accepted + queued: Nachricht ist sicher eingegangen (persistiert, Nachversand
+        # via flush_contact_queue.py) — „Versand fehlgeschlagen" wäre hier irreführend (B.41).
+        return JSONResponse({"ok": True, "queued": True}, status_code=202)
 
 @app.get("/health")
 async def health():

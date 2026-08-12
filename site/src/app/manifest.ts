@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "A-Bau Meisterbetrieb GmbH",
     short_name: "A-Bau",
     description:
-      "Bauunternehmen Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung & Installationen.",
+      "Bauunternehmen Mönchengladbach: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung & Installationen.",
     start_url: "/",
     display: "standalone",
     background_color: "#F5F1EA",
