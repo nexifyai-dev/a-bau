@@ -1316,3 +1316,25 @@
 **GEGENTEST BESTANDEN (2026-08-12, Runde 55)**
 
 **Betriebs-Lektion (ins Handbuch):** Server-Restart IMMER `pkill -f 'chat/server.py'` (Slash-Muster) bzw. PID via `/proc`-Scan; danach `bash /tmp/start-abau.sh`; Verifikation: `curl -s -D- -o/dev/null -H 'Host: www.a-bau.info' http://127.0.0.1:8095/ | grep -i strict-transport` (HSTS = Beweis für frischen Code). NIE uvicorn-Modul-Doppelstart (`uvicorn chat.server:app` → addrinuse).
+
+
+---
+
+## Runde 56 (2026-08-12, Log-Hygiene + W3C-Detailseiten + Video/Bild-Audit)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen."
+
+| Befund/Fix | Status |
+|---|---|
+| **Log-Hygiene P2:** Formular-Fallback loggte irreführend `SMTPServerDisconnected` (SMTP-Versuch ohne Creds). Fix: `_send()` prüft `SMTP["user"]` → klare Meldung „keine SMTP-Creds konfiguriert (Resend/SMTP/Queue-Kette)" | ✅ live (Log-Beweis: alte + neue Zeile) |
+| **W3C-Detailseiten:** Denkmal-Restaurierung, Stadtteil (City/Nordstadt/Südstadt), Referenzen = je 0 Fehler | ✅ kein Fix |
+| **Video-Audit:** referenzen `<video preload="none" poster controls title>` + Fallback-Text + Cache-Buster — bereits lazy-konform (kein Vordownload) | ✅ kein Fix |
+| **Bild-Audit:** alle Assets bereits WebP (300–380 KB); kein Konvertierungsbedarf | ✅ kein Fix |
+| **Restart-Prozedur R55 verifiziert:** Kill via /proc-Scan → health TOT ✓ → start-abau.sh → Server 1987646 (Startdauer >4 s — Health-Check zu früh kam leer; Watchdog toleriert) → HSTS-Beweis ✓ | ✅ Verfahren stabil |
+| **Log-Altlasten:** Tracebacks aus R52/R55-Diagnose (addrinuse, ModuleNotFound) sind historisch — künftig vermieden durch R55-Handbuch-Lektion | ✅ |
+
+**E2E:** QUALITY-CHECK OK (exit 0) · Formular 202 queued · Queue 2 echte unangetastet · Chat/Routen ok · HSTS live.
+
+**Gegentest (§5.4):** Negativ: Formular ohne Creds → 202 queued + klare Log-Meldung (kein irreführender SMTP-Fehler) ✅ · Prozess-Beweis: Kill → health failt → Neustart ok ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: W3C 0 Fehler, Video-Lazy unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 56)**

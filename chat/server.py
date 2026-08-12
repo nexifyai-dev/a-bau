@@ -287,6 +287,9 @@ async def contact(req: Request):
     m["Date"] = formatdate(localtime=True)
 
     def _send() -> None:
+        if not SMTP["user"]:
+            # R56: ehrlicher Fehlerpfad statt SMTPServerDisconnected bei fehlenden Creds
+            raise RuntimeError("keine SMTP-Creds konfiguriert (Resend/SMTP/Queue-Kette)")
         with smtplib.SMTP_SSL(SMTP["host"], SMTP["port"], timeout=30) as s:
             s.login(SMTP["user"], SMTP["pw"])
             s.sendmail(CONTACT_FROM, [CONTACT_TO], m.as_string())
