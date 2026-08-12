@@ -781,3 +781,23 @@
 **Gegentest (§5.4):** Negativ: Cookie-Button-Typ explizit; kein zweiter Config-Ersetzungsweg dokumentiert (nur merge) ✅ · Regression: unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 29)**
+
+---
+
+## Runde 30 (2026-08-12, Fortsetzung Tiefenprüfung — Cache-Strategie, Kompression, Doku-Wahrheit)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: Asset-Caching (A.33), Kompression, Doku-Realität (/suche), Dropdown-Tastatur, Leistungs-Textqualität.
+
+| Befund/Fix | Status |
+|---|---|
+| **P1 Performance: `/_next/static/*` mit `no-store`** — Middleware cached nur `/assets/`; hashed Chunks (unveränderlich) wurden bei jeder Navigation neu geladen (A.33) | Middleware: `/_next/static/`, `/favicon.ico*`, Root-Icons, manifest → `public, max-age=31536000, immutable` (Video bleibt 86400); HTML/API weiter no-store. **Live verifiziert: JS/CSS/favicon/logo immutable, HTML no-store** | ✅ live |
+| **Nutzerhandbuch erwähnte `/suche`** — existiert nicht (404, keine Route im App-Router) | „404, Suche" → „404" | ✅ |
+| Kompression (A.33) | Cloudflare-Edge: HTML br, JS gzip — aktiv (kein Server-Gzip nötig) | ✅ kein Fix |
+| Dropdown-Tastatur (A.28) | Button (aria-haspopup/expanded) + Tab-Erreichbarkeit + Außenklick/Fokusverlust schließt; Escape nur im Drawer — volle Pfeiltasten-Navigation fehlt (optional, WAIRA-Menu-Button erfüllt) | ⚠️ Minor dokumentiert |
+| Leistungs-Detail-Textqualität (B.30) | Stichprobe Innenausbau: H1 + Lead inhaltlich stark („Echtes Handwerk statt Showroom-Design…") | ✅ |
+
+**E2E:** Build ✅ · Cache-Header live korrekt (immutable/no-store) · /health ok · Route-Smoke ALLE OK · CHAT-CHECK OK · Öffnungszeiten 12/12.
+
+**Gegentest (§5.4):** Negativ: `/_next/static` nicht mehr no-store; `/suche`-Erwähnung = 0 im Nutzerhandbuch ✅ · Regression: HTML-no-store bleibt (Frisch-Deploys), R13–R29 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 30)**

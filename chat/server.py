@@ -72,8 +72,12 @@ VIDEO_CACHE = {"Cache-Control": "public, max-age=86400"}  # Videos: 1 Tag (CDN-P
 async def headers_mw(request: Request, call_next):
     resp = await call_next(request)
     resp.headers.update(HEADERS)
-    if request.url.path.startswith("/assets/"):
-        if request.url.path.endswith(".mp4"):
+    p = request.url.path
+    # Hashed/statische Assets: lange Cache-Zeit (R30: _next/static fehlte — wurde mit no-store
+    # ausgeliefert, Browser lud Chunks bei jeder Navigation neu; A.33)
+    static_root = ("/logo.png", "/apple-touch-icon.png", "/icon-192.png", "/icon-512.png", "/manifest.webmanifest")
+    if p.startswith(("/assets/", "/_next/static/", "/favicon.ico")) or p in static_root:
+        if p.endswith(".mp4"):
             resp.headers.update(VIDEO_CACHE)
         else:
             resp.headers.update(ASSET_CACHE)
