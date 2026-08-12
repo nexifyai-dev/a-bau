@@ -1142,3 +1142,23 @@
 **Gegentest (§5.4):** Negativ: keine erfundenen Kundendaten (Portale nicht abrufbar → offen, nicht erfunden) ✅ · Regression: R13–R46 unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 47)**
+
+---
+
+## Runde 48 (2026-08-12, Proaktiv: Chat-Breitentest Produktion + Apex→www-301 + W3C-Versuch)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen."
+
+| Maßnahme | Status |
+|---|---|
+| **Chat-Breitentest Produktion (www.a-bau.info): 10 Fragen über alle 10 FAQ-Kategorien** | **10/10 erfolgreich**, 0 Markdown, Quellen je Kategorie (faq/stadtteile/referenzen), 2,3–10,7 s | ✅ |
+| **Diagnose-Lektion: 403 von CF-WAF für Python-urllib-UA** (kein Server-/Rate-Limit-Problem; curl mit/ohne UA = 200) | Im Skill dokumentiert | ✅ |
+| **Apex→www-301 (SEO-Duplikat + Cookie-Origin):** a-bau.info lieferte 200 mit canonical www (Doppel-Origin; LocalStorage abau_consent getrennt) | Middleware: Host `a-bau.info` → **301** → `https://www.a-bau.info{path}{query}` — live: apex 301, www 200, Staging ok | ✅ live |
+| W3C-Vollscan Produktion versucht (25 Seiten) | **Validator extern 403** (Anti-Bot/Rate-Limit des Validators; R45-Stichproben 0 Fehler, Staging-Vollscan R37 25/25 0, Produktion = identischer Build byte-identisch) → ehrlich dokumentiert | ⚠️ extern |
+| Test-Skript-Fehler (ms vs. Status) | R36-Lektion erneut — korrigiert (Status explizit) | ✅ |
+
+**E2E:** Apex 301→www ✓ · www 200 ✓ · Staging health ok ✓ · QUALITY-CHECK OK (exit 0) · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12.
+
+**Gegentest (§5.4):** Negativ: apex kein 200 mehr (301), www 200, Staging unverändert; Chat 0 Markdown über Produktion ✅ · Regression: R13–R47 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 48)**

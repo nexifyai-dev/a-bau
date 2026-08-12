@@ -75,6 +75,11 @@ async def headers_mw(request: Request, call_next):
     # Go-Live (R39): Produktions-Hostnames (a-bau.info/www) indexierbar,
     # Staging (a-bau.nexifyai.cloud) bleibt noindex; Produktion = www.a-bau.info (indexierbar) — sonst indexiert Google die Staging-URL.
     host = (request.headers.get("host") or "").lower()
+    # R48: Apex -> www (SEO-Duplikat vermeiden, Cookie-/LocalStorage-Origin vereinheitlichen;
+    # canonical zeigt bereits auf www — sauberer 301 statt Doppel-200)
+    if host == "a-bau.info":
+        q = f"?{request.url.query}" if request.url.query else ""
+        return RedirectResponse(f"https://www.a-bau.info{request.url.path}{q}", status_code=301)
     if host and "a-bau.info" in host:
         # R43: Starlette-MutableHeaders hat KEIN .pop() — 500 auf a-bau.info-Hosts (Bug R39)
         try:
