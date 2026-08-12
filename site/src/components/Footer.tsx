@@ -56,6 +56,10 @@ export default function Footer() {
           <Link href="/nutzungsbedingungen/">Nutzungsbedingungen</Link>
           <Link href="/cookie-richtlinie/">Cookie-Richtlinie</Link>
         </div>
+        <p className="footer-made-by">
+          Diese Website wurde erstellt von{" "}
+          <a href="https://www.nexifyai.cloud" target="_blank" rel="noopener noreferrer">NeXifyAI</a>
+        </p>
       </div>
     </footer>
   );

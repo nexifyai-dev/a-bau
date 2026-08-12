@@ -53,7 +53,7 @@ Wenn Sie uns über das Kontaktformular kontaktieren, verarbeiten wir die von Ihn
 
 **Zweck:** Bearbeitung und Beantwortung Ihrer Anfrage, insbesondere Erstellung von Angeboten, Terminvereinbarungen, Besichtigungsterminen und erste Projektplanung. Als Bauunternehmen verarbeiten wir im Rahmen von Anfragen regelmäßig auch Angaben zu Ihrem Bauvorhaben (z. B. Gebäudeart, Standort, Umfang, Zeitrahmen).
 **Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen zur Anbahnung eines Bau- oder Handwerkervertrags); im Übrigen Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bearbeitung Ihrer Anfrage).
-**Empfänger:** Ihre Angaben werden per E-Mail über unseren E-Mail-Anbieter (HOSTINGER, UAB, Švitrigailos g. 34, LT-03230 Vilnius, Litauen, EU — Auftragsverarbeitung nach Art. 28 DSGVO) an unser Postfach kontakt@a-bau.info übermittelt und von uns ausschließlich intern verarbeitet.
+**Empfänger:** Ihre Angaben werden per E-Mail über unseren E-Mail-Versanddienst (Resend Inc. / Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA) an unser Postfach kontakt@a-bau.info übermittelt und von uns ausschließlich intern verarbeitet. Resend ist im EU-US-Data-Privacy-Framework (DPF) zertifiziert; die Übermittlung in die USA beruht auf dem Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) und erfolgt nach Art. 28 DSGVO (Auftragsverarbeitung, Data Processing Addendum von Resend).
 **Speicherdauer:** Ihre Anfrage und die zugehörige Korrespondenz werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Für Bauprojekte gilt: Projektbezogene Unterlagen (Angebote, Auftragsbestätigungen, Gewährleistungsunterlagen, Rechnungen) unterliegen handels- und steuerrechtlichen Aufbewahrungsfristen von bis zu 10 Jahren (§ 147 AO, § 257 HGB) sowie gewährleistungsbezogenen Fristen von bis zu 5 Jahren (§§ 634a, 438 BGB).
 
 **Spamschutz:** Das Formular enthält ein verstecktes Feld (Honeypot), um automatisierte Spam-Anfragen zu erkennen. Personenbezogene Daten werden hierdurch nicht verarbeitet.
@@ -106,7 +106,7 @@ Eine Weitergabe Ihrer personenbezogenen Daten an Dritte erfolgt nur, wenn:
 - wir gesetzlich dazu verpflichtet sind (z. B. an Finanzbehörden, Baubehörden, Strafverfolgungsbehörden, Art. 6 Abs. 1 lit. c DSGVO) oder
 - das berechtigte Interesse dies erfordert (Art. 6 Abs. 1 lit. f DSGVO).
 
-Auftragsverarbeiter (Hosting, E-Mail, KI-Dienst) sind vertraglich nach Art. 28 DSGVO an unsere Weisungen gebunden. Eine Übermittlung in Drittländer außerhalb der EU/EWR erfolgt ausschließlich im Rahmen der in dieser Erklärung beschriebenen Verarbeitungen (KI-Assistent, siehe Ziffer 6) und der dort genannten Rechtsgrundlage (Art. 49 Abs. 1 lit. b DSGVO).
+Auftragsverarbeiter (Hosting, E-Mail-Versand, KI-Dienst) sind vertraglich nach Art. 28 DSGVO an unsere Weisungen gebunden. Eine Übermittlung in Drittländer außerhalb der EU/EWR erfolgt ausschließlich im Rahmen der in dieser Erklärung beschriebenen Verarbeitungen: E-Mail-Versand (Resend, USA — EU-US-DPF, Art. 45 DSGVO, siehe Ziffer 5) und KI-Assistent (siehe Ziffer 6, Art. 49 Abs. 1 lit. b DSGVO).
 
 ## 11. Fotodokumentation von Bauvorhaben
 

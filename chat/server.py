@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""A-Bau Website-Service: statische Site + /api/chat (9Router-LLM + FTS5-RAG) + /api/contact (Hostinger-SMTP).
+"""A-Bau Website-Service: statische Site + /api/chat (9Router-LLM + FTS5-RAG) + /api/contact (Resend-API, Fallback Hostinger-SMTP, Fallback Queue).
 Ein Dienst, ein Port. Läuft auf VPS (127.0.0.1:8095). Tunnel-Routen: a-bau.nexifyai.cloud (Staging, noindex) + www.a-bau.info/a-bau.info (Produktion, R42).
 Retrieval: SQLite FTS5 (BM25) über Website-Wissen — lokal, DSGVO-sauber, keine externen Embeddings.
 Upstage final entfernt (Pascal 2026-08-10) — kein externer Embedding-Provider systemweit."""
@@ -51,6 +51,19 @@ SMTP = dict(host=_secret({"SMTP_HOST"}), port=int(_secret({"SMTP_PORT"}) or 465)
             user=_secret({"SMTP_USER"}), pw=_secret({"SMTP_PASSWORD"}))
 CONTACT_TO = os.environ.get("ABAU_CONTACT_TO", "kontakt@a-bau.info")
 CONTACT_FROM = SMTP["user"] or "mail@nexifyai.cloud"
+RESEND_KEY = _secret({"RESEND_API_KEY"})
+RESEND_FROM = "A-Bau Meisterbetrieb <kontakt@a-bau.info>"
+
+def _resend_send(text: str, subject: str, to: str, reply_to: str) -> None:
+    """Formular-Mail über Resend-API (EU-US-DPF-zertifiziert; Key nur aus .env, nie loggen)."""
+    req = urllib.request.Request(
+        "https://api.resend.com/emails",
+        data=json.dumps({"from": RESEND_FROM, "to": [to], "reply_to": [reply_to],
+                         "subject": subject, "text": text}).encode("utf-8"),
+        headers={"Authorization": f"Bearer {RESEND_KEY}", "Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=25) as resp:
+        if resp.status >= 300:
+            raise RuntimeError(f"resend-http-{resp.status}")
 
 # --- Security-Header + noindex (Staging bis Kundenabnahme) ---
 HEADERS = {
@@ -231,7 +244,7 @@ async def chat(req: Request):
         # A.38/B.41: keine technischen Details an Besucher ausgeben (nur Logging)
         return JSONResponse({"error": "Chatdienst momentan nicht erreichbar. Bitte versuchen Sie es später erneut."}, status_code=503)
 
-# --- Kontaktformular -> Hostinger-SMTP (NICHT Resend: send.nexifyai.cloud=NXDOMAIN, E3 2026-08-10) ---
+# --- Kontaktformular -> Resend-API (EU-US-DPF, Art. 45 DSGVO), Fallback Hostinger-SMTP, Fallback Queue ---
 @app.post("/api/contact")
 async def contact(req: Request):
     ip = req.client.host if req.client else "?"
@@ -257,6 +270,13 @@ async def contact(req: Request):
         return JSONResponse({"error": "Bitte Pflichtfelder ausfüllen (Name, E-Mail, Nachricht, Einwilligung)."}, status_code=400)
     if len(nachricht) > 4000: return JSONResponse({"error": "Nachricht zu lang."}, status_code=400)
     text = f"Neue Anfrage über www.a-bau.info\n\nName: {name}\nE-Mail: {email}\nTelefon: {tel}\n\nNachricht:\n{nachricht}\n\n-- Kontaktformular A-Bau Website (DSGVO: Einwilligung erteilt)"
+    if RESEND_KEY:
+        try:
+            await asyncio.to_thread(_resend_send, text, f"Anfrage von {name} – a-bau Website", CONTACT_TO, email)
+            return {"ok": True}
+        except Exception as e:
+            # Resend-Fehler: Log + Fallback SMTP/Queue (kein Datenverlust, keine Details nach außen)
+            print(f"[contact-resend-error] {type(e).__name__}: {str(e)[:120]} -> Fallback", flush=True)
     m = MIMEText(text, "plain", "utf-8")
     m["Subject"] = f"Anfrage von {name} – a-bau Website"
     m["From"] = CONTACT_FROM

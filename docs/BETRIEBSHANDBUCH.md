@@ -115,3 +115,13 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 | Rechtstexte ändern (Impressum, Datenschutz, **AGB, Nutzungsbedingungen**) | `content/*.md` (Rendering liest content/) | `npm run build` + Restart (kein Re-Ingest — Rechtstexte absichtlich aus KB ausgeschlossen) |
 
 **Wichtig:** `kontakt.yaml` ist die **einzige Wahrheitsquelle** für NAP-Daten. Niemals Telefon/E-Mail/Adresse direkt in `.astro`-Dateien oder Template-Strings eintragen.
+
+
+## Kontaktformular-Versand (Resend → Fallback SMTP → Queue) — R52
+
+- **Primär:** Resend-API (`POST https://api.resend.com/emails`), aktiv sobald `RESEND_API_KEY` in einer `_secret`-Datei steht (z. B. `/home/hermeswebui/.hermes/.env`). Absender `A-Bau Meisterbetrieb <kontakt@a-bau.info>`, Reply-To = E-Mail des Anfragenden.
+- **Voraussetzung:** Domain `a-bau.info` bei Resend verifiziert (DKIM/SPF; DNS in Cloudflare-Zone a-bau.info). Solange NICHT verifiziert: API antwortet 403 → Fallback.
+- **Fallback-Kette:** Resend-Fehler → Hostinger-SMTP (falls Creds) → sonst Queue `chat/data/contact_queue.jsonl` + HTTP 202 `{"ok":true,"queued":true}` (ehrlich: „sicher eingegangen, Nachversand geplant").
+- **Nachversand:** `/app/venv/bin/python3 chat/flush_contact_queue.py` (Resend zuerst; fehlgeschlagene bleiben in Queue; Exit 0 = alles versendet, 2 = teils/ganz fehlgeschlagen).
+- **Keine Secrets in Logs/Code:** Key nur via `_secret()`, nie ausgeben.
+- **Fehlerbilder:** 403 = Domain nicht verifiziert / Key falsch · 429 = Rate-Limit (Log `[contact-resend-error]`, Fallback übernimmt).

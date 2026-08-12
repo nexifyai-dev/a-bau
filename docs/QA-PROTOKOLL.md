@@ -1219,3 +1219,30 @@
 **Gegentest (§5.4):** Negativ: kein Eintrag der echten Queue gelöscht (2 bleiben); Validierungsmatrix 200/400/202 korrekt ✅ · Regression: R13–R50 unverändert ✅ · Datenintegrität: Queue 2 echte Einträge intakt ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 51)**
+
+
+---
+
+## Runde 52 (2026-08-12, Auftrag: Resend-Versand + Rechtliches + WebUI-Zentralverwaltung)
+
+**Anlass:** OOB-Pascal: Formular-Mails über Resend mit Reply-To direkt an Anfragenden; NeXifyAI-Absender klein im Footer; alle Rechtstexte (auch NeXifyAI-eigene) prüfen/anpassen; alles dokumentieren; Best-Praxis für zentrale WebUI-Steuerung.
+
+| Befund/Fix | Status |
+|---|---|
+| **Resend-Versand eingebaut** (`chat/server.py`): `_resend_send()` (POST api.resend.com/emails, Payload lt. API-Doku: from/to[]/reply_to/subject/text; `RESEND_FROM = "A-Bau Meisterbetrieb <kontakt@a-bau.info>"`; Reply-To = E-Mail des Anfragenden). Aktiv NUR wenn `RESEND_API_KEY` in `_secret`-Dateien; sonst Fallback-Kette SMTP → Queue (202 queued, kein Datenverlust). Fehler nur ins Log, nie an Besucher | ✅ Code live (Key ausstehend) |
+| **`chat/flush_contact_queue.py` neu**: Versand-Reihenfolge Resend → SMTP; indexbasiert; fehlgeschlagene Einträge bleiben in Queue (kein Verlust); CRLF-Strip beibehalten | ✅ |
+| **Footer**: „Diese Website wurde erstellt von NeXifyAI" (`.footer-made-by`, klein, muted `--color-text-inv-2` ≈8:1 AA, Link nexifyai.cloud noopener) — live im HTML verifiziert | ✅ |
+| **datenschutz.md**: E-Mail-Empfänger HOSTINGER → **Resend Inc. / Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA**; EU-US-DPF-zertifiziert → Art. 45 DSGVO; Art. 28 + DPA; §10-Empfängerliste ergänzt (Drittland: Resend Art. 45, KI Art. 49 Abs. 1 lit. b) | ✅ live |
+| **Resend-Adresse + DPF**: recherchiert aus resend.com/legal/dpa (SCC: Data Importer Plus Five Five, Inc.) + DPF-Changelog (zertifiziert) | ✅ belegt |
+| **P1-Fix: Quality-Cron `node: command not found`** — node liegt nur in Session-PATH (`~/.hermes/home/.nvm/versions/node/v22.23.2/bin`), no_agent-Cron findet es nicht → Öffnungszeiten-Test täglich failed. Fix: `NODE_BIN`-Absolutpfad im Skript | ✅ QUALITY-CHECK OK (exit 0, 12/12) |
+| **Formular-E2E (Live, ohne Key)**: Fallback-Kette → 202 `{"ok":true,"queued":true}`; Test-Eintrag bereinigt; 2 echte Queue-Einträge unangetastet | ✅ |
+| **KB-Re-Ingest** (datenschutz geändert): 71 Chunks, kb.db committet | ✅ |
+| **Resend-API-Konfigurationsvorgaben** (Doku): from/to/reply_to snake_case, Bearer-Auth, Fehler → errors-Referenz; Retry-Strategie: 1× kein Retry nötig (Fallback-Kette übernimmt) | ✅ |
+
+**E2E:** Build ✅ · www 200 · Staging 200 · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · health ok · server.log 0 errors.
+
+**Gegentest (§5.4):** Negativ: Formular ohne Key → 202 queued (kein fälschliches „sent") ✅ · Datenintegrität: echte Queue-Einträge bleiben ✅ · Regression: Chat 200, Routes 200, Footer-Links intakt ✅ · Rollback: server.py-Versionierung via Git, Flush idempotent (erfolgreiche entfernt, fehlgeschlagene bleiben) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 52)**
+
+**Offen (Kunde/Key nötig):** Resend-Domain `a-bau.info` verifizieren (DKIM/SPF via Resend-Dashboard; DNS bei Cloudflare — Zone a-bau.info) · `RESEND_API_KEY` in `/home/hermeswebui/.hermes/.env` → danach `python3 chat/flush_contact_queue.py` (2 echte Einträge) · NeXifyAI-eigene Rechtstexte (Hauptrepo nicht lokal klonbar — Anleitung in RECHERCHE-RECHT-2026-08-12.md)

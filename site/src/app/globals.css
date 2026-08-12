@@ -428,6 +428,8 @@ details[open] .chev, .acc-item.open .chev, details[open] .arrow { transform: rot
 .site-footer a:hover { color: #fff; }
 .site-footer nav { display: grid; gap: 8px; }
 .footer-bottom { border-top: 1px solid var(--color-line-inv); padding-top: var(--space-4); margin-top: var(--space-6); font-size: .82rem; color: rgba(245, 241, 234, .55); display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.footer-made-by { text-align: center; font-size: .78rem; color: var(--color-text-inv-2); margin-top: var(--space-3); }
+.footer-made-by a { color: var(--color-text-inv-2); text-decoration: underline; text-underline-offset: 2px; }
 .footer-note { font-size: .82rem; color: rgba(245, 241, 234, .6); margin-top: var(--space-3); max-width: 68ch; }
 
 /* ---------- Stadt/Quartiere ---------- */
