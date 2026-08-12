@@ -1104,3 +1104,23 @@
 **Gegentest (§5.4):** Negativ: Produktion ohne noindex, Staging mit noindex; sitemap ohne www-URL = 0 ✅ · Regression: R13–R44 unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 45)**
+
+---
+
+## Runde 46 (2026-08-12, Proaktiv: Produktions-Crawl + Skill-Wissenslücken)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen." (Wiederholung) — neue Prüfebene: **Crawl der Produktions-Domain** (bisher nur Staging) + Skill-Vollständigkeit.
+
+| Maßnahme | Status |
+|---|---|
+| **Produktions-Crawl (www.a-bau.info, E3):** Sitemap 22 www-URLs (Prioritäten korrekt, lastmod aktuell) · **15 Routen: 14× 200 + /angebot 301 (bewusst)** · Assets 0 broken · W3C 0 Fehler (R45) | ✅ |
+| Edge-Failover-Beobachtung | Anycast-IP 104.21.12.190 zeitweise ohne Antwort, 172.67.132.93 ok — normal (CF-Anycast), kein Site-Problem; Diagnose-Muster im Skill dokumentiert | ✅ |
+| **Skill `nexify-live-site-review` veraltet (Stand R32)** — GO-LIVE-/Tunnel-/Kaskaden-Lektionen fehlten | Ergänzt: Kaskaden-Root-Cause, CF-Tunnel-404-Diagnosekette (DNS→TLS→HTTP, Tunnel-Record≠Route, API-MERGE, MutableHeaders-Bug), ULA-Pitfall (--resolve), Produktions-Crawl-Muster, noindex-host-basiert | ✅ |
+| Memory (A-Bau-Fakten) | Gestaged zur Freigabe (R45) — User muss `/memory pending` bestätigen | ⚠️ User |
+| Alle 5 Auto-Checks | QUALITY-CHECK OK (Staging) | ✅ |
+
+**E2E:** Produktion 15/15 Routen korrekt · Chat/Formular/health über www ok (R43–45) · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12.
+
+**Gegentest (§5.4):** Negativ: keine www-fremde Sitemap-URL; /angebot weiterhin 301 (kein 200-Leak) ✅ · Regression: R13–R45 unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 46)**
