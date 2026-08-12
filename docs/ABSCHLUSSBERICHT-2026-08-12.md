@@ -132,3 +132,11 @@ Position/Z-Index: unter Cookie-Banner (Consent priorisiert), safe-area-beachtet 
 
 ## Mobile-Gate (D.13)
 Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konfliktfrei (z-Skala), Touch ≥44px, tel:-CTA, Formulare 1-spaltig. Offen: reale Gerätematrix + Lighthouse (kein Browser-Tooling im Container) — Restpunkt.
+
+# NACHTRAG RUNDE 14 (Tiefenprüfung, ehrliche IST-Analyse)
+
+**Repo main:** `3321fa0` · Ehrliche Gesamt-Matrix: `docs/AUDIT-MATRIX-RUNDE14.md` (A/B/C/D je Punkt selbst verifiziert, kein Status-Übernehmen).
+
+**Neu behoben:** Chat-503-Error-Leak (`detail` raus, A.38) · Stadtteil-Titel (B.20, ≤60, absolute) · Stadtteil-JSON-LD Breadcrumb/Service (B.21) · ContactPage auf /kontakt (B.21, NAP aus KONTAKT-Quelle, C.8).
+
+**Ehrlich offen (extern):** SMTP-Creds-Spiegelung (Container ohne Host-Zugriff; Queue leer, Daten geschützt) · reale Gerätetests + Lighthouse (kein Browser-Tooling) · Kundendaten (Tel-Variante, Referenz-Metadaten, Logo, Rechtstext-Prüfung) · Brain NXDOMAIN (Infra).
