@@ -4,7 +4,7 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 
 export const metadata: Metadata = {
-  title: "Impressum – A-Bau Meisterbetrieb GmbH",
+  title: "Impressum – A-Bau",
   description: "Impressum der A-Bau Meisterbetrieb GmbH, Luisental 69, 41199 Mönchengladbach.",
   robots: { index: false, follow: false },
 };

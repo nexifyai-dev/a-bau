@@ -6,7 +6,7 @@ import { leistungen, faq, referenzen, stadtteile } from "@/lib/data";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  title: "A-Bau Meisterbetrieb GmbH – Bauunternehmen Mönchengladbach | Denkmalrestaurierung, Innenausbau",
+  title: "A-Bau Meisterbetrieb GmbH – Bauunternehmen Mönchengladbach",
   description:
     "A-Bau Meisterbetrieb GmbH in Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen. Seit 2019.",
 };

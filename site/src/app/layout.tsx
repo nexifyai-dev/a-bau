@@ -10,7 +10,7 @@ import A11yWidget from "@/components/A11yWidget";
 export const metadata: Metadata = {
   title: {
     default: "A-Bau Meisterbetrieb GmbH – Bauunternehmen Mönchengladbach",
-    template: "%s | A-Bau Meisterbetrieb GmbH",
+    template: "%s – A-Bau",
   },
   description:
     "A-Bau Meisterbetrieb GmbH: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach & NRW. Meisterbetrieb seit 2019.",

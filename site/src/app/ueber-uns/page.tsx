@@ -4,7 +4,7 @@ import { KONTAKT } from "@/lib/kontakt";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/ueber-uns/" },
-  title: "Über uns – A-Bau Meisterbetrieb GmbH | Mönchengladbach",
+  title: "Über uns – A-Bau Bauunternehmen Mönchengladbach",
   description:
     "A-Bau Meisterbetrieb GmbH aus Mönchengladbach: eingetragenes Bauunternehmen (HRB 18836), GF Albert Pfeiffer. Restaurierung, Innenausbau, Neubau.",
 };

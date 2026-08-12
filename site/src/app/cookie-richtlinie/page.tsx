@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cookie-Richtlinie – A-Bau Meisterbetrieb GmbH",
+  title: "Cookie-Richtlinie – A-Bau",
   description: "Cookie-Richtlinie der Website a-bau.nexifyai.cloud – TDDDG §25-konform, keine Tracking-Cookies ohne Einwilligung.",
   robots: { index: false, follow: false },
 };

@@ -4,7 +4,7 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 
 export const metadata: Metadata = {
-  title: "Datenschutz – A-Bau Meisterbetrieb GmbH",
+  title: "Datenschutz – A-Bau",
   description: "Datenschutzerklärung der Website a-bau.nexifyai.cloud – Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.",
   robots: { index: false, follow: false },
 };
