@@ -287,9 +287,9 @@ button, input, textarea, select { font: inherit; }
 .hero-actions .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, .6); background: rgba(0, 0, 0, .35); }
 .hero-actions .btn-ghost:hover { border-color: #fff; background: rgba(0, 0, 0, .5); color: #fff; }
 
-.section-head { max-width: 720px; margin-bottom: var(--space-7); }
+.section-head { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
 .section-head h2 { margin-bottom: var(--space-3); }
-.section-head p { color: var(--color-text-2); font-size: 1.05rem; }
+.section-head p { color: var(--color-text-2); font-size: 1.05rem; margin-inline: auto; max-width: 65ch; }
 .trust-bar { background: var(--color-neutral-dark-2); color: var(--color-text-inv); }
 .trust-bar .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; padding: 32px 20px; }
 .trust-item { display: flex; gap: 12px; align-items: center; }
@@ -363,7 +363,7 @@ button, input, textarea, select { font: inherit; }
 .acc-btn { display: flex; align-items: center; justify-content: space-between; gap: 14px; cursor: pointer; padding: 18px 22px; font-weight: 600; font-family: var(--font-head); font-size: 1.02rem; background: none; border: 0; width: 100%; text-align: left; color: var(--color-text); }
 .faq-gruppe { margin-top: var(--space-7); }
 .faq-gruppen-titel { font-size: 1.35rem; margin-bottom: var(--space-3); }
-.faq-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-5); }
+.faq-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-5); justify-content: center; }
 .faq-nav a { font-size: .85rem; font-weight: 600; padding: 6px 12px; border: 1px solid var(--color-line); border-radius: 999px; color: var(--color-accent-hover); text-decoration: none; }
 .faq-nav a:hover { background: var(--color-bg-soft); }
 .acc-panel { padding: 0 22px 20px; color: var(--color-text-2); font-size: .95rem; }

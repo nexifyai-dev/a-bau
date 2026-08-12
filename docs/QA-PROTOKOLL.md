@@ -1062,3 +1062,24 @@
 **Gegentest (§5.4):** Negativ: 500/502 auf www = 0 nach Fix (200); noindex auf www = 0, auf Staging = 1 ✅ · Regression: Staging + alle 17 NeXifyAI-Tunnel-Hostnames unverändert (MERGE) ✅ · Datenintegrität: Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 43 — GO-LIVE)**
+
+---
+
+## Runde 44 (2026-08-12, Zentrierung ALLER Bereiche — Kunden-Screenshots)
+
+**Anlass:** Kunde: „diese Fehler sind alle nicht zentriert in diesen Bereichen und auch in den anderen der Seite" + 2 Screenshots (FAQ-Seite + Stadtteil-Detail).
+
+**Bildanalyse (2× Vision):** CTA-Band „Ihr Projekt in guten Händen" IST zentriert (beide Screenshots bestätigen). Die tatsächlich linksbündigen Bereiche: FAQ-Intro, Stadtteil-Detail-Buttons („Projekt in Geistenbeck anfragen"/„Alle Stadtteile"), Leistungs-Detail-Buttons, alle `.section-head`-Blöcke (Kicker/h2/Lead) auf allen Seiten + grüne Kundenmarkierung der Mobilnummer im Footer.
+
+| Befund/Fix | Status |
+|---|---|
+| **`.section-head` global linksbündig** (Kicker/h2/Lead + zugehörige Buttons) — betrifft ALLE Seiten (Home, Leistungen, Referenzen, Stadtteile, Über-uns, FAQ, Kontakt) | `.section-head { margin: 0 auto; text-align: center }` + `p { margin-inline: auto; max-width: 65ch }` (Zentrierung ohne Lesbarkeitsverlust) | ✅ live (www 200) |
+| **Detailseiten-Buttons links** („Projekt in Geistenbeck anfragen" etc.) | `hero-actions-center` auf stadtteile/[slug] + leistungen/[slug] | ✅ live |
+| **FAQ-Sprunganker-Nav links** | `.faq-nav { justify-content: center }` | ✅ live |
+| Footer | **Bewusst linksbündig (Spalten-Layout, Standard)** — Kontakt-Spalte bleibt Spalte; auf Wunsch (Kundenmarkierung Mobilnummer) kann die Kontakt-Spalte zentriert werden — Rückfrage in Antwort | ⚠️ Entscheidung Kunde |
+
+**E2E:** Build ✅ · www.a-bau.info 200 · section-head/faq-nav live · CSS byte-identisch · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok (www).
+
+**Gegentest (§5.4):** Negativ: section-head ohne center = 0 im CSS; hero-actions-mt-5 ohne center = 0 in [slug]-Seiten ✅ · Regression: CTA-Band unverändert zentriert; R13–R43 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 44)**
