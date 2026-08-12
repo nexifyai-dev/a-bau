@@ -67,6 +67,7 @@ def _resend_send(text: str, subject: str, to: str, reply_to: str) -> None:
 
 # --- Security-Header + noindex (Staging bis Kundenabnahme) ---
 HEADERS = {
+    "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "SAMEORIGIN",
     "Referrer-Policy": "strict-origin-when-cross-origin",
@@ -92,7 +93,9 @@ async def headers_mw(request: Request, call_next):
     # canonical zeigt bereits auf www — sauberer 301 statt Doppel-200)
     if host == "a-bau.info":
         q = f"?{request.url.query}" if request.url.query else ""
-        return RedirectResponse(f"https://www.a-bau.info{request.url.path}{q}", status_code=301)
+        r = RedirectResponse(f"https://www.a-bau.info{request.url.path}{q}", status_code=301)
+        r.headers.update(HEADERS)  # HSTS & Co. auch auf dem 301 (R55)
+        return r
     if host and "a-bau.info" in host:
         # R43: Starlette-MutableHeaders hat KEIN .pop() — 500 auf a-bau.info-Hosts (Bug R39)
         try:

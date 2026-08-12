@@ -1292,3 +1292,27 @@
 **Gegentest (§5.4):** Negativ: og:image URL löst live auf (kein 404) ✅ · Datenintegrität: Logo unverändert (360×355), Favicons unberührt ✅ · Regression: Home 200, Footer intakt, Chat/Kontakt unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 54)**
+
+
+---
+
+## Runde 55 (2026-08-12, Security/SEO: HSTS-Root-Cause, hreflang-Sitemap, Server-Prozess-Diagnose)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen."
+
+| Befund/Fix | Status |
+|---|---|
+| **P1-Root-Cause HSTS fehlte live:** Der Server-Prozess lief SEIT R51 mit Alt-Code (R52–R55-Patches nie geladen). Ursache: `pkill -f 'chat.server'` matcht die echte Cmdline `python3 chat/server.py` NICHT (Punkt vs. Slash) → alte Prozesse überlebten jeden Restart; uvicorn-Neustarts crashten mit „address already in use" (Log nur Traceback). Fix: Prozess per `/proc`-Scan + `kill <pid>` beendet, Neustart via `start-abau.sh`, **HSTS jetzt live** (Origin + Apex-301 + www: `max-age=15552000; includeSubDomains`) | ✅ live |
+| **HSTS im Origin verankert** (server.py HEADERS + Apex-301-Response via `r.headers.update(HEADERS)`) — unabhängig von CF-Einstellungen; CF leitet durch (Staging zeigt zusätzlich CF-eigenes preload) | ✅ |
+| **hreflang fehlte komplett** (HTML 0 + Sitemap 0 — R42-„hreflang live"-Notiz widerlegt; Next-Statik-Export rendert `alternates.languages` nicht ins HTML). Fix: **Sitemap-Weg** (Google unterstützt hreflang in Sitemap): `sitemap.ts` mit `alternates.languages` (de + x-default) je URL → 44 xhtml:link in Live-Sitemap (22 URLs) | ✅ live |
+| **TTFB-Entwarnung:** Origin statisch 2,9 ms (output:export); Live via HTTP/2 38–67 ms; 1,5 s-Wert = HTTP/1.1-Kaltstart-Artefakt | ✅ kein Fix |
+| **clients-Spiegel `/workspace/nexifyai/clients/abau/`** = ALTSTAND (Aug 11, ohne R52+): nur repo läuft live; Spiegel für Host-Apply/GitLab — Hinweis dokumentiert (kein Live-Betrieb daraus) | 📝 |
+| **Öffnungszeiten-JSON-LD vollständig** (Fri/Sat/07:00) · Impressum §5 DDG vollständig (Firma/Adresse/Kontakt/E-Mail/HRB/USt-Id/GF/HWK/HwO) · 404 mit Security-Headern · CSP/nosniff/X-Frame/referrer/Permissions-Policy intakt | ✅ kein Fix |
+
+**E2E:** Sitemap 44 hreflang + 22 URLs · Chat 200 (neuer Prozess) · Formular 202 queued · Queue 2 echte unangetastet · QUALITY-CHECK OK (exit 0) · HSTS live (Origin/301/www) · W3C-Produktion 0 Fehler (R54).
+
+**Gegentest (§5.4):** Negativ: Kill → health failt (Beweis Prozess-Identität) ✅ · Doppelstart → addrinuse sauber abgefangen, kein Doppel-Listener ✅ · Datenintegrität: Queue 2 echte Einträge ✅ · Regression: Chat/Routen/Formular/Quality ok ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 55)**
+
+**Betriebs-Lektion (ins Handbuch):** Server-Restart IMMER `pkill -f 'chat/server.py'` (Slash-Muster) bzw. PID via `/proc`-Scan; danach `bash /tmp/start-abau.sh`; Verifikation: `curl -s -D- -o/dev/null -H 'Host: www.a-bau.info' http://127.0.0.1:8095/ | grep -i strict-transport` (HSTS = Beweis für frischen Code). NIE uvicorn-Modul-Doppelstart (`uvicorn chat.server:app` → addrinuse).

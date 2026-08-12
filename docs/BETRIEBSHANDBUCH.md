@@ -125,3 +125,14 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 - **Nachversand:** `/app/venv/bin/python3 chat/flush_contact_queue.py` (Resend zuerst; fehlgeschlagene bleiben in Queue; Exit 0 = alles versendet, 2 = teils/ganz fehlgeschlagen).
 - **Keine Secrets in Logs/Code:** Key nur via `_secret()`, nie ausgeben.
 - **Fehlerbilder:** 403 = Domain nicht verifiziert / Key falsch · 429 = Rate-Limit (Log `[contact-resend-error]`, Fallback übernimmt).
+
+## Server-Neustart (R55-Lektion — Restart-Tooling)
+
+- **Kill:** `pkill -f 'chat/server.py'` (SLASH-Muster! `chat.server` matcht nicht) oder PID via
+  `for p in /proc/[0-9]*; do tr '\0' ' ' < $p/cmdline 2>/dev/null | grep -q '[c]hat/server.py' && echo $p; done`
+  → `kill <pid>`; health muss FAILEN (Beweis).
+- **Start:** `bash /tmp/start-abau.sh` (setsid, loggt nach /tmp/abau-server.log).
+- **Beweis frischer Code:** `curl -s -D- -o /dev/null -H 'Host: www.a-bau.info' http://127.0.0.1:8095/ | grep -i strict-transport`
+  (HSTS existiert erst seit R55 — fehlt er, läuft ein Alt-Prozess).
+- **NICHT:** `uvicorn chat.server:app` parallel starten → address already in use; Doppelstart vermeiden (Race).
+- clients-Spiegel `/workspace/nexifyai/clients/abau/` ist KEIN Live-Pfad (Altstand); nur Repo `/workspace/nexifyai/repos/a-bau` wird betrieben.

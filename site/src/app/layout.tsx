@@ -46,6 +46,9 @@ export const metadata: Metadata = {
   applicationName: "A-Bau Meisterbetrieb",
   authors: [{ name: "A-Bau Meisterbetrieb GmbH", url: `${SITE_URL}` }],
   metadataBase: new URL(`${SITE_URL}`),
+  alternates: {
+    languages: { de: `${SITE_URL}/`, "x-default": `${SITE_URL}/` },
+  },
   openGraph: {
     type: "website",
     locale: "de_DE",
