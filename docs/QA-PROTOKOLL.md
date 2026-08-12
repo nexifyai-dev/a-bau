@@ -393,3 +393,23 @@
 **GEGENTEST BESTANDEN (2026-08-12, Runde 12)**
 
 **Nachtrag Runde 12b (2026-08-12, Kunde meldete gleiche Punkte erneut):** Live-IST war bereits korrekt (cf-cache DYNAMIC, no-cache, alle Regeln E3) — Restproblem: Hover-Wechsel `#008035`→`#009A44` praktisch unsichtbar. Fix: neuer Token `--color-cta-hover-bright: #00A64A` (deutlich helleres Grün, weiß 3.18:1, UI-konform; ADR-003-Token-Pflicht) für `.nav-cta:hover`/`.drawer-cta:hover`; `.section-dark p { text-align: center }` explizit (bulletproof gegen Vererbung). Live: neuer CSS-Chunk `2-n_65pvq1ygj.css` byte-identisch, alle 5 Seiten `container text-center` + `hero-actions-center` E3, Chat `/health` ok, Route-Smoke alle OK. Committet (s.u.). Kunde: Hard-Refresh Strg+F5.
+
+---
+
+## Runde 13 (2026-08-12, Punkt-für-Punkt-Prüfung Gesamtauftrag A–D inkl. Chat)
+
+**Anlass:** Pascal-Auftrag „Prüfe Punkt für Punkt gegen den Auftrag. Beziehe den Chat ein und fixe." — Kontroll-Audit gegen Auftrag (1244 Z.) + AUDIT-MATRIX-RUNDE11; Fokus: Chat (A.29), Floating UI (A.9/D.5), Hover-Token (B.8), Datenschutz (A.39).
+
+| Befund/Fix | Status |
+|---|---|
+| Chat-Button + -Fenster `z-index: 9999` hardcoded → über Cookie-Banner (90) + Lightbox (80) — Verstoß A.9/D.5 | Token `--z-chat: 70` (z-Skala: Drawer 60 < Chat 70 < Lightbox 80 < Cookie 90) | ✅ live |
+| Chat ohne Safe-Area-Insets (iOS Notch/Home-Indicator) — D.5 | `env(safe-area-inset-right/bottom)` auf `.abau-chat-btn`/`.abau-chat-win`, Basis + Media-Query ≤480px | ✅ live |
+| Hover-Farben hardcoded: `.abau-chat-btn:hover #007a37`, `.abau-chat-send:hover #007a37`, `.abau-chat-dsgvo a:hover #007a37` — B.8/ADR-003 | Alle auf `var(--color-cta-hover)` / `var(--color-cta-hover-bright)`; `#007a37` = 0 Treffer im CSS | ✅ live |
+| Chat-Datenschutz (A.39/A.29) | §6 KI-Assistent live vorhanden (Art. 50, AV, keine Speicherung, Art. 6 lit. f) — kein Fix nötig | ✅ live |
+| A.29 Chat-E2E | Knowledge-Boundary (Pizza-Frage → höflicher Überfragt-Fallback), Prompt-Injection abgewehrt („Das kann ich nicht tun…"), Rate-Limit 18×200 → 429, /health ok, Server stabil nach 21 Calls | ✅ live (E3) |
+
+**E2E:** Build ✅ · CSS byte-identisch live vs out/ (Chunk `1n4luno18zmfs.css`, cmp=0) · Live-HTML == Build (nur CF-Mail-Obfuscation) · Route-Smoke ✅ · /angebot 301 ✅ · FAQ 28 acc-items ✅ · Referenzen 2 Videos mit Poster ✅ · H1 korrekt ✅ · /health `{"status":"ok","chat":true,"kb":true}` ✅.
+
+**Gegentest (§5.4):** Negativ: `#007a37` 0 Treffer, `9999` nur in Skip-Link/Honeypot (legitime visually-hidden-Technik, kein z-index-Problem) ✅ · Regression: Chat-API, Datenschutz §6, Routen, Hover-CTA R12b unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 13)**
