@@ -60,3 +60,25 @@ Altbau-Erhaltung (Restauration historisch) · Gesundheitsbau-Projekt · Raumgest
 7. Logo als SVG/Hochauflösend (nur PNG vorhanden, Transparent)
 8. Google-Business-Profile: Anspruch + Rezensionsmanagement (P2-Empfehlung)
 9. Bestätigung Öffnungszeiten (11880-Stand als Basis)
+
+---
+
+# UPDATE 2026-08-12 (Runde 47, GO-LIVE-Stand)
+
+## Inzwischen im Projekt umgesetzt / geklärt
+| Punkt | Status |
+|---|---|
+| Website-Zeile | **GO-LIVE: https://www.a-bau.info** (Apex + www, Cloudflare; Staging a-bau.nexifyai.cloud noindex) — Alt-Hosting (IONOS 217.160.0.24) abgelöst |
+| USt-IdNr. (Impressum-Pflicht) | **DE327030612** — im Impressum + JSON-LD (Quelle: Kunden-/Projektbestätigung R11; NorthData zeigte sie nicht) |
+| Handwerkskammer | **HWK Düsseldorf, Betriebsnummer 1841351** — im Impressum (HwO-Referenz); Meisterbrief-Nachweis weiterhin Kunde |
+| Telefon-Hauptnummer | **Entscheidung dokumentiert: beide Nummern aktiv** — Festnetz +49 2166 9925056 (Haupt, 11880-bestätigt) + Mobil +49 162 1815229; tel:-Links auf allen Seiten; Öffnungsstatus nutzt Festnetz |
+| Öffnungszeiten | 11880-Basis (04.07.2026) im System: Mo–Do 8–17, Fr 7–17, Sa 8–13, So zu (Berlin-Zeitzone, 12-Fälle-Test) |
+| E-Mail | kontakt@a-bau.info (aktiv); e.pfeiffer@a-bau.de tot (a-bau.de NXDOMAIN) — nur aktive Adresse im Einsatz |
+| Register | HRB 18836, EUID, GF Albert Pfeiffer, Stammkapital 25.000 €, Register-Gegenstand — wie oben (E3) |
+
+## Nach wie vor OFFEN (Kunde)
+1. Echte Referenzprojekte je Kategorie (Ort, Jahr, Umfang) — Portale 2026-08-12 nicht abrufbar (11880-URL 404, Cylex Anti-Bot, Such-Backend leer) → ehrlich dokumentiert, keine erfundenen Daten
+2. Firmengeschichte-Details (Mitarbeiterzahl, Fuhrpark)
+3. Logo als SVG/hochauflösend (nur PNG 360×355 vorhanden)
+4. Google-Business: Profil-Anspruch + Rezensionsmanagement (ProvenExpert-Profil unbeansprucht)
+5. Anwaltliche Rechtstext-Endprüfung (Impressum/Datenschutz/AGB/Nutzung)
