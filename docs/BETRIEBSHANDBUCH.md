@@ -50,7 +50,8 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 | Symptom | Ursache/Fix |
 |---|---|
 | Site 502/404 über Domain | Tunnel-Ingress/DNS prüfen (obige API-Schritte); `server: cloudflare`-Header checken |
-| /health nicht ok | Prozess tot → Watchdog startet; manuell: Skript `/root/.hermes/scripts/abau-healthcheck.sh` |
+| /health nicht ok | Prozess tot → manuell: Start-Kommando oben (kein Watchdog aktiv, s. Betrieb) |
+| **Chat 401 (LLM-Fallback)** | **Host-Key-Drift:** Host-`/root/.hermes/.env` + `/root/.hermes/hermes.env` haben alten `CUSTOM_API_KEY` (9Router-Rotation nicht gespiegelt). Fix (Host, root): `CUSTOM_API_KEY` = aktueller Key aus `/etc/nexifyai/secrets.env` in beide Dateien eintragen, dann abau-Server neu starten. Danach: `curl -X POST https://a-bau.nexifyai.cloud/api/chat -d '{"message":"test"}'` → echte Antwort statt `401`. Container-seitiger `.env`-Pfad `/home/hermeswebui/.hermes/.env` ist für Host-Prozesse ggf. nicht sichtbar (eigenes Container-Home). |
 | Chat 503 | 9Router down (curl 127.0.0.1:20128/v1/models) oder KB fehlt → `python3 chat/ingest.py` |
 | Formular 502 | Hostinger-SMTP-Creds in hermes.env (SMTP_*) prüfen; nie Resend verwenden (send.nexifyai.cloud = NXDOMAIN) |
 | DNS-Propagation | DoH: `curl -H "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=a-bau.nexifyai.cloud&type=CNAME"` |
