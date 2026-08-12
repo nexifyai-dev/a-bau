@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """A-Bau Website-Service: statische Site + /api/chat (9Router-LLM + FTS5-RAG) + /api/contact (Hostinger-SMTP).
-Ein Dienst, ein Port. Läuft auf VPS (127.0.0.1:8091), Tunnel-Route a-bau.nexifyai.cloud -> hier.
+Ein Dienst, ein Port. Läuft auf VPS (127.0.0.1:8095). Tunnel-Routen: a-bau.nexifyai.cloud (Staging, noindex) + www.a-bau.info/a-bau.info (Produktion, R42).
 Retrieval: SQLite FTS5 (BM25) über Website-Wissen — lokal, DSGVO-sauber, keine externen Embeddings.
 Upstage final entfernt (Pascal 2026-08-10) — kein externer Embedding-Provider systemweit."""
 import asyncio, json, os, re, smtplib, sqlite3, time, urllib.request
@@ -73,7 +73,7 @@ async def headers_mw(request: Request, call_next):
     resp = await call_next(request)
     resp.headers.update(HEADERS)
     # Go-Live (R39): Produktions-Hostnames (a-bau.info/www) indexierbar,
-    # Staging (a-bau.nexifyai.cloud) bleibt noindex — sonst indexiert Google die Staging-URL.
+    # Staging (a-bau.nexifyai.cloud) bleibt noindex; Produktion = www.a-bau.info (indexierbar) — sonst indexiert Google die Staging-URL.
     host = (request.headers.get("host") or "").lower()
     if host and "a-bau.info" in host:
         resp.headers.pop("X-Robots-Tag", None)
@@ -247,7 +247,7 @@ async def contact(req: Request):
     if not name or not nachricht or not body.get("einwilligung"):
         return JSONResponse({"error": "Bitte Pflichtfelder ausfüllen (Name, E-Mail, Nachricht, Einwilligung)."}, status_code=400)
     if len(nachricht) > 4000: return JSONResponse({"error": "Nachricht zu lang."}, status_code=400)
-    text = f"Neue Anfrage über a-bau.nexifyai.cloud\n\nName: {name}\nE-Mail: {email}\nTelefon: {tel}\n\nNachricht:\n{nachricht}\n\n-- Kontaktformular A-Bau Website (DSGVO: Einwilligung erteilt)"
+    text = f"Neue Anfrage über www.a-bau.info\n\nName: {name}\nE-Mail: {email}\nTelefon: {tel}\n\nNachricht:\n{nachricht}\n\n-- Kontaktformular A-Bau Website (DSGVO: Einwilligung erteilt)"
     m = MIMEText(text, "plain", "utf-8")
     m["Subject"] = f"Anfrage von {name} – a-bau Website"
     m["From"] = CONTACT_FROM

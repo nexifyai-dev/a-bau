@@ -4,7 +4,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Cookie-Richtlinie – A-Bau",
   description:
-    "Cookie-Richtlinie der Website a-bau.nexifyai.cloud – TDDDG § 25-konform, keine Tracking-Cookies ohne Einwilligung.",
+    "Cookie-Richtlinie der Website www.a-bau.info – TDDDG § 25-konform, keine Tracking-Cookies ohne Einwilligung.",
   alternates: {
     canonical: "/cookie-richtlinie/",
     languages: {

@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Datenschutz – A-Bau",
-  description: "Datenschutzerklärung der Website a-bau.nexifyai.cloud – Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.",
+  description: "Datenschutzerklärung der Website www.a-bau.info – Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.",
   alternates: { canonical: "/datenschutz/", languages: { de: `${SITE_URL}/datenschutz/`, "x-default": `${SITE_URL}/datenschutz/` } },
   robots: { index: false, follow: false },
 };

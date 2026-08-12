@@ -4,7 +4,7 @@
 
 ## 1. Geltungsbereich
 
-Diese Nutzungsbedingungen regeln die Nutzung der Website https://a-bau.nexifyai.cloud der A-Bau Meisterbetrieb GmbH, Luisental 69, 41199 Mönchengladbach (nachfolgend „wir" oder „A-Bau"). Mit dem Aufruf der Website und der Nutzung ihrer Inhalte und Funktionen akzeptieren Sie diese Nutzungsbedingungen. Soweit gesetzliche Vorschriften zwingend etwas anderes bestimmen, gehen diese vor.
+Diese Nutzungsbedingungen regeln die Nutzung der Website https://www.a-bau.info der A-Bau Meisterbetrieb GmbH, Luisental 69, 41199 Mönchengladbach (nachfolgend „wir" oder „A-Bau"). Mit dem Aufruf der Website und der Nutzung ihrer Inhalte und Funktionen akzeptieren Sie diese Nutzungsbedingungen. Soweit gesetzliche Vorschriften zwingend etwas anderes bestimmen, gehen diese vor.
 
 ## 2. Inhalt der Website
 

@@ -1,4 +1,4 @@
 // Zentrale Site-URL (C.8: EINE Quelle für Domain-Referenzen in SEO-Metadaten,
-// JSON-LD, Sitemap, robots). GO-LIVE a-bau.info: hier auf die Produktions-URL
-// ändern (z. B. "https://www.a-bau.info") + Build/Restart — alle Bereiche ziehen mit.
-export const SITE_URL = "https://a-bau.nexifyai.cloud";
+// JSON-LD, Sitemap, robots). GO-LIVE (R42): Produktions-URL www.a-bau.info —
+// Staging (a-bau.nexifyai.cloud) bleibt erreichbar, ist aber noindex (server.py, host-basiert).
+export const SITE_URL = "https://www.a-bau.info";

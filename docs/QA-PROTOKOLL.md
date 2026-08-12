@@ -1022,3 +1022,23 @@
 **GEGENTEST BESTANDEN (2026-08-12, Runde 41)**
 
 **R41-Nachtrag:** Body-Größenlimit für API ergänzt (Middleware: `/api/*` POST/PUT/PATCH mit Content-Length > 64 KB → **413**; Starlette/FastAPI haben kein Default-Limit — 100-MB-JSON wurde vorher komplett geparst). E3: 70-KB-Body → 413, normal → 202, Queue 0.
+
+---
+
+## Runde 42 (2026-08-12, GO-LIVE-Umstellung: Domain www.a-bau.info)
+
+**Anlass:** Kunden-Freigabe „Die Seite muss auf https://www.a-bau.info/ und nicht mehr auf a-bau.nexifyai.cloud" — Domain liegt bei Cloudflare.
+
+| Änderung | Status |
+|---|---|
+| `SITE_URL` → `https://www.a-bau.info` (site.ts) | canonical, hreflang, JSON-LD @id/item/url, robots-Sitemap, sitemap.xml, og:image (metadataBase) — **alle live auf www.a-bau.info** (E3) | ✅ |
+| Domain-Textreste (Cookie-/Datenschutz-Description, Nutzungsbedingungen, Mail-Texte server.py + flush) | → www.a-bau.info | ✅ |
+| **KB: alte Domain in 1 Chunk** (site.yaml-Wert vor R32-Kommentar) | Re-Ingest → 0 Erwähnungen, 71 Chunks | ✅ |
+| Staging (a-bau.nexifyai.cloud) | Bleibt erreichbar + noindex (host-basiert) — Google indexiert nur www.a-bau.info | ✅ |
+| **www.a-bau.info live?** | **Weiterhin 404 vom Tunnel-Catch-All — Public-Hostname-Route fehlt im Tunnel (einziger offener Punkt, Kunde/Dashboard)**; TLS ok (CN=a-bau.info, Verify 0), DNS ok | ⚠️ Kunde (1 Klick) |
+
+**E2E:** Build ✅ · Alle Domain-Metadaten live www (canonical/@id/og/sitemap/robots/hreflang) · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok · Chat ok.
+
+**Gegentest (§5.4):** Negativ: `a-bau.nexifyai.cloud` in canonical/@id/sitemap/robots = 0; alte Domain im KB = 0 ✅ · Regression: Staging-Erreichbarkeit/noindex unverändert ✅ · Datenintegrität: KB 71 Chunks konsistent, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 42)**

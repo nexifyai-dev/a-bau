@@ -32,7 +32,7 @@ def main() -> int:
                 d = json.loads(ln)
                 # A.38: CRLF defensiv strippen (alte Queue-Einträge vor R19-Fix)
                 name_clean = re.sub(r"[\r\n]+", " ", str(d.get("name", "")))
-                text = (f"Neue Anfrage über a-bau.nexifyai.cloud\n\nName: {name_clean}\n"
+                text = (f"Neue Anfrage über www.a-bau.info\n\nName: {name_clean}\n"
                         f"E-Mail: {d.get('email','')}\nTelefon: {d.get('telefon','')}\n\n"
                         f"Nachricht:\n{d.get('nachricht','')}\n\n"
                         f"-- Kontaktformular A-Bau Website (DSGVO: Einwilligung erteilt, Queue-Nachversand)")
