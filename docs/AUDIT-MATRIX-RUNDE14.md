@@ -198,3 +198,16 @@
 **Verifiziert ohne Fix:** HTTP→301, www fehlt bewusst, Lightbox-Alts (Basis + n/N), 22/22 Sitemap-URLs 200, 42 Assets ok (Umlaut-Artefakt 3× ausgeräumt), OG logo.png konsistent (B.25), Log-Scan sauber (nur erwartete, gefangene Fehler), Chat-Final ehrlich (Kosten-Frage ohne Fake-Preis).
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung.
+
+---
+
+# NACHTRAG RUNDE 23 (2026-08-12) — Betriebs-Versprechen vs. Realität
+
+**Neu behoben:**
+- **DSGVO-Log-Aufbewahrung (C.12/§12):** dokumentierte 7-Tage-Löschung existierte real nicht → Cron-Job `abau-log-cleanup` (täglich 03:00, no_agent) + Script angelegt; Betriebshandbuch aktualisiert.
+- **Chat-UX (B.5):** `maxLength={500}` am Chat-Input (Server-Limit) statt 400-Fehler.
+- **Betriebshandbuch-Sync (C.18):** FAQ-Kanon (content/ + Sync-Schritt), Rechtstexte inkl. AGB/Nutzungsbedingungen.
+
+**Verifiziert:** Injection-Gegentest nach KB-Update (abgewehrt, 0 Leaks, E3), Watchdog aktiv.
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung.

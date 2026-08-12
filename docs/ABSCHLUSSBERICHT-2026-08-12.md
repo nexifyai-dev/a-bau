@@ -168,3 +168,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 22
 
 **Repo main:** `1778e81` · Behoben: Drawer aria-current (D.4), route-check-Abdeckung. Verifiziert: 22/22 Routen, 42 Assets, Redirects, Lightbox-Alts, OG, Logs, Chat. Restpunkte unverändert.
+
+# NACHTRAG RUNDE 23
+
+**Repo main:** `587adca` · Behoben: Log-Cleanup-Cron (DSGVO, war nur dokumentiert), Chat-Input maxLength, Betriebshandbuch-Sync. Verifiziert: Injection-Gegentest E3, Watchdog. Restpunkte unverändert.
