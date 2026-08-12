@@ -175,3 +175,18 @@
 - **GEGENTEST BESTANDEN** (§5.4): Sitemap-Sweep aus anderer Richtung (alle URLs statt Stichprobe),
   Chat-Negativ (leer → 400), Regression WhatsApp 3000 / Website 8880 / 9Router 20128 / Studienkolleg 8001.
 - **Live-Stand**: main `6fcc210`.
+
+### Chat-Stabilisierung Runde 4 (2026-08-12, final)
+
+- **Root Cause Chat-401 + Server-Kills**: `_secret()` nahm die ERSTE passende Zeile der .env
+  (`DEEPSEEK_API_KEY` steht vor `CUSTOM_API_KEY`) → Direkt-Key → 401; Folge war ein hängender
+  Event-Loop (sync urllib/sqlite im async-Handler) und Prozess-Kills. Fixes:
+  1. `_secret`: Namens-Reihenfolge (CUSTOM_API_KEY gewinnt) — **401 weg**
+  2. `asyncio.to_thread` für retrieve/LLM/SMTP — Event-Loop bleibt bedienbar
+  3. SQLite WAL + busy_timeout 10s, LLM-Timeout 30s, `reasoning_effort: high`
+  4. Firmen-Basisdaten (Adresse/Tel/Öffnungszeiten/HRB/USt) in den System-Prompt — Adress-/
+     Öffnungszeiten-Fragen beantwortet der Chat zuverlässig ohne Retrieval-Treffer
+  5. Synonym-Erweiterung im Retrieval zurückgenommen (verursachte Hänger im Server-Kontext)
+- **E2E live (Domain)**: Adresse 2,5s ✅, Öffnungszeiten 2,8s ✅, Server stabil nach Requests ✅
+- **GEGENTEST BESTANDEN**: Server überlebt Chat-Requests (vorher: Kill), 401 weg, Antworten mit Quellen.
+- **Betriebshandbuch**: Troubleshooting 401-Fall auf Root Cause + Start via setsid aktualisiert.
