@@ -274,3 +274,15 @@
 **Neu geprüft:** PSI-API getestet (429 key-los, Tageskontingent) → **A.33/D.9-Messweg konkret dokumentiert: Google-API-Key + pagespeedonline/v5 (mobile+desktop)**; TTFB-Reihe 37–413 ms (Container, kein Befund); Cookie-Richtlinie voll gelesen (TDDDG-konform); 404-W3C 0 Fehler.
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung (final extern) · echte CWV-Messung (PSI-Key) + Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung · Feiertags-Logik · a-bau.info Tunnel-Route (2-min-Dashboard-Schritt).
+
+---
+
+# NACHTRAG RUNDE 43–45 (2026-08-12) — GO-LIVE + Wissen gesichert
+
+**GO-LIVE (R43, E3):** Tunnel-Ingress per CF-API erweitert (MERGE: 20 Einträge, 17 NeXifyAI-Infra unverändert), R39-`MutableHeaders.pop()`-Bug gefixt (500 nur auf a-bau.info-Hosts), Produktion `https://www.a-bau.info` + Apex 200, Chat + Formular (202) über Produktion, Staging bleibt noindex.
+
+**R44:** Zentrierung aller Bereiche (section-head global center, Detail-Buttons, FAQ-Nav) — CTA-Band war bereits zentriert (Bildanalyse). Footer bewusst Spalten-links (Rückfrage offen).
+
+**R45:** Produktions-Verify (robots, sitemap 22 mit www-URLs, manifest-Icons, Chat, W3C www 0 Fehler), README/Abschlussbericht/Matrix auf GO-LIVE-Status, Skills + AgentMemory aktualisiert.
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung (Host-Creds; Queue 0, flush bereit) · CWV-Messung (PSI-Key) + reale Gerätematrix (20 System-Libs, kein Root) · Kundendaten (Tel-Variante, Referenz-Metadaten, Logo-SVG, anwaltliche Rechtstext-Endprüfung Launch-Checkliste 2.1–2.5) · Brain NXDOMAIN (Ersatz: Repo + AgentMemory + Skills) · 9Router-Standort (Drittland-Garantie final) · Feiertags-Logik Öffnungsstatus · CF-Token-Rotation (waren im Chat).
