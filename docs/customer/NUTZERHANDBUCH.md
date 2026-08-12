@@ -31,8 +31,13 @@ Rechtstexte: `content/impressum.md`, `content/datenschutz.md` (nach Änderung an
 2. Build + Push (siehe Deployment). Chat-Wissen: `chat/ingest.py` ausführen, `chat/data/kb.db` committen.
 
 ## 5. Chat (KI-Assistent)
-Seit 2026-08-12 **entfernt** (Komponente, CSS, Datenschutz-Abschnitt). Backend `/api/chat` bleibt
-deaktiviert verfügbar. Wiedereinbau: ChatWidget-Komponente aus Git-Historie + Datenschutz-Abschnitt.
+**Aktiv seit 2026-08-12 (ADR-004).** Floating-Widget unten rechts („A-Bau KI-Assistent"), antwortet
+mit Live-KI (DeepSeek via 9Router) auf Basis des Website-Wissens (KB aus `chat/ingest.py`).
+Jede Antwort zeigt ihre Quellen („Quelle: …"). Bedienung: Klick öffnet/schließt, Enter sendet,
+Escape schließt. Datenschutz: Hinweis im Widget (Art. 50 EU AI Act) + Abschnitt 6 der
+Datenschutzerklärung; Nachrichten werden nicht gespeichert.
+Wartung: Chat-Wissen aktualisieren = `chat/ingest.py` ausführen + `chat/data/kb.db` committen +
+Server neu starten (siehe Deployment). Keine Konversationen-Protokollierung (stateless).
 
 ## 6. Deployment
 `git push origin main` deployt (Host-Tunnel → 127.0.0.1:8095). Server im Container:

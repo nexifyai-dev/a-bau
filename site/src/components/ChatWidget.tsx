@@ -11,6 +11,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 interface Msg {
   role: "user" | "assistant";
   text: string;
+  quellen?: string[];
+}
+
+/** Interne Quell-Namen (content/leistungen …) in verständliche Labels wandeln */
+function quellenLabel(q: string): string {
+  const part = q.split("/").pop() || q;
+  return part.charAt(0).toUpperCase() + part.slice(1);
 }
 
 export default function ChatWidget() {
@@ -35,20 +42,28 @@ export default function ChatWidget() {
     setError("");
     setMsgs((m) => [...m, { role: "user", text }]);
     setInput("");
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 35000); // B.42: Client-Timeout, sonst Busy-State ewig
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
+        signal: ctrl.signal,
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         throw new Error(data?.error || "Fehler bei der Kommunikation.");
       }
-      setMsgs((m) => [...m, { role: "assistant", text: data?.answer || "" }]);
+      setMsgs((m) => [...m, { role: "assistant", text: data?.answer || "", quellen: data?.quellen || [] }]);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Verbindungsproblem – bitte später erneut versuchen.");
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setError("Zeitüberschreitung – bitte erneut versuchen.");
+      } else {
+        setError(err instanceof Error ? err.message : "Verbindungsproblem – bitte später erneut versuchen.");
+      }
     } finally {
+      clearTimeout(timer);
       setBusy(false);
       inputRef.current?.focus();
     }
@@ -88,6 +103,11 @@ export default function ChatWidget() {
             {msgs.map((m, i) => (
               <div key={i} className={`abau-msg ${m.role === "user" ? "abau-msg-user" : "abau-msg-assistant"}`}>
                 {m.text}
+                {m.role === "assistant" && m.quellen && m.quellen.length > 0 && (
+                  <div className="abau-chat-quellen">
+                    Quelle: {m.quellen.map(quellenLabel).join(" · ")}
+                  </div>
+                )}
               </div>
             ))}
             {busy && <div className="abau-msg abau-msg-assistant">Schreibt…</div>}

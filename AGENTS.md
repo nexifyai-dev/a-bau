@@ -13,7 +13,9 @@
 3. Route-Smoke: `bash scripts/route-check.sh https://a-bau.nexifyai.cloud` (oder lokal 127.0.0.1:8095).
 4. Chat-Änderungen: Server-Neustart `setsid /app/venv/bin/python3 chat/server.py` + Live-Test
    `curl -X POST https://a-bau.nexifyai.cloud/api/chat -d '{"message":"test"}'`.
-5. QA-Protokoll + ggf. ADR aktualisieren (Code+Doku = ein Change, C.18).
+5. **Öffnungszeiten-Logik (`site/src/lib/kontakt.ts`, A.11): NIE ohne Test ändern** —
+   `node scripts/test-oeffnungszeiten.js` (12 Fälle, Berlin-Zeitzone) muss grün bleiben.
+6. QA-Protokoll + ggf. ADR aktualisieren (Code+Doku = ein Change, C.18).
 
 ## Verboten
 - Kein neuer Font/keine neue Farbe ohne `--font-*`/`--color-*`-Token (ADR-003).

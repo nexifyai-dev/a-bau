@@ -458,3 +458,26 @@
 **Gegentest (§5.4):** Negativ: Testfälle außerhalb Öffnungszeit (So, 18:00, 06:59, 13:00 Sa) → false; Wochentag-Kanten (Sa 12:59 offen/13:00 zu) ✓ · Regression: R12–R14-Fixes unverändert · Datenintegrität: keine Content-/KB-Änderung ✓.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 15)**
+
+---
+
+## Runde 16 (2026-08-12, Fortsetzung Tiefenprüfung — Chat-Client, Doku-Konsistenz, Restpunkte ehrlich)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: Chat-Client-Verhalten (A.29/B.42), Doku-Synchronität (C.14/C.16/C.18), Video/Referenz/Security-Live-Checks.
+
+| Befund/Fix | Status |
+|---|---|
+| **Chat-Client ohne Timeout:** `fetch` ohne AbortController → bei Server-Hänger Busy-State („Schreibt…") endlos (B.42) | `AbortController` + 35 s Client-Timeout, Meldung „Zeitüberschreitung – bitte erneut versuchen." | ✅ live |
+| **Quellen nie angezeigt:** Server liefert `quellen`, Widget zeigte nur `answer` — System-Prompt verspricht „Quellen werden separat angezeigt" (A.29 „welche Informationen Antworten abdecken") | Quellen-Zeile im Widget („Quelle: FAQ · Leistungen …", dezent, 11px) | ✅ live |
+| **Nutzerhandbuch widersprach Live-Stand (C.18):** „Chat seit 2026-08-12 entfernt … Wiedereinbau aus Git-Historie" — Chat ist seit R12 aktiv | §5 aktualisiert (live, Bedienung, Quellen, DSGVO, Wartung) | ✅ |
+| **AGENTS.md ohne Öffnungszeiten-Test-Pflicht (C.16/C.12)** | Pflicht-Schritt 5 ergänzt: `node scripts/test-oeffnungszeiten.js` vor Änderungen an `kontakt.ts` | ✅ |
+| Videos (A.8) live | preload=none + poster + title + mp4-Quellen mit Cache-Buster — verifiziert | ✅ kein Fix |
+| Referenzen-Metadaten (A.12) | YAML-Kommentar belegt: bewusst keine erfundenen Ort/Jahr-Daten (P0-Klärung Kunde) — konform | ✅ kein Fix |
+| Security-Header (A.38) | CSP, PP, RP, XCTO, XFO, HSTS, X-Robots alle live gesetzt | ✅ kein Fix |
+| SMTP im Container (B.40) | Erneut geprüft: **0 SMTP-Key-Namen** in allen Container-Quellen → Creds nur Host — Restpunkt bleibt (Queue schützt) | ⚠️ extern |
+
+**E2E:** Build ✅ · CSS byte-identisch · Quellen-Regel im Live-CSS · Chat-API liefert quellen (E3) · Öffnungszeiten-Test 12/12 · Route-Smoke ALLE OK · /health ok.
+
+**Gegentest (§5.4):** Negativ: Quellen-Regel nicht im SSR (korrekt client-seitig), kein „entfernt"-Text mehr im Nutzerhandbuch ✅ · Regression: Chat-Antworten, R13–R15-Fixes unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 16)**

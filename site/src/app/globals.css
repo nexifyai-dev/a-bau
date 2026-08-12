@@ -648,6 +648,12 @@ h3 { letter-spacing: -0.005em; }
   text-decoration: underline;
 }
 .abau-chat-dsgvo a:hover { color: var(--color-cta-hover); }
+.abau-chat-quellen {
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-text-3);
+}
 @media (max-width: 480px) {
   .abau-chat-btn { right: calc(14px + env(safe-area-inset-right)); bottom: calc(14px + env(safe-area-inset-bottom)); }
   .abau-chat-win { right: calc(14px + env(safe-area-inset-right)); bottom: calc(86px + env(safe-area-inset-bottom)); }
