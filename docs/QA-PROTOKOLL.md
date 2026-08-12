@@ -1580,3 +1580,24 @@
 **Gegentest (§5.4):** Negativ: http-200 (Befund reproduziert) · Positiv nach CF-Setting: erwartet 301 (Kundenpunkt) ✅ geplant · Datenintegrität: Queue ✅ · Regression: https-Pfad unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 67)**
+
+
+---
+
+## Runde 68 (2026-08-13, Reproduzierbarkeit: Ops-Skripte versioniert; CF-Beleg für HTTPS-Kundenpunkt)
+
+**Anlass:** „Weiter. Livebetrieb. Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **Reproduzierbarkeits-Lücke (§12) geschlossen:** Live-Ops-Skripte waren NUR im Container (`/tmp/start-abau.sh`, `~/.hermes/scripts/abau-{watchdog,quality-check,log-cleanup}.sh`) — bei Container-Neuaufbau verloren. Fix: **`scripts/ops/` im Repo** (4 Skripte als Kopie des Live-Stands + README mit Einsatzort-Zuordnung und Pflege-Regel „beide Stellen") | ✅ |
+| **Cron-Erstläufe stehen aus:** abau-log-cleanup 03:00 + abau-quality-check 04:10 (heute Nacht, mit node-Fix) — Ticker nachweislich aktiv (Watchdog-Läufe 01:22–01:33); Ergebnis nächste Runde prüfen | ⏳ laufend |
+| **CF-Recherche (Kundenpunkt-Härtung, belegt):** „Always Use HTTPS“ — offizielle Doku (developers.cloudflare.com, aktualisiert 27.04.2026): redirects http→https für alle Hosts, **verfügbar auf Free-Plan**, Aktivierung SSL/TLS Overview. **Empfehlung CF: keine Schema-Redirects am Origin (Loop-Risiko)** — unsere Host-301 (a-bau.info→www) ist host-basiert und bleibt korrekt; Schema-Redirect übernimmt CF | ✅ belegt |
+| **Handbuch:** HTTPS-Anleitung um CF-Empfehlung ergänzt (kein Origin-Schema-Redirect) | ✅ |
+| **Queue/Git:** 2 echte Einträge · origin 270f3ee · clean | ✅ |
+
+**E2E:** Ops-Skripte im Repo (4 Dateien + README) · Watchdog-Läufe aktiv · www 200 · QUALITY-CHECK OK (manuell).
+
+**Gegentest (§5.4):** Negativ: Skripte vorher nur im Container (Befund) → nachher versioniert (Fix) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Live-Skripte unverändert (Kopien) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 68)**

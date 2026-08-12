@@ -175,3 +175,5 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 - Fix (Kunde, nach CF-Token-Rotation): CF-Dashboard → Zone `a-bau.info` → **SSL/TLS → Edge Certificates → „Always Use HTTPS“ = ON**.
 - Verifikation danach: `curl -sI http://www.a-bau.info/ | head -1` → erwartet `301`/`308`; https bleibt 200.
 - Notiz: Origin kann den Redirect nicht erzwingen (TLS-Terminierung bei Cloudflare).
+
+- CF-Doku-Empfehlung (belegt 13.08.2026): **keine Schema-Redirects am Origin** (Loop-Risiko) — Schema-Redirect übernimmt „Always Use HTTPS“; unsere Host-301 (a-bau.info→www) ist davon unberührt.
