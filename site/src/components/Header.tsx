@@ -127,7 +127,7 @@ export default function Header() {
           <nav className="nav-desktop" aria-label="Hauptnavigation">
             <Link href="/" aria-current={isCurrent("/") ? "page" : undefined}>Start</Link>
             <div className="nav-dropdown" ref={ddLeistungenRef}>
-              <button type="button" aria-haspopup="true" aria-expanded={ddOpen === "leistungen"} aria-controls="dd-leistungen">Leistungen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6"/></svg></button>
+              <button type="button" aria-haspopup="true" aria-expanded={ddOpen === "leistungen"} aria-controls="dd-leistungen" onClick={() => setDdOpen(ddOpen === "leistungen" ? "" : "leistungen")}>Leistungen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6"/></svg></button>
               <div className="nav-dropdown-menu" id="dd-leistungen">
                 {LEISTUNGEN.map((l) => (
                   <Link key={l.href} href={l.href}>
@@ -138,7 +138,7 @@ export default function Header() {
               </div>
             </div>
             <div className="nav-dropdown" ref={ddStadtteileRef}>
-              <button type="button" aria-haspopup="true" aria-expanded={ddOpen === "stadtteile"} aria-controls="dd-stadtteile">Stadtteile <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6"/></svg></button>
+              <button type="button" aria-haspopup="true" aria-expanded={ddOpen === "stadtteile"} aria-controls="dd-stadtteile" onClick={() => setDdOpen(ddOpen === "stadtteile" ? "" : "stadtteile")}>Stadtteile <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6"/></svg></button>
               <div className="nav-dropdown-menu" id="dd-stadtteile">
                 <Link href="/stadtteile/"><span className="dd-title">Alle Stadtteile</span><span className="dd-sub">Überblick & Schwerpunkte</span></Link>
                 {STADTTEILE.map((s) => (

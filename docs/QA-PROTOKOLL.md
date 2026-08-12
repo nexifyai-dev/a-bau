@@ -1200,3 +1200,22 @@
 **Gegentest (§5.4):** Negativ: kein Kontrastpaar < 3:1 (außer dokumentierte UI-Ausnahme Button) ✅ · Regression: unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 50)**
+
+---
+
+## Runde 51 (2026-08-12, Proaktiv: Formular-E2E Produktion, br-Größen, Dropdown-Touch)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen."
+
+| Befund/Fix | Status |
+|---|---|
+| **Formular-E2E über Produktion (www):** Honeypot 200 · Invalid-Email 400 · Normal 202 — komplette Validierungsmatrix | ✅ kein Fix |
+| **Queue: 2 ECHTE Einträge gefunden** (keine @test.local-Mails; ts ~17:06/17:09 UTC — Formular-Submits nach Go-Live oder parallele Worker-Tests) | **NICHT gelöscht** (Datensicherung!); werden nach SMTP-Spiegelung via flush_contact_queue.py zugestellt; dokumentiert | ✅ (Daten sicher) |
+| **Transfergrößen (br) Produktion:** Home 12,5 KB · FAQ 29,5 KB · Referenzen 8,2 KB (≈80 % Ersparnis ggü. roh) | A.33-Doku-Wert | ✅ |
+| **Dropdown-Buttons ohne onClick (nur focus-basiert)** — auf Touch nicht robust (D.3: Tap-Äquivalent muss explizit sein); Escape/Tab-outside bleiben via focusout | `onClick`-Toggle an beiden Dropdown-Buttons (ddOpen-Zustand, aria-expanded bleibt synchron) | ✅ live |
+
+**E2E:** Build ✅ · www 200 · Staging 200 · QUALITY-CHECK OK (exit 0) · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12.
+
+**Gegentest (§5.4):** Negativ: kein Eintrag der echten Queue gelöscht (2 bleiben); Validierungsmatrix 200/400/202 korrekt ✅ · Regression: R13–R50 unverändert ✅ · Datenintegrität: Queue 2 echte Einträge intakt ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 51)**
