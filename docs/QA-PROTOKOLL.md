@@ -129,3 +129,15 @@
 **E2E-Gegentest (§5.4):** 404-Pfade → sauber; fehlende Assets → 404; Umlaut-Alt-Slug → 404 (durch ASCII-Slugs ersetzt); 12 Kernrouten live 200 + h1=1; Live-Hash-Abgleich mit lokalem Build identisch.
 
 **Offen (extern):** USt-IdNr./HWK (Kunde), anwaltliche Rechtstexte-Prüfung, Host-Key-Drift Chat-401 (Fix im Betriebshandbuch), a-bau.info-DNS.
+
+### Nachrüst-Runde 2 (2026-08-12, Google-Recherche integriert)
+
+| Finding | Fix | Status |
+|---|---|---|
+| P0: Leistungs-Detailseiten ohne Fließtext (`l.beschreibung` existiert nicht, YAML: `text:`) | `{l.beschreibung \|\| l.text}` | ✅ live |
+| P2: Fonts via @font-face ohne Preload; Outfit ungenutzt (0 Verwendungen) | `next/font/local` (auto-preload, hashed, font-display swap) + Outfit entfernt; Preloads live: 2 | ✅ live |
+| P2: Titel-Rest 66 Zeichen (HTML-`&amp;` zählt +4; gerendert 62) | Sanierung-Titel gekürzt | ✅ |
+| P2: Secret-Scan (sk-/key/password/token in site/src + chat) | 0 Treffer | ✅ |
+| Audit: aria-expanded (Drawer/Chat), Chat-503-Fallback mit Telefon, Formular-Reset + Status, Öffnungszeiten-Logik (Mo–Do 8–17, Fr 7–17, Sa 8–13, So zu), Kontakt-OSM-Karte, 404 „Hier wird gebaut", Consent nur notwendig (TDDDG § 25 Abs. 2), sitemap 20/20 URLs | — | ✅ |
+
+**Final-Sweep (E3):** 17/17 Routen (inkl. 404-Check), Fließtext live, keine broken Assets.
