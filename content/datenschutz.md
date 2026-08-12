@@ -21,13 +21,10 @@ Bei jedem Aufruf dieser Website erhebt unser Hosting-Anbieter automatisch techni
 ### b) Kontaktformular
 Wenn Sie uns über das Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben (Name, E-Mail-Adresse, Telefonnummer, Nachricht) zum Zweck der Bearbeitung der Anfrage verarbeitet. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen / Vertragserfüllung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung Ihrer Anfrage). Die Daten werden über unseren E-Mail-Anbieter (Hostinger International Ltd., Auftragsverarbeitung nach Art. 28 DSGVO) versendet und nach Abschluss der Bearbeitung gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
 
-### c) KI-Chatbot
-Diese Website bietet einen KI-gestützten Chatbot an, der Fragen zu unseren Leistungen und unserem Unternehmen beantwortet. Ihre Nachrichten werden ausschließlich zum Zweck der Beantwortung verarbeitet und an unseren KI-Dienstleister (NeXifyAI, Frankfurt am Main, Deutschland – Auftragsverarbeitung nach Art. 28 DSGVO) übermittelt. Die Antworten basieren ausschließlich auf den Inhalten dieser Website. Chat-Verläufe werden nicht für Profiling oder Werbung genutzt und nach spätestens 7 Tagen gelöscht. Bitte geben Sie im Chat keine sensiblen personenbezogenen Daten (z. B. Gesundheitsdaten) an. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer schnellen und qualifizierten Beantwortung Ihrer Anfragen).
-
-### d) Cookies
+### c) Cookies
 Diese Website setzt ausschließlich technisch notwendige Cookies bzw. Speicherungen ein (z. B. zur Speicherung Ihrer Cookie-Einstellung). Rechtsgrundlage: § 25 Abs. 2 Nr. 2 TDDDG / Art. 6 Abs. 1 lit. f DSGVO. Es werden keine Tracking-, Analyse- oder Marketing-Cookies gesetzt, solange Sie dem nicht ausdrücklich zustimmen. Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen (Einstellungen im Cookie-Banner).
 
-### e) Kartenmaterial
+### d) Kartenmaterial
 Auf der Kontaktseite binden wir eine Karte von OpenStreetMap (OSM) ein. Beim Laden der Karte wird Ihre IP-Adresse an die Server der OpenStreetMap Foundation übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer anschaulichen Darstellung unseres Standorts). Weitere Informationen: https://osmfoundation.org/wiki/Privacy_Policy. Die Karte wird erst nach Klick auf „Karte laden" eingebunden (Zwei-Klick-Lösung).
 
 ## 4. Weitergabe von Daten
