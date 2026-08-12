@@ -5,22 +5,14 @@ import { notFound } from "next/navigation";
 import { leistungen } from "@/lib/data";
 import { stadtteile } from "@/lib/data";
 import { KONTAKT, telHref } from "@/lib/kontakt";
+import { ld } from "@/lib/schema";
+import { LEISTUNGS_BILDER } from "@/lib/leistungs-bilder";
 
 function slugifyName(name: string) {
   return name.toLowerCase()
     .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
     .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
-
-const LEISTUNGS_BILDER: Record<string, string> = {
-  denkmalrestaurierung: "/assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp",
-  innenausbau: "/assets/innenausbau/b1b9855e-0abd-4906-b9f0-ecec14474c16.webp",
-  krankenhausbau: "/assets/krankenhaus/IMG_1414.webp",
-  schluesselfertigbau: "/assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp",
-  installationen: "/assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp",
-  sanierung: "/assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp",
-  transport: "/assets/sonstiges/PHOTO-2025-02-11-16-15-13.webp",
-};
 
 export function generateStaticParams() {
   return leistungen.leistungen.map((l: any) => ({ slug: l.slug || l.id }));
@@ -57,18 +49,18 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(schema) }} />
       <section className="section">
         <div className="container split">
           <div>
             <span className="kicker">Leistung</span>
             <h1>{l.titel}</h1>
-            <p className="lead">{l.subtitel}</p>
+            <p className="lead">{l.kurz || l.subtitel}</p>
             <p>{l.beschreibung || l.text}</p>
-            <ul style={{ listStyle: "none", padding: 0, margin: "16px 0 0", display: "grid", gap: 10 }}>
-              {l.punkte.map((p: string) => <li key={p}>✓ {p}</li>)}
+            <ul className="leistung-punkte">
+              {l.punkte.map((p: string) => <li key={p}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m5 13 4 4L19 7"/></svg>{p}</li>)}
             </ul>
-            <p style={{ marginTop: 16, fontSize: ".95rem" }}>
+            <p className="einsatzgebiete">
               <strong>Einsatzgebiete:</strong>{" "}
               {stadtteile.stadt.quartiere.slice(0, 3).map((q: any, i: number) => (
                 <span key={q.name}>
@@ -84,7 +76,7 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
           </div>
           <div className="media-frame">
             <Image
-              src={LEISTUNGS_BILDER[l.slug] ?? "/assets/sonstiges/FB_IMG_1731877209147.webp"}
+              src={LEISTUNGS_BILDER[(l.slug || l.id)] ?? "/assets/sonstiges/FB_IMG_1731877209147.webp"}
               alt={`${l.titel} – Projektbeispiel A-Bau Meisterbetrieb Mönchengladbach`}
               width={900}
               height={675}

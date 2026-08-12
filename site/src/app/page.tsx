@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { KONTAKT, telHref } from "@/lib/kontakt";
 import { leistungen, faq, referenzen, stadtteile } from "@/lib/data";
+import { ld } from "@/lib/schema";
+import { LEISTUNGS_BILDER } from "@/lib/leistungs-bilder";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/", languages: { de: "https://a-bau.nexifyai.cloud/", "x-default": "https://a-bau.nexifyai.cloud/" } },
@@ -54,23 +56,13 @@ const faqSchema = {
   })),
 };
 
-const LEISTUNGS_BILDER: Record<string, string> = {
-  denkmalrestaurierung: "/assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp",
-  innenausbau: "/assets/innenausbau/b1b9855e-0abd-4906-b9f0-ecec14474c16.webp",
-  krankenhausbau: "/assets/krankenhaus/IMG_1414.webp",
-  schluesselfertigbau: "/assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp",
-  installationen: "/assets/sonstiges/151e86b5-8c33-4ccd-be9d-4bc1cd222894.webp",
-  sanierung: "/assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp",
-  transport: "/assets/sonstiges/PHOTO-2025-02-11-16-15-13.webp",
-};
-
 const STADTTEILE_TEASER = stadtteile.stadt.quartiere.slice(0, 3);
 
 export default function Home() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(localBusinessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(faqSchema) }} />
 
       {/* HERO (GAG: Vollbild + Overlay + 2 Karten) */}
       <section className="hero" aria-label="Einführung">
@@ -259,9 +251,9 @@ export default function Home() {
           </div>
           <div className="accordion">
             {faq.faq.slice(0, 4).map((f: any) => (
-              <details key={f.frage} className="acc-item">
-                <summary className="acc-btn">{f.frage}<span className="chev">▾</span></summary>
-                <div className="acc-panel"><div className="acc-panel-inner">{f.antwort}</div></div>
+              <details key={f.f} className="acc-item">
+                <summary className="acc-btn">{f.f}<span className="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6"/></svg></span></summary>
+                <div className="acc-panel"><div className="acc-panel-inner">{f.a}</div></div>
               </details>
             ))}
           </div>

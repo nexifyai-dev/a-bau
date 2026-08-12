@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { referenzen } from "@/lib/data";
+import { ld } from "@/lib/schema";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/referenzen/", languages: { de: "https://a-bau.nexifyai.cloud/referenzen/", "x-default": "https://a-bau.nexifyai.cloud/referenzen/" } },
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 export default function Referenzen() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Referenzen", "item": "https://a-bau.nexifyai.cloud/referenzen/"}]}) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Referenzen", "item": "https://a-bau.nexifyai.cloud/referenzen/"}]}) }} />
       <section className="section">
         <div className="container">
           <div className="section-head">
@@ -26,7 +27,7 @@ export default function Referenzen() {
           </div>
 
           {referenzen.referenzen.map((r: any) => (
-            <div className="section" key={r.slug} id={r.slug} style={{ paddingTop: 0 }}>
+            <div className="section" key={r.slug || r.id} id={r.slug || r.id} style={{ paddingTop: 0 }}>
               <div className="section-head">
                 <span className="kicker">Referenz</span>
                 <h2>{r.titel}</h2>
@@ -58,7 +59,7 @@ export default function Referenzen() {
                 <video
                   controls
                   preload="metadata"
-                  poster="/assets/krankenhaus/IMG_1414.webp"
+                  poster={r.bilder[0] ? `/assets/${r.bilder[0]}` : "/assets/krankenhaus/IMG_1414.webp"}
                   style={{ width: "100%", maxWidth: 560, borderRadius: "var(--r-md)", marginTop: 16 }}
                   title={`Projektvideo ${r.titel}`}
                 >

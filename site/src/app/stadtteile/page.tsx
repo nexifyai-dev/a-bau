@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { stadtteile } from "@/lib/data";
+import { ld } from "@/lib/schema";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/stadtteile/", languages: { de: "https://a-bau.nexifyai.cloud/stadtteile/", "x-default": "https://a-bau.nexifyai.cloud/stadtteile/" } },
   title: "Stadtteile & Quartiere – A-Bau Mönchengladbach",
   description:
-    "A-Bau in Mönchengladbach: Denkmalrestaurierung, Sanierung und Neubau in allen Stadtteilen — Geistenbeck, Eicken, Rheydt, City und mehr.",
+    "A-Bau in Mönchengladbach: Denkmalrestaurierung, Sanierung und Neubau in allen Stadtteilen – Geistenbeck, Eicken, Rheydt, City und mehr.",
 };
 
 const schema = {
@@ -28,8 +29,8 @@ export default function Stadtteile() {
   const s = stadtteile.stadt;
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Stadtteile", "item": "https://a-bau.nexifyai.cloud/stadtteile/"}]}) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Stadtteile", "item": "https://a-bau.nexifyai.cloud/stadtteile/"}]}) }} />
       <section className="section">
         <div className="container">
           <div className="section-head">
@@ -55,7 +56,7 @@ export default function Stadtteile() {
             <span className="kicker">Stadt-Info</span>
             <h2>Aktuelle Baustellen &amp; Baumaßnahmen in Mönchengladbach</h2>
             <p>
-              Wir arbeiten im Kontext der Stadt — und verlinken Sie direkt zu den offiziellen Quellen.
+              Wir arbeiten im Kontext der Stadt – und verlinken Sie direkt zu den offiziellen Quellen.
               Alle Links sind extern und tagesaktuell.
             </p>
             <ul className="baustellen-links">
@@ -64,7 +65,7 @@ export default function Stadtteile() {
               ))}
             </ul>
             <p className="text-3 mt-4">
-              A-Bau übernimmt Bauvorhaben in allen Stadtteilen Mönchengladbachs — von Geistenbeck über
+              A-Bau übernimmt Bauvorhaben in allen Stadtteilen Mönchengladbachs – von Geistenbeck über
               Eicken bis Rheydt. Bei Fragen zu einem konkreten Projekt hilft das{" "}
               <Link href="/kontakt/">Kontaktformular</Link>.
             </p>

@@ -41,7 +41,7 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
             <h1>{q.name}</h1>
             <p className="lead">{q.text}</p>
             <p><strong>Schwerpunkt:</strong> {q.schwerpunkt}</p>
-            <p style={{ fontSize: ".95rem" }}>
+            <p className="einsatzgebiete">
               <strong>Passende Leistungen:</strong>{" "}
               {leistungen.leistungen.slice(0, 3).map((l: any, i: number) => (
                 <span key={l.id}>
@@ -58,7 +58,7 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
           <div className="media-frame">
             <Image
               src="/assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp"
-              alt={`${q.name} – A-Bau Meisterbetrieb Mönchengladbach`}
+              alt="Denkmalrestaurierung – Projektbeispiel A-Bau Meisterbetrieb Mönchengladbach"
               width={900}
               height={675}
               priority

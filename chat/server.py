@@ -233,7 +233,7 @@ async def health():
 if DIST.exists():
     _dist_root = str(DIST.resolve())
 
-    @app.get("/{path:path}", include_in_schema=False)
+    @app.api_route("/{path:path}", methods=["GET", "HEAD"], include_in_schema=False)
     async def spa(path: str):
         # Next.js-Output: .html-Dateien (out/), robots/sitemap als .body
         clean = path.strip("/")

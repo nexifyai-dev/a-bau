@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { KONTAKT, telHref, istGeoeffnet } from "@/lib/kontakt";
 
 const LEISTUNGEN = [
@@ -28,6 +28,29 @@ export default function Header() {
   const [offen, setOffen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [ddOpen, setDdOpen] = useState<"" | "leistungen" | "stadtteile">("");
+  const ddLeistungenRef = useRef<HTMLDivElement>(null);
+  const ddStadtteileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const bind = (ref: React.RefObject<HTMLDivElement | null>, name: "leistungen" | "stadtteile") => {
+      const el = ref.current;
+      if (!el) return;
+      const onFocusIn = () => setDdOpen(name);
+      const onFocusOut = (e: FocusEvent) => {
+        if (!el.contains(e.relatedTarget as Node)) setDdOpen("");
+      };
+      el.addEventListener("focusin", onFocusIn);
+      el.addEventListener("focusout", onFocusOut);
+      return () => {
+        el.removeEventListener("focusin", onFocusIn);
+        el.removeEventListener("focusout", onFocusOut);
+      };
+    };
+    const c1 = bind(ddLeistungenRef, "leistungen");
+    const c2 = bind(ddStadtteileRef, "stadtteile");
+    return () => { c1?.(); c2?.(); };
+  }, []);
 
   useEffect(() => {
     setOffen(istGeoeffnet());
@@ -47,14 +70,14 @@ export default function Header() {
   return (
     <>
       {/* Utility-Bar (GAG: dünn, dunkel) */}
-      <div className="utility-bar" role="banner">
+      <div className="utility-bar">
         <div className="container utility-inner">
           <div className="utility-left">
-            <a href="/leistungen/denkmalrestaurierung/">Restaurierung</a>
-            <a href="/leistungen/innenausbau/">Innenausbau</a>
-            <a href="/leistungen/krankenhausbau/">Krankenhausbau</a>
-            <a href="/leistungen/schluesselfertigbau/">Schlüsselfertigbau</a>
-            <a href="/stadtteile/">Stadtteile</a>
+            <Link href="/leistungen/denkmalrestaurierung/">Restaurierung</Link>
+            <Link href="/leistungen/innenausbau/">Innenausbau</Link>
+            <Link href="/leistungen/krankenhausbau/">Krankenhausbau</Link>
+            <Link href="/leistungen/schluesselfertigbau/">Schlüsselfertigbau</Link>
+            <Link href="/stadtteile/">Stadtteile</Link>
           </div>
           <div className="utility-right">
             <span className={`utility-status ${offen ? "open" : "closed"}`}>{offen ? "Geöffnet" : "Geschlossen"}</span>
@@ -76,9 +99,9 @@ export default function Header() {
 
           <nav className="nav-desktop" aria-label="Hauptnavigation">
             <Link href="/" aria-current={isCurrent("/") ? "page" : undefined}>Start</Link>
-            <div className="nav-dropdown">
-              <button type="button" aria-haspopup="true">Leistungen <span aria-hidden="true">▾</span></button>
-              <div className="nav-dropdown-menu">
+            <div className="nav-dropdown" ref={ddLeistungenRef}>
+              <button type="button" aria-haspopup="true" aria-expanded={ddOpen === "leistungen"} aria-controls="dd-leistungen">Leistungen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6"/></svg></button>
+              <div className="nav-dropdown-menu" id="dd-leistungen">
                 {LEISTUNGEN.map((l) => (
                   <Link key={l.href} href={l.href}>
                     <span className="dd-title">{l.title}</span>
@@ -87,9 +110,9 @@ export default function Header() {
                 ))}
               </div>
             </div>
-            <div className="nav-dropdown">
-              <button type="button" aria-haspopup="true">Stadtteile <span aria-hidden="true">▾</span></button>
-              <div className="nav-dropdown-menu">
+            <div className="nav-dropdown" ref={ddStadtteileRef}>
+              <button type="button" aria-haspopup="true" aria-expanded={ddOpen === "stadtteile"} aria-controls="dd-stadtteile">Stadtteile <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6"/></svg></button>
+              <div className="nav-dropdown-menu" id="dd-stadtteile">
                 <Link href="/stadtteile/"><span className="dd-title">Alle Stadtteile</span><span className="dd-sub">Überblick & Schwerpunkte</span></Link>
                 {STADTTEILE.map((s) => (
                   <Link key={s.href} href={s.href}>

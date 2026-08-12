@@ -2,22 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { leistungen } from "@/lib/data";
+import { ld } from "@/lib/schema";
+import { LEISTUNGS_BILDER } from "@/lib/leistungs-bilder";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/leistungen/", languages: { de: "https://a-bau.nexifyai.cloud/leistungen/", "x-default": "https://a-bau.nexifyai.cloud/leistungen/" } },
   title: "Leistungen | Bauunternehmen Mönchengladbach – A-Bau",
   description:
     "Alle Leistungen der A-Bau Meisterbetrieb GmbH: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen.",
-};
-
-const LEISTUNGS_BILDER: Record<string, string> = {
-  denkmalrestaurierung: "/assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp",
-  innenausbau: "/assets/innenausbau/b1b9855e-0abd-4906-b9f0-ecec14474c16.webp",
-  krankenhausbau: "/assets/krankenhaus/IMG_1414.webp",
-  schluesselfertigbau: "/assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp",
-  installationen: "/assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp",
-  sanierung: "/assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp",
-  transport: "/assets/sonstiges/PHOTO-2025-02-11-16-15-13.webp",
 };
 
 const schema = {
@@ -40,15 +32,15 @@ const schema = {
 export default function Leistungen() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://a-bau.nexifyai.cloud/leistungen/"}]}) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://a-bau.nexifyai.cloud/leistungen/"}]}) }} />
       <section className="section">
         <div className="container">
           <div className="section-head">
             <span className="kicker">Leistungen</span>
             <h1>Fachgerechte Bauleistungen von A-Bau</h1>
             <p>
-              Unser moderner Baubetrieb — seit 2019 als Meisterbetrieb in Mönchengladbach — bietet ein Spektrum von sensiblen
+              Unser moderner Baubetrieb – seit 2019 als Meisterbetrieb in Mönchengladbach – bietet ein Spektrum von sensiblen
               Restaurierungen bis zum schlüsselfertigen Neubau. Unsere Kunden schätzen handwerkliche
               Qualität, persönliche Betreuung und transparente Kommunikation.
             </p>
