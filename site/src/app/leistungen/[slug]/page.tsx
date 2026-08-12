@@ -21,7 +21,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const l = leistungen.leistungen.find((x: any) => x.slug === slug);
+  const l = leistungen.leistungen.find((x: any) => (x.slug || x.id) === slug);
   if (!l) return {};
   return {
     title: `${l.titel} Mönchengladbach | A-Bau Meisterbetrieb GmbH`,
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function LeistungPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const l = leistungen.leistungen.find((x: any) => x.slug === slug);
+  const l = leistungen.leistungen.find((x: any) => (x.slug || x.id) === slug);
   if (!l) notFound();
 
   const schema = {
@@ -67,7 +67,7 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
           </div>
           <div className="media-frame">
             <Image
-              src={LEISTUNGS_BILDER[l.slug] ?? "/assets/sonstiges/IMG_1416.webp"}
+              src={LEISTUNGS_BILDER[l.slug] ?? "/assets/sonstiges/FB_IMG_1731877209147.webp"}
               alt={`${l.titel} – Projektbeispiel A-Bau Meisterbetrieb Mönchengladbach`}
               width={900}
               height={675}

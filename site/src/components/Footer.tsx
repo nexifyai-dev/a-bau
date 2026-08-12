@@ -34,11 +34,11 @@ export default function Footer() {
             <h3>Stadtteile</h3>
             <nav>
               <Link href="/stadtteile/geistenbeck/">Geistenbeck</Link>
-              <Link href="/stadtteile/city/">Mönchengladbach City</Link>
+              <Link href="/stadtteile/moenchengladbach-city-nordstadt-suedstadt/">Mönchengladbach City</Link>
               <Link href="/stadtteile/eicken-wickrath/">Eicken / Wickrath</Link>
               <Link href="/stadtteile/rheydt/">Rheydt</Link>
-              <Link href="/stadtteile/odenkirchen-hardt/">Odenkirchen / Hardt</Link>
-              <Link href="/stadtteile/niers-volksgarten/">Niers / Volksgarten</Link>
+              <Link href="/stadtteile/odenkirchen-wickrathberg-hardt/">Odenkirchen / Hardt</Link>
+              <Link href="/stadtteile/niers-volksgarten-umfeld/">Niers / Volksgarten</Link>
               <Link href="/stadtteile/">Alle Stadtteile</Link>
             </nav>
           </div>

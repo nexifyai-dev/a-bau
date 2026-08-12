@@ -16,11 +16,11 @@ const LEISTUNGEN = [
 ];
 const STADTTEILE = [
   { href: "/stadtteile/geistenbeck/", title: "Geistenbeck", sub: "Unser Heimat-Stadtteil" },
-  { href: "/stadtteile/city/", title: "Mönchengladbach City", sub: "Münster, Abteiberg, Markt" },
+  { href: "/stadtteile/moenchengladbach-city-nordstadt-suedstadt/", title: "Mönchengladbach City", sub: "Münster, Abteiberg, Markt" },
   { href: "/stadtteile/eicken-wickrath/", title: "Eicken / Wickrath", sub: "Wohnen & Familienhäuser" },
   { href: "/stadtteile/rheydt/", title: "Rheydt", sub: "Industriegeschichte, neue Quartiere" },
-  { href: "/stadtteile/odenkirchen-hardt/", title: "Odenkirchen / Hardt", sub: "Grüne Randlagen" },
-  { href: "/stadtteile/niers-volksgarten/", title: "Niers / Volksgarten", sub: "Naherholung & Wohnqualität" },
+  { href: "/stadtteile/odenkirchen-wickrathberg-hardt/", title: "Odenkirchen / Hardt", sub: "Grüne Randlagen" },
+  { href: "/stadtteile/niers-volksgarten-umfeld/", title: "Niers / Volksgarten", sub: "Naherholung & Wohnqualität" },
 ];
 
 export default function Header() {

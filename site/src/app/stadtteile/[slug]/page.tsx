@@ -6,13 +6,13 @@ import { stadtteile } from "@/lib/data";
 import { KONTAKT, telHref } from "@/lib/kontakt";
 
 export function generateStaticParams() {
-  return stadtteile.stadt.quartiere.map((q: any) => ({
-    slug: q.name.toLowerCase().replace(/[^a-zäöüß0-9]+/g, "-").replace(/^-|-$/g, ""),
-  }));
+  return stadtteile.stadt.quartiere.map((q: any) => ({ slug: slugify(q.name) }));
 }
 
 function slugify(name: string) {
-  return name.toLowerCase().replace(/[^a-zäöüß0-9]+/g, "-").replace(/^-|-$/g, "");
+  return name.toLowerCase()
+    .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
