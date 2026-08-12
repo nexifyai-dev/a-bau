@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/ueber-uns/" },
   title: "Über uns – A-Bau Meisterbetrieb GmbH | Mönchengladbach",
   description:
-    "A-Bau Meisterbetrieb GmbH aus Mönchengladbach: eingetragenes Bauunternehmen (HRB 18836), Geschäftsführer Albert Pfeiffer. Restaurierung, Innenausbau, Neubau – mit Qualität und Verlässlichkeit.",
+    "A-Bau Meisterbetrieb GmbH aus Mönchengladbach: eingetragenes Bauunternehmen (HRB 18836), GF Albert Pfeiffer. Restaurierung, Innenausbau, Neubau.",
 };
 
 const PROZESS = [

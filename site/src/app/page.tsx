@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: "A-Bau Meisterbetrieb GmbH – Bauunternehmen Mönchengladbach | Denkmalrestaurierung, Innenausbau",
   description:
-    "A-Bau Meisterbetrieb GmbH in Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen. Meisterbetrieb seit 2019 (HRB 18836). Kostenloses Angebot.",
+    "A-Bau Meisterbetrieb GmbH in Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen. Seit 2019.",
 };
 
 const localBusinessSchema = {
