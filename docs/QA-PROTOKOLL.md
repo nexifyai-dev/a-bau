@@ -589,3 +589,26 @@
 **Gegentest (§5.4):** Negativ: Kaskaden-Overrider (`.nav-desktop > a` ohne .nav-cta) = 0 im Button-Kontext; „Versand fehlgeschlagen" = 0; „Denkmalrestaurierung" = 0 ✅ · Regression: R13–R19-Fixes unverändert (Titel, DSGVO §6, KB-Dedupe, Öffnungszeiten) ✅ · Datenintegrität: KB 67 Chunks konsistent, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 20)**
+
+---
+
+## Runde 21 (2026-08-12, Fortsetzung Tiefenprüfung — FAQ-Qualität, Rechtstext-Rendering, Chat mit 165-Fragen-KB)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: FAQ-166-Qualität (Duplikate, Chat-Retrieval), neue Rechtstexte (Rendering, Titel), Seiten-Payloads, Chat-Qualität mit erweitertem KB.
+
+| Befund/Fix | Status |
+|---|---|
+| **/agb/ + /nutzungsbedingungen/ Titel-Dopplung** („…– A-Bau Meisterbetrieb Mönchengladbach – A-Bau") — `absolute` fehlte in den neuen Seiten | `title: { absolute: … }`; live: 2× sauber | ✅ live |
+| **FAQ-Duplikat** „Wie sind die Öffnungszeiten?" / „…des Büros?" (identische Antwort) | „des Büros"-Variante entfernt → 165 Fragen | ✅ |
+| **FAQ-Antwort zu knapp** (E-Mail: nur Adresse) | „kontakt@a-bau.info – wir antworten in der Regel innerhalb weniger Werktage…" | ✅ |
+| `.prose`-CSS für Markdown-Seiten | Existiert (max-width, h2/h3/p/li) — Impressum/AGB/Nutzung formatiert | ✅ kein Fix |
+| Seiten-Payloads | /faq/ 346 KB (166 Akkordeons + FAQPage-LD, gzip ≈80 KB) — akzeptabel; alle anderen 27–73 KB | ✅ |
+| **Chat-Qualität mit 165-Fragen-KB (7 Fragen E3)** | Sanierung/Renovierung, Gewährleistung § 634a, Angebot-Unterlagen, Krefeld, Fassadenpflege korrekt; Hausbau-Kosten ohne Fake-Preis; Gedicht-Wunsch höflich abgelehnt (Boundary); 0 Markdown; 1,8–8,2 s | ✅ live |
+| FAQ-Duplikat-Scan | Keine exakten Duplikate; 165 eindeutige Fragen | ✅ |
+| KB | 67 Chunks (48 FAQ), Rechtstexte exkludiert | ✅ |
+
+**E2E:** Build ✅ · AGB live==Build (nur CF-Mail-Obfuscation) · Route-Smoke ALLE OK · Öffnungszeiten 12/12 · /health ok · Titel AGB/Nutzung korrekt · FAQ 165.
+
+**Gegentest (§5.4):** Negativ: Titel-Dopplung „…– A-Bau – A-Bau" = 0 auf AGB/Nutzung; „des Büros"-Frage = 0; Duplikat-Fragen = 0 ✅ · Regression: R13–R20-Fixes unverändert (CTA-Kaskade, Formular-202, Denkmal-Restaurierung, DSGVO) ✅ · Datenintegrität: KB konsistent, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 21)**

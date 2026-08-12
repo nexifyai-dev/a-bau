@@ -4,7 +4,7 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 
 export const metadata: Metadata = {
-  title: "Nutzungsbedingungen – A-Bau Meisterbetrieb Mönchengladbach",
+  title: { absolute: "Nutzungsbedingungen – A-Bau Meisterbetrieb Mönchengladbach" },
   description: "Nutzungsbedingungen der Website der A-Bau Meisterbetrieb GmbH: Inhalte, KI-Assistent, Haftung und Urheberrecht.",
   alternates: { canonical: "/nutzungsbedingungen/", languages: { de: "https://a-bau.nexifyai.cloud/nutzungsbedingungen/", "x-default": "https://a-bau.nexifyai.cloud/nutzungsbedingungen/" } },
 };

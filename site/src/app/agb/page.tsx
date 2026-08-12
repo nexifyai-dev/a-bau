@@ -4,7 +4,7 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 
 export const metadata: Metadata = {
-  title: "AGB – A-Bau Meisterbetrieb Mönchengladbach",
+  title: { absolute: "AGB – A-Bau Meisterbetrieb Mönchengladbach" },
   description: "Allgemeine Geschäftsbedingungen der A-Bau Meisterbetrieb GmbH für Bauleistungen, Angebote und Verträge.",
   alternates: { canonical: "/agb/", languages: { de: "https://a-bau.nexifyai.cloud/agb/", "x-default": "https://a-bau.nexifyai.cloud/agb/" } },
 };
