@@ -863,3 +863,23 @@
 **Gegentest (§5.4):** Negativ: Skill erwähnt keine überholten Zustände mehr („Chat entfernt" = 0, „502 ehrlich" = 0 — 202+queued-Muster dokumentiert) ✅ · Regression: R13–R32 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 33)**
+
+---
+
+## Runde 34 (2026-08-12, Fortsetzung Tiefenprüfung — API-Header, Methoden, Parallelität, Timeouts)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: Security-Header auf API-Endpunkten, HTTP-Methoden, Timeout-Mapping, Client-Speicher, Parallelität.
+
+| Prüfung/Fix | Status |
+|---|---|
+| Security-Header auf /api/chat + /api/contact (POST, korrekt via -D-) | CSP (connect-src 'self' — Widget-Fetch erlaubt), nosniff, no-store auf allen API-Responses (Middleware global) | ✅ kein Fix |
+| HTTP-Methoden | GET /api/chat → 404 (nur POST registriert), OPTIONS → 405 (kein CORS nötig, same-origin; kein Access-Control-Header = korrekt) | ✅ |
+| Timeout-Mapping (B.42/A.29) | Server LLM-Timeout 30 s < Client-Abort 35 s (R16) — kein Race; Antwortzeiten real 1,9–6,5 s | ✅ |
+| Client-Speicher | Chat-Widget ohne localStorage/sessionStorage — stateless (DSGVO: keine Verlaufspersistenz) | ✅ |
+| **Parallelität (Event-Loop, R2-Aspekt)** | **3 parallele Chats: alle erfolgreich (1,9–6,5 s, gesamt 6,5 s), keine Hänger/Fehler** — asyncio.to_thread wirkt (E3) | ✅ |
+
+**E2E:** Alle 5 Auto-Checks grün · API-Header verifiziert · Methoden-Matrix 404/405 korrekt · keine Code-Änderung (nur Doku/QA).
+
+**Gegentest (§5.4):** Negativ: kein Access-Control-Header (bewusst), kein localStorage im Widget-Bundle (`grep` 0) ✅ · Regression: unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 34)**
