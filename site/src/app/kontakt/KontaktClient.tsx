@@ -35,6 +35,8 @@ export default function KontaktClient() {
   };
 
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Kontakt", "item": "https://a-bau.nexifyai.cloud/kontakt/"}]}) }} />
     <section className="section">
       <div className="container">
         <div className="section-head">
@@ -117,5 +119,6 @@ export default function KontaktClient() {
         </div>
       </div>
     </section>
+    </>
   );
 }

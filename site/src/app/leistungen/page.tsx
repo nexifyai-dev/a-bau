@@ -41,6 +41,7 @@ export default function Leistungen() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://a-bau.nexifyai.cloud/"}, {"@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://a-bau.nexifyai.cloud/leistungen/"}]}) }} />
       <section className="section">
         <div className="container">
           <div className="section-head">
