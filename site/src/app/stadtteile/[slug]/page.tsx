@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { stadtteile } from "@/lib/data";
+import { leistungen } from "@/lib/data";
 import { KONTAKT, telHref } from "@/lib/kontakt";
 
 export function generateStaticParams() {
@@ -40,6 +41,15 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
             <h1>{q.name}</h1>
             <p className="lead">{q.text}</p>
             <p><strong>Schwerpunkt:</strong> {q.schwerpunkt}</p>
+            <p style={{ fontSize: ".95rem" }}>
+              <strong>Passende Leistungen:</strong>{" "}
+              {leistungen.leistungen.slice(0, 3).map((l: any, i: number) => (
+                <span key={l.id}>
+                  {i > 0 && " · "}
+                  <Link href={`/leistungen/${l.slug || l.id}/`}>{l.titel}</Link>
+                </span>
+              ))}
+            </p>
             <div className="hero-actions mt-5">
               <Link className="btn btn-primary" href="/kontakt/">Projekt in {q.name} anfragen</Link>
               <Link className="btn btn-ghost" href="/stadtteile/">Alle Stadtteile</Link>

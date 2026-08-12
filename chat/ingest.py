@@ -41,15 +41,20 @@ def chunks(text, size=700, overlap=80):
 def main():
     docs = []
     EXCLUDE = {"impressum.md", "datenschutz.md"}
-    for fn in sorted(os.listdir(CONTENT)):
-        if fn in EXCLUDE:
-            continue  # Rechtstexte gehören nicht ins Chat-Wissen
-        p = os.path.join(CONTENT, fn)
-        if fn.endswith(".yaml"): txt = yaml_to_text(p)
-        elif fn.endswith(".md"): txt = md_to_text(p)
-        else: continue
-        if len(txt) < 40: continue
-        docs.append((fn, txt))
+    # Zwei Quellen: content/ (hist.) + site/src/data/ (Next.js-NAP-Quelle) — kontakt.yaml nur dort.
+    DIRS = [CONTENT, os.path.join(ROOT, "site", "src", "data")]
+    for d in DIRS:
+        if not os.path.isdir(d):
+            continue
+        for fn in sorted(os.listdir(d)):
+            if fn in EXCLUDE:
+                continue  # Rechtstexte gehören nicht ins Chat-Wissen
+            p = os.path.join(d, fn)
+            if fn.endswith(".yaml"): txt = yaml_to_text(p)
+            elif fn.endswith(".md"): txt = md_to_text(p)
+            else: continue
+            if len(txt) < 40: continue
+            docs.append((f"{os.path.basename(d)}/{fn}", txt))
     rows = []
     for fn, txt in docs:
         for c in chunks(txt):

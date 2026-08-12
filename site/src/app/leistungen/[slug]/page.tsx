@@ -3,7 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { leistungen } from "@/lib/data";
+import { stadtteile } from "@/lib/data";
 import { KONTAKT, telHref } from "@/lib/kontakt";
+
+function slugifyName(name: string) {
+  return name.toLowerCase()
+    .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 
 const LEISTUNGS_BILDER: Record<string, string> = {
   denkmalrestaurierung: "/assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp",
@@ -61,6 +68,15 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
             <ul style={{ listStyle: "none", padding: 0, margin: "16px 0 0", display: "grid", gap: 10 }}>
               {l.punkte.map((p: string) => <li key={p}>✓ {p}</li>)}
             </ul>
+            <p style={{ marginTop: 16, fontSize: ".95rem" }}>
+              <strong>Einsatzgebiete:</strong>{" "}
+              {stadtteile.stadt.quartiere.slice(0, 3).map((q: any, i: number) => (
+                <span key={q.name}>
+                  {i > 0 && " · "}
+                  <Link href={`/stadtteile/${slugifyName(q.name)}/`}>{q.name.split(" (")[0]}</Link>
+                </span>
+              ))}
+            </p>
             <div className="hero-actions mt-5">
               <Link className="btn btn-primary" href="/kontakt/">Unverbindlich anfragen</Link>
               <Link className="btn btn-ghost" href="/leistungen/">Alle Leistungen</Link>
