@@ -1492,3 +1492,24 @@
 **Gegentest (§5.4):** Negativ: Build ohne JSX-Kommentar-Bruch (2. Versuch nach Fehler) ✅ · Regression: Chat/Status/Routen ok ✅ · A11y: Begrüßung nicht ansagbar, Antworten weiterhin polite ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 63)**
+
+
+---
+
+## Runde 64 (2026-08-13, EU-AI-Act-Compliance: Art. 50 live ab 02.08.2026 — Chat-Offenlegung verifiziert + geschärft)
+
+**Anlass:** „Weiter. Livebetrieb. Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **Recherche (Live-Compliance):** EU AI Act **Art. 50 gilt durchsetzbar seit 02.08.2026** (Chatbot-Offenlegung; Bußgeld bis 15 M€/3 % — Quellen: chatforest-Guide, technology.org, aihaven). Anforderung: Nutzer müssen beim Erstkontakt informiert werden, dass sie mit KI interagieren | ✅ belegt |
+| **Offenlegung verifiziert:** Widget-Header „A-Bau KI-Assistent“ (sichtbar + aria-label) · Datenschutz §6 mit Art.-50-Hinweis · Server-Fallback-Begrüßung nennt KI | ✅ |
+| **Fix (Schärfung):** Erste sichtbare Client-Begrüßung nennt die KI jetzt explizit: „Hallo! **Ich bin der KI-Assistent von A-Bau** – wie kann ich Ihnen … helfen?“ — doppelte Offenlegung (Header + erste Nachricht) | ✅ live |
+| **Handbuch:** Resend-Domain-Setup Schritt-für-Schritt (DNS-Records in CF-Zone → Verify → API-Key → `.env` → flush → Test; Fehlerbilder 403/401) für den offenen Kundenpunkt | ✅ |
+| **Bundle/Live:** „KI-Assistent von A-Bau“ im Client-JS nachgewiesen · www 200 · Quality exit 0 | ✅ |
+
+**E2E:** Build ✓ · www 200 · QUALITY-CHECK OK · Queue 2 echte unangetastet.
+
+**Gegentest (§5.4):** Negativ: Offenlegung ohne KI-Erwähnung wäre Art.-50-Verstoß — jetzt in Header + Begrüßung + §6 (3 Ebenen) ✅ · Regression: Chat-Begrüßung funktional unverändert (nur Text) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 64)**

@@ -23,7 +23,7 @@ function quellenLabel(q: string): string {
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([
-    { role: "assistant", text: "Hallo! Wie kann ich Ihnen bei Ihrem Bau- oder Sanierungsvorhaben helfen?" },
+    { role: "assistant", text: "Hallo! Ich bin der KI-Assistent von A-Bau – wie kann ich Ihnen bei Ihrem Bau- oder Sanierungsvorhaben helfen?" },
   ]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);

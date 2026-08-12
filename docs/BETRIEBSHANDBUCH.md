@@ -151,3 +151,20 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 - Ostern via Meeus/Jones/Butcher in `ostersonntag()` — greift für 1900–2099.
 - Tests: `node scripts/test-oeffnungszeiten.js` → 23 Fälle (Pflicht vor Öffnungszeiten-Änderungen, AGENTS).
 - Debug-Lektion: Feiertagsnamen stehen nur im Kommentar (kein String-Literal) → Bundle-Checks über Code-Struktur, nicht Namen.
+
+## Resend-Domain-Setup (offener Kundenpunkt — Schritt-für-Schritt, R64)
+
+1. **Resend-Dashboard** (resend.com → Domains → Add Domain): `a-bau.info` hinzufügen.
+2. Resend zeigt **DNS-Records** (DKIM + SPF + ggf. MX/TXT für Return-Path) — diese in der
+   **Cloudflare-Zone a-bau.info** anlegen (DNS → Add record; Werte 1:1 aus Resend übernehmen).
+3. In Resend **Verify** klicken; Status wechselt auf *Verified* (DKIM aktiv) — i. d. R. < 1 h nach DNS-Eintrag.
+4. **API-Key** (Resend → API Keys → Create, volle Rechte, Name `abau-form`) erstellen.
+5. **Key spiegeln:** `RESEND_API_KEY=<key>` in `/home/hermeswebui/.hermes/.env` (Container) —
+   Server lädt ihn via `_secret()` beim nächsten Start; danach Server-Restart (R55-Verfahren) oder
+   Watchdog (5 min) übernimmt.
+6. **Nachversand der 2 echten Queue-Einträge:**
+   `/app/venv/bin/python3 chat/flush_contact_queue.py` (Resend-first; Exit 0 = alles versendet).
+7. **Test:** Kontaktformular absenden → Mail an kontakt@a-bau.info (Reply-To = Absender).
+   Log: `[contact-resend-error]` darf nicht erscheinen; kein `queued` mehr im 202er (nur `{"ok":true}`).
+
+**Fehlerbilder:** 403 `domain not verified` = Schritt 2/3 offen · 401 = Key falsch (Schritt 4/5).
