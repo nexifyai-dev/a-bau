@@ -25,7 +25,7 @@ const STADTTEILE = [
 
 export default function Header() {
   const pathname = usePathname() || "/";
-  const [offen, setOffen] = useState(false);
+  const [offen, setOffen] = useState(() => istGeoeffnet());
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [ddOpen, setDdOpen] = useState<"" | "leistungen" | "stadtteile">("");

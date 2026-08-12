@@ -28,10 +28,15 @@ export function telHref(t: string): string {
 }
 
 export function istGeoeffnet(date = new Date()): boolean {
-  const w = date.getDay();
-  const h = date.getHours();
-  if (w === 0) return false;
-  if (w === 6) return h >= 8 && h < 13;
-  if (w === 5) return h >= 7 && h < 17;
+  // A.11: Öffnungszeiten in EUROPE/BERLIN rechnen — deterministisch für SSR und
+  // Client, unabhängig von Server-UTC und Browser-Lokalzeit des Besuchers.
+  const parts = new Intl.DateTimeFormat("de-DE", { timeZone: "Europe/Berlin", weekday: "short", hour: "2-digit", hour12: false }).formatToParts(date);
+  const wd = (parts.find((p) => p.type === "weekday")?.value ?? "").replace(/\.$/, ""); // "Mo" (ICU ohne Punkt, teils "Mo.")
+  const h = Number(parts.find((p) => p.type === "hour")?.value ?? -1);
+  const tag = ({ Mo: 1, Di: 2, Mi: 3, Do: 4, Fr: 5, Sa: 6, So: 0 } as Record<string, number>)[wd];
+  if (tag === undefined) return false;
+  if (tag === 0) return false;
+  if (tag === 6) return h >= 8 && h < 13;
+  if (tag === 5) return h >= 7 && h < 17;
   return h >= 8 && h < 17;
 }

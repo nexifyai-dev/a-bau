@@ -435,3 +435,26 @@
 **Gegentest (§5.4):** Negativ („detail" fehlt in Response; Stadtteil-Titel nicht mehr „– A-Bau"-Suffix-Dopplung; hardcoded NAP 0 in kontakt/page) ✅ · Regression: R12/13-Fixes unverändert (Hover, Zentrierung, z-Skala) ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 Einträge ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 14)**
+
+---
+
+## Runde 15 (2026-08-12, Fortsetzung Tiefenprüfung — Öffnungsstatus, JSON-LD, Browser-Ebene ehrlich)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: noch nicht tief geprüfte Punkte (A.11 Öffnungsstatus, B.21 restliche JSON-LD, B.17 externe Links, Formular-Client B.3–B.7, Cookie-Banner B.31, Browser-Ebene A.33/A.35/D.12).
+
+| Befund/Fix | Status |
+|---|---|
+| **Öffnungsstatus (A.11) 3-fach defekt:** (1) `useState(false)` → SSR-HTML zeigte IMMER „Geschlossen" (Crawler/No-JS falsch, Hydration-Flip); (2) `istGeoeffnet` rechnete in Browser-Lokalzeit → Besucher aus anderer Zeitzone sahen falschen Status; (3) erster TZ-Fix hatte weekday-Mapping-Bug („Mi." vs. ICU „Mi") | (1) `useState(() => istGeoeffnet())` lazy init; (2) `Intl.DateTimeFormat` mit `timeZone: "Europe/Berlin"` (deterministisch SSR==Client); (3) durch Unit-Test gefunden → `replace(/\.$/,"")` | ✅ live + Test |
+| **/ueber-uns ohne Organization-JSON-LD** (B.21) | Organization (NAP aus KONTAKT-Quelle, C.8) ergänzt | ✅ live |
+| Umlaut-Assets (`/assets/schlüsselfertig/*`) schienen 404 | Audit-Artefakt (urllib-HEAD): korrekt percent-encoded GET = 200, alle 4 Dateien | ✅ kein Bug |
+| Cloudflare email-decode-Script schien 404 | HEAD-only-Artefakt (CF-Edge blockt HEAD auf /cdn-cgi): GET = 200 | ✅ kein Bug |
+| Externe Links (B.17) | 6/6 → 200 (mags.de, mg-moenchengladbach.de, rheinruhraktuell.de, gladbacherblatt.de, moenchengladbach.de ×2) | ✅ |
+| Formular-Client (B.3–B.7) | KontaktClient-Review: Labels htmlFor, inputMode/autocomplete, maxLength, Honeypot, noValidate+native reportValidity, role=alert/status, Loading-Disabled, Double-Submit-Schutz — alles vorhanden | ✅ |
+| Cookie-Banner (B.31/A.39) | localStorage abau_consent (TDDDG §25), role=region+aria-label, keine Tracker, kein SSR-Mismatch, Focus global | ✅ |
+| Browser-Ebene (A.33/A.35/D.12) | Playwright-Chromium vorhanden, aber 20 System-Libs fehlen, kein Root/apt → **ehrlich nicht möglich im Container** (Restpunkt) | ⚠️ extern |
+
+**E2E:** Build ✅ · `node scripts/test-oeffnungszeiten.js` → **12/12 PASS** (neuer Regression-Schutz, C.12) · Live: SSR-Status konsistent mit Berlin-Zeit (17:38 MESZ → closed korrekt), Organization live, CSS byte-identisch, Home live==Build (nur CF-Mail-Obfuscation), /health ok, Route-Smoke ok.
+
+**Gegentest (§5.4):** Negativ: Testfälle außerhalb Öffnungszeit (So, 18:00, 06:59, 13:00 Sa) → false; Wochentag-Kanten (Sa 12:59 offen/13:00 zu) ✓ · Regression: R12–R14-Fixes unverändert · Datenintegrität: keine Content-/KB-Änderung ✓.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 15)**

@@ -92,6 +92,22 @@ export default function UeberUns() {
           </div>
         </div>
       </section>
+      {/* B.21: Organization (Unternehmensdaten, NAP aus KONTAKT-Quelle — C.8) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ld({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: KONTAKT.firma,
+            url: "https://a-bau.nexifyai.cloud/",
+            logo: "https://a-bau.nexifyai.cloud/logo.png",
+            founder: { "@type": "Person", name: KONTAKT.gf },
+            address: { "@type": "PostalAddress", streetAddress: KONTAKT.strasse, postalCode: KONTAKT.plz, addressLocality: KONTAKT.ort, addressCountry: "DE" },
+            contactPoint: { "@type": "ContactPoint", telephone: KONTAKT.tel, email: KONTAKT.email, contactType: "customer service", areaServed: "DE", availableLanguage: "de" },
+          }),
+        }}
+      />
     </>
   );
 }
