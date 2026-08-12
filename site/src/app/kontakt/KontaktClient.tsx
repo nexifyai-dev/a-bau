@@ -56,11 +56,11 @@ export default function KontaktClient() {
             </div>
             <div className="form-field">
               <label htmlFor="k-email">E-Mail *</label>
-              <input id="k-email" name="email" type="email" required autoComplete="email" maxLength={160} />
+              <input id="k-email" name="email" type="email" inputMode="email" required autoComplete="email" maxLength={160} />
             </div>
             <div className="form-field">
               <label htmlFor="k-tel">Telefon</label>
-              <input id="k-tel" name="telefon" type="tel" autoComplete="tel" maxLength={40} />
+              <input id="k-tel" name="telefon" type="tel" inputMode="tel" autoComplete="tel" maxLength={40} />
             </div>
             <div className="form-field">
               <label htmlFor="k-msg">Ihr Anliegen *</label>
