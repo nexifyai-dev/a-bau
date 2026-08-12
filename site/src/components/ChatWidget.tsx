@@ -113,7 +113,8 @@ export default function ChatWidget() {
               </svg>
             </button>
           </div>
-          <div className="abau-chat-msgs" ref={listRef} aria-live="polite" aria-relevant="additions text">
+          {/* R63: Live-Region erst ab erster dynamischer Nachricht aktiv (Begrüßung nicht ansagen, ARIA22) */}
+          <div className="abau-chat-msgs" ref={listRef} aria-live={msgs.length > 1 ? "polite" : "off"} aria-relevant="additions text">
             {msgs.map((m, i) => (
               <div key={i} className={`abau-msg ${m.role === "user" ? "abau-msg-user" : "abau-msg-assistant"}`}>
                 {m.text}

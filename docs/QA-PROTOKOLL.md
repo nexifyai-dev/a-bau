@@ -1470,3 +1470,25 @@
 **Gegentest (§5.4):** Negativ: kein Key → Fallback-Kette intakt ✅ · Datenintegrität: Queue ✅ · Regression: TTFB-Baseline stabil, Routen ok ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 62)**
+
+
+---
+
+## Runde 63 (2026-08-13, A11y: Live-Region verfeinert; Log/W3C sauber; Resend-Setup-Anleitung)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **A11y-P2 (Recherche EN 301 549/WCAG ARIA22 angewendet):** Initiale Chat-Begrüßung lag IN der aria-live-Region → Screenreader kündigt sie beim Öffnen unnötig an. Best-Practice: Live-Region enthält beim Mount keinen Inhalt; nur dynamische Updates ansagen. Fix: `aria-live={msgs.length > 1 ? "polite" : "off"}` — Region bleibt im DOM (ARIA22-konform), aktiv ab erster dynamischer Nachricht | ✅ live |
+| **Pitfall wiederholt (R23-Lektion):** JSX-Kommentar im Tag (`// R63 …` nach Attribut) → Turbopack „Expected '</', got 'ident'“. Fix: Kommentar als `{/* … */}` VOR der Zeile | ✅ |
+| **Log-Scan:** 8 Fehlereinträge im Server-Log, alle historisch (SMTPServerDisconnected/RuntimeError = Fallback-Kette ohne Key; addrinuse = R55-Diagnose) — **keine neuen Fehler seit R59** | ✅ kein Fix |
+| **W3C /kontakt/:** 0 Fehler (nach R61-kontakt.ts) | ✅ |
+| **Recherche belegt:** WCAG-ARIA22 (role=status → polite) + Best-Practice-Quellen (accessivepath, EzyConn): Live-Region leer beim Mount, `aria-relevant="additions text"`, Fokus-Management (R18) — Umsetzung jetzt konform | ✅ belegt |
+| **Health:** ok · www 200 · Quality exit 0 | ✅ |
+
+**E2E:** Build ✓ (aria-live in Client-Chunks) · www 200 · QUALITY-CHECK OK · Queue 2 echte unangetastet.
+
+**Gegentest (§5.4):** Negativ: Build ohne JSX-Kommentar-Bruch (2. Versuch nach Fehler) ✅ · Regression: Chat/Status/Routen ok ✅ · A11y: Begrüßung nicht ansagbar, Antworten weiterhin polite ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 63)**
