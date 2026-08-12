@@ -250,3 +250,31 @@
 **Gegentest (§5.4):** Byte-Diff Live vs `out/index.html` mit beidseitiger Obfuscation-Normalisierung → **IDENTISCH: True** (Live = geprüfter Build; einzige Abweichung CF-Email-Obfuscation). Regression Runde-5-Fixes (Teaser, lead, /angebot, tel) unverändert grün.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 6)**
+
+---
+
+## Proaktive Runde 7 (2026-08-12, Pascal-Aufträge: Rechtstexte + Header-CTA-Hover)
+
+**Aufträge (OOB):** Rechtstexte deutlich optimieren/verlängern, branchenspezifisch, deutsches Recht (Tiefenrecherche §13) · Header-Button „Projekt anfragen" Hover grün + weiß.
+
+| Befund/Fix | Status |
+|---|---|
+| **Datenschutzerklärung** komplett neu (15 Abschnitte, branchenspezifisch Bauunternehmen): Verantwortlicher, DSB-Hinweis (nicht erforderlich, Art. 37), Server-Logfiles, Kontaktformular + Bauprojekt-Daten + Aufbewahrung (§ 147 AO/§ 257 HGB bis 10 J., Gewährleistung §§ 634a/438 BGB), **KI-Assistent-Abschnitt neu** (RAG, Drittland-Übermittlung, Art. 50 EU AI Act Transparenz, „keine PII im Chat"), Cookies/TDDDG § 25, OSM Zwei-Klick, Fonts self-hosted, Weitergabe/Empfänger, **Fotodokumentation Bauvorhaben neu** (Art. 6 Abs. 1 lit. a), Sicherheit Art. 32, Rechte + LDI NRW, kein Profiling, Aktualität | ✅ live, 15 h2 |
+| **Falsche OSM-Behauptung entfernt**: alter Text „Karte wird erst nach Klick geladen" — iframe lud sofort (IP-Übertragung bei jedem Aufruf) | **Zwei-Klick echt umgesetzt** (Button „Karte laden", Klick lädt iframe) — DSGVO-sauber | ✅ live |
+| **Cookie-Richtlinie** erweitert (6 Abschnitte): localStorage abau_consent, § 25 Abs. 2 Nr. 2 TDDDG, keine Tracking-Dienste, OSM-Hinweis, Widerruf/private-Modus, Kontakt | ✅ live |
+| Header-CTA-Hover: `.nav-cta:hover { background: var(--color-brand-green) #009A44; color: #fff }` (Pascal-Auftrag; Grundzustand weiterhin #008035/weiß) | ✅ live |
+| **Chat-401-Lotterie endgültig behoben**: `_secret({"CUSTOM_API_KEY","DEEPSEEK_API_KEY"})` nutzte ein SET → Python-Set-Iteration je Prozess randomisiert (PYTHONHASHSEED) → Runde-4-„Fix" war Zufall; nach Neustart 401 reproduziert | `_secret(("CUSTOM_API_KEY","DEEPSEEK_API_KEY"))` — TUPLE, deterministisch | ✅ live, Chat antwortet |
+| **Browser-HTML-Cache-Problem** (Ursache „nicht zentriert trotz Fix"): HTML ohne Cache-Control → heuristischer Browser-Cache zeigte alten CSS-Chunk | Middleware: alle Nicht-Asset-Responses `Cache-Control: no-cache` | ✅ live |
+| SEO-Tiefe: Description-Längen Leistungs-/Stadtteilseiten bis 326 Zeichen | `clip()`-Helper (lib/seo.ts) + kurze Suffixe; alle ≤165 | ✅ |
+| 404-Seite: layout-Default-Description (182 Z.) + kein Title | eigene metadata (noindex, kurze Description) | ✅ |
+| Kontrast-Tiefe (berechnet, 19 Kombinationen): **btn-primary weiß auf #009A44 = 3.68:1 FAIL** (Review P1-4 war richtig, nie umgesetzt) | `--color-cta: #008035` (5.07:1); `.badge` → accent-text #007a36 | ✅ |
+| Drawer-A11y (WCAG 2.1.2/2.4.3): kein Fokus-Trap, kein Escape, kein Fokus-Transfer | focusin-Trap + Escape→Toggle-Fokus + Fokus auf Close beim Öffnen | ✅ |
+| Utility-Bar Mobile: horizontale Scroll-Leiste (5 Links nowrap) | ≤720px ausgeblendet (Links im Drawer); Utility-Links min-height 44px | ✅ |
+| Rate-Limit-Dict unbegrenztes Wachstum | stündliches Clear | ✅ |
+| Rechtstexte im KB: 0 (korrekt ausgeschlossen) — kein Re-Ingest nötig | ✅ |
+
+**E2E live:** Route-Smoke 15/15 ✅ · Chat (kein 401) + Honeypot ✅ · noindex Rechtstexte ✅ · Zwei-Klick-Button statt iframe ✅ · Cache-Control no-cache ✅ · Hover-CSS ✅ · 404-Title ✅.
+
+**Gegentest (§5.4):** Negativ (404, noindex, Honeypot) ✅ · Regression Runde 5/6 (Teaser, tel, Fonts, CTA-center, card-plain) live unverändert ✅ · Live-vs-out byte-identisch (Normalisierung) ✅ · Chat-Neustart-Zyklus reproduziert + behoben (401-Lotterie) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 7)**

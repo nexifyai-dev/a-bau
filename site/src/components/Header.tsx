@@ -31,6 +31,31 @@ export default function Header() {
   const [ddOpen, setDdOpen] = useState<"" | "leistungen" | "stadtteile">("");
   const ddLeistungenRef = useRef<HTMLDivElement>(null);
   const ddStadtteileRef = useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  // Drawer-A11y: Fokus-Transfer beim Öffnen, Fokus-Trap, Escape schließt (WCAG 2.1.2/2.4.3)
+  useEffect(() => {
+    if (!drawerOpen) return;
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setDrawerOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const focusables = drawerRef.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
+      if (!focusables || focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [drawerOpen]);
 
   useEffect(() => {
     const bind = (ref: React.RefObject<HTMLDivElement | null>, name: "leistungen" | "stadtteile") => {
@@ -129,6 +154,7 @@ export default function Header() {
           </nav>
 
           <button
+            ref={toggleRef}
             className="nav-toggle"
             aria-label={drawerOpen ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={drawerOpen}
@@ -139,8 +165,8 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       <div className={`drawer-scrim ${drawerOpen ? "open" : ""}`} onClick={() => setDrawerOpen(false)} aria-hidden="true" />
-      <nav className={`drawer ${drawerOpen ? "open" : ""}`} aria-label="Mobile Navigation" aria-hidden={!drawerOpen}>
-        <button className="drawer-close" aria-label="Menü schließen" onClick={() => setDrawerOpen(false)}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12"/></svg></button>
+      <nav className={`drawer ${drawerOpen ? "open" : ""}`} aria-label="Mobile Navigation" aria-hidden={!drawerOpen} ref={drawerRef}>
+        <button ref={closeRef} className="drawer-close" aria-label="Menü schließen" onClick={() => setDrawerOpen(false)}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12"/></svg></button>
         <Link href="/" onClick={() => setDrawerOpen(false)}>Start</Link>
         <Link href="/leistungen/" onClick={() => setDrawerOpen(false)}>Leistungen</Link>
         <Link href="/referenzen/" onClick={() => setDrawerOpen(false)}>Referenzen</Link>

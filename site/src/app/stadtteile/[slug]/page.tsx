@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { stadtteile } from "@/lib/data";
 import { leistungen } from "@/lib/data";
 import { KONTAKT, telHref } from "@/lib/kontakt";
+import { clip } from "@/lib/seo";
 
 export function generateStaticParams() {
   return stadtteile.stadt.quartiere.map((q: any) => ({ slug: slugify(q.name) }));
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     alternates: { canonical: `/stadtteile/${slug}/`, languages: { de: `https://a-bau.nexifyai.cloud/stadtteile/${slug}/`, "x-default": `https://a-bau.nexifyai.cloud/stadtteile/${slug}/` } },
     title: `${q.name.split(" (")[0]}`,
-    description: `${q.text} A-Bau Meisterbetrieb in ${q.name}, Mönchengladbach. ${q.schwerpunkt}. Kontakt für ein Angebot.`,
+    description: `${clip(q.text, 45)} A-Bau Meisterbetrieb in ${q.name.split(" (")[0]}, Mönchengladbach. ${clip(q.schwerpunkt, 15)}. Angebot anfragen.`,
   };
 }
 

@@ -7,6 +7,7 @@ import { stadtteile } from "@/lib/data";
 import { KONTAKT, telHref } from "@/lib/kontakt";
 import { ld } from "@/lib/schema";
 import { LEISTUNGS_BILDER } from "@/lib/leistungs-bilder";
+import { clip } from "@/lib/seo";
 
 function slugifyName(name: string) {
   return name.toLowerCase()
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     alternates: { canonical: `/leistungen/${slug}/`, languages: { de: `https://a-bau.nexifyai.cloud/leistungen/${slug}/`, "x-default": `https://a-bau.nexifyai.cloud/leistungen/${slug}/` } },
     title: `${l.titel} Mönchengladbach`,
-    description: `${l.kurz} – A-Bau Meisterbetrieb GmbH, Mönchengladbach. Meisterbetrieb seit 2019 (HRB 18836). Kontakt für ein Angebot.`,
+    description: `${clip(l.kurz, 100)} – A-Bau Meisterbetrieb Mönchengladbach.`,
   };
 }
 

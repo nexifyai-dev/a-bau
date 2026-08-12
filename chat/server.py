@@ -44,7 +44,9 @@ def _secret(names, files=("/home/hermeswebui/.hermes/.env", "/root/.hermes/herme
             return v
     return ""
 
-API_KEY = _secret({"CUSTOM_API_KEY", "DEEPSEEK_API_KEY"})
+# Reihenfolge WICHTIG: TUPLE (nicht Set!) — Set-Iteration ist je Prozess randomisiert
+# (PYTHONHASHSEED) → CUSTOM_API_KEY gewinnt deterministisch, sonst 401-Lotterie (2026-08-12).
+API_KEY = _secret(("CUSTOM_API_KEY", "DEEPSEEK_API_KEY"))
 SMTP = dict(host=_secret({"SMTP_HOST"}), port=int(_secret({"SMTP_PORT"}) or 465),
             user=_secret({"SMTP_USER"}), pw=_secret({"SMTP_PASSWORD"}))
 CONTACT_TO = os.environ.get("ABAU_CONTACT_TO", "kontakt@a-bau.info")
@@ -73,12 +75,20 @@ async def headers_mw(request: Request, call_next):
             resp.headers.update(VIDEO_CACHE)
         else:
             resp.headers.update(ASSET_CACHE)
+    else:
+        # HTML/API nie heuristisch cachen (Browser-HTML-Cache zeigt sonst alten
+        # CSS-Chunk-Stand -> veraltetes Design nach Deploy, 2026-08-12)
+        resp.headers["Cache-Control"] = "no-cache"
     return resp
 
 # --- Rate-Limit (In-Memory, einfach) ---
 _hits = {}
+_last_cleanup = [0.0]
 def rate_ok(ip: str) -> bool:
     now = time.time()
+    if now - _last_cleanup[0] > 3600:  # verhindert unbegrenztes Dict-Wachstum
+        _hits.clear()
+        _last_cleanup[0] = now
     _hits[ip] = [t for t in _hits.get(ip, []) if t > now - 60]
     if len(_hits[ip]) >= RATE_LIMIT: return False
     _hits[ip].append(now)

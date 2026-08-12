@@ -34,7 +34,7 @@
   --color-accent-city: var(--color-mg-red);
   --color-accent-premium: var(--color-mg-gold);
   --color-accent-info: var(--color-mg-blue);
-  --color-cta: var(--color-brand-green);
+  --color-cta: #008035; /* Button-Fläche: weiß darauf = 5.07:1 (WCAG AA; #009A44 wäre 3.68:1) */
   --color-cta-hover: var(--color-accent-hover);
   --color-danger: var(--color-mg-red);
   --color-ok: #2E7D32;
@@ -180,6 +180,8 @@ button, input, textarea, select { font: inherit; }
 .btn:active { transform: scale(.97); }
 .btn-primary { background: var(--color-cta); color: var(--color-brand-white); }
 .btn-primary:hover { background: var(--color-cta-hover); color: var(--color-brand-white); }
+.nav-cta { background: var(--color-cta); color: #fff; }
+.nav-cta:hover { background: var(--color-brand-green); color: #fff; } /* Pascal 2026-08-12: Header-CTA Hover grün + weiß */
 .btn-dark { background: var(--color-neutral-dark); color: var(--color-text-inv); }
 .btn-dark:hover { background: #000; color: var(--color-text-inv); }
 .btn-ghost { background: transparent; color: var(--color-text); border: 1.5px solid var(--color-line); }
@@ -198,6 +200,7 @@ button, input, textarea, select { font: inherit; }
 .utility-left::-webkit-scrollbar { display: none; }
 .utility-left a { color: var(--color-text-inv-2); text-decoration: none; white-space: nowrap; font-weight: 500; }
 .utility-left a:hover { color: #fff; }
+.utility-bar a { display: inline-flex; align-items: center; min-height: 44px; }
 .utility-right { display: flex; align-items: center; gap: 14px; }
 .utility-status { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
 .utility-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; }
@@ -245,6 +248,7 @@ button, input, textarea, select { font: inherit; }
 .drawer .drawer-cta:hover, .drawer .drawer-cta:focus-visible { background: #005c28; color: #fff; }
 .nav-toggle { display: none; min-width: 48px; min-height: 48px; border: 0; background: transparent; border-radius: 12px; font-size: 1.4rem; cursor: pointer; }
 .nav-toggle:hover { background: rgba(31, 29, 25, .06); }
+@media (max-width: 720px) { .utility-left { display: none; } }  /* Links redundant (Drawer); verhindert 320px-Horizontalscroll (B.33) */
 @media (max-width: 960px) { .nav-desktop { display: none; } .nav-toggle { display: inline-flex; align-items: center; justify-content: center; } }
 
 /* Drawer */
@@ -309,7 +313,7 @@ button, input, textarea, select { font: inherit; }
 .card-plain { background: var(--color-surface); border: 1px solid var(--color-line); padding: var(--space-6); }
 .card-plain > .card-body { padding: 0; }
 .card-plain > .media-clip { padding: 0; }
-.badge { display: inline-block; padding: 4px 10px; border-radius: var(--r-full); font-size: .75rem; font-weight: 700; background: var(--color-accent); color: #fff; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: var(--r-full); font-size: .75rem; font-weight: 700; background: var(--color-accent-text); color: #fff; }
 .badge-city { background: var(--color-accent-city); }
 .badge-premium { background: var(--color-accent-premium); color: var(--color-neutral-dark); }
 
@@ -356,6 +360,9 @@ details[open] .chev, .acc-item.open .chev, details[open] .arrow { transform: rot
 .fact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .text-inv-muted { color: rgba(255, 255, 255, .65); }
 .media-clip { overflow: hidden; }
+.map-placeholder { width: 100%; min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 0; background: var(--color-bg-soft); color: var(--color-text-2); font: 600 1rem/1.4 var(--font-body); cursor: pointer; padding: var(--space-5); }
+.map-placeholder:hover { background: var(--color-neutral-soft); color: var(--color-accent-text); }
+.map-placeholder small { font-weight: 400; font-size: .8rem; max-width: 34ch; color: var(--color-text-3); }
 .baustellen-card { border-radius: var(--r-lg); padding: var(--space-5); }
 @media (min-width: 768px) { .baustellen-card { padding: var(--space-7); } }
 .section-flat { padding-top: 0 !important; }

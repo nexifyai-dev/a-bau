@@ -7,6 +7,7 @@ import { ld } from "@/lib/schema";
 export default function KontaktClient() {
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
   const [msg, setMsg] = useState("");
+  const [mapLoaded, setMapLoaded] = useState(false); // Zwei-Klick (DSGVO): Karte erst nach Klick laden
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -109,12 +110,25 @@ export default function KontaktClient() {
               </div>
             </div>
             <div className="card card-plain media-clip">
-              <iframe
-                title="Karte: Standort A-Bau in Mönchengladbach"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=6.4285%2C51.1365%2C6.4645%2C51.1565&layer=mapnik&marker=51.146391%2C6.446307"
-                style={{ width: "100%", height: 320, border: 0, display: "block" }}
-                loading="lazy"
-              />
+              {mapLoaded ? (
+                <iframe
+                  title="Karte: Standort A-Bau in Mönchengladbach"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=6.4285%2C51.1365%2C6.4645%2C51.1565&layer=mapnik&marker=51.146391%2C6.446307"
+                  style={{ width: "100%", height: 320, border: 0, display: "block" }}
+                  loading="lazy"
+                />
+              ) : (
+                <button
+                  type="button"
+                  className="map-placeholder"
+                  onClick={() => setMapLoaded(true)}
+                  aria-label="Karte von OpenStreetMap laden"
+                >
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+                  <span>Karte laden (OpenStreetMap)</span>
+                  <small>Beim Laden wird Ihre IP-Adresse an die OpenStreetMap Foundation übertragen.</small>
+                </button>
+              )}
             </div>
           </div>
         </div>

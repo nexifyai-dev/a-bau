@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Seite nicht gefunden – A-Bau Meisterbetrieb Mönchengladbach",
+  description: "Die angeforderte Seite existiert nicht. Zur Startseite von A-Bau Meisterbetrieb in Mönchengladbach.",
+  robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
   return (
