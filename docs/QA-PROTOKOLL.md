@@ -1557,3 +1557,26 @@
 **Gegentest (§5.4):** Negativ: vorher no-store (Befund), nachher immutable (Fix-Beweis) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: HTML bleibt no-store (kein Frische-Verlust) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 66)**
+
+
+---
+
+## Runde 67 (2026-08-13, Security: HTTP→HTTPS fehlt (P1); Video-Streaming 206 verifiziert; Cron-Erstläufe)
+
+**Anlass:** „Weiter. Livebetrieb. Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **P1-Security-Befund: `http://www.a-bau.info/` = 200 ohne HTTPS-Redirect!** — Formular-POSTs/Inhalte wären unverschlüsselt übertragbar (Art. 32 DSGVO, Bestandsschutz kein Grund). Ursache: CF-Zone-Setting „Always Use HTTPS“ inaktiv; Origin kann das nicht erzwingen (CF-Terminierung) | ⏳ Kundenpunkt mit Anleitung |
+| **Fix-Anleitung (Handbuch):** CF-Dashboard → Zone a-bau.info → **SSL/TLS → Edge Certificates → „Always Use HTTPS“ = ON** (nach Token-Rotation); danach Verifikation `curl -I http://www.a-bau.info/` → 301/308 | 📝 |
+| **Video-Streaming E2E:** `Range: bytes=0-1023` auf 73.mp4 → **HTTP/2 206 + content-range bytes 0-1023/1487350** (Starlette FileResponse-Range intakt; Seek/Streaming korrekt) | ✅ kein Fix |
+| **Apex http:** 301 → https://www.a-bau.info/ (Origin-301 funktioniert, aber über HTTP) | ✅ Teilbefund |
+| **Cron-Erstläufe:** abau-quality-check (Anlage 12.08. 19:18, first run 13.08. 04:10) + abau-log-cleanup (03:00) — beide noch nie gelaufen, erste Läufe heute Nacht **mit node-Fix** | ✅ erwartet |
+| **Watchdog:** silent-Läufe (01:22–01:33) = gesund, kein Restart nötig | ✅ |
+| **Git/Key:** origin = 7fbad17, clean; RESEND_API_KEY weiter ausstehend | ⏳ |
+
+**E2E:** 206-Range ✓ · Watchdog silent ✓ · www 200 · QUALITY-CHECK OK (manuell) · Queue 2 echte.
+
+**Gegentest (§5.4):** Negativ: http-200 (Befund reproduziert) · Positiv nach CF-Setting: erwartet 301 (Kundenpunkt) ✅ geplant · Datenintegrität: Queue ✅ · Regression: https-Pfad unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 67)**

@@ -168,3 +168,10 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
    Log: `[contact-resend-error]` darf nicht erscheinen; kein `queued` mehr im 202er (nur `{"ok":true}`).
 
 **Fehlerbilder:** 403 `domain not verified` = Schritt 2/3 offen · 401 = Key falsch (Schritt 4/5).
+
+## HTTP→HTTPS (P1, offener Kundenpunkt R67)
+
+- Befund: `http://www.a-bau.info/` liefert 200 ohne Redirect (CF-Setting inaktiv) — Formular-Daten wären unverschlüsselt übertragbar (Art. 32 DSGVO).
+- Fix (Kunde, nach CF-Token-Rotation): CF-Dashboard → Zone `a-bau.info` → **SSL/TLS → Edge Certificates → „Always Use HTTPS“ = ON**.
+- Verifikation danach: `curl -sI http://www.a-bau.info/ | head -1` → erwartet `301`/`308`; https bleibt 200.
+- Notiz: Origin kann den Redirect nicht erzwingen (TLS-Terminierung bei Cloudflare).
