@@ -41,7 +41,8 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 - Key: `_secret()` liest `/home/hermeswebui/.hermes/.env` (CUSTOM_API_KEY = 9Router-Key, verifiziert 2026-08-12). Kein Key im Client.
 
 ## Deploy-Änderungen (Domain/Port)
-- Tunnel-Route: CF-API `PUT /accounts/{ACCOUNT_ID}/cfd_tunnel/{TUNNEL_ID}/configurations` (Token `CLOUDFLARE_API_TOKEN`; Ingress vor Catch-All einfügen).
+- **GO-LIVE (R43, 2026-08-12):** Produktion = `https://www.a-bau.info` (+ Apex `a-bau.info`); Staging = `a-bau.nexifyai.cloud` (noindex, host-basiert in server.py). Tunnel `f0f2b101-ed26-4130-8b04-16c43badf70a` (Account `a112f895c19e0d65f6f64b3e89f747f8`) routet 20 Ingress-Einträge (17 NeXifyAI-Infra + a-bau.nexifyai.cloud + www.a-bau.info + a-bau.info → 127.0.0.1:8095) + Catch-All 404. Änderungen IMMER MERGE (GET → ergänzen → PUT), nie blind ersetzen. Skript: `scripts/cf-tunnel-route.sh` (liest CLOUDFLARE_API_TOKEN aus /home/hermeswebui/.hermes/.env).
+- Tunnel-Route: CF-API `PUT /accounts/{ACCOUNT_ID}/cfd_tunnel/{TUNNEL_ID}/configurations` (Ingress vor Catch-All einfügen).
 - DNS: CNAME `a-bau.nexifyai.cloud` → `f0f2b101-ed26-4130-8b04-16c43badf70a.cfargotunnel.com`, proxied=true. Global-Key-Auth: `CLOUDFLARE_API_KEY` + `CLOUDFLARE_E_MAIL` (DELETE+POST, kein PATCH).
 - Port-Kollisionen: 3000 = WhatsApp-Bridge; 8091 = Altlast-Ingress wa-webhook (ungenutzt); A-Bau nutzt **8095**.
 
