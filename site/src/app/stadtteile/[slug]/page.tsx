@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!q) return {};
   return {
     alternates: { canonical: `/stadtteile/${slug}/` },
-    title: `${q.name.split(" (")[0]} – A-Bau Mönchengladbach`,
+    title: `${q.name.split(" (")[0]}`,
     description: `${q.text} A-Bau Meisterbetrieb in ${q.name}, Mönchengladbach. ${q.schwerpunkt}. Kostenloses Angebot.`,
   };
 }
