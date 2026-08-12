@@ -152,3 +152,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 17
 
 **Repo main:** `e2a86d2` · Behoben: KB-Dedupe (25 Chunks, eindeutige Quellen, E3), Datenschutz §6 Drittland ehrlich. Verifiziert: 11 Detailseiten, robots, Sitemap, Payload, Chat-10-Fragen. Neu dokumentiert: 9Router-Anbieter-Standort als Infra-Restpunkt.
+
+# NACHTRAG RUNDE 18
+
+**Repo main:** `6504796` · Behoben: Titel-System (einheitlich, ≤60, keine Template-Dopplung), Claim „Kostenlose Angebote" entfernt, Chat-Dialog-Fokus. Gegenprobe: Drawer/Lightbox-A11y konform.

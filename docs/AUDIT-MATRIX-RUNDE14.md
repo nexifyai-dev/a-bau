@@ -153,3 +153,16 @@
 **Verifiziert ohne Fix:** 11 Detailseiten komplett (h1/Titel≤60/canonical==URL/og/JSON-LD), robots.txt vollständig, Sitemap 20/20, JS-Payload ok, Chat-10-Fragen-Protokoll (Preise/Termin/Garantie ehrlich verweigert, Antworten 2–6,5 s).
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (System-Libs/Root) · Kundendaten (Tel-Variante, Referenz-Metadaten, Logo, Rechtstext) · Brain NXDOMAIN · 9Router-Anbieter-Standort final (DeepSeek-China vs. EU-Relay) — für Datenschutz-Garantie von Infra zu bestätigen.
+
+---
+
+# NACHTRAG RUNDE 18 (2026-08-12) — Titel-System (A.32/B.20), Claims (B.28), Dialog-Fokus (A.28/D.4)
+
+**Neu behoben:**
+- **SEO-Titel-System vereinheitlicht:** Layout-Template `%s – A-Bau` + Seiten-Strings ergaben live Doppelungen („… – A-Bau – A-Bau", 6 Seiten) und Pipe-Inkonsistenz (/leistungen). Fix: `title: { absolute: "<Seite> – A-Bau Meisterbetrieb Mönchengladbach" }` auf allen Seiten + Leistungs-Details (clip ≤60). Live: 9/9 Titel einheitlich, keine Dopplung.
+- **Claim „Kostenlose Angebote"** (/kontakt-Meta) entfernt → „Angebot anfragen." (nicht belegt, B.28/B.29).
+- **Chat-Dialog-Fokus (A.28/D.4):** Fokus in Input bei Öffnen, globaler Escape, Fokus-Rückkehr zum Trigger.
+
+**Gegenprobe ohne Fix:** Drawer (Fokus-Transfer/Trap/Escape/Scroll-Lock) und Lightbox (dialog/aria-modal/Trap/Rückkehr) vollständig konform.
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort-Klärung.
