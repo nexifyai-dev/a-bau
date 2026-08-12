@@ -157,6 +157,7 @@ button, input, textarea, select { font: inherit; }
 .prose h2:first-child, .prose h3:first-child { margin-top: 0; }
 .card-dark { background: var(--color-neutral-dark); color: var(--color-text-inv); }
 .card-dark h3 { color: #fff; }
+.card-title { font-size: 1.22rem; }
 .card-dark p { color: rgba(255,255,255,.85); }
 .card-dark a { color: var(--color-mg-gold); }
 .card-city { background: var(--color-accent-city); color: #fff; }
@@ -416,6 +417,7 @@ details[open] .chev, .acc-item.open .chev, details[open] .arrow { transform: rot
 .site-footer .container { padding: var(--space-8) 20px var(--space-5); }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-6); }
 .site-footer h3 { font-size: 1rem; color: #fff; margin-bottom: var(--space-3); }
+.site-footer h2 { font-size: 1rem; color: #fff; margin-bottom: var(--space-3); }
 .site-footer p { color: var(--color-text-inv-2); font-size: .92rem; }
 .site-footer a { color: var(--color-text-inv-2); text-decoration: none; }
 .site-footer a:hover { color: #fff; }

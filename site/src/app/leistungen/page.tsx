@@ -59,7 +59,7 @@ export default function Leistungen() {
                   />
                 </div>
                 <div className="card-body">
-                  <h3>{l.titel}</h3>
+                  <h2 className="card-title">{l.titel}</h2>
                   <p>{l.kurz}</p>
                   <span className="card-link">Mehr erfahren <span className="arrow">→</span></span>
                 </div>

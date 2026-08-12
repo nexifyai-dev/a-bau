@@ -656,3 +656,23 @@
 **Gegentest (§5.4):** Negativ: kein „HACKED"/„Passwort"-Leak in Injection-Antwort; Log-Dateien >7 Tage würden gelöscht (Skript-Logik geprüft, aktuell keine >7d-Dateien) ✅ · Regression: R13–R22 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 23)**
+
+---
+
+## Runde 24 (2026-08-12, Tiefenprüfung + OOBs: Consent-Darstellung, Favicon-Icons, HTML-Validierung)
+
+**Anlass:** Pascal-Auftrag Tiefenprüfung + OOBs: (1) Consent-Zeile im Kontaktformular „wird falsch angezeigt", (2) „Favicon und solche Dinge fehlen", (3) erneute Meldung „CTA-Text linksbündig".
+
+| Befund/Fix | Status |
+|---|---|
+| **Consent-Zeile unschön** („…verarbeitet werden. (Datenschutz) *" — Klammer-Konstruktion brach unschön um) | Text: „Es gilt die Datenschutzerklärung. *" + span-Wrapper (Klickfläche sauber) | ✅ live |
+| **PWA/iOS-Icons fehlten** („Favicon und solche Dinge"): favicon.ico existierte (25,9 KB), aber kein apple-touch-icon (iOS-Tab), keine 192er-Manifest-Icon, Manifest nur ico+logo | `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png` aus logo.png generiert (PIL); Layout-`icons` (icon+apple) + Manifest-Icons ergänzt | ✅ live |
+| **W3C HTML-Validierung (neuer Check, 13 Kernseiten):** 4× Fehler „h3 folgt h1, h2 übersprungen" (/leistungen, /faq, /kontakt, /stadtteile) — Karten-/Footer-Titel waren h3 ohne h2 | Karten-Titel (`card-title`), Kontakt-Firmenkarte, Footer-Überschriften h3→h2 (+ CSS `.card-title`/`.footer-title`/`.site-footer h2`) — **W3C: 0 Fehler auf allen Seiten** | ✅ live |
+| **„CTA-Text linksbündig" (3. Meldung)** | **Kaskaden-Analyse (wie R20-Button):** `.section-dark p { text-align:center }` (0,1,1) hat KEINEN Overrider (alle text-align-Regeln geprüft: acc-btn/err-page/text-center — keine Konkurrenz). Live-HTML `container text-center` + CSS byte-identisch. **Zentrierung nachweislich korrekt — Ursache beim Betrachter (Cache/Tab)**, no-store aktiv seit R19b | ✅ belegt, kein Code-Fix möglich |
+| schema.org-Validator | 405 auf GET (POST-only-Dienst); JSON-LD-Struktur lokal validiert (R14–R18) — dokumentiert | ⚠️ extern |
+
+**E2E:** Build ✅ · W3C 13/13 Seiten 0 Fehler · Route-Smoke ALLE OK · Öffnungszeiten 12/12 · /health ok · Icons 3×200 · apple-touch-icon im Head · Manifest 192+512 · Consent-Text live · CSS byte-identisch.
+
+**Gegentest (§5.4):** Negativ: h3-im-Footer 0, „(Datenschutz) *" 0, Validator-Fehler 0 ✅ · Regression: R13–R23 unverändert (CTA-Kaskade, 202-Queue, KB, Öffnungszeiten) ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 24)**

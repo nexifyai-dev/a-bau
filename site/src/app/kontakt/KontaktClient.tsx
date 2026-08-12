@@ -72,7 +72,7 @@ export default function KontaktClient() {
             </div>
             <label className="consent-label">
               <input type="checkbox" name="einwilligung" required />
-              Ich willige ein, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden. (<a href="/datenschutz/">Datenschutz</a>) *
+              <span>Ich willige ein, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden. Es gilt die <a href="/datenschutz/">Datenschutzerklärung</a>. *</span>
             </label>
             {status === "ok" && <p className="form-success" role="status" aria-live="polite">{msg}</p>}
             {status === "err" && <p className="form-error" role="alert">{msg}</p>}
@@ -85,7 +85,7 @@ export default function KontaktClient() {
           <div className="contact-info-grid">
             <div className="card card-dark">
               <div className="card-body">
-                <h3>{KONTAKT.firma}</h3>
+                <h2 className="card-title">{KONTAKT.firma}</h2>
                 <p>
                   {KONTAKT.strasse}<br />
                   {KONTAKT.plz} {KONTAKT.ort} ({KONTAKT.stadtteil})

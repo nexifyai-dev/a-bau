@@ -43,7 +43,7 @@ export default function Stadtteile() {
             {s.quartiere.map((q: any) => (
               <div className="card card-plain" key={q.name}>
                 <div className="card-body">
-                  <h3>{q.name}</h3>
+                  <h2 className="card-title">{q.name}</h2>
                   <p>{q.text}</p>
                   <p className="text-3"><strong>Schwerpunkt:</strong> {q.schwerpunkt}</p>
                   <Link className="card-link" href="/kontakt/">Projekt in diesem Stadtteil anfragen <span className="arrow">→</span></Link>

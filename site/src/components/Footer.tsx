@@ -8,14 +8,14 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <h3>A-Bau Meisterbetrieb GmbH</h3>
+            <h2 className="footer-title">A-Bau Meisterbetrieb GmbH</h2>
             <p>
               Restaurierung denkmalgeschützter Bauten, Innenausbau, Krankenhausbau,
               Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach &amp; NRW.
             </p>
           </div>
           <div>
-            <h3>Leistungen</h3>
+            <h2 className="footer-title">Leistungen</h2>
             <nav>
               <Link href="/leistungen/denkmalrestaurierung/">Denkmal-Restaurierung</Link>
               <Link href="/leistungen/innenausbau/">Innenausbau</Link>
@@ -27,7 +27,7 @@ export default function Footer() {
             </nav>
           </div>
           <div>
-            <h3>Stadtteile</h3>
+            <h2 className="footer-title">Stadtteile</h2>
             <nav>
               <Link href="/stadtteile/geistenbeck/">Geistenbeck</Link>
               <Link href="/stadtteile/moenchengladbach-city-nordstadt-suedstadt/">Mönchengladbach City</Link>
@@ -39,7 +39,7 @@ export default function Footer() {
             </nav>
           </div>
           <div>
-            <h3>Kontakt</h3>
+            <h2 className="footer-title">Kontakt</h2>
             <nav>
               <Link href={telHref(KONTAKT.tel)}>Tel. {KONTAKT.tel}</Link>
               <Link href={telHref(KONTAKT.telMobil)}>Mobil: {KONTAKT.telMobil}</Link>
