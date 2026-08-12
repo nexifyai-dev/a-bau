@@ -5,10 +5,10 @@ set -u
 BASE="${1:-https://a-bau.nexifyai.cloud}"
 FAIL=0
 check() {
-  local code
+  local code expect="${2:-200}"
   code=$(curl -s -m 20 -o /dev/null -w "%{http_code}" "$BASE$1")
-  if [ "$code" != "200" ]; then
-    echo "FAIL $code $1"
+  if [ "$code" != "$expect" ]; then
+    echo "FAIL $code $1 (erwartet $expect)"
     FAIL=1
   else
     echo "OK   $1"
@@ -34,7 +34,7 @@ check "/stadtteile/niers-volksgarten-umfeld/"
 check "/ueber-uns/"
 check "/faq/"
 check "/kontakt/"
-check "/angebot/"
+check "/angebot/" 301   # bewusster Redirect (A.5/A.36): 301 → /kontakt/#angebot
 check "/impressum/"
 check "/datenschutz/"
 check "/cookie-richtlinie/"
