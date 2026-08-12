@@ -231,3 +231,13 @@
 **Verifiziert:** Secrets-Scan 0 (nur Variablennamen), Chat-Site-Konsistenz (3 Faktenfragen + Preis-Boundary, E3), Content-Kanon-Struktur (kontakt.yaml src-data-only, Recht/Markdown content-only — gewollt).
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung · **Feiertags-Logik (A.11: keine Feiertagsmodellierung — Kundendaten nötig)**.
+
+---
+
+# NACHTRAG RUNDE 27 (2026-08-12) — Screenreader-Chat, No-JS, Doku-Synchronität
+
+**Neu behoben:** Chat `aria-live="polite"` (A.28, Screenreader hören Antworten), `<noscript>`-Fallback im Kontaktformular (B.31/B.41), Doku-Sync: README (Chat live), Betriebshandbuch (Rollback npm), AGENTS.md (chat-check + content-sync als Pflicht), Nutzerhandbuch (FAQ 165 + AGB/Nutzung), Launch-Checkliste (2.3/2.4 Rechtstexte).
+
+**Verifiziert:** aria-live + aria-relevant im Live-Chat-Chunk (E3), noscript-Text live, Home == Build (nur CF-Obfuscation), alle 5 Auto-Checks grün.
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung (Launch-Checkliste 2.1–2.5 OFFEN) · Feiertags-Logik · a-bau.info-DNS (Tunnel-Ingress + Custom-Hostname = Host-Schritt).

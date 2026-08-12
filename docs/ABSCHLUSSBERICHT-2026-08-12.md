@@ -180,3 +180,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 25
 
 **Repo main:** `ecd8309` · Neu: chat-check.sh + content-sync-check.sh (automatisierte Regression, B.46). Verifiziert: Secrets 0, Chat-Site-Konsistenz, Content-Kanon. Neu dokumentiert: Feiertags-Lücke (A.11, Kundendaten). Restpunkte unverändert.
+
+# NACHTRAG RUNDE 27
+
+**Repo main:** `560cb39` · Behoben: Chat aria-live (A.28), No-JS-Formular-Hinweis, Doku-Sync (README, Handbuch, AGENTS, Nutzerhandbuch, Launch-Checkliste inkl. AGB/Nutzung). Verifiziert: aria-live im Live-Bundle, alle Checks grün. Restpunkte unverändert.
