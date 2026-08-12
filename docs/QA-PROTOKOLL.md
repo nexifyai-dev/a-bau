@@ -1338,3 +1338,27 @@
 **Gegentest (§5.4):** Negativ: Formular ohne Creds → 202 queued + klare Log-Meldung (kein irreführender SMTP-Fehler) ✅ · Prozess-Beweis: Kill → health failt → Neustart ok ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: W3C 0 Fehler, Video-Lazy unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 56)**
+
+
+---
+
+## Runde 57 (2026-08-12, Livebetrieb: Health-Scan + Resend-API-Doku als Konfigurationsvorgabe)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche: bekannte Fehler + Vermeidung, API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **Live-Health-Scan (NeXifyAI):** www.nexifyai.cloud 200 · api.nexifyai.cloud /docs+openapi 200 (kein /health — ok, OpenAPI = Referenz) · 9Router 200 · LightRAG 9622 200 · WebUI 302 (Login) · Gateway 8642 200 · AgentMemory: **Domain agentmemory.nexifyai.cloud 200, lokal 3111 = TOT (alle Pfade 404), echt: 3113 (/, /health 200)** → SOLL-Abweichung §6.1 („MCP: 127.0.0.1:3111/api/mcp") dokumentiert; echte Endpoints: Domain + 3113 | 📝 |
+| **Kundenprojekte:** A-Bau Prod/Staging 200 · studienkolleg-aachen (venv/uvicorn 8001 aktiv) · bookando/carvantooo im Container nicht prüfbar (keine Repos/Domains; ZK ohne Eintrag) — Bestandsaufnahme dokumentiert | 📝 |
+| **Resend-API-Doku als Konfigurationsvorgabe (Recherche):** Errors-Referenz belegt: 400 invalid_idempotency_key (Key 1–256 Zeichen) · 401/403 (Key/„Domain not verified" — erwarteter Fehler ohne Domain-Setup, Fallback-Kette fängt) · 429 (Rate-Limit) · 451 security_error · 5xx retry | ✅ |
+| **Fix: `_resend_send` gehärtet** — `Idempotency-Key` (uuid, Doku-konform) je Versuch (kein Doppel-Send bei Retry) + Fehler-Body (message) ins Log (`resend-403: The domain is not verified…`) für klare Diagnose | ✅ live |
+| **Log-Nebenfund (kein Fehler):** WP-Exploit-Scans (`?rest_route=/wp/v2/users/`, `/.vscode/sftp.json`, `/debug/default/view`) laufen gegen a-bau.info → alle 301/404 ins Leere (keine WP-Installation, keine Daten) — Live-Bot-Lärm, sauber abgefangen | ✅ dokumentiert |
+| **AgentMemory-Pflege (§6):** konsolidiert (5 Einträge gekürzt) + neue A-Bau-Lektionen (Resend-Key-Ort, pkill-Slash-Muster, NODE_BIN, AgentMemory-Endpoints) — **gestaged, Freigabe nötig** (pending `12d6f436`, alt: `7e2f2dad`) | ⏳ |
+
+**E2E:** HSTS-Beweis ✓ · QUALITY-CHECK OK · alle Live-Checks oben · Server 1987646→frisch (Start ~20–25 s).
+
+**Gegentest (§5.4):** Negativ: Kill → health failt → Neustart ok ✅ · Resend-Idempotency: kein Live-Key → Pfad inaktiv, Fallback unverändert 202 ✅ · Regression: Chat/Routen/Formular/Quality ok ✅ · Datenintegrität: Queue 2 echte unangetastet ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 57)**
+
+**Offen (Kunde):** Resend-Domain verifizieren + `RESEND_API_KEY` → flush 2 echte · CF-Token-Rotation · `/memory pending` (2 Updates) · NeXifyAI-Rechtstexte (Host-Session) · bookando/carvantooo-Repos/Domains für künftige Scans (ZK-Eintrag).

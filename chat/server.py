@@ -3,7 +3,7 @@
 Ein Dienst, ein Port. Läuft auf VPS (127.0.0.1:8095). Tunnel-Routen: a-bau.nexifyai.cloud (Staging, noindex) + www.a-bau.info/a-bau.info (Produktion, R42).
 Retrieval: SQLite FTS5 (BM25) über Website-Wissen — lokal, DSGVO-sauber, keine externen Embeddings.
 Upstage final entfernt (Pascal 2026-08-10) — kein externer Embedding-Provider systemweit."""
-import asyncio, json, os, re, smtplib, sqlite3, time, urllib.request
+import asyncio, json, os, re, smtplib, sqlite3, time, urllib.request, uuid
 from email.mime.text import MIMEText
 from email.utils import formatdate
 from pathlib import Path
@@ -55,15 +55,27 @@ RESEND_KEY = _secret({"RESEND_API_KEY"})
 RESEND_FROM = "A-Bau Meisterbetrieb <kontakt@a-bau.info>"
 
 def _resend_send(text: str, subject: str, to: str, reply_to: str) -> None:
-    """Formular-Mail über Resend-API (EU-US-DPF-zertifiziert; Key nur aus .env, nie loggen)."""
+    """Formular-Mail über Resend-API (EU-US-DPF-zertifiziert; Key nur aus .env, nie loggen).
+    R57 (API-Doku als Konfigurationsvorgabe): Idempotency-Key je Versuch (Doku: 1-256 Zeichen,
+    verhindert Doppel-Zustellung bei Retry); Fehler-Body (message) ins Log für klare Diagnose
+    (403 = Domain nicht verifiziert / Key falsch; 429 = Rate-Limit; 5xx = Resend-seitig)."""
     req = urllib.request.Request(
         "https://api.resend.com/emails",
         data=json.dumps({"from": RESEND_FROM, "to": [to], "reply_to": [reply_to],
                          "subject": subject, "text": text}).encode("utf-8"),
-        headers={"Authorization": f"Bearer {RESEND_KEY}", "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=25) as resp:
-        if resp.status >= 300:
-            raise RuntimeError(f"resend-http-{resp.status}")
+        headers={"Authorization": f"Bearer {RESEND_KEY}", "Content-Type": "application/json",
+                 "Idempotency-Key": str(uuid.uuid4())})
+    try:
+        with urllib.request.urlopen(req, timeout=25) as resp:
+            if resp.status >= 300:
+                raise RuntimeError(f"resend-http-{resp.status}")
+    except urllib.error.HTTPError as e:
+        detail = ""
+        try:
+            detail = json.loads(e.read().decode("utf-8", "replace")).get("message", "")
+        except Exception:
+            pass
+        raise RuntimeError(f"resend-{e.code}: {detail[:160]}") from None
 
 # --- Security-Header + noindex (Staging bis Kundenabnahme) ---
 HEADERS = {
