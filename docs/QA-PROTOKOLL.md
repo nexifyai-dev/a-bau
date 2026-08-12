@@ -1447,3 +1447,26 @@
 **Gegentest (§5.4):** Negativ: Feiertag am Samstag (1. Mai 2027) → geschlossen (Feiertag schlägt Sa-Öffnung) ✅ · Datenintegrität: kontakt.ts-Rewrite identisch zum Patch-Stand (Diff-Check) ✅ · Regression: 12 Altfälle unverändert PASS ✅ · Queue 2 echte unangetastet ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 61)**
+
+
+---
+
+## Runde 62 (2026-08-13, Live-Betrieb: Cron-Status, TTFB-Baseline, Resend-Limits belegt)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **Watchdog live:** abau-server-watchdog letzter Lauf 13.08. 01:02 **status=ok** (5-min-Intervall stabil; Server gesund) | ✅ kein Fix |
+| **Quality-Cron historisch:** 12.08.-Lauf (04:10) lief noch mit dem node-Pfad-Fehler (Fix kam erst R52 abends) — seither manuell mehrfach exit 0 verifiziert; nächster Cron-Lauf 13.08. 04:10 mit Fix | 📝 erwartet |
+| **TTFB-Baseline (HTTP/2, 5×):** 0,21 / 0,40 / 0,33 / 0,31 / 0,29 s — **Ø 0,31 s** (R57-Werte bestätigt; 1,5-s-Wert war HTTP/1.1-Kaltstart-Artefakt) | ✅ Baseline dokumentiert |
+| **Chat-Smoke:** „Hallo“ → Antwort ok (DIN-5008-Klartext) | ✅ |
+| **Resend-Limits belegt (Recherche):** Free = 3.000 Mails/Monat, **100/Tag**, 1 Domain, 30-Tage-Retention (resend.com/pricing + Blog, Stand 07/2026) — A-Bau-Formularvolumen unkritisch | ✅ belegt |
+| **Git-Konsistenz nach Sibling-Race (R61):** origin/main = e2ab989 (R61) — kein Fremd-Push, Working Tree clean | ✅ |
+| **RESEND_API_KEY:** weiterhin nicht im Container (Kunde: Key + Domain-Verifizierung ausstehend) | ⏳ |
+
+**E2E:** Chat ok · www 200 · Watchdog ok · QUALITY-CHECK OK (manuell) · Queue 2 echte unangetastet.
+
+**Gegentest (§5.4):** Negativ: kein Key → Fallback-Kette intakt ✅ · Datenintegrität: Queue ✅ · Regression: TTFB-Baseline stabil, Routen ok ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 62)**
