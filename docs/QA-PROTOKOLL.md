@@ -742,3 +742,22 @@
 **Gegentest (§5.4):** Negativ: „(bei Umsetzung)" = 0 im README-Chat-Zeile; pnpm = 0 im Rollback-Abschnitt; „FAQ (14)" = 0 im Nutzerhandbuch ✅ · Regression: R13–R26 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 27)**
+
+---
+
+## Runde 28 (2026-08-12, Fortsetzung Tiefenprüfung — Queue-Nachversand, Chat-Formatierung, SMTP-Finalcheck)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: flush_contact_queue.py (nie reviewt), Chat-Antwort-Formatierung (white-space), SMTP-Secret-Quellen final (Memory-Hinweis .mcp-env).
+
+| Befund/Fix | Status |
+|---|---|
+| **flush_contact_queue.py defensiv härten:** Nachversand-Subject/Text nutzte Queue-`name` ohne CRLF-Strip — alte Queue-Einträge (vor R19) könnten CRLF enthalten (A.38) | `re.sub(r"[\r\n]+", " ", name)` auch im Flush; restliche Logik reviewt: Erfolge entfernt, Fehler bleiben in Queue, Verbindungsfehler = Queue unangetastet (kein Verlust) | ✅ (Syntax ok) |
+| **Chat-Antwort-Formatierung (A.29/UX):** Werden `\n`-Zeilenumbrüche der LLM-Antworten korrekt angezeigt? | `.abau-msg { white-space: pre-wrap }` — im Live-CSS verifiziert; Listen/Zeilen sauber | ✅ kein Fix |
+| **SMTP-Restpunkt final geprüft:** Memory-Hinweis „/etc/nexifyai → Overrides ~/.mcp-env/*.env" — existiert das? | `~/.mcp-env/` **existiert nicht** im Container; alle 4 `_secret`-Pfade erneut gescannt: keine SMTP-Keys → **Restpunkt endgültig extern** (Host-Spiegelung nötig, keine Alternative im Container) | ⚠️ extern (final) |
+| Chat-Dialog-Modalität | role=dialog ohne aria-modal = korrekt nicht-modal (kein Fokus-Trap nötig, Tab verlässt Fenster); Drawer/Lightbox haben Trap | ✅ |
+
+**E2E:** Alle 5 Auto-Checks grün (CHAT-CHECK, CONTENT-SYNC, ROUTE-CHECK, Öffnungszeiten 12/12, /health) · flush-Syntax ok · pre-wrap live.
+
+**Gegentest (§5.4):** Negativ: CRLF-Muster im Flush-Code entfernt (defensiv), keine neuen Secrets gefunden ✅ · Regression: unverändert ✅ · Datenintegrität: Queue 0, keine Content-Änderung ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 28)**

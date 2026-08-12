@@ -5,7 +5,7 @@ Wird ausgefuehrt, sobald SMTP-Creds im Container verfuegbar sind (in /home/herme
 oder einer der _secret-Dateien). Versendet alle Eintraege per Hostinger-SMTP und entfernt
 erfolgreiche Eintraege aus der Queue. Aufruf: /app/venv/bin/python3 chat/flush_contact_queue.py
 """
-import json, smtplib, sys, time
+import json, re, smtplib, sys, time
 from email.mime.text import MIMEText
 from email.utils import formatdate
 from pathlib import Path
@@ -30,12 +30,14 @@ def main() -> int:
         for ln in lines:
             try:
                 d = json.loads(ln)
-                text = (f"Neue Anfrage über a-bau.nexifyai.cloud\n\nName: {d.get('name','')}\n"
+                # A.38: CRLF defensiv strippen (alte Queue-Einträge vor R19-Fix)
+                name_clean = re.sub(r"[\r\n]+", " ", str(d.get("name", "")))
+                text = (f"Neue Anfrage über a-bau.nexifyai.cloud\n\nName: {name_clean}\n"
                         f"E-Mail: {d.get('email','')}\nTelefon: {d.get('telefon','')}\n\n"
                         f"Nachricht:\n{d.get('nachricht','')}\n\n"
                         f"-- Kontaktformular A-Bau Website (DSGVO: Einwilligung erteilt, Queue-Nachversand)")
                 m = MIMEText(text, "plain", "utf-8")
-                m["Subject"] = f"Anfrage von {d.get('name','')} – a-bau Website (Nachversand)"
+                m["Subject"] = f"Anfrage von {name_clean} – a-bau Website (Nachversand)"
                 m["From"] = CONTACT_FROM
                 m["To"] = CONTACT_TO
                 m["Date"] = formatdate(localtime=True)
