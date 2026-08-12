@@ -102,3 +102,30 @@
 - Anwaltliche Prüfung der Rechtstexte vor Go-Live
 - Logo-Freigabe durch Kunden
 - DNS-Umstellung a-bau.info → Details in `docs/LAUNCH-CHECKLISTE.md`
+
+---
+
+## Review-Runde 2026-08-12 (frontend-engineering-Pipeline, Pflicht-Skill §0d/§0e)
+
+**Methode:** Phase-3-Design-System (ui-ux-pro-max `search.py --design-system` → „Trust & Authority"), Phase-5-Review (Code-Reviewer-Sub-Agent + automatisierte Audits), Normen-Checkliste `frontend-engineering/references/normen.md` (WCAG 2.2 AA, DIN 5008, ISO 9001-Prozess).
+
+| Finding | Fix | Status |
+|---|---|---|
+| P0: Leistungs-Detailseiten (7×) leer — Slug-Lookup `x.slug` vs. YAML `id` → `notFound()` | Lookup `(x.slug OR x.id)` | ✅ live, E3 |
+| P0: Stadtteil-City leer + 6 kaputte Links (city/, odenkirchen-hardt/, niers-volksgarten/) | ASCII-Slugify (ä→ae …) konsistent + Links korrigiert | ✅ live, E3 |
+| P1: Fallback-Bild `IMG_1416.webp` fehlt (7 Seiten) | → `FB_IMG_1731877209147.webp` | ✅ |
+| P1: Emoji-Icons (20) | → Heroicons-SVG (4 Trust-Icons) | ✅ |
+| P1: Grün-Links 3.68:1 < 4.5:1 | `--color-accent-text: #007a36` (5.46:1) | ✅ |
+| P2: kein canonical | `alternates.canonical` je Seite (9 statisch + 2 dynamisch) | ✅ |
+| P2: kein PWA-manifest | `manifest.ts` (theme #009A44) | ✅ |
+| P2: kein Print-CSS | `@media print` (Header/Footer/Widgets aus) | ✅ |
+| P2: Meta-Descriptions bis 205 Zeichen | alle ≤ 160 | ✅ |
+| P2: Title-Tags bis 123 Zeichen | alle ≤ 65 (gerendert) | ✅ |
+| P2: kein og:image | `openGraph.images` (/logo.png) | ✅ |
+| P2: Chat-KB ohne kontakt.yaml (Quelle `content/` ≠ `site/src/data/`) | `ingest.py` liest beide; KB neu (46 Chunks) | ✅ |
+| P2: fehlendes Interlinking | Leistung→3 Stadtteile, Stadtteil→3 Leistungen | ✅ |
+| Audit gesamt: 25 HTML, h1 auf allen, 0 broken Links, alle img mit alt, Formular-Labels+Consent, localStorage-Consent (kein Cookie), Schema.org voll (LocalBusiness+openingHours+geo+priceRange+FAQPage) | — | ✅ |
+
+**E2E-Gegentest (§5.4):** 404-Pfade → sauber; fehlende Assets → 404; Umlaut-Alt-Slug → 404 (durch ASCII-Slugs ersetzt); 12 Kernrouten live 200 + h1=1; Live-Hash-Abgleich mit lokalem Build identisch.
+
+**Offen (extern):** USt-IdNr./HWK (Kunde), anwaltliche Rechtstexte-Prüfung, Host-Key-Drift Chat-401 (Fix im Betriebshandbuch), a-bau.info-DNS.
