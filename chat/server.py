@@ -196,7 +196,8 @@ async def chat(req: Request):
         return {"answer": answer.strip(), "quellen": quellen}
     except Exception as e:
         print(f"[chat-error] {type(e).__name__}: {str(e)[:200]}", flush=True)
-        return JSONResponse({"error": "Chatdienst momentan nicht erreichbar.", "detail": str(e)[:120]}, status_code=503)
+        # A.38/B.41: keine technischen Details an Besucher ausgeben (nur Logging)
+        return JSONResponse({"error": "Chatdienst momentan nicht erreichbar. Bitte versuchen Sie es später erneut."}, status_code=503)
 
 # --- Kontaktformular -> Hostinger-SMTP (NICHT Resend: send.nexifyai.cloud=NXDOMAIN, E3 2026-08-10) ---
 @app.post("/api/contact")

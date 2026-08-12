@@ -21,10 +21,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const q = stadtteile.stadt.quartiere.find((x: any) => slugify(x.name) === slug);
   if (!q) return {};
+  const name = q.name.split(" (")[0];
+  // B.20: eindeutiger, aussagekräftiger Title (≤60 Zeichen); absolute, damit
+  // das Layout-Template ("%s – A-Bau") nicht doppelt anhängt
+  const title = clip(`${name} – A-Bau Meisterbetrieb Mönchengladbach`, 60);
   return {
     alternates: { canonical: `/stadtteile/${slug}/`, languages: { de: `https://a-bau.nexifyai.cloud/stadtteile/${slug}/`, "x-default": `https://a-bau.nexifyai.cloud/stadtteile/${slug}/` } },
-    title: `${q.name.split(" (")[0]}`,
-    description: `${clip(q.text, 45)} A-Bau Meisterbetrieb in ${q.name.split(" (")[0]}, Mönchengladbach. ${clip(q.schwerpunkt, 15)}. Angebot anfragen.`,
+    title: { absolute: title },
+    description: `${clip(q.text, 45)} A-Bau Meisterbetrieb in ${name}, Mönchengladbach. ${clip(q.schwerpunkt, 15)}. Angebot anfragen.`,
   };
 }
 
@@ -32,6 +36,7 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
   const { slug } = await params;
   const q = stadtteile.stadt.quartiere.find((x: any) => slugify(x.name) === slug);
   if (!q) notFound();
+  const name = q.name.split(" (")[0];
 
   return (
     <>
@@ -80,6 +85,31 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
           </div>
         </div>
       </section>
+      {/* B.21: Strukturierte Daten je Stadtteil-Detailseite (Breadcrumb + Service) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Start", item: "https://a-bau.nexifyai.cloud/" },
+                { "@type": "ListItem", position: 2, name: "Stadtteile", item: "https://a-bau.nexifyai.cloud/stadtteile/" },
+                { "@type": "ListItem", position: 3, name: name },
+              ],
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: `Bau- und Sanierungsleistungen in ${name}, Mönchengladbach – A-Bau Meisterbetrieb GmbH`,
+              provider: { "@type": "LocalBusiness", name: "A-Bau Meisterbetrieb GmbH" },
+              areaServed: { "@type": "City", name: name },
+              description: clip(q.schwerpunkt, 100),
+            },
+          ]),
+        }}
+      />
     </>
   );
 }

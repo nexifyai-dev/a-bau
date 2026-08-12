@@ -1,13 +1,39 @@
 import type { Metadata } from "next";
 import KontaktClient from "./KontaktClient";
+import { KONTAKT } from "@/lib/kontakt";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/kontakt/", languages: { de: "https://a-bau.nexifyai.cloud/kontakt/", "x-default": "https://a-bau.nexifyai.cloud/kontakt/" } },
   title: "Kontakt – A-Bau Bauunternehmen Mönchengladbach",
   description:
-    "Kontakt zur A-Bau Meisterbetrieb GmbH: Luisental 69, 41199 Mönchengladbach. Tel +49 2166 9925056, kontakt@a-bau.info. Kostenlose Angebote.",
+    `Kontakt zur ${KONTAKT.firma}: ${KONTAKT.strasse}, ${KONTAKT.plz} ${KONTAKT.ort}. Tel ${KONTAKT.tel}, ${KONTAKT.email}. Kostenlose Angebote.`,
 };
 
 export default function KontaktPage() {
-  return <KontaktClient />;
+  // B.21: ContactPage + LocalBusiness (NAP ausschließlich aus KONTAKT-Datenquelle — C.8, kein Hardcode)
+  return (
+    <>
+      <KontaktClient />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["ContactPage", "LocalBusiness"],
+            name: KONTAKT.firma,
+            telephone: KONTAKT.tel,
+            email: KONTAKT.email,
+            url: "https://a-bau.nexifyai.cloud/kontakt/",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: KONTAKT.strasse,
+              postalCode: KONTAKT.plz,
+              addressLocality: KONTAKT.ort,
+              addressCountry: "DE",
+            },
+          }),
+        }}
+      />
+    </>
+  );
 }

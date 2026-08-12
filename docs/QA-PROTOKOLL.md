@@ -413,3 +413,25 @@
 **Gegentest (§5.4):** Negativ: `#007a37` 0 Treffer, `9999` nur in Skip-Link/Honeypot (legitime visually-hidden-Technik, kein z-index-Problem) ✅ · Regression: Chat-API, Datenschutz §6, Routen, Hover-CTA R12b unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 13)**
+
+---
+
+## Runde 14 (2026-08-12, Tiefenprüfung Gesamtauftrag A–D inkl. Chat — ehrliche IST-Analyse)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Prüfe jeden Punkt gegen den Gesamtauftrag inkl. Chat. Tiefenprüfung und ehrliche IST-Stand-Analyse." — 13-Seiten-Crawl, 33 interne Links, Formular-/Chat-E2E, Server-Review, Code-Grep. Vollständige ehrliche Matrix: `docs/AUDIT-MATRIX-RUNDE14.md`.
+
+| Befund/Fix | Status |
+|---|---|
+| **Chat-503 Error-Leak:** `"detail": str(e)[:120]` gab technische Fehler an Besucher (A.38/B.41) | Entfernt — nur Logging, nutzerfreundliche Meldung | ✅ live (Server neu gestartet, Response ohne detail) |
+| **Stadtteil-Titel zu dünn** („Geistenbeck – A-Bau", 19 Z.) — B.20 | `title: { absolute: "<Name> – A-Bau Meisterbetrieb Mönchengladbach" }` ≤60, absolute gegen Template-Dopplung | ✅ live (44 Z.) |
+| **Stadtteil-Details ohne JSON-LD** — B.21 | BreadcrumbList + Service + LocalBusiness (areaServed City) je Detailseite | ✅ live |
+| **/kontakt ohne ContactPage-JSON-LD** (R11-Matrix behauptete es, Code hatte es nie) — B.21 | ContactPage+LocalBusiness, NAP **aus KONTAKT-Quelle** (C.8, kein Hardcode) | ✅ live |
+| Chat z-index/safe-area/Hover-Tokens | Bereits R13 behoben — erneut live verifiziert | ✅ |
+| Formular-E2E B.40 | Honeypot ok:true, Invalid-Email 400, Pflichtfelder 400, Valid → 502 (SMTP extern); Queue-Test-Eintrag geleert | ⚠️ SMTP extern |
+| Chat-E2E A.29 | Öffnungszeiten-Frage korrekt, /health ok, Rate-Limit 18×200→429 | ✅ live |
+
+**E2E:** Build ✅ · CSS byte-identisch · Live-HTML == Build (nur CF-Mail-Obfuscation) · Route-Smoke ALLE OK · Sitemap 20/20 · Crawl 0 broken · 0 Emojis · 0 tel:00 · h1=1 je Seite · JSON-LD neu live (Breadcrumb/Service/ContactPage) ✅.
+
+**Gegentest (§5.4):** Negativ („detail" fehlt in Response; Stadtteil-Titel nicht mehr „– A-Bau"-Suffix-Dopplung; hardcoded NAP 0 in kontakt/page) ✅ · Regression: R12/13-Fixes unverändert (Hover, Zentrierung, z-Skala) ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 Einträge ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 14)**
