@@ -78,9 +78,10 @@ async def headers_mw(request: Request, call_next):
         else:
             resp.headers.update(ASSET_CACHE)
     else:
-        # HTML/API nie heuristisch cachen (Browser-HTML-Cache zeigt sonst alten
-        # CSS-Chunk-Stand -> veraltetes Design nach Deploy, 2026-08-12)
-        resp.headers["Cache-Control"] = "no-cache"
+        # HTML/API nie cachen (auch nicht per Revalidation): Browser-Tab zeigte
+        # mehrfach alten Stand trotz no-cache -> no-store erzwingt Frische je Navigation
+        # (Kunden-Problem „Zentrierung fehlt", 2026-08-12 R19b)
+        resp.headers["Cache-Control"] = "no-store"
     return resp
 
 # --- Rate-Limit (In-Memory, einfach) ---

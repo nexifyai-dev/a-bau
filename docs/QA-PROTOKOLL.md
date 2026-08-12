@@ -544,3 +544,23 @@
 **Gegentest (§5.4):** Negativ: `**` = 0 in Chat-Antwort, CRLF = 0 im Queue-Eintrag, LD-Fragen = 4 ✅ · Regression: KB/Quellen, DSGVO §6, Titel R18, Öffnungsstatus unverändert ✅ · Datenintegrität: Queue nach Test geleert (0 Einträge) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 19)**
+
+---
+
+## Runde 19b (2026-08-12, Kunden-Präzisierung: Header-CTA dauerhaft grün, Hover harmonisch)
+
+**Anlass:** Pascal-OOB (Screenshots): „Der im Screen markierte Link im Menü (Projekt anfragen) muss beim Hovern Grün haben mit weißer Schrift. Oder besser ohne Hovern grün und wenn hovert passend harmonisch zum Gesamtdesign."
+
+**Erkenntnis:** Dunkles `--color-cta` (#008035) wirkte im Kunden-Screenshot wie Schwarz/Dunkelgrau (kein erkennbarer grüner Button). Kundenwunsch final: **dauerhaft Markengrün, Hover dezent harmonisch.**
+
+| Befund/Fix | Status |
+|---|---|
+| Header-CTA (Desktop + Drawer): Grundzustand `--color-cta` (#008035, wirkt fast schwarz) | `.nav-cta, .drawer .drawer-cta { background: var(--color-brand-green) (#009A44); color: #fff }` — eindeutig grün, weiß 3.68:1 (UI ok) | ✅ live |
+| Hover `--color-cta-hover-bright` (#00A64A, heller — „greller" Wechsel) | Hover → `--color-cta-hover` (#007A36, dezent dunkler, weiß 5.07:1) — harmonisch zum Design | ✅ live |
+| Kunde sah alten Stand trotz no-cache (CTA-Zentrierung + Button-Hover) | **Cache-Härtung:** HTML/API `Cache-Control: no-store` (vorher no-cache) — jeder Tab/Back-Forward lädt frisch | ✅ live |
+
+**E2E:** Build ✅ · CSS byte-identisch (Chunk `2zq7d0be1xm_b.css`) · Live: Grundzustand brand-green + weiß, Hover cta-hover + weiß · /health ok · CTA-Bänder weiterhin zentriert (unverändert E3).
+
+**Gegentest (§5.4):** Negativ: `#008035` = 0 im .nav-cta-Kontext, `hover-bright` = 0 Treffer ✅ · Regression: R12–R19-Fixes unverändert; Zentrierung erneut E3 (HTML text-center + CSS) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 19b)**

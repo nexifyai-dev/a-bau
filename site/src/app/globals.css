@@ -185,7 +185,7 @@ button, input, textarea, select { font: inherit; }
 .btn:active { transform: scale(.97); }
 .btn-primary { background: var(--color-cta); color: var(--color-brand-white); }
 .btn-primary:hover { background: var(--color-cta-hover); color: var(--color-brand-white); }
-.nav-cta { background: var(--color-cta); color: #fff; }
+.nav-cta, .drawer .drawer-cta { background: var(--color-brand-green); color: #fff; } /* Pascal 2026-08-12: Header-CTA dauerhaft Markengrün (#009A44), Hover dezent dunkler */
 .btn-dark { background: var(--color-neutral-dark); color: var(--color-text-inv); }
 .btn-dark:hover { background: #000; color: var(--color-text-inv); }
 .btn-ghost { background: transparent; color: var(--color-text); border: 1.5px solid var(--color-line); }
@@ -248,7 +248,7 @@ button, input, textarea, select { font: inherit; }
 .nav-dropdown-menu .dd-title { font-weight: 700; font-family: var(--font-head); font-size: .95rem; }
 .nav-dropdown-menu .dd-sub { font-size: .8rem; color: var(--color-text-3); }
 .nav-cta { margin-left: 8px; }
-.nav-cta:hover, .nav-cta:focus-visible, .drawer .drawer-cta:hover, .drawer .drawer-cta:focus-visible { background: var(--color-cta-hover-bright); color: #fff; } /* Pascal 2026-08-12: Header-CTA Hover grün + weiß, deutlich sichtbar */
+.nav-cta:hover, .nav-cta:focus-visible, .drawer .drawer-cta:hover, .drawer .drawer-cta:focus-visible { background: var(--color-cta-hover); color: #fff; } /* Pascal 2026-08-12: Hover harmonisch dunkleres Grün + weiße Schrift */
 .nav-toggle { display: none; min-width: 48px; min-height: 48px; border: 0; background: transparent; border-radius: 12px; font-size: 1.4rem; cursor: pointer; }
 .nav-toggle:hover { background: rgba(31, 29, 25, .06); }
 @media (max-width: 720px) { .utility-left { display: none; } }  /* Links redundant (Drawer); verhindert 320px-Horizontalscroll (B.33) */
