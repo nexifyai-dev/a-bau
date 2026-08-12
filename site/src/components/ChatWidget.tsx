@@ -140,6 +140,7 @@ export default function ChatWidget() {
                 }}
                 placeholder="Ihre Frage eingeben…"
                 aria-label="Ihre Frage"
+                maxLength={500}
               />
               <button type="button" aria-label="Nachricht senden" className="abau-chat-send" onClick={send} disabled={busy}>
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">

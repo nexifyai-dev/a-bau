@@ -19,6 +19,7 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 ## Betrieb
 - **Start/Stop (setsid, überlebt Session-Ende):** `bash /tmp/start-abau.sh` (= `cd /workspace/nexifyai/repos/a-bau && PORT=8095 setsid /app/venv/bin/python3 chat/server.py >> /tmp/abau-server.log 2>&1 < /dev/null &`). Stop: Prozess `chat/server.py` beenden.
 - **Watchdog AKTIV (seit 2026-08-12 15:59 E3):** Hermes-Cron-Job `abau-server-watchdog` (id `a1a70191e61a`, every 5m, no_agent, Script `~/.hermes/scripts/abau-watchdog.sh` — startet via setsid aus `repos/a-bau` mit venv-Python). Voraussetzung: Hermes-Gateway läuft im Container (Cron-Scheduler). Start Gateway: `bash /tmp/start-gateway.sh` (setsid `hermes gateway`), Status: `hermes cron status` — „✓ Gateway is running". **Ausfall 2026-08-12:** Container-Gateway war ~09:06 MESZ gestorben → alle Cron-Jobs feuerten nicht → Server-Ausfall ohne Auto-Restart (Host-Error, 502 über Domain). Fix: Gateway per setsid gestartet; Watchdog-Job lief 15:59 completed/ok (Gegentest bestanden). Scheduler-Tick prüfen: `hermes cron status` (Ticker heartbeat < 60 s) + `hermes cron runs`/executions.db für `a1a70191e61a`.
+- **Log-Aufbewahrung (DSGVO, seit R23):** Hermes-Cron-Job `abau-log-cleanup` (täglich 03:00, no_agent, Script `~/.hermes/scripts/abau-log-cleanup.sh`) löscht `/tmp/abau-server*.log` + `abau-watchdog.log` nach 7 Tagen.
 - **Health:** `curl http://127.0.0.1:8095/health` bzw. `https://a-bau.nexifyai.cloud/health` → `{"status":"ok","chat":true,"kb":true}`.
 - **Backup:** Repo (git) = Backup der Inhalte; `site/out` ist Build-Artefakt (reproduzierbar via `npm run build`); `chat/data/kb.db` aus `chat/ingest.py` regenerierbar.
 
@@ -105,9 +106,9 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 |---------|-------|---------------|
 | NAP ändern (Telefon, E-Mail, Adresse) | `site/src/data/kontakt.yaml` | `npm run build` + Restart |
 | Leistungen ändern | `site/src/data/leistungen.yaml` | `npm run build` + `ingest.py` + Restart |
-| FAQ ändern | `site/src/data/faq.yaml` | `npm run build` + `ingest.py` + Restart |
+| FAQ ändern (≥150, Chat-Wissen) | `content/faq.yaml` (kanonisch) → nach Änderung `cp content/faq.yaml site/src/data/faq.yaml` | `npm run build` + `ingest.py` + Restart |
 | Referenzen ändern | `site/src/data/referenzen.yaml` | `npm run build` + `ingest.py` + Restart |
 | Bilder ersetzen | `site/public/assets/` | `npm run build` + Restart |
-| Rechtstexte ändern | `site/src/app/impressum/page.tsx`, `datenschutz/`, `cookie-richtlinie/` | `npm run build` + Restart (kein Re-Ingest — Rechtstexte absichtlich aus KB ausgeschlossen) |
+| Rechtstexte ändern (Impressum, Datenschutz, **AGB, Nutzungsbedingungen**) | `content/*.md` (Rendering liest content/) | `npm run build` + Restart (kein Re-Ingest — Rechtstexte absichtlich aus KB ausgeschlossen) |
 
 **Wichtig:** `kontakt.yaml` ist die **einzige Wahrheitsquelle** für NAP-Daten. Niemals Telefon/E-Mail/Adresse direkt in `.astro`-Dateien oder Template-Strings eintragen.
