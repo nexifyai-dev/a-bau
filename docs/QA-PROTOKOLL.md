@@ -372,3 +372,22 @@
 **Gegentest (§5.4):** Negativ (/angebot mit/ohne Slash → 301, kein 200-Refresh mehr; Hostinger-Alttext 0 Treffer) ✅ · Regression Runden 1–10 (FAQ, CTA, Lightbox, tel, CSP, Queue, no-cache) unverändert ✅ · Datenintegrität: keine neuen toten Assets, Sitemap unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 11)**
+
+---
+
+## Runde 12 (2026-08-12, Kunden-Feedback via Pascal: Button-Hover, CTA-Zentrierung, Chat-Live)
+
+**Anlass:** Kundenrückmeldung: (1) Header-CTA „Projekt anfragen" soll beim Hover grün + weiße Schrift, (2) CTA-Band-Texte („Beschreiben Sie uns kurz Ihr Vorhaben …") auf allen Seiten zentriert statt linksbündig, (3) Chat soll Live-AI nutzen.
+
+| Befund/Fix | Status |
+|---|---|
+| **Button-Hover doppelt definiert:** `.nav-cta:hover` existierte 2× in globals.css — Fix (brand-green #009a44) an früherer Stelle, ALT-Regel `#005c28` später → gewann in CSS. Symptom: Hover wirkte dunkel/fast schwarz statt Markengrün | Eine Regel: `.nav-cta:hover, .nav-cta:focus-visible, .drawer .drawer-cta:hover, .drawer .drawer-cta:focus-visible { background: var(--color-brand-green); color: #fff; }` | ✅ live |
+| **CTA-Band-Zentrierung lückenhaft:** `.section-dark` hat text-align:center, aber Homepage/referenzen/ueber-uns hatten `container` ohne `text-center`, hero-actions ohne `hero-actions-center` | Alle 5 CTA-Bänder: `container text-center` + `hero-actions hero-actions-center` (leistungen/stadtteile hatten es bereits) | ✅ live |
+| **Chat „nicht live":** Ursache war Server-Ausfall (Gateway tot ~09:06, Watchdog erst ab 15:59 aktiv); API lebt jetzt | E3: /health `{"status":"ok","chat":true,"kb":true}`; 3 Chat-POSTs über Domain mit Browser-Headern (Origin/Referer) → inhaltlich korrekte Antworten mit Quellen (Adresse, Leistungen, Vorstellung); CSP `connect-src 'self'` erlaubt Widget-Fetch | ✅ live |
+| Unstaged Chat-Widget-Stand (ChatWidget.tsx, layout.tsx, ADR-004) | Mit Runde 12 committet + gepusht (a4d7a5e) | ✅ |
+
+**E2E:** Build ✅ (17 Seiten) · CSS byte-identisch live vs out/ (`3r1mlegcp61hr.css`, cmp=0) · Live-HTML == Build-HTML bis auf Cloudflare-Mail-Obfuscation (erlaubte Abweichung) · `#005c28` = 0 Treffer im Live-CSS · alle 5 Seiten: section-dark + text-center + hero-actions-center im HTML (E3) · Chunk-Referenzen live == lokal · no-cache auf HTML ✅ · Chat 3/3 Fragen beantwortet < 5 s ✅.
+
+**Gegentest (§5.4):** Negativ (alte Hover-Farbe #005c28 0 Treffer; diff-bereinigt nur CF-MailObfuscation) ✅ · Regression: Routen 200, Chat, /health, Cache-Header unverändert ✅ · Datenintegrität: keine Änderung an KB/Content ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 12)**
