@@ -241,13 +241,16 @@ async def chat(req: Request):
             "model": LLM_MODEL,
             "messages": [{"role": "user", "content": prompt}],
             "reasoning_effort": "high",
-            "max_tokens": 600,
+            "max_tokens": 1200,  # R59: Reasoning + Antwort-Budget (E3: 600 -> reasoning verbraucht Budget, content leer)
             "temperature": 0.3,
         }
         d = await asyncio.to_thread(_llm_call, req_body)
         if not d:
             return JSONResponse({"error": "Chatdienst momentan nicht erreichbar."}, status_code=503)
         answer = d["choices"][0]["message"].get("content") or ""
+        if not answer.strip():  # R59: leerer Content (z. B. Kaltstart/Reasoning-Budget) -> ehrlicher 503 statt leerer Antwort
+            print("[chat-empty-content] LLM lieferte leeren Content", flush=True)
+            return JSONResponse({"error": "Chatdienst momentan nicht erreichbar – bitte kurz erneut versuchen."}, status_code=503)
         if not answer:  # Think-Max: Antwort ggf. nur im Reasoning gelandet -> zweiten Versuch ohne Think
             req_body.pop("reasoning_effort", None)
             d2 = await asyncio.to_thread(_llm_call, req_body)

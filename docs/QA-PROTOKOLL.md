@@ -1383,3 +1383,24 @@
 **Gegentest (§5.4):** Negativ: Formular ohne Creds → 202 + klares Log ✅ · Studienkolleg: 000→404 transient verifiziert (2 Folge-Checks) ✅ · Regression: A-Bau unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 58)**
+
+
+---
+
+## Runde 59 (2026-08-12, Chat-Robustheit: Reasoning-Budget E3, leerer-Content-Guard)
+
+**Anlass:** „Weiter. Livebetrieb. Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **E3-Befund (Recherche/API-Doku angewendet):** `max_tokens=600` + `reasoning_effort=high` — Reasoning verbraucht das komplette Completion-Budget → `content: ""` (Bare-Test gegen 9Router, exakte Server-Config). Live-Chat war durch System-Prompt-Struktur (kompakt, KB-gebunden) meist ok (974-Zeichen-Beweis), aber Budget grenzwertig | ✅ |
+| **Fix 1:** `max_tokens` 600 → **1200** (Reasoning + Antwort-Budget; Think-Max-Pflicht bleibt) | ✅ live |
+| **Fix 2 (Guard):** leerer Content (Kaltstart/Reasoning-Rest) → ehrlicher **503** „Chatdienst momentan nicht erreichbar – bitte kurz erneut versuchen." + Log `[chat-empty-content]` statt 200 mit leerer Antwort | ✅ live |
+| **9Router-Parse-Pitfall (Tests):** Direkt-Calls liefern `reasoning_content` mit unescaped Steuerzeichen → `json.loads(strict)` bricht („Extra data"); Server nutzt `_parse_last_json` (defensiv) — kein Server-Problem, für Testskripte `strict=False` | 📝 |
+| **Wiederanlauf-Zeit bestätigt:** ~30 s bis health; erster LLM-Call nach Restart kann Kaltstart-Verhalten zeigen → 503-Guard fängt es ehrlich ab | ✅ |
+
+**E2E:** Chat 3/3 warm+Kaltstart 556–723 Zeichen · QUALITY-CHECK OK · HSTS ✓ · health ok · Queue 2 echte unangetastet.
+
+**Gegentest (§5.4):** Negativ: leerer Content → 503 statt leerer 200-Antwort (Guard, Log-Beweis) ✅ · Regression: Chat-Antworten vollständig, DIN-5008-Klartext unverändert ✅ · Datenintegrität: Queue intakt ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 59)**
