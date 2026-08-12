@@ -22,7 +22,13 @@ RATE_LIMIT = 20  # Anfragen pro Minute pro IP
 app = FastAPI(title="A-Bau Website Service", docs_url=None, redoc_url=None)
 
 # --- Secrets (nur Server, nie in Logs/HTML) ---
-def _secret(names, files=("/root/.hermes/hermes.env", "/etc/nexifyai/hermes.env", "/root/.hermes/.env")):
+# Reihenfolge: Umgebung -> Dateien (Container-Spiegel zuerst).
+def _secret(names, files=("/home/hermeswebui/.hermes/.env", "/root/.hermes/hermes.env",
+                          "/etc/nexifyai/hermes.env", "/root/.hermes/.env")):
+    for n in names:
+        v = os.environ.get(n)
+        if v:
+            return v
     for p in files:
         try:
             for line in open(p):
@@ -34,7 +40,7 @@ def _secret(names, files=("/root/.hermes/hermes.env", "/etc/nexifyai/hermes.env"
             pass
     return ""
 
-API_KEY = _secret({"CUSTOM_API_KEY"})
+API_KEY = _secret({"CUSTOM_API_KEY", "DEEPSEEK_API_KEY"})
 SMTP = dict(host=_secret({"SMTP_HOST"}), port=int(_secret({"SMTP_PORT"}) or 465),
             user=_secret({"SMTP_USER"}), pw=_secret({"SMTP_PASSWORD"}))
 CONTACT_TO = os.environ.get("ABAU_CONTACT_TO", "kontakt@a-bau.info")

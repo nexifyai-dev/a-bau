@@ -1,6 +1,8 @@
 # Betriebshandbuch — A-Bau Website & Chatbot (a-bau.nexifyai.cloud)
 
-**Kunde:** A-Bau Meisterbetrieb GmbH · **Betreiber:** NeXifyAI (VPS 72.62.152.47, Container hermes-webui) · **Stand:** 2026-08-10
+**Kunde:** A-Bau Meisterbetrieb GmbH · **Betreiber:** NeXifyAI (VPS 72.62.152.47, Container hermes-webui) · **Stand:** 2026-08-12
+
+**Deploy-Quelle (seit 2026-08-12):** Git-Repo `https://github.com/nexifyai-dev/a-bau.git`, main = `880b019` (GAG-Konzept). Container-Spiegel: `/workspace/nexifyai/repos/a-bau` (bind-mounted → auch Host-seitig sichtbar). Verzeichnis `/workspace/nexifyai/clients/abau` = veralteter Next.js-Zwischenstand (NICHT verwenden, nie gepusht).
 
 ## Architektur (1 Dienst, 1 Port)
 ```
@@ -15,14 +17,15 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 ```
 
 ## Betrieb
-- **Start/Stop:** `cd /workspace/nexifyai/clients/abau && PORT=8095 python3 chat/server.py` (Log `/tmp/abau-server.log`). Stop: Prozess `chat/server.py` beenden.
-- **Watchdog:** Hermes-Cron `abau-server-watchdog` (alle 5 min, no-agent): Skript `/root/.hermes/scripts/abau-healthcheck.sh` — startet Service bei Ausfall automatisch, meldet nur bei Aktion.
+- **Start/Stop:** `cd /workspace/nexifyai/repos/a-bau && PORT=8095 /app/venv/bin/python3 chat/server.py` (Log `/tmp/abau-server.log`). Stop: Prozess `chat/server.py` beenden.
+- **Watchdog (Host):** Hermes-Cron `abau-server-watchdog` (alle 5 min, no-agent): Skript `/root/.hermes/scripts/abau-healthcheck.sh` — startet Service bei Ausfall automatisch, meldet nur bei Aktion.
+  ⚠️ **Offener Punkt (2026-08-12):** Host-Skript zeigt vermutlich noch auf Altpfad `clients/abau` — Container-Zugriff nicht möglich (root-only, kein SSH). Fix: Skript auf `repos/a-bau` + `/app/venv/bin/python3` umstellen, sonst startet Watchdog nach Crash den veralteten Stand.
 - **Health:** `curl http://127.0.0.1:8095/health` bzw. `https://a-bau.nexifyai.cloud/health` → `{"status":"ok","chat":true,"kb":true}`.
 - **Backup:** Repo (git) = Backup der Inhalte; `site/dist` ist Build-Artefakt (reproduzierbar); `chat/data/kb.db` aus `chat/ingest.py` regenerierbar.
 
 ## Content-Änderungen
 1. Inhalte editieren: `data/kontakt.yaml` (NAP — EINE Quelle!), `content/*.yaml` + `*.md` (Leistungen/Referenzen/FAQ/Recht).
-2. Site bauen: `cd site && pnpm build` (Node 22, pnpm 11).
+2. Site bauen: `cd site && npm install && npm run build` (Node 22; pnpm-Store im Container defekt — npm nutzen).
 3. Chat-Wissen aktualisieren: `python3 chat/ingest.py` (Rechtstexte automatisch ausgeschlossen).
 4. Service neu starten (siehe Betrieb).
 5. Verifikation: Routen-200 + ein Chat-Test + `https://a-bau.nexifyai.cloud/health`.
@@ -85,11 +88,12 @@ Aktuelle Security-Header (gesetzt in `chat/server.py` HEADERS-Dict):
 | Header | Wert |
 |--------|------|
 | `X-Content-Type-Options` | `nosniff` |
-| `X-Frame-Options` | `DENY` |
+| `X-Frame-Options` | `SAMEORIGIN` |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` |
 | `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` |
+| `X-Robots-Tag` | `noindex, nofollow` (bis Kundenabnahme, Go-Live-Punkt 3) |
+| CSP | `default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; frame-src https://www.openstreetmap.org; connect-src 'self'; base-uri 'self'; form-action 'self'` |
 | HSTS | Über Cloudflare-Dashboard (SSL/TLS → Edge Certificates → HSTS) |
-| CSP | Zu konfigurieren (inline-scripts durch Astro-Build erforderlich, `unsafe-inline`) |
 
 Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://securityheaders.com/).
 
