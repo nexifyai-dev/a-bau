@@ -1083,3 +1083,24 @@
 **Gegentest (§5.4):** Negativ: section-head ohne center = 0 im CSS; hero-actions-mt-5 ohne center = 0 in [slug]-Seiten ✅ · Regression: CTA-Band unverändert zentriert; R13–R43 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 44)**
+
+---
+
+## Runde 45 (2026-08-12, Proaktiv: Produktions-Verify + Wissenssicherung komplett)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen."
+
+| Maßnahme | Status |
+|---|---|
+| Produktions-Verify (www.a-bau.info, E3) | robots.txt (User-Agents + Sitemap) ✓ · sitemap 22 URLs alle www ✓ · manifest-Icons ✓ · Chat (Sitz-Frage korrekt) ✓ · **W3C Produktion: 0 Fehler** (Home/FAQ/AGB) ✓ |
+| README | GO-LIVE-Status (war „Umsetzung — Staging") | ✅ |
+| Audit-Matrix | Nachtrag R43–45 (GO-LIVE, Zentrierung, Wissen) | ✅ |
+| **Skill `embedded-ai-chat-server-ops` §13 (Wissenssicherung R37–45)** | Body-Limit 413, Server-Längenlimits, noindex-Host-Bug (MutableHeaders.pop), CF-Tunnel-API-MERGE, Tunnel-DNS-Record≠Route, ULA-DNS-Pitfall (--resolve), Domain-Zentralisierung + KB-Re-Ingest, AGB-B2B, AnkerSlug, section-head-Zentrierung | ✅ |
+| **AgentMemory** | A-Bau-Projektfakten (GO-LIVE, Tunnel, SITE_URL, Cron, SMTP-Restpunkt) — gestaged | ✅ |
+| Offene Restpunkte | Alle extern dokumentiert (s. Matrix) — keine neuen internen Befunde | ✅ |
+
+**E2E:** QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok (www + Staging).
+
+**Gegentest (§5.4):** Negativ: Produktion ohne noindex, Staging mit noindex; sitemap ohne www-URL = 0 ✅ · Regression: R13–R44 unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 45)**

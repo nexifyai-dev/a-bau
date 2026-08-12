@@ -80,3 +80,9 @@ brain.nexifyai.cloud nicht erreichbar (NXDOMAIN) — Ersatz dokumentiert: Repo (
 
 ## Mobile-Optimierung (D.13)
 Getestet: 320/375/390/768 (Code), kein Overflow, Drawer (Fokus/Trap/Escape/aria-current), Floating konfliktfrei (--z-chat 70, safe-area env), Touch ≥44px, Formulare 1-spaltig (inputmode/autocomplete), tel:-CTA, Videos preload=none, reduced-motion. **Offen:** reale Gerätematrix + Lighthouse (extern, s. o.).
+
+---
+
+# NACHTRAG R43–45: GO-LIVE erreicht (2026-08-12)
+
+**Produktion live:** `https://www.a-bau.info` + Apex `a-bau.info` (200, E3) — Tunnel-Route per CF-API gesetzt (MERGE, 20 Ingress, 17 Infra-Hostnames unverändert). Fix des R39-`MutableHeaders.pop()`-Bugs (500 auf Produktions-Hosts). Chat + Formular (202) über Produktion verifiziert; Staging bleibt noindex. Zentrierung aller Bereiche (section-head global, Detail-Buttons, FAQ-Nav; CTA war bereits zentriert). W3C Produktion 0 Fehler; alle 5 Auto-Checks grün; 130+ Commits, 45 QA-Runden. Wissenssicherung: Skill §13 + AgentMemory + Repo-Doku auf Stand. Restpunkte ausschließlich extern (SMTP-Spiegelung, CWV-Key, Kundendaten, Brain, 9Router-Standort, Feiertage, CF-Token-Rotation).
