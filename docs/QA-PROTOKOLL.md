@@ -1513,3 +1513,24 @@
 **Gegentest (§5.4):** Negativ: Offenlegung ohne KI-Erwähnung wäre Art.-50-Verstoß — jetzt in Header + Begrüßung + §6 (3 Ebenen) ✅ · Regression: Chat-Begrüßung funktional unverändert (nur Text) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 64)**
+
+
+---
+
+## Runde 65 (2026-08-13, Live-Checks: Kontakt-Rate-Limit, Social-Meta, DIN 5008, DeepSeek-API-Doku)
+
+**Anlass:** „Weiter. Livebetrieb. Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **Kontakt-Rate-Limit E2E:** 22 Honeypot-Calls → **20×200 + 2×429** (exakt 20/min/IP; Honeypot-Pfad ohne Queue-Write — Queue weiter 2 echte) | ✅ kein Fix |
+| **Social-Meta:** `twitter:card=summary_large_image` + `og:locale=de_DE` live (Konsistenz mit og:image 1200×630) | ✅ kein Fix |
+| **DIN 5008 Stichprobe (Home):** 77 Halbgeviertstriche („–“), **0 ASCII-Hyphen im Satzkontext** — deutsche Texte konform | ✅ kein Fix |
+| **DeepSeek-API-Doku als Konfigurationsvorgabe (Recherche, belegt):** (1) `max_tokens` cap = Reasoning **+** Completion (bestätigt R59-Fix 600→1200 als richtig) · (2) `reasoning_effort: "high"` = **Maximum für v4-flash** (medium/xhigh→high gemappt; „default effort is high“) → Think-Max-Pflicht erfüllt · (3) **v4-pro: unterstützt zusätzlich `max`** (xhigh→max) — wenn v4-pro genutzt wird, dort `reasoning_effort: "max"` verwenden | ✅ belegt, kein Fix (flash aktiv) |
+| **Queue:** 2 echte Einträge unangetastet | ✅ |
+
+**E2E:** Rate-Limit 20/2 · www 200 · QUALITY-CHECK OK.
+
+**Gegentest (§5.4):** Negativ: 21./22. Request → 429 (kein Durchrutschen, keine Queue-Verschmutzung durch Honeypot) ✅ · Datenintegrität: Queue 2 ✅ · Regression: Chat/Formular/Routen ok ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 65)**
