@@ -21,9 +21,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const q = stadtteile.stadt.quartiere.find((x: any) => slugify(x.name) === slug);
   if (!q) return {};
   return {
-    alternates: { canonical: `/stadtteile/${slug}/` },
+    alternates: { canonical: `/stadtteile/${slug}/`, languages: { de: `https://a-bau.nexifyai.cloud/stadtteile/${slug}/`, "x-default": `https://a-bau.nexifyai.cloud/stadtteile/${slug}/` } },
     title: `${q.name.split(" (")[0]}`,
-    description: `${q.text} A-Bau Meisterbetrieb in ${q.name}, Mönchengladbach. ${q.schwerpunkt}. Kostenloses Angebot.`,
+    description: `${q.text} A-Bau Meisterbetrieb in ${q.name}, Mönchengladbach. ${q.schwerpunkt}. Kontakt für ein Angebot.`,
   };
 }
 
@@ -74,7 +74,7 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
           <div className="hero-actions hero-actions-center">
-            <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
+            <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>
             <a className="btn btn-ghost btn-lg" href={telHref(KONTAKT.tel)}>Rufen Sie an: {KONTAKT.tel}</a>
           </div>
         </div>

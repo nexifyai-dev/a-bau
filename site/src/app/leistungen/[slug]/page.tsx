@@ -31,9 +31,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const l = leistungen.leistungen.find((x: any) => (x.slug || x.id) === slug);
   if (!l) return {};
   return {
-    alternates: { canonical: `/leistungen/${slug}/` },
+    alternates: { canonical: `/leistungen/${slug}/`, languages: { de: `https://a-bau.nexifyai.cloud/leistungen/${slug}/`, "x-default": `https://a-bau.nexifyai.cloud/leistungen/${slug}/` } },
     title: `${l.titel} Mönchengladbach`,
-    description: `${l.kurz} – A-Bau Meisterbetrieb GmbH, Mönchengladbach. Meisterbetrieb seit 2019 (HRB 18836). Kostenloses Angebot.`,
+    description: `${l.kurz} – A-Bau Meisterbetrieb GmbH, Mönchengladbach. Meisterbetrieb seit 2019 (HRB 18836). Kontakt für ein Angebot.`,
   };
 }
 
@@ -111,7 +111,7 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
           <div className="hero-actions hero-actions-center">
-            <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
+            <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>
             <a className="btn btn-ghost btn-lg" href={telHref(KONTAKT.tel)}>Rufen Sie an: {KONTAKT.tel}</a>
           </div>
         </div>

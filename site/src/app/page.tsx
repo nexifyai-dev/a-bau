@@ -5,7 +5,7 @@ import { KONTAKT, telHref } from "@/lib/kontakt";
 import { leistungen, faq, referenzen, stadtteile } from "@/lib/data";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", languages: { de: "https://a-bau.nexifyai.cloud/", "x-default": "https://a-bau.nexifyai.cloud/" } },
   title: "A-Bau Meisterbetrieb GmbH – Bauunternehmen Mönchengladbach",
   description:
     "A-Bau Meisterbetrieb GmbH in Mönchengladbach: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen. Seit 2019.",
@@ -49,8 +49,8 @@ const faqSchema = {
   "@type": "FAQPage",
   mainEntity: faq.faq.slice(0, 8).map((f: any) => ({
     "@type": "Question",
-    name: f.frage,
-    acceptedAnswer: { "@type": "Answer", text: f.antwort },
+    name: f.f,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
   })),
 };
 
@@ -94,29 +94,8 @@ export default function Home() {
               und echte Handwerkskunst – seit 2019 in Mönchengladbach.
             </p>
             <div className="hero-actions">
-              <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt unverbindlich anfragen</Link>
-              <Link className="btn btn-ghost btn-lg" href="/leistungen/">Leistungen entdecken</Link>
-            </div>
-
-            <div className="hero-cards">
-              <div className="hero-card">
-                <h3>Ich plane ein Bauprojekt</h3>
-                <ul>
-                  <li><Link href="/leistungen/denkmalrestaurierung/">Denkmalrestaurierung <span className="arrow">›</span></Link></li>
-                  <li><Link href="/leistungen/schluesselfertigbau/">Schlüsselfertigbau <span className="arrow">›</span></Link></li>
-                  <li><Link href="/leistungen/sanierung/">Sanierung &amp; Restauration <span className="arrow">›</span></Link></li>
-                  <li><Link href="/kontakt/">Kostenloses Angebot <span className="arrow">›</span></Link></li>
-                </ul>
-              </div>
-              <div className="hero-card">
-                <h3>Ich bin Kunde</h3>
-                <ul>
-                  <li><Link href="/referenzen/">Referenzen ansehen <span className="arrow">›</span></Link></li>
-                  <li><Link href="/stadtteile/">Stadtteile &amp; Quartiere <span className="arrow">›</span></Link></li>
-                  <li><Link href="/faq/">Häufige Fragen <span className="arrow">›</span></Link></li>
-                  <li><a href={telHref(KONTAKT.tel)}>Anrufen: {KONTAKT.tel} <span className="arrow">›</span></a></li>
-                </ul>
-              </div>
+              <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>
+              <Link className="btn btn-ghost btn-lg" href="/leistungen/">Leistungen ansehen</Link>
             </div>
           </div>
         </div>
@@ -139,7 +118,7 @@ export default function Home() {
             <span className="kicker">Leistungen</span>
             <h2 id="leistungen-heading">Fachgerechte Bauleistungen von A-Bau</h2>
             <p>
-              Unser moderner Baubetrieb bietet ein Spektrum von sensiblen Restaurationen bis zum
+              Unser moderner Baubetrieb bietet ein Spektrum von sensiblen Restaurierungen bis zum
               schlüsselfertigen Neubau. Unsere Kunden schätzen handwerkliche Qualität, persönliche
               Betreuung und transparente Kommunikation.
             </p>
@@ -175,8 +154,7 @@ export default function Home() {
             <span className="kicker">Stadtteile &amp; Quartiere</span>
             <h2 id="stadtteile-heading">A-Bau in Mönchengladbach</h2>
             <p>
-              Mönchengladbach ist die Stadt von Borussia — und wir bauen hier für die Menschen, die leben,
-              feiern und arbeiten. Von Geistenbeck bis Rheydt: Denkmalrestaurierung, Sanierung, Neubau
+              Wir bauen hier für die Menschen, die in Mönchengladbach leben, feiern und arbeiten. Von Geistenbeck bis Rheydt: Denkmalrestaurierung, Sanierung, Neubau
               und Innenausbau in allen Quartieren.
             </p>
           </div>
@@ -297,7 +275,7 @@ export default function Home() {
           <h2 id="cta-heading">Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah mit einer ehrlichen Einschätzung.</p>
           <div className="hero-actions hero-actions-center">
-            <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
+            <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>
             <a className="btn btn-ghost btn-lg btn-ghost-dark" href={telHref(KONTAKT.tel)}>
               Rufen Sie an: {KONTAKT.tel}
             </a>

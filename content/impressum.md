@@ -17,7 +17,7 @@ E-Mail: kontakt@a-bau.info
 Eintragung im Handelsregister  
 Registergericht: Amtsgericht Mönchengladbach  
 Registernummer: HRB 18836  
-EUID: DER1504.HRB18836
+EUID: DEHRB18836
 
 **Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:**  
 DE327030612
@@ -45,5 +45,3 @@ Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir
 ## Urheberrecht
 
 Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-
-*Hinweis: Dieser Entwurf wurde von NeXifyAI erstellt. Vor Veröffentlichung bitte durch eine Rechtsanwältin/einen Rechtsanwalt prüfen und die mit [OFFEN] markierten Pflichtangaben ergänzen lassen.*

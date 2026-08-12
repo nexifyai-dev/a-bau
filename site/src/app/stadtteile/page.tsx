@@ -3,7 +3,7 @@ import Link from "next/link";
 import { stadtteile } from "@/lib/data";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/stadtteile/" },
+  alternates: { canonical: "/stadtteile/", languages: { de: "https://a-bau.nexifyai.cloud/stadtteile/", "x-default": "https://a-bau.nexifyai.cloud/stadtteile/" } },
   title: "Stadtteile & Quartiere – A-Bau Mönchengladbach",
   description:
     "A-Bau in Mönchengladbach: Denkmalrestaurierung, Sanierung und Neubau in allen Stadtteilen — Geistenbeck, Eicken, Rheydt, City und mehr.",
@@ -35,7 +35,6 @@ export default function Stadtteile() {
             <span className="kicker">{s.titel}</span>
             <h1>Stadtteile &amp; Quartiere in Mönchengladbach</h1>
             <p>{s.intro}</p>
-            <p className="text-3">{s.borussia_note}</p>
           </div>
 
           <div className="quartier-grid">

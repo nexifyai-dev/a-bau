@@ -3,7 +3,7 @@ import Link from "next/link";
 import { KONTAKT } from "@/lib/kontakt";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/ueber-uns/" },
+  alternates: { canonical: "/ueber-uns/", languages: { de: "https://a-bau.nexifyai.cloud/ueber-uns/", "x-default": "https://a-bau.nexifyai.cloud/ueber-uns/" } },
   title: "Über uns – A-Bau Bauunternehmen Mönchengladbach",
   description:
     "A-Bau Meisterbetrieb GmbH aus Mönchengladbach: eingetragenes Bauunternehmen (HRB 18836), GF Albert Pfeiffer. Restaurierung, Innenausbau, Neubau.",
@@ -23,7 +23,7 @@ export default function UeberUns() {
         <div className="container">
           <div className="section-head">
             <span className="kicker">Über uns</span>
-            <h1>Fachmännische Restauration denkmalgeschützter Bauten</h1>
+            <h1>Fachmännische Restaurierung denkmalgeschützter Bauten</h1>
             <p>
               Die A-Bau Meisterbetrieb GmbH steht für handwerkliche Qualität, persönliche Betreuung
               und transparente Kommunikation. Unser Schwerpunkt ist die Erhaltung und Restaurierung
@@ -86,7 +86,7 @@ export default function UeberUns() {
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
           <div className="hero-actions hero-actions-center">
-            <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
+            <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>
           </div>
         </div>
       </section>

@@ -42,8 +42,19 @@
   --color-line-inv: rgba(255, 255, 255, .16);
 
   /* Typografie */
-  --font-head: var(--font-playfair), Georgia, 'Times New Roman', serif;
-  --font-body: var(--font-manrope), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-head: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-worksans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Abstandsskala (Konsistenz: alle Innen-/Außenabstände über var(--space-N)) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
 
   /* Layout */
   --maxw: 1200px;
@@ -112,7 +123,9 @@ button, input, textarea, select { font: inherit; }
 /* ---------- Layout-Grundlagen ---------- */
 .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 @media (max-width: 480px) { .container { padding: 0 16px; } }
-.section { padding: var(--space-8) 0; }
+.section { padding: var(--space-6) 0; }          /* Mobile: 48px */
+@media (min-width: 768px) { .section { padding: var(--space-8) 0; } }   /* Tablet: 64px */
+@media (min-width: 1024px) { .section { padding: var(--space-9) 0; } }  /* Desktop: 96px */
 .section-tight { padding: var(--space-6) 0; }
 .section-soft { background: var(--color-bg-soft); }
 .section-dark { background: var(--color-neutral-dark); color: var(--color-text-inv); }
@@ -260,22 +273,6 @@ button, input, textarea, select { font: inherit; }
 .hero-actions-center { justify-content: center; }
 .hero-actions .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, .6); background: rgba(0, 0, 0, .35); }
 .hero-actions .btn-ghost:hover { border-color: #fff; background: rgba(0, 0, 0, .5); }
-.hero-cards {
-  position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-  margin-top: var(--space-7); max-width: 880px;
-}
-@media (max-width: 720px) { .hero-cards { grid-template-columns: 1fr; } }
-.hero-card {
-  background: rgba(255, 255, 255, .96); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-  border-radius: var(--r-md); padding: var(--space-5); color: var(--color-text);
-  box-shadow: var(--shadow-2);
-}
-.hero-card h3 { margin: 0 0 var(--space-3); color: var(--color-accent-city); }
-.hero-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-.hero-card a { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 0; text-decoration: none; color: var(--color-text); font-weight: 600; font-size: .95rem; border-bottom: 1px solid var(--color-line); }
-.hero-card a:last-child { border-bottom: 0; }
-.hero-card a:hover { color: var(--color-accent-hover); }
-.hero-card .arrow { color: var(--color-accent-city); font-weight: 700; }
 
 .section-head { max-width: 720px; margin-bottom: var(--space-7); }
 .section-head h2 { margin-bottom: var(--space-3); }
@@ -376,6 +373,13 @@ details[open] .chev, .acc-item.open .chev, details[open] .arrow { transform: rot
 }
 .chat-fab:hover { background: var(--color-accent-hover); }
 .chat-fab:active { transform: scale(.94); }
+
+/* Mobile: Floating-UI konsolidieren (Chat über A11y, keine Überlagerung) */
+@media (max-width: 767px) {
+  .chat-fab { bottom: 80px; right: 16px; }
+  .chat-panel { bottom: 152px; right: 12px; max-height: min(560px, calc(100vh - 170px)); }
+  .a11y-fab, .a11y-panel { display: none; }
+}
 .chat-panel {
   position: fixed; right: 16px; bottom: 88px; z-index: var(--z-fab); width: min(400px, calc(100vw - 32px));
   max-height: min(620px, calc(100vh - 120px)); display: flex; flex-direction: column; background: #fff;

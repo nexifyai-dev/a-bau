@@ -1,8 +1,7 @@
 # Stadtteile & Stadtbezug Mönchengladbach — 1:1 GAG-„Quartiere"-Übertragung
 stadt:
   titel: Stadtteile & Quartiere
-  intro: "A-Bau ist in Mönchengladbach verwurzelt: Wir bauen und restaurieren in allen Stadtteilen — von Geistenbeck über Eicken bis Rheydt. Mönchengladbach ist die Stadt von Borussia — und wir tragen diese Identität in unsere Arbeit: Vereinsgeist, Handwerk, Heimat."
-  borussia_note: "Mönchengladbach ist die Stadt von Borussia. Diese Verbundenheit gehört zur Stadt und zu unserer Arbeit — wir bauen für die Menschen, die hier leben, feiern und arbeiten. (Markenrechtlich: kein Vereins-Logo/-Wappen; nur geographischer Bezug.)"
+  intro: "A-Bau ist in Mönchengladbach verwurzelt: Wir bauen, sanieren und restaurieren in allen Stadtteilen — von Geistenbeck über Eicken bis Rheydt. Handwerk, Zuverlässigkeit und Heimatverbundenheit prägen unsere Arbeit."
   quartiere:
     - name: Geistenbeck
       text: "Unser Heimat-Stadtteil. Hier sitzen wir, hier restaurieren wir Altbauten, sanieren Wohnungen und bauen weiter. Charakter: Wohnviertel mit historischer Substanz."
@@ -11,13 +10,13 @@ stadt:
       text: "Das Zentrum: Münster, Abteiberg, Marktplatz. Hier sind Gewerbe, Verwaltung und urbane Nachverdichtung gefragt."
       schwerpunkt: "Gewerbe-Innenausbau, Sanierung im Bestand, Reparaturen"
     - name: Eicken / Wickrath
-      text: "Ruhige Wohnlage mit großen Grundstücken und Familienhäusern. Beliebt bei Familien und Langzeit-Mietern."
+      text: "Ruhige Wohnlagen mit großen Grundstücken und Familienhäusern – hier führen wir typischerweise Badsanierungen, Ausbauten, Fenster- und Türenarbeiten sowie schlüsselfertige Projekte aus."
       schwerpunkt: "Badsanierung, Ausbau, Fenster/Türen, Schlüsselfertigbau"
     - name: Rheydt
       text: "Zweiter Stadtteil mit eigener Identität: Industriegeschichte, Bahnhof, neue Quartiere."
       schwerpunkt: "Umbau, Krankenhausnahe Projekte, Gewerbe"
     - name: Odenkirchen / Wickrathberg / Hardt
-      text: "Grüne Randlagen mit ländlichem Charakter und Neubau-Potenzial."
+      text: "Grüne Randlagen mit ländlichem Charakter – hier realisieren wir Neubauten, Außenanlagen sowie Garten- und Landschaftsbau."
       schwerpunkt: "Neubau, Außenanlagen, Garten-/Landschaftsbau"
     - name: Niers / Volksgarten-Umfeld
       text: "Naherholung und Wohnqualität. Hier arbeiten wir oft an privaten und halböffentlichen Projekten."

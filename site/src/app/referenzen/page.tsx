@@ -4,7 +4,7 @@ import Image from "next/image";
 import { referenzen } from "@/lib/data";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/referenzen/" },
+  alternates: { canonical: "/referenzen/", languages: { de: "https://a-bau.nexifyai.cloud/referenzen/", "x-default": "https://a-bau.nexifyai.cloud/referenzen/" } },
   title: "Referenzen – A-Bau Bauunternehmen Mönchengladbach",
   description:
     "Referenzen der A-Bau Meisterbetrieb GmbH: Altbau-Erhaltung, Gesundheitsbau, Raumgestaltung, Schlüsselfertigbau, Badezimmer und Handwerkskunst im Detail.",
@@ -42,7 +42,14 @@ export default function Referenzen() {
                       style={{ objectFit: "cover", width: "100%", height: "100%" }}
                       sizes="(max-width: 720px) 50vw, 25vw"
                     />
-                    <figcaption>{r.titel}</figcaption>
+                    <figcaption>
+                      {r.titel}
+                      {(r.ort || r.jahr) && (
+                        <span className="gallery-meta">
+                          {[r.ort, r.jahr, r.umfang].filter(Boolean).join(" · ")}
+                        </span>
+                      )}
+                    </figcaption>
                   </figure>
                 ))}
               </div>
@@ -54,8 +61,9 @@ export default function Referenzen() {
                   style={{ width: "100%", maxWidth: 560, borderRadius: "var(--r-md)", marginTop: 16 }}
                   title={`Projektvideo ${r.titel}`}
                 >
-                  <source src={`/assets/videos/${r.video}`} type="video/mp4" />
-                  Ihr Browser unterstützt kein Video.
+                  <source src={`/assets/videos/${r.video}?v=20260812`} type="video/mp4" />
+                  Das Projektvideo kann in Ihrem Browser nicht abgespielt werden – wir zeigen Ihnen
+                  die Arbeiten gern persönlich: <Link href="/kontakt/">Kontakt aufnehmen</Link>.
                 </video>
               )}
             </div>
@@ -73,7 +81,7 @@ export default function Referenzen() {
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
           <div className="hero-actions hero-actions-center">
-            <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
+            <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>
           </div>
         </div>
       </section>

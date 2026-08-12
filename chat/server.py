@@ -57,13 +57,17 @@ HEADERS = {
                                "connect-src 'self'; base-uri 'self'; form-action 'self'",
 }
 ASSET_CACHE = {"Cache-Control": "public, max-age=31536000, immutable"}
+VIDEO_CACHE = {"Cache-Control": "public, max-age=86400"}  # Videos: 1 Tag (CDN-Purge-Falle vermeiden)
 
 @app.middleware("http")
 async def headers_mw(request: Request, call_next):
     resp = await call_next(request)
     resp.headers.update(HEADERS)
     if request.url.path.startswith("/assets/"):
-        resp.headers.update(ASSET_CACHE)
+        if request.url.path.endswith(".mp4"):
+            resp.headers.update(VIDEO_CACHE)
+        else:
+            resp.headers.update(ASSET_CACHE)
     return resp
 
 # --- Rate-Limit (In-Memory, einfach) ---
@@ -79,8 +83,20 @@ def rate_ok(ip: str) -> bool:
 _STOP = set("ein eine der die das und oder aber mit von für auf in im ist sind wird werden zu an als den dem des nicht auch bei aus nach über es sie er wir".split())
 
 def _query_terms(msg: str):
-    terms = [t for t in re.findall(r"[a-zäöüß0-9]{3,}", msg.lower()) if t not in _STOP]
-    return " OR ".join(t + "*" for t in terms[:8]) or '""'
+    # Synonym-Erweiterung: Kontakt-/Adress-Fragen matchen sonst nicht (BM25-Token-Overlap).
+    _SYN = {
+        "adresse": "adresse straße strasse ort plz luisental",
+        "telefon": "telefon nummer erreichbar festnetz",
+        "mail": "mail email e-mail kontakt",
+        "erreichbar": "erreichbar kontakt telefon öffnungszeiten",
+        "öffnungszeiten": "öffnungszeiten geöffnet uhrzeiten",
+    }
+    words = [t for t in re.findall(r"[a-zäöüß0-9]{3,}", msg.lower()) if t not in _STOP]
+    for w in words:
+        if w in _SYN:
+            words += _SYN[w].split()
+    terms = list(dict.fromkeys(words))[:14]
+    return " OR ".join(t + "*" for t in terms) or '""'
 
 def retrieve(msg, k=5):
     con = sqlite3.connect(DB)

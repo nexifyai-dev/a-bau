@@ -10,7 +10,7 @@ const LEISTUNGEN = [
   { href: "/leistungen/innenausbau/", title: "Innenausbau", sub: "Wohnung, Gewerbe, Büro" },
   { href: "/leistungen/krankenhausbau/", title: "Krankenhausbau", sub: "Komplexe Gesundheitsbauten" },
   { href: "/leistungen/schluesselfertigbau/", title: "Schlüsselfertigbau", sub: "Neubau aus einer Hand" },
-  { href: "/leistungen/sanierung/", title: "Sanierung & Restauration", sub: "Altbau auf neuestem Stand" },
+  { href: "/leistungen/sanierung/", title: "Sanierung & Restaurierung", sub: "Altbau auf neuestem Stand" },
   { href: "/leistungen/installationen/", title: "Installationen", sub: "Strom & Wasser" },
   { href: "/leistungen/transport/", title: "Transporte", sub: "Europaweite Direkttransporte" },
 ];
@@ -102,7 +102,7 @@ export default function Header() {
             <Link href="/referenzen/" aria-current={isCurrent("/referenzen/") ? "page" : undefined}>Referenzen</Link>
             <Link href="/ueber-uns/" aria-current={isCurrent("/ueber-uns/") ? "page" : undefined}>Über uns</Link>
             <Link href="/faq/" aria-current={isCurrent("/faq/") ? "page" : undefined}>FAQ</Link>
-            <Link className="btn btn-primary nav-cta" href="/kontakt/">Angebot anfordern</Link>
+            <Link className="btn btn-primary nav-cta" href="/kontakt/">Projekt anfragen</Link>
           </nav>
 
           <button
@@ -124,7 +124,7 @@ export default function Header() {
         <Link href="/stadtteile/" onClick={() => setDrawerOpen(false)}>Stadtteile</Link>
         <Link href="/ueber-uns/" onClick={() => setDrawerOpen(false)}>Über uns</Link>
         <Link href="/faq/" onClick={() => setDrawerOpen(false)}>FAQ</Link>
-        <Link className="btn btn-primary drawer-cta" href="/kontakt/" onClick={() => setDrawerOpen(false)}>Angebot anfordern</Link>
+        <Link className="btn btn-primary drawer-cta" href="/kontakt/" onClick={() => setDrawerOpen(false)}>Projekt anfragen</Link>
       </nav>
     </>
   );

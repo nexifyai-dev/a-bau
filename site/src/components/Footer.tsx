@@ -13,10 +13,6 @@ export default function Footer() {
               Restaurierung denkmalgeschützter Bauten, Innenausbau, Krankenhausbau,
               Schlüsselfertigbau, Sanierung und Installationen in Mönchengladbach &amp; NRW.
             </p>
-            <p className="footer-note">
-              Mönchengladbach ist die Stadt von Borussia — wir bauen für die Menschen,
-              die hier leben, feiern und arbeiten. (Kein Vereins-Logo/-Wappen; geographischer Bezug.)
-            </p>
           </div>
           <div>
             <h3>Leistungen</h3>

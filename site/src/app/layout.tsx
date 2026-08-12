@@ -8,17 +8,17 @@ import ChatWidget from "@/components/ChatWidget";
 import CookieConsent from "@/components/CookieConsent";
 import A11yWidget from "@/components/A11yWidget";
 
-const playfair = localFont({
-  src: "./fonts/PlayfairDisplay-var.woff2",
-  variable: "--font-playfair",
-  weight: "100 900",
+const fraunces = localFont({
+  src: "./fonts/Fraunces-var.woff2",
+  variable: "--font-fraunces",
+  weight: "300 900",
   display: "swap",
 });
 
-const manrope = localFont({
-  src: "./fonts/Manrope-var.woff2",
-  variable: "--font-manrope",
-  weight: "100 900",
+const worksans = localFont({
+  src: "./fonts/WorkSans-var.woff2",
+  variable: "--font-worksans",
+  weight: "300 800",
   display: "swap",
 });
 
@@ -53,7 +53,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`h-full ${playfair.variable} ${manrope.variable}`}>
+    <html lang="de" className={`h-full ${fraunces.variable} ${worksans.variable}`}>
       <body className="min-h-full flex flex-col">
         <a className="skip-link" href="#main">Zum Inhalt springen</a>
         <Header />
