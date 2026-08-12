@@ -143,3 +143,11 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 - Server-Wiederanlauf nach Kill/Crash daher **20–30 s**: Health-Checks direkt nach `start-abau.sh` erst nach
   ~30 s auswerten (Watchdog-Intervall 5 min ist tolerant). Kein Doppelstart (addrinuse-Race) — einmal starten, warten, dann prüfen.
 - Formular-Guard-Lage: `site/src/app/kontakt/KontaktClient.tsx` (NICHT `components/`) — `disabled` bei `status==="loading"`.
+
+## Feiertags-Logik (R61, A.11 geschlossen)
+
+- `istGeoeffnet` schließt an gesetzlichen NRW-Feiertagen (11 arbeitsfreie; Quelle feiertage-deutschland.de):
+  Neujahr, Karfreitag, Ostermontag, 1. Mai, Himmelfahrt, Pfingstmontag, Fronleichnam, 3. Okt., Allerheiligen, 25./26. Dez.
+- Ostern via Meeus/Jones/Butcher in `ostersonntag()` — greift für 1900–2099.
+- Tests: `node scripts/test-oeffnungszeiten.js` → 23 Fälle (Pflicht vor Öffnungszeiten-Änderungen, AGENTS).
+- Debug-Lektion: Feiertagsnamen stehen nur im Kommentar (kein String-Literal) → Bundle-Checks über Code-Struktur, nicht Namen.

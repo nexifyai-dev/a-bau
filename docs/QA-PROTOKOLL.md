@@ -1426,3 +1426,24 @@
 **Gegentest (§5.4):** Negativ: 21. Request → 429 (kein Durchrutschen) ✅ · Datenintegrität: Queue intakt ✅ · Regression: Chat/Formular/Routen ok ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 60)**
+
+
+---
+
+## Runde 61 (2026-08-12, A.11-Lücke geschlossen: Feiertags-Logik NRW)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **A.11-Lücke (seit R15 offen) geschlossen:** `istGeoeffnet` kannte keine Feiertage; Datenquelle A-Bau sagt „Sonn-/Feiertag: Geschlossen“ → Feiertag muss geschlossen sein. Implementierung in `site/src/lib/kontakt.ts`: `ostersonntag()` (Meeus/Jones/Butcher, gregorianisch) + `istFeiertag()` mit allen **11 arbeitsfreien NRW-Feiertagen** (Neujahr, Karfreitag, Ostermontag, 1. Mai, Himmelfahrt, Pfingstmontag, Fronleichnam, 3. Okt., Allerheiligen, 1./2. Weihnachtstag; Quelle: feiertage-deutschland.de NRW, recherchiert) + Guard in `istGeoeffnet` | ✅ live |
+| **Tests erweitert:** `test-oeffnungszeiten.js` 12 → **23 Fälle** (Feiertage 2026/2027 bewegliche + feste, inkl. Winterzeit-ISO, „1. Mai 2027 (Sa) → Feiertag schlägt Samstag-Öffnung“) — **ALLE 23 PASS** | ✅ |
+| **Debugging-Lektion (Ghost-Jagd):** Bundle-Suche nach „Fronleichnam“ fand nichts → vermeintlicher Build-Bug. Ursache: Feiertags-NAMEN stehen NUR im Quell-Kommentar, nicht als String-Literale (Code nutzt `f(11,1)` = 1. Nov.) → Minify entfernt Kommentare → Marker fehlen im Bundle, Logik war vorhanden. **Regel: Bundle-Marker NUR über Code-Strukturen/exportierte Symbole prüfen, nie über Kommentar-Strings** | 📝 |
+| **Sibling-Race beobachtet:** kontakt.ts wurde parallel von einem anderen Worker kurzzeitig geändert (Import-Fehler-Build). Aktueller Stand verifiziert (R61-Fassung, git diff konsistent) — Race-Risiko bei gemeinsamen Dateien dokumentiert | 📝 |
+| **Live-Verify:** SSR-Status heute „Geschlossen“ (Mi 22:xx Berlin, kein Feiertag) ✓ · Feiertagslogik im Client-Bundle nachgewiesen (minifiziert: Ostern-Formel + 11 Datums-Marker) ✓ | ✅ |
+
+**E2E:** 23/23 Tests · QUALITY-CHECK OK · www 200 · Status-Rendering korrekt.
+
+**Gegentest (§5.4):** Negativ: Feiertag am Samstag (1. Mai 2027) → geschlossen (Feiertag schlägt Sa-Öffnung) ✅ · Datenintegrität: kontakt.ts-Rewrite identisch zum Patch-Stand (Diff-Check) ✅ · Regression: 12 Altfälle unverändert PASS ✅ · Queue 2 echte unangetastet ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 61)**
