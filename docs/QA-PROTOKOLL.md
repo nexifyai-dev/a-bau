@@ -697,3 +697,26 @@
 **Gegentest (§5.4):** Negativ: chat-check schlägt bei Fake-Preis an (Muster gegen echte Antwort geprüft), sync-check meldet Drift (Ausnahmen verifiziert) ✅ · Regression: R13–R24 unverändert ✅ · Datenintegrität: keine Änderung an Site/KB/Queue ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 25)**
+
+---
+
+## Runde 26 (2026-08-12, Tiefenprüfung + OOB a-bau.info-DNS)
+
+**Anlass:** Pascal-Auftrag Tiefenprüfung + OOB: „a-bau.info via DNS verbinden — welche IONOS-Einträge raus/welche rein?"
+
+| Prüfung/Fix | Status |
+|---|---|
+| Video-Auflösung (D.9, mp4-Header-Parser) | 160.mp4: 480×864 (9,1 MB), 73.mp4: 848×480 (3,5 MB) — niedrige Auflösung = mobil-freundlich; `preload="none"` (nutzerinitiiert, kein Vorab-Download) — kein akuter Befund | ✅ |
+| LCP-Bilder (A.13) | Hero-WebP 214 KB (1200×1600), alle WebP 78–302 KB — gut | ✅ |
+| Overflow-Risiken (B.33) | Keine fixed-width-Overrider; min-width nur Touch/Media (18/44/48px, 260/360px-Drawer) — 320px-sicher | ✅ |
+| object-position (D.8) | Nicht gesetzt (cover-Default = center) — Minor, dokumentiert (kein akuter Befund) | ⚠️ Minor |
+| alt-Vollscan (B.26, 22 Seiten) | 1× img ohne alt = Hero (dekorativ, aria-hidden) — 0 informative ohne alt | ✅ |
+| DIN-5008 (B.28) | Datums-/Euro-Formate in Rechtstexten: keine Auffälligkeiten | ✅ |
+| hreflang (A.32) | hrefLang de + x-default live | ✅ |
+| **OOB a-bau.info-DNS** | Empfehlung erteilt (s. Antwort): WP-Records raus, Mail-Records behalten, CNAME www + Apex-Strategie; **Tunnel-Ingress + Custom-Hostname-Zertifikat = Host-Schritt (CF-Token nicht im Container)** | ⚠️ Host |
+
+**E2E:** Keine Code-Änderung in dieser Runde (nur Prüfung + Doku) — alle 5 automatisierten Checks weiter grün (R25).
+
+**Gegentest (§5.4):** Negativ: kein informatives img ohne alt; keine fixed-width-Overflows ✅ · Regression: unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 26)**
