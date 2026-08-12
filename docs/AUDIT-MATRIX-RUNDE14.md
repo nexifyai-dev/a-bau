@@ -221,3 +221,13 @@
 **Kaskaden-Beweis CTA-Zentrierung (3. Kundenmeldung):** Alle text-align-Regeln auditiert — `.section-dark p{text-align:center}` (0,1,1) hat keinen Overrider; HTML `container text-center` + CSS byte-identisch. Zentrierung nachweislich korrekt; kein Code-Fix möglich (Betrachter-Cache; no-store aktiv).
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung · schema.org-Validator (POST-only, extern).
+
+---
+
+# NACHTRAG RUNDE 25 (2026-08-12) — Automatisierung (B.46), Secrets, Konsistenz
+
+**Neu behoben:** `scripts/chat-check.sh` (Health + Faktenfrage + Quellen + Fake-Preis-Boundary, Exit-Code für Cron/CI), `scripts/content-sync-check.sh` (Drift-Guard mit dokumentierten content-only-Ausnahmen). Alle 5 automatisierten Checks grün.
+
+**Verifiziert:** Secrets-Scan 0 (nur Variablennamen), Chat-Site-Konsistenz (3 Faktenfragen + Preis-Boundary, E3), Content-Kanon-Struktur (kontakt.yaml src-data-only, Recht/Markdown content-only — gewollt).
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung · **Feiertags-Logik (A.11: keine Feiertagsmodellierung — Kundendaten nötig)**.

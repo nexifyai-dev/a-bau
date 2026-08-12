@@ -176,3 +176,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 24
 
 **Repo main:** `f4676a2` · Behoben: Consent-Text, PWA/iOS-Icons (apple-touch-icon, 192/512, Manifest), Heading-Hierarchie → W3C 0 Fehler (13 Seiten). Kaskaden-Beweis: CTA-Zentrierung korrekt (kein Overrider, no-store aktiv) — Betrachter-Seite unklar, Anweisung übermittelt. Restpunkte unverändert.
+
+# NACHTRAG RUNDE 25
+
+**Repo main:** `ecd8309` · Neu: chat-check.sh + content-sync-check.sh (automatisierte Regression, B.46). Verifiziert: Secrets 0, Chat-Site-Konsistenz, Content-Kanon. Neu dokumentiert: Feiertags-Lücke (A.11, Kundendaten). Restpunkte unverändert.
