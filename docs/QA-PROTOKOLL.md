@@ -523,3 +523,24 @@
 **Gegentest (§5.4):** Negativ: „– A-Bau – A-Bau" = 0 Treffer live, „Kostenlose Angebote" = 0, Pipe-Titel 0 ✅ · Regression: R14–R17-Fixes unverändert (Stadtteil-Titel, JSON-LD, DSGVO, KB) ✅ · Datenintegrität: keine Content-/KB-Änderung ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 18)**
+
+---
+
+## Runde 19 (2026-08-12, Fortsetzung Tiefenprüfung — Injection, FAQ-LD-Konsistenz, Chat-Normen, Logs)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" + Kunden-OOB „Auch für den Chat gilt ISO- und DIN-Norm" (Chat-Protokoll zeigte rohe `**`-Markdown-Artefakte).
+
+| Befund/Fix | Status |
+|---|---|
+| **P0 E-Mail-Header-Injection (A.38):** Formular-`name` ungefiltert in `m["Subject"]` → CRLF-Injection-Vektor (Bcc-Header einspielbar) | `re.sub(r"[\r\n]+", " ", name)` vor Subject; E3-Test: Name mit CRLF → Queue-Name „Böser Bcc: evil@x.test" (CRLF entfernt) | ✅ live |
+| **A.7-Verstoß FAQ-JSON-LD:** Home-FAQPage-LD enthielt 8 Fragen, sichtbar nur 4 | `slice(0, 8)` → `slice(0, 4)`; Live: LD 4 == sichtbar 4 | ✅ live |
+| **Chat-Markdown-Artefakte (Kunden-Feedback, DIN/ISO-Norm):** Antworten mit `**fett**`/`#` roh im Widget | System-Prompt-Regel 4: Klartext ohne Markdown, DIN-5008 (Halbgeviertstrich „–", „1.350,00 €"); Live: 0 Sterne, saubere Listen | ✅ live |
+| Log-Scan (/tmp/abau-server.log) | Ein 9Router-402 (Payment) gefangen → 503 (temporär, heute kein 402); ein bind-in-use beim Doppel-Start (harmlos); keine Tracebacks/PII | ✅ kein Fix |
+| favicon/manifest/logo | Alle 200 (favicon.ico, ?favicon-Version, manifest.webmanifest, logo.png) | ✅ |
+| Watchdog/Queue-Skript | Gateway läuft (PID 1006654, Cron feuert); flush_contact_queue.py Syntax ok | ✅ |
+
+**E2E:** Build ✅ · FAQ-LD 4 == sichtbar · Route-Smoke ALLE OK · Öffnungszeiten-Test 12/12 · /health ok · Chat „was kannst du?" → 0 Markdown, DIN-5008-Striche · Injection-Test E3 (CRLF entfernt, Queue geleert).
+
+**Gegentest (§5.4):** Negativ: `**` = 0 in Chat-Antwort, CRLF = 0 im Queue-Eintrag, LD-Fragen = 4 ✅ · Regression: KB/Quellen, DSGVO §6, Titel R18, Öffnungsstatus unverändert ✅ · Datenintegrität: Queue nach Test geleert (0 Einträge) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 19)**

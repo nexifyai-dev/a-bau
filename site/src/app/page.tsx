@@ -49,7 +49,7 @@ const localBusinessSchema = {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faq.faq.slice(0, 8).map((f: any) => ({
+  mainEntity: faq.faq.slice(0, 4).map((f: any) => ({
     "@type": "Question",
     name: f.f,
     acceptedAnswer: { "@type": "Answer", text: f.a },
