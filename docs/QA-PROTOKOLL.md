@@ -391,3 +391,5 @@
 **Gegentest (§5.4):** Negativ (alte Hover-Farbe #005c28 0 Treffer; diff-bereinigt nur CF-MailObfuscation) ✅ · Regression: Routen 200, Chat, /health, Cache-Header unverändert ✅ · Datenintegrität: keine Änderung an KB/Content ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 12)**
+
+**Nachtrag Runde 12b (2026-08-12, Kunde meldete gleiche Punkte erneut):** Live-IST war bereits korrekt (cf-cache DYNAMIC, no-cache, alle Regeln E3) — Restproblem: Hover-Wechsel `#008035`→`#009A44` praktisch unsichtbar. Fix: neuer Token `--color-cta-hover-bright: #00A64A` (deutlich helleres Grün, weiß 3.18:1, UI-konform; ADR-003-Token-Pflicht) für `.nav-cta:hover`/`.drawer-cta:hover`; `.section-dark p { text-align: center }` explizit (bulletproof gegen Vererbung). Live: neuer CSS-Chunk `2-n_65pvq1ygj.css` byte-identisch, alle 5 Seiten `container text-center` + `hero-actions-center` E3, Chat `/health` ok, Route-Smoke alle OK. Committet (s.u.). Kunde: Hard-Refresh Strg+F5.

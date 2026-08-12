@@ -36,6 +36,7 @@
   --color-accent-info: var(--color-mg-blue);
   --color-cta: #008035; /* Button-Fläche: weiß darauf = 5.07:1 (WCAG AA; #009A44 wäre 3.68:1) */
   --color-cta-hover: var(--color-accent-hover);
+  --color-cta-hover-bright: #00A64A; /* Header-CTA Hover: deutlich sichtbarer Wechsel zu Markengrün-Hell, weiße Schrift 3.18:1 (UI ok) */
   --color-danger: var(--color-mg-red);
   --color-ok: #2E7D32;
   --color-line: var(--color-neutral-border);
@@ -131,7 +132,7 @@ button, input, textarea, select { font: inherit; }
 .section-soft { background: var(--color-bg-soft); }
 .section-dark { background: var(--color-neutral-dark); color: var(--color-text-inv); text-align: center; }
 .section-dark h1, .section-dark h2, .section-dark h3 { color: #fff; }
-.section-dark p { color: var(--color-text-inv-2); }
+.section-dark p { color: var(--color-text-inv-2); text-align: center; }
 .section-dark a:not(.btn) { color: var(--color-mg-gold); }
 .kicker {
   display: inline-block; font-family: var(--font-head); font-size: .78rem; font-weight: 700;
@@ -246,7 +247,7 @@ button, input, textarea, select { font: inherit; }
 .nav-dropdown-menu .dd-title { font-weight: 700; font-family: var(--font-head); font-size: .95rem; }
 .nav-dropdown-menu .dd-sub { font-size: .8rem; color: var(--color-text-3); }
 .nav-cta { margin-left: 8px; }
-.nav-cta:hover, .nav-cta:focus-visible, .drawer .drawer-cta:hover, .drawer .drawer-cta:focus-visible { background: var(--color-brand-green); color: #fff; } /* Pascal 2026-08-12: Header-CTA Hover grün + weiß */
+.nav-cta:hover, .nav-cta:focus-visible, .drawer .drawer-cta:hover, .drawer .drawer-cta:focus-visible { background: var(--color-cta-hover-bright); color: #fff; } /* Pascal 2026-08-12: Header-CTA Hover grün + weiß, deutlich sichtbar */
 .nav-toggle { display: none; min-width: 48px; min-height: 48px; border: 0; background: transparent; border-radius: 12px; font-size: 1.4rem; cursor: pointer; }
 .nav-toggle:hover { background: rgba(31, 29, 25, .06); }
 @media (max-width: 720px) { .utility-left { display: none; } }  /* Links redundant (Drawer); verhindert 320px-Horizontalscroll (B.33) */
