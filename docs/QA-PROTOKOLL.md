@@ -1124,3 +1124,21 @@
 **Gegentest (§5.4):** Negativ: keine www-fremde Sitemap-URL; /angebot weiterhin 301 (kein 200-Leak) ✅ · Regression: R13–R45 unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 46)**
+
+---
+
+## Runde 47 (2026-08-12, Proaktiv: Kundendaten-Stand + PNG-Favicons)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen." — Fokus: externer Restpunkt „Kundendaten" ehrlich abgrenzen + Favicon-Kompatibilität (R44-OOB) abschließen.
+
+| Maßnahme | Status |
+|---|---|
+| **RECHERCHE-FIRMENDATEN.md auf GO-LIVE-Stand** | Gelöste Punkte markiert: USt-IdNr. DE327030612, HWK Düsseldorf 1841351, **Tel-Entscheidung (beide Nummern, Festnetz Haupt)**, Öffnungszeiten (11880-Basis, 12-Fälle-Test), E-Mail aktiv, GO-LIVE-URL; **offen bleibt nur echtes Kundenmaterial** (Referenz-Metadaten, Firmengeschichte, Logo-SVG, Google-Business, Rechtstext-Prüfung) | ✅ |
+| Portale erneut versucht (11880/Cylex) | 11880-URL 404 (Eintrag nicht mehr auffindbar), Cylex Anti-Bot, Such-Backend leer → **ehrlich dokumentiert, keine erfundenen Daten** | ⚠️ extern |
+| **PNG-Favicons 16/32 fehlten** (R44 nur verifiziert; Chrome bevorzugt PNG-32) | `favicon-16.png` + `favicon-32.png` aus logo.png generiert, `layout.tsx`-icons erweitert (ICO + 16 + 32 + 192 + apple) — **live: beide 200 + im Head über www** | ✅ live |
+
+**E2E:** Build ✅ · favicon-16/32 200 über Produktion + im Head · QUALITY-CHECK OK (exit 0) · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok.
+
+**Gegentest (§5.4):** Negativ: keine erfundenen Kundendaten (Portale nicht abrufbar → offen, nicht erfunden) ✅ · Regression: R13–R46 unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 47)**
