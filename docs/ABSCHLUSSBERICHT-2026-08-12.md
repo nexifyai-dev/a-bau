@@ -172,3 +172,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 23
 
 **Repo main:** `587adca` · Behoben: Log-Cleanup-Cron (DSGVO, war nur dokumentiert), Chat-Input maxLength, Betriebshandbuch-Sync. Verifiziert: Injection-Gegentest E3, Watchdog. Restpunkte unverändert.
+
+# NACHTRAG RUNDE 24
+
+**Repo main:** `f4676a2` · Behoben: Consent-Text, PWA/iOS-Icons (apple-touch-icon, 192/512, Manifest), Heading-Hierarchie → W3C 0 Fehler (13 Seiten). Kaskaden-Beweis: CTA-Zentrierung korrekt (kein Overrider, no-store aktiv) — Betrachter-Seite unklar, Anweisung übermittelt. Restpunkte unverändert.

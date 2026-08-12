@@ -211,3 +211,13 @@
 **Verifiziert:** Injection-Gegentest nach KB-Update (abgewehrt, 0 Leaks, E3), Watchdog aktiv.
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung.
+
+---
+
+# NACHTRAG RUNDE 24 (2026-08-12) — W3C-Validierung, PWA-Icons, Consent-UX
+
+**Neu behoben:** Consent-Zeile (klarer Text, span-Wrapper), PWA/iOS-Icons (apple-touch-icon 180, icon-192/512, Manifest + Head-Links), Heading-Hierarchie h3→h2 (Karten + Footer) → **W3C Nu-Validator: 0 Fehler auf allen 13 Kernseiten**.
+
+**Kaskaden-Beweis CTA-Zentrierung (3. Kundenmeldung):** Alle text-align-Regeln auditiert — `.section-dark p{text-align:center}` (0,1,1) hat keinen Overrider; HTML `container text-center` + CSS byte-identisch. Zentrierung nachweislich korrekt; kein Code-Fix möglich (Betrachter-Cache; no-store aktiv).
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung · schema.org-Validator (POST-only, extern).
