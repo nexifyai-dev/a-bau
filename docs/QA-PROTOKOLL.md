@@ -1162,3 +1162,22 @@
 **Gegentest (§5.4):** Negativ: apex kein 200 mehr (301), www 200, Staging unverändert; Chat 0 Markdown über Produktion ✅ · Regression: R13–R47 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 48)**
+
+---
+
+## Runde 49 (2026-08-12, Proaktiv: Wissens-Verifikation + Produktions-Routing-Rest)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen." (Wiederholung)
+
+| Maßnahme | Status |
+|---|---|
+| **Wissenssicherung verifiziert (ehrlich nachgeprüft):** R48-Lektionen (CF-WAF-403-urllib, Apex→www-301) sind in BEIDEN Skills vorhanden (Sibling/Iteration) — kein Nachholbedarf | ✅ |
+| **Produktions-Routing-Rest geprüft (E3):** `/angebot` → 301 → `/kontakt/#angebot` · nicht-existente Route → 404 · `/kontakt/#angebot` → 200 | ✅ kein Fix |
+| Betriebshandbuch | Apex-301 (R48) + Chat-Breitentest-Doku ergänzt | ✅ |
+| Alle 5 Auto-Checks | QUALITY-CHECK OK (R48) — keine Änderung seither | ✅ |
+
+**E2E:** Routing-Matrix Produktion vollständig (200/301/404 korrekt) · keine Code-Änderung in R49 (reine Verifikation + Doku).
+
+**Gegentest (§5.4):** Negativ: keine Route ohne korrekten Status; Skills enthalten R48-Lektionen (grep-Nachweis) ✅ · Regression: unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 49)**
