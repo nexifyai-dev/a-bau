@@ -676,3 +676,24 @@
 **Gegentest (§5.4):** Negativ: h3-im-Footer 0, „(Datenschutz) *" 0, Validator-Fehler 0 ✅ · Regression: R13–R23 unverändert (CTA-Kaskade, 202-Queue, KB, Öffnungszeiten) ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 24)**
+
+---
+
+## Runde 25 (2026-08-12, Fortsetzung Tiefenprüfung — Automatisierung, Secrets, Konsistenz)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: automatisierte Qualitäts-Checks (B.46), Secrets-Scan (A.38), Content-Sync (C.8), Chat-Site-Konsistenz, Feiertags-Lücke (A.11).
+
+| Befund/Fix | Status |
+|---|---|
+| **Kein Chat-Regressions-Check** (B.46/C.12): KB-Änderungen ohne automatischen Gegentest | `scripts/chat-check.sh`: /health + Faktenfrage (Adresse) + Quellen + **Boundary (keine Euro-Beträge, formulierungs-tolerant)** — Exit 1 bei Fehler | ✅ (CHAT-CHECK OK) |
+| **Kein Content-Drift-Guard** (C.8): content/ ↔ src/data/ nur manuell geprüft | `scripts/content-sync-check.sh`: diff aller Zwillinge, content-only-Ausnahmen dokumentiert (Rechtstexte, ueber-uns.md, kontakt.yaml) | ✅ (CONTENT-SYNC OK) |
+| Secrets-Scan (A.38) | Nur Variablennamen (SMTP_USER/PASSWORD) + Doku-Verweise, **0 Werte/Keys im Repo** — sauber | ✅ kein Fix |
+| Content-Sync real | leistungen/faq/referenzen/stadtteile/site.yaml identisch; kontakt.yaml (src-data-only) + ueber-uns.md/Recht (content-only) = bewusste Kanon-Struktur | ✅ |
+| Chat-Site-Konsistenz (A.29) | 3 Faktenfragen (Adresse, Leistungen, Gründung) → keine fehlenden Fakten; Fenstertausch-Preis → kein Fake („lässt sich pauschal nicht nennen") | ✅ live |
+| **Feiertags-Lücke (A.11):** Öffnungsstatus modelliert keine Feiertage (Mo–Fr-Feiertag zeigt „Geöffnet") | **Dokumentiert als Restpunkt** — kein Fake einbauen; Kundendaten/Entscheidung nötig (Bauunternehmen kann an Feiertagen arbeiten) | ⚠️ Kunde |
+
+**E2E:** Alle 5 Checks grün (CONTENT-SYNC, CHAT-CHECK, ROUTE-CHECK, Öffnungszeiten 12/12, /health) · keine Content-/KB-Änderung (kein Rebuild nötig).
+
+**Gegentest (§5.4):** Negativ: chat-check schlägt bei Fake-Preis an (Muster gegen echte Antwort geprüft), sync-check meldet Drift (Ausnahmen verifiziert) ✅ · Regression: R13–R24 unverändert ✅ · Datenintegrität: keine Änderung an Site/KB/Queue ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 25)**
