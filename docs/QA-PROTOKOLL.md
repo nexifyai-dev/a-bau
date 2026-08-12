@@ -1404,3 +1404,25 @@
 **Gegentest (§5.4):** Negativ: leerer Content → 503 statt leerer 200-Antwort (Guard, Log-Beweis) ✅ · Regression: Chat-Antworten vollständig, DIN-5008-Klartext unverändert ✅ · Datenintegrität: Queue intakt ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 59)**
+
+
+---
+
+## Runde 60 (2026-08-12, Live-Verifikation: Rate-Limit, A11y-Widget, JSON-LD-NAP)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **Rate-Limit Produktion E3:** 21 schnelle /api/chat-Calls → **20×200 + 1×429** (exakt 20/min/IP konfiguriert; kein 503, kein Leak) | ✅ kein Fix |
+| **Chat-A11y:** `aria-live="polite"` + `aria-relevant` (ChatWidget.tsx Z.116) rendert bei `open` (Z.106) — im geschlossenen Roh-HTML korrekt nicht enthalten; Screenreader-Zone mountet beim Öffnen | ✅ kein Fix |
+| **Widget-Datenschutz:** Link zur Datenschutzerklärung im Widget (Z.153) + im Live-HTML | ✅ kein Fix |
+| **FAQ-Anker-Transliteration:** `#recht-gewaehrleistung`-ID live (ä→ae-Kette R40 intakt) | ✅ kein Fix |
+| **JSON-LD LocalBusiness (Home):** name/tel (+49 2166 9925056)/email/address (Luisental 69, 41199 Mönchengladbach, DE)/url/3 Öffnungszeiten-Specs — NAP vollständig; sameAs/hasMap bewusst leer (keine Fake-Profile) | ✅ kein Fix |
+| **Kein Code-Befund in dieser Runde** — reine Verifikation; alle Live-Checks stabil | ✅ |
+
+**E2E:** Rate-Limit 20/1 · QUALITY-CHECK OK · Chat 200 · HSTS ✓ · Queue 2 echte unangetastet.
+
+**Gegentest (§5.4):** Negativ: 21. Request → 429 (kein Durchrutschen) ✅ · Datenintegrität: Queue intakt ✅ · Regression: Chat/Formular/Routen ok ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 60)**
