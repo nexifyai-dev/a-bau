@@ -7,9 +7,9 @@
 
 :root {
   /* Farben — exakte Codes (Recherche: Borussia, Stadtwappen MG) */
-  --color-borussia-green: #009A44;
-  --color-borussia-black: #000000;
-  --color-borussia-white: #FFFFFF;
+  --color-brand-green: #009A44;
+  --color-brand-black: #000000;
+  --color-brand-white: #FFFFFF;
   --color-mg-red: #C8102E;
   --color-mg-gold: #F5B800;
   --color-mg-blue: #1A5F9E;
@@ -22,19 +22,19 @@
   /* Semantik */
   --color-bg: var(--color-neutral-light);
   --color-bg-soft: var(--color-neutral-soft);
-  --color-surface: var(--color-borussia-white);
+  --color-surface: var(--color-brand-white);
   --color-text: var(--color-neutral-dark);
   --color-text-2: #4E4A44;
   --color-text-3: #6B655C;
-  --color-text-inv: var(--color-borussia-white);
+  --color-text-inv: var(--color-brand-white);
   --color-text-inv-2: rgba(255, 255, 255, .78);
-  --color-accent: var(--color-borussia-green);
+  --color-accent: var(--color-brand-green);
   --color-accent-text: #007a36; /* Text-Links auf Weiß: 5.46:1 (WCAG AA) */
   --color-accent-hover: #007a36;
   --color-accent-city: var(--color-mg-red);
   --color-accent-premium: var(--color-mg-gold);
   --color-accent-info: var(--color-mg-blue);
-  --color-cta: var(--color-borussia-green);
+  --color-cta: var(--color-brand-green);
   --color-cta-hover: var(--color-accent-hover);
   --color-danger: var(--color-mg-red);
   --color-ok: #2E7D32;
@@ -178,8 +178,8 @@ button, input, textarea, select { font: inherit; }
   -webkit-tap-highlight-color: transparent;
 }
 .btn:active { transform: scale(.97); }
-.btn-primary { background: var(--color-cta); color: var(--color-borussia-white); }
-.btn-primary:hover { background: var(--color-cta-hover); color: var(--color-borussia-white); }
+.btn-primary { background: var(--color-cta); color: var(--color-brand-white); }
+.btn-primary:hover { background: var(--color-cta-hover); color: var(--color-brand-white); }
 .btn-dark { background: var(--color-neutral-dark); color: var(--color-text-inv); }
 .btn-dark:hover { background: #000; color: var(--color-text-inv); }
 .btn-ghost { background: transparent; color: var(--color-text); border: 1.5px solid var(--color-line); }
@@ -201,7 +201,7 @@ button, input, textarea, select { font: inherit; }
 .utility-right { display: flex; align-items: center; gap: 14px; }
 .utility-status { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
 .utility-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; }
-.utility-status.open::before { background: var(--color-borussia-green); }
+.utility-status.open::before { background: var(--color-brand-green); }
 .utility-status.closed::before { background: var(--color-mg-red); }
 .utility-phone { color: var(--color-text-inv); text-decoration: none; font-weight: 600; }
 .utility-phone:hover { color: #fff; }
@@ -354,10 +354,10 @@ details[open] .chev, .acc-item.open .chev, details[open] .arrow { transform: rot
 .faq summary::-webkit-details-marker { display: none; }
 .faq .faq-a { padding: 0 22px 20px; color: var(--color-text-2); font-size: .95rem; }
 
-/* ---------- Leistungs-Detail ---------- */
-.leistung-punkte { list-style: none; padding: 0; margin: var(--space-4) 0 0; display: grid; gap: 10px; }
-.leistung-punkte li { display: flex; align-items: center; gap: 10px; color: var(--color-text-2); }
-.leistung-punkte svg { flex: none; color: var(--color-ok, var(--color-accent-text)); }
+/* ---------- Leistungs-Detail / Check-Listen ---------- */
+.checkliste { list-style: none; padding: 0; margin: var(--space-4) 0 0; display: grid; gap: 10px; }
+.checkliste li { display: flex; align-items: center; gap: 10px; color: var(--color-text-2); }
+.checkliste svg { flex: none; stroke: var(--color-brand-green); }
 .einsatzgebiete { margin-top: var(--space-4); font-size: .95rem; }
 
 /* ---------- Formulare ---------- */

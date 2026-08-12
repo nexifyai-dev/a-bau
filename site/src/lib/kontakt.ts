@@ -24,7 +24,7 @@ export const KONTAKT = {
 } as const;
 
 export function telHref(t: string): string {
-  return "tel:" + t.replace(/[^+\d]/g, "").replace("+", "00");
+  return "tel:" + t.replace(/[^+\d]/g, "");
 }
 
 export function istGeoeffnet(date = new Date()): boolean {

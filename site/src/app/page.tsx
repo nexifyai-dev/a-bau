@@ -184,11 +184,11 @@ export default function Home() {
               Restaurierung historischer Bauwerke – mit Qualität, die den langfristigen Wert Ihrer
               Projekte sicherstellt.
             </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: "16px 0 0", display: "grid", gap: 10 }}>
-              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-borussia-green)" strokeWidth="2.5" style={{verticalAlign:"middle",marginRight:8}} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Eigene Gewerke &amp; geprüfte Partner</li>
-              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-borussia-green)" strokeWidth="2.5" style={{verticalAlign:"middle",marginRight:8}} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Transparente Angebote – feste Preise</li>
-              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-borussia-green)" strokeWidth="2.5" style={{verticalAlign:"middle",marginRight:8}} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Persönliche Betreuung durch Geschäftsführer Albert Pfeiffer</li>
-              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-borussia-green)" strokeWidth="2.5" style={{verticalAlign:"middle",marginRight:8}} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Gewährleistung &amp; saubere Übergabe</li>
+            <ul className="checkliste">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" strokeWidth="2.5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Eigene Gewerke &amp; geprüfte Partner</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" strokeWidth="2.5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Transparente Angebote – feste Preise</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" strokeWidth="2.5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Persönliche Betreuung durch Geschäftsführer Albert Pfeiffer</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" strokeWidth="2.5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Gewährleistung &amp; saubere Übergabe</li>
             </ul>
             <p className="mt-5"><Link className="btn btn-dark" href="/ueber-uns/">Mehr über uns</Link></p>
           </div>
@@ -214,7 +214,7 @@ export default function Home() {
           </div>
           <div className="grid grid-3">
             {referenzen.referenzen.slice(0, 3).map((r: any) => (
-              <Link className="card" href="/referenzen/" key={r.slug}>
+              <Link className="card" href="/referenzen/" key={r.slug || r.id}>
                 <div className="card-img">
                   <Image
                     src={`/assets/${r.bilder[0]}`}

@@ -1,9 +1,10 @@
 # A-BAU WEBSITE – ABSCHLUSSBERICHT
 
-**Datum:** 2026-08-12 · **Live:** https://a-bau.nexifyai.cloud · **Repo main:** `ae96a58`
+**Datum:** 2026-08-12 · **Live:** https://a-bau.nexifyai.cloud · **Repo main:** `d099a1e` (+ QA-Runde-5-Commit, danach `HEAD`)
 
 ## 1. STATUS
 **PASS MIT RESTPUNKTEN** — P0/P1 = 0, P2 = 0 (bekannt), Restpunkte ausschließlich extern/Kunde.
+*Runde 5 (Gesamtauftrag-Nachprüfung 2026-08-12): Home-FAQ-Teaser-P0 + 16 weitere P1/P2-Fixes behoben und live verifiziert — siehe QA-PROTOKOLL Runde 5.*
 
 ## 2. P0
 | Problem | Ursache | Lösung | Test |

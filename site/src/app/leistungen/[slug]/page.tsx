@@ -57,7 +57,7 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
             <h1>{l.titel}</h1>
             <p className="lead">{l.kurz || l.subtitel}</p>
             <p>{l.beschreibung || l.text}</p>
-            <ul className="leistung-punkte">
+            <ul className="checkliste">
               {l.punkte.map((p: string) => <li key={p}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m5 13 4 4L19 7"/></svg>{p}</li>)}
             </ul>
             <p className="einsatzgebiete">

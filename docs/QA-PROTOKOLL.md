@@ -190,3 +190,36 @@
 - **E2E live (Domain)**: Adresse 2,5s ✅, Öffnungszeiten 2,8s ✅, Server stabil nach Requests ✅
 - **GEGENTEST BESTANDEN**: Server überlebt Chat-Requests (vorher: Kill), 401 weg, Antworten mit Quellen.
 - **Betriebshandbuch**: Troubleshooting 401-Fall auf Root Cause + Start via setsid aktualisiert.
+
+---
+
+## Nachprüfungs-Runde 5 (2026-08-12, Gesamtauftrag-Review — frischer E2E)
+
+**Methode:** Gesamtauftrag (Teil A–D) gegen Repo + Live neu auditiert; Live-Hash-Abgleich; Review-Findings (a-bau-code-review-findings.md) gegen Code geprüft.
+
+| Finding | Fix | Status |
+|---|---|---|
+| P0: Homepage-FAQ-Teaser leer (4 Akkordeons, `f.frage`/`f.antwort` vs. YAML `f:`/`a:`) — FAQ-Seite war korrekt, Teaser nie gefixt | `f.f`/`f.a` + SVG-Chevron | ✅ live (4 Fragen im HTML, E3) |
+| P1: Leistungs-Detail `lead` leer (`l.subtitel` existiert nicht) | `l.kurz \|\| l.subtitel` | ✅ live |
+| P1: `LEISTUNGS_BILDER[l.slug]` ohne `(l.slug \|\| l.id)` → immer Fallback-Bild (7 Seiten) | Fallback `(l.slug \|\| l.id)` + Map zentralisiert in `lib/leistungs-bilder.ts` (3 Duplikate weg, C.8) | ✅ live |
+| P2: `tel:` mit `00` statt `+` (`telHref` ersetzte `+`→`00`) — Live bestätigt `tel:0049216…` | `+` beibehalten | ✅ live `tel:+492166…` |
+| P2: About-Checkliste Inline-Styles + `--color-borussia-green`-Token (Marken-Cleanup A.20) | Klassen `.checkliste`/`.einsatzgebiete`, Token → `--color-brand-*` | ✅ live, 0 Treffer |
+| P2: Referenzen `r.slug` (YAML `id`) → React-Key-Warnung, fehlende Anker | `r.slug \|\| r.id` (2 Stellen) | ✅ |
+| P2: JSON-LD `dangerouslySetInnerHTML` ohne `<`-Escaping (8 Dateien) | `lib/schema.ts` `ld()` überall | ✅ |
+| P2: Glyph-Icons `▾`/`✓` (Header-Dropdowns, FAQ, Punkte) | SVG-Chevron/Check (Heroicons-Stil) | ✅ 0 Glyphen |
+| P2: Header-Dropdown `aria-haspopup` ohne `aria-expanded`/`aria-controls` | focusin/focusout-State + controls | ✅ |
+| P2: `role="banner"` auf div (doppelte Landmark) | entfernt | ✅ |
+| P2: Utility-Bar `<a>` → Full-Page-Reload | `next/link` | ✅ |
+| P2: Video-Poster hartkodiert (galt für alle Videos) | `r.bilder[0]`-Fallback | ✅ |
+| P2: `im Abstimmung` (Grammatik) | `in Abstimmung` | ✅ |
+| P2: Em-Dash in sichtbaren Texten | einheitlich Halbgeviertstrich | ✅ |
+| P2: create-next-app-SVG-Reste (5 Dateien) | gelöscht | ✅ |
+| P2: Server: HEAD auf Routen → 405 (Uptime-Monitore) | `methods=["GET","HEAD"]` | ✅ live 200 |
+| P2: Stadtteil-Bild alt behauptete Quartier-Bezug (identisches Denkmal-Bild) | alt ehrlich: „Denkmalrestaurierung – Projektbeispiel“ | ✅ |
+| P2: Stadtteil-/Leistungs-Inline-Styles | CSS-Klassen | ✅ |
+
+**E2E live (E3):** Route-Smoke 15/15 (inkl. Negativ-404) ✅ · Chat (Denkmalrestaurierung-Frage, Quellen) ✅ · Honeypot `{ok:true}` ✅ · Health `{"status":"ok","chat":true,"kb":true}` ✅ · /angebot 200 noindex+refresh ✅ · FAQ-Seite 14 Fragen + FAQPage-JSON-LD ✅ · Leistungs-Detail lead+echtes Bild ✅ · tel:+49 ✅ · Sitemap 20/20 ✅ · Security-Header ✅ · HEAD 200 ✅.
+
+**Gegentest (§5.4):** Live-vs-Repo-Abgleich aus anderer Richtung: byteweiser Diff `live-index.html` vs `out/index.html` — einzige Abweichung = Cloudflare-Email-Obfuscation (mailto → `/cdn-cgi/l/email-protection` + decode-JS); alle übrigen Bytes identisch → Live-Stand = geprüfter Code (E3). Negativpfade (404), Assets, Borussia-Grep 0, Glyphen-Grep 0.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 5)**
