@@ -4,6 +4,7 @@ import Image from "next/image";
 import { leistungen } from "@/lib/data";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/leistungen/" },
   title: "Leistungen – Bauunternehmen Mönchengladbach | A-Bau Meisterbetrieb",
   description:
     "Alle Leistungen der A-Bau Meisterbetrieb GmbH: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen und europaweite Direkttransporte.",

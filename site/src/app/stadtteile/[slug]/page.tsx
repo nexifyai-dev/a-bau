@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const q = stadtteile.stadt.quartiere.find((x: any) => slugify(x.name) === slug);
   if (!q) return {};
   return {
+    alternates: { canonical: `/stadtteile/${slug}/` },
     title: `Bauunternehmen ${q.name} – A-Bau Meisterbetrieb Mönchengladbach`,
     description: `${q.text} A-Bau Meisterbetrieb in ${q.name}, Mönchengladbach. ${q.schwerpunkt}. Kostenloses Angebot.`,
   };

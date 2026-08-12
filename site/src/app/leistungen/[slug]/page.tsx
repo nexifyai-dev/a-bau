@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const l = leistungen.leistungen.find((x: any) => (x.slug || x.id) === slug);
   if (!l) return {};
   return {
+    alternates: { canonical: `/leistungen/${slug}/` },
     title: `${l.titel} Mönchengladbach | A-Bau Meisterbetrieb GmbH`,
     description: `${l.kurz} – A-Bau Meisterbetrieb GmbH, Mönchengladbach. Meisterbetrieb seit 2019 (HRB 18836). Kostenloses Angebot.`,
   };

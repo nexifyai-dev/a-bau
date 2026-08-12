@@ -3,6 +3,7 @@ import Link from "next/link";
 import { stadtteile } from "@/lib/data";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/stadtteile/" },
   title: "Stadtteile & Quartiere – A-Bau Meisterbetrieb Mönchengladbach",
   description:
     "A-Bau in Mönchengladbach: Denkmalrestaurierung, Sanierung und Neubau in allen Stadtteilen — Geistenbeck, Eicken, Rheydt, City und mehr. Aktuelle Baustellen-Links der Stadt.",

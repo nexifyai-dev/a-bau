@@ -3,6 +3,7 @@ import Link from "next/link";
 import { faq } from "@/lib/data";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/faq/" },
   title: "FAQ – Häufige Fragen | A-Bau Meisterbetrieb Mönchengladbach",
   description:
     "Häufige Fragen zu Leistungen, Ablauf, Region, Angeboten und Öffnungszeiten von A-Bau Meisterbetrieb in Mönchengladbach.",

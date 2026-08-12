@@ -445,3 +445,14 @@ details[open] .chev, .acc-item.open .chev, details[open] .arrow { transform: rot
 }
 @media (prefers-reduced-transparency: reduce) { .site-header { background: var(--color-bg); } }
 @media (prefers-contrast: more) { .site-header { background: var(--color-bg); border-bottom-color: var(--color-line); } }
+
+/* ---------- Print (DIN/ISO: ausdruckbare Inhalte) ---------- */
+@media print {
+  .site-header, .site-footer, .floating, .chat-widget, .cookie-banner, .a11y-widget, .hero-actions, .skip-link, .trust-bar {
+    display: none !important;
+  }
+  body { background: #fff !important; color: #000 !important; }
+  a { color: #000; text-decoration: underline; }
+  .container, .section { max-width: 100% !important; padding: 0 !important; }
+  img { max-width: 100%; }
+}

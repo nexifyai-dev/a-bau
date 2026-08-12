@@ -4,6 +4,7 @@ import Image from "next/image";
 import { referenzen } from "@/lib/data";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/referenzen/" },
   title: "Referenzen – Projekte von A-Bau Meisterbetrieb Mönchengladbach",
   description:
     "Referenzen der A-Bau Meisterbetrieb GmbH: Altbau-Erhaltung, Gesundheitsbau, Raumgestaltung, Schlüsselfertigbau, Badezimmer und Handwerkskunst im Detail.",
