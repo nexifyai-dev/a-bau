@@ -71,7 +71,7 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
               ))}
             </p>
             <div className="hero-actions mt-5">
-              <Link className="btn btn-primary" href="/kontakt/">Unverbindlich anfragen</Link>
+              <Link className="btn btn-primary" href="/kontakt/">Projekt anfragen</Link>
               <Link className="btn btn-ghost" href="/leistungen/">Alle Leistungen</Link>
             </div>
           </div>

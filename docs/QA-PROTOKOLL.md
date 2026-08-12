@@ -278,3 +278,25 @@
 **Gegentest (§5.4):** Negativ (404, noindex, Honeypot) ✅ · Regression Runde 5/6 (Teaser, tel, Fonts, CTA-center, card-plain) live unverändert ✅ · Live-vs-out byte-identisch (Normalisierung) ✅ · Chat-Neustart-Zyklus reproduziert + behoben (401-Lotterie) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 7)**
+
+---
+
+## Proaktive Runde 8 (2026-08-12, Tiefenprüfung Browser-/Asset-Ebene)
+
+**Schwerpunkt:** Browser-Wirksamkeit ohne Browser-Tooling (kein Chromium/Playwright im Container, verifiziert), Asset-/Cache-Kette, CSP.
+
+| Befund/Fix | Status |
+|---|---|
+| **P0: CSP blockte Hydration + Bild-Layout**: Next-Export rendert RSC-Payload als Inline-`<script>` (`self.__next_f.push`) und React setzt Inline-`style`-Attribute — `script-src 'self'; style-src 'self'` blockt beides (Spezifikation): Formular-Submit, Drawer, CookieConsent, data-nimg-Layout tot | CSP um `'unsafe-inline'` für script+style erweitert (statischer Export, kein Nutzer-Input in Inline-Scripts, React escaped); Betriebshandbuch dokumentiert | ✅ live (Header verifiziert) |
+| P2: `/angebot`-Title doppelte Marke („…– A-Bau – A-Bau") | Title ohne Suffix (Template ergänzt) | ✅ live |
+| P2: CTA-Label „Unverbindlich anfragen" (3. CTA-Variante, A.10) | „Projekt anfragen" | ✅ live (6×, 0× alt) |
+| P1: Videos im CF-Cache veraltet (160.mp4 ohne Query = 9,1 MB unkomprimiert; mit `?v=20260812` = 2,7 MB komprimiert) | Site-Links nutzen bereits Cache-Buster → Nutzer erhalten komprimierte Version (E3: Content-Length 2723662 bei HIT). Alter Query-loser CF-Eintrag läuft mit Asset-TTL ab; gezielter Purge nicht möglich (CF-Token root-only, nicht im Container lesbar) — offen dokumentiert | ✅ funktional |
+| Video-Cache-Header korrekt (lokal 86400; CF überschreibt Richtung immutable — CF-Einstellung, unkritisch dank Cache-Buster) | dokumentiert | ✅ |
+| Assets: logo.png/favicon.ico/svg/manifest/webmanifest alle 200; /api/nope → 405, GET /api/chat → 404 (sauber) | ✅ | |
+| Browser-Tooling: Chromium/Playwright nicht vorhanden (verifiziert) — echte Rendering-/Hydration-Tests bleiben offener Punkt (wie dokumentiert) | — | |
+
+**E2E:** Build ✅ · Health + Chat nach Neustart ✅ · CSP-Header live ✅ · Route-Smoke unverändert ✅.
+
+**Gegentest (§5.4):** Negativ (/api/nope 405, GET-API 404, 404-Seite) ✅ · Regression Runden 1–7 (Teaser, FAQ, /angebot, CTA, Fonts, Kontrast, no-cache) unverändert ✅ · Video-Kette aus anderer Richtung: lokal vs. CDN Content-Length verglichen (E3) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 8)**

@@ -92,7 +92,7 @@ Aktuelle Security-Header (gesetzt in `chat/server.py` HEADERS-Dict):
 | `Referrer-Policy` | `strict-origin-when-cross-origin` |
 | `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` |
 | `X-Robots-Tag` | `noindex, nofollow` (bis Kundenabnahme, Go-Live-Punkt 3) |
-| CSP | `default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; frame-src https://www.openstreetmap.org; connect-src 'self'; base-uri 'self'; form-action 'self'` |
+| CSP | `default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; frame-src https://www.openstreetmap.org; connect-src 'self'; base-uri 'self'; form-action 'self'` — `'unsafe-inline'` für script/style erforderlich: Next.js-Export rendert RSC-Payload als Inline-`<script>` und React setzt Inline-`style`-Attribute; ohne diese Keywords blockt der Browser Hydration + Bild-Layout (P0, 2026-08-12). Kein Nutzer-Input in Inline-Scripts (statisch generiert), React escaped Inhalte |
 | HSTS | Über Cloudflare-Dashboard (SSL/TLS → Edge Certificates → HSTS) |
 
 Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://securityheaders.com/).

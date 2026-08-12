@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Angebot anfragen – A-Bau",
+  title: "Angebot anfragen",
   description: "Projekt anfragen bei A-Bau Meisterbetrieb GmbH – Kontaktformular für Ihr Bauvorhaben in Mönchengladbach & NRW.",
   alternates: { canonical: "/angebot/" },
   robots: { index: false, follow: false },

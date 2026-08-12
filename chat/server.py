@@ -59,8 +59,10 @@ HEADERS = {
     "Referrer-Policy": "strict-origin-when-cross-origin",
     "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
     "X-Robots-Tag": "noindex, nofollow",
-    "Content-Security-Policy": "default-src 'self'; img-src 'self' data:; style-src 'self'; "
-                               "script-src 'self'; frame-src https://www.openstreetmap.org; "
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' data:; "
+                               "style-src 'self' 'unsafe-inline'; "
+                               "script-src 'self' 'unsafe-inline'; "
+                               "frame-src https://www.openstreetmap.org; "
                                "connect-src 'self'; base-uri 'self'; form-action 'self'",
 }
 ASSET_CACHE = {"Cache-Control": "public, max-age=31536000, immutable"}
