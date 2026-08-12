@@ -921,3 +921,22 @@
 **Gegentest (§5.4):** Negativ: „Hallo" kein Fallback mehr (0× „Dazu habe ich" bei Begrüßung), Pizza-Antwort ohne Preis-Halluzination ✅ · Regression: Fake-Preis-Boundary (chat-check) intakt, R13–R35 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 36)**
+
+---
+
+## Runde 37 (2026-08-12, Fortsetzung Tiefenprüfung — JSON-LD-Vollparse, Header-Vollaudit, Thin-Content)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — neue Prüfebenen: JSON-LD-Syntax/Pflichtfelder (bisher nur Regex), Security-Header auf ALLEN 25 Seiten, Thin-Content je Detailseite, Markdown-Reste in Rechtstexten.
+
+| Prüfung | Ergebnis |
+|---|---|
+| **JSON-LD-Vollparse** (25 Seiten, jeder Block json.loads + Pflichtfelder: FAQPage→mainEntity, LocalBusiness→name+address, Organization→name, BreadcrumbList→itemListElement) | **Keine Issues** — alle Blöcke parsebar, Pflichtfelder vollständig | ✅ |
+| **Header-Vollaudit 25 Seiten** (CSP, nosniff, XFO, Referrer-Policy, Permissions-Policy, Cache-Control) | Alle 6 + no-store auf allen 200ern via urllib ✓; **HSTS „fehlte" nur bei urllib (HTTP/1.1)** — Gegenprobe curl HTTP/2: HSTS `max-age=15552000; includeSubDomains; preload` auf Home/Detail/Recht → **Audit-Artefakt, kein Befund** (CF liefert HSTS nur bei HTTP/2) | ✅ |
+| **Thin-Content** (H1 + Textlänge je Seite) | Keine Seite < 800 Zeichen, H1 überall | ✅ |
+| **Markdown-Reste in Rechtstexten** (rohe ##/**/``` im sichtbaren Text) | 0 — react-markdown rendert sauber | ✅ |
+
+**E2E:** QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok · keine Code-Änderung (nur Doku/QA).
+
+**Gegentest (§5.4):** Negativ: HSTS-Artefakt via HTTP/1.1 reproduziert + via HTTP/2 widerlegt; kein LD-Parsefehler, kein Thin-Content, kein Markdown-Rest ✅ · Regression: unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 37)**
