@@ -1,0 +1,81 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import { referenzen } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "Referenzen – Projekte von A-Bau Meisterbetrieb Mönchengladbach",
+  description:
+    "Referenzen der A-Bau Meisterbetrieb GmbH: Altbau-Erhaltung, Gesundheitsbau, Raumgestaltung, Schlüsselfertigbau, Badezimmer und Handwerkskunst im Detail.",
+};
+
+export default function Referenzen() {
+  return (
+    <>
+      <section className="section">
+        <div className="container">
+          <div className="section-head" style={{ maxWidth: 720, marginBottom: 48 }}>
+            <span className="kicker">Referenzen</span>
+            <h1>Projekte, die für Qualität sprechen</h1>
+            <p>
+              Einblicke in unsere Arbeit – Restaurierung, Gesundheitsbau, Innenausbau und Neubau.
+              Konkrete Projekt-Referenzen (Ort, Jahr, Umfang) stellen wir auf Anfrage gern vor.
+            </p>
+          </div>
+
+          {referenzen.referenzen.map((r: any) => (
+            <div className="section" key={r.slug} id={r.slug} style={{ paddingTop: 0 }}>
+              <div className="section-head">
+                <span className="kicker">Referenz</span>
+                <h2>{r.titel}</h2>
+                <p className="text-2">{r.text}</p>
+              </div>
+              <div className="gallery">
+                {r.bilder.map((b: string) => (
+                  <figure className="gallery-item" key={b}>
+                    <Image
+                      src={`/assets/${b}`}
+                      alt={`${r.titel} – A-Bau Meisterbetrieb Mönchengladbach`}
+                      width={640}
+                      height={480}
+                      style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                      sizes="(max-width: 720px) 50vw, 25vw"
+                    />
+                    <figcaption>{r.titel}</figcaption>
+                  </figure>
+                ))}
+              </div>
+              {r.video && (
+                <video
+                  controls
+                  preload="metadata"
+                  poster="/assets/krankenhaus/IMG_1414.webp"
+                  style={{ width: "100%", maxWidth: 560, borderRadius: "var(--r-md)", marginTop: 16 }}
+                  title={`Projektvideo ${r.titel}`}
+                >
+                  <source src={`/assets/videos/${r.video}`} type="video/mp4" />
+                  Ihr Browser unterstützt kein Video.
+                </video>
+              )}
+            </div>
+          ))}
+
+          <div className="notice" style={{ marginTop: "var(--space-7)", border: "1px solid var(--color-line)", background: "var(--color-bg-soft)", borderRadius: "var(--r-md)", padding: "var(--space-4) var(--space-5)" }}>
+            <strong>Hinweis:</strong> Konkrete Projektdaten (Ort, Jahr, Umfang) werden nach Freigabe durch den Kunden ergänzt. Die gezeigten Bilder stammen aus dem Projektbestand der A-Bau Meisterbetrieb GmbH.
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-dark">
+        <div className="container text-center">
+          <span className="kicker" style={{ color: "var(--color-mg-gold)" }}>Kontakt</span>
+          <h2>Ihr Projekt in guten Händen</h2>
+          <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
+          <div className="hero-actions" style={{ justifyContent: "center" }}>
+            <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

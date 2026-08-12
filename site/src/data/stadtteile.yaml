@@ -1,0 +1,31 @@
+# Stadtteile & Stadtbezug Mönchengladbach — 1:1 GAG-„Quartiere"-Übertragung
+stadt:
+  titel: Stadtteile & Quartiere
+  intro: "A-Bau ist in Mönchengladbach verwurzelt: Wir bauen und restaurieren in allen Stadtteilen — von Geistenbeck über Eicken bis Rheydt. Mönchengladbach ist die Stadt von Borussia — und wir tragen diese Identität in unsere Arbeit: Vereinsgeist, Handwerk, Heimat."
+  borussia_note: "Mönchengladbach ist die Stadt von Borussia. Diese Verbundenheit gehört zur Stadt und zu unserer Arbeit — wir bauen für die Menschen, die hier leben, feiern und arbeiten. (Markenrechtlich: kein Vereins-Logo/-Wappen; nur geographischer Bezug.)"
+  quartiere:
+    - name: Geistenbeck
+      text: "Unser Heimat-Stadtteil. Hier sitzen wir, hier restaurieren wir Altbauten, sanieren Wohnungen und bauen weiter. Charakter: Wohnviertel mit historischer Substanz."
+      schwerpunkt: "Denkmalrestaurierung, Altbau-Sanierung, Wohnmodernisierung"
+    - name: Mönchengladbach City (Nordstadt/Südstadt)
+      text: "Das Zentrum: Münster, Abteiberg, Marktplatz. Hier sind Gewerbe, Verwaltung und urbane Nachverdichtung gefragt."
+      schwerpunkt: "Gewerbe-Innenausbau, Sanierung im Bestand, Reparaturen"
+    - name: Eicken / Wickrath
+      text: "Ruhige Wohnlage mit großen Grundstücken und Familienhäusern. Beliebt bei Familien und Langzeit-Mietern."
+      schwerpunkt: "Badsanierung, Ausbau, Fenster/Türen, Schlüsselfertigbau"
+    - name: Rheydt
+      text: "Zweiter Stadtteil mit eigener Identität: Industriegeschichte, Bahnhof, neue Quartiere."
+      schwerpunkt: "Umbau, Krankenhausnahe Projekte, Gewerbe"
+    - name: Odenkirchen / Wickrathberg / Hardt
+      text: "Grüne Randlagen mit ländlichem Charakter und Neubau-Potenzial."
+      schwerpunkt: "Neubau, Außenanlagen, Garten-/Landschaftsbau"
+    - name: Niers / Volksgarten-Umfeld
+      text: "Naherholung und Wohnqualität. Hier arbeiten wir oft an privaten und halböffentlichen Projekten."
+      schwerpunkt: "Sanierung, Ausbau, barrierearme Umbauten"
+  baustellen_links:
+    - {titel: "Stadt Mönchengladbach: Baustellen-Informationsdienst", url: "https://www.moenchengladbach.de/aktuell-aktiv/neues-rathaus/nachrichten/hier-wird-gebuddelt"}
+    - {titel: "Stadt Mönchengladbach: Aktuelle Baumaßnahmen (Fachbereich Straßenbau)", url: "https://www.moenchengladbach.de/rathaus/buergerinfo-a-z/planen-bauen-mobilitaet-umwelt-dezernat-vi/fachbereich-strassenbau-und-verkehrstechnik-66/aktuelle-baumassnahmen"}
+    - {titel: "mags + NEW: Laufende Baustellen", url: "https://mags.de/detail/mags-hier-wird-gebuddelt-1"}
+    - {titel: "Rhein-Ruhr-Aktuell: Mönchengladbach-Baustellen-Update", url: "https://rheinruhraktuell.de/moenchengladbach-baustellen-update-neue-vollsperrungen-und-verkehrsbehinderungen-bis-2027/"}
+    - {titel: "Gladbacher Blatt: Aktuelle Baustellen-Infos", url: "https://www.gladbacherblatt.de/aktuelle-baustellen-infos-13636/"}
+    - {titel: "mg-moenchengladbach.de: Baustellen & Sperrungen", url: "https://mg-moenchengladbach.de/baustellen-moenchengladbach-aktuelle-sperrungen/"}
