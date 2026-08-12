@@ -12,7 +12,7 @@ export default function CookieConsent() {
   }, []);
   if (!show) return null;
   return (
-    <div className="cookie-banner show" role="dialog" aria-label="Cookie-Hinweis">
+    <div className="cookie-banner show" role="region" aria-label="Cookie-Hinweis">
       <p>
         <strong>Hinweis zu Cookies:</strong> Diese Website setzt nur technisch notwendige Cookies und
         keine Tracking-Cookies. Details in der <a href="/datenschutz/">Datenschutzerklärung</a> und{" "}

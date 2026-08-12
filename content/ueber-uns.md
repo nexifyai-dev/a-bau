@@ -2,7 +2,7 @@
 
 ## A-Bau Meisterbetrieb – Handwerk mit Verantwortung
 
-**A-Bau Meisterbetrieb GmbH** ist ein eingetragenes Bauunternehmen (Amtsgericht Mönchengladbach, HRB 18836) mit Sitz in Mönchengladbach-Geistenbeck. Wir bauen nicht nur – wir bewahren, gestalten und entwickeln. Mit Erfahrung, Präzision und einem starken Team realisieren wir anspruchsvolle Bauprojekte in Mönchengladbach & NRW. Ob historische Restauration oder moderner Neubau: Wir stehen für Qualität, Verlässlichkeit und echte Handwerkskunst.
+**A-Bau Meisterbetrieb GmbH** ist ein eingetragenes Bauunternehmen (Amtsgericht Mönchengladbach, HRB 18836) mit Sitz in Mönchengladbach-Geistenbeck. Wir bauen nicht nur – wir bewahren, gestalten und entwickeln. Mit Erfahrung, Präzision und einem starken Team realisieren wir anspruchsvolle Bauprojekte in Mönchengladbach & NRW. Ob historische Restaurierung oder moderner Neubau: Wir stehen für Qualität, Verlässlichkeit und echte Handwerkskunst.
 
 ## Unsere Haltung
 

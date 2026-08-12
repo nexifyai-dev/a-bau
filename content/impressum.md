@@ -25,14 +25,14 @@ DE327030612
 **Zuständige Handwerkskammer:**  
 Handwerkskammer Düsseldorf  
 Betriebsnummer: 1841351  
-Die Berufsbezeichnung „Meisterbetrieb" wird in Übereinstimmung mit den Vorschriften der Handwerksordnung (HwO) geführt.
+Die Berufsbezeichnung „Meisterbetrieb" wird in Übereinstimmung mit den Vorschriften der Handwerksordnung (HwO) geführt. Die berufsrechtlichen Regelungen der Handwerksordnung sind einsehbar unter: https://www.gesetze-im-internet.de/hwo/
 
 **Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV:**  
 Albert Pfeiffer, Luisental 69, 41199 Mönchengladbach
 
-## EU-Streitschlichtung
+## Verbraucherstreitbeilegung
 
-Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Ein Hinweis auf die EU-Plattform zur Online-Streitbeilegung (ODR) entfällt, da diese mit Wirkung zum 20. Juli 2025 eingestellt und die zugrunde liegende ODR-Verordnung (EU) Nr. 524/2013 aufgehoben wurde.
 
 ## Haftung für Inhalte
 

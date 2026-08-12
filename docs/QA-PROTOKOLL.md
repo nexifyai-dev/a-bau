@@ -323,3 +323,27 @@
 **Gegentest (§5.4):** Negativfälle (400/429/404/Invalid-Email) ✅ · Datenintegrität: Queue-Eintrag vollständig (Name/E-Mail/Tel/Nachricht/ts), kein Duplikat, Leerung klappt ✅ · Regression Runden 1–8 (FAQ, /angebot, Chat, Honeypot, CSP, Cache) unverändert ✅ · Honeypot-Pfad unverändert ok:true ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 9)** — Restpunkt: SMTP-Creds vom Host in Container-`.env` spiegeln + Queue-Nachversand.
+
+---
+
+## Proaktive Runde 10 (2026-08-12, Pascal-OOB: Bildvergrößerung + CTA-Zentrierung; Online-Rechts-/Bestpraxis-Tiefenrecherche)
+
+**OOB-Befunde Pascal:** (1) Bildvergrößerung auf /referenzen funktioniert nicht. (2) CTA-Band-Texte („Ihr Projekt in guten Händen…") auf mehreren Seiten linksbündig statt zentriert.
+
+| Befund/Fix | Status |
+|---|---|
+| **Bildvergrößerung defekt**: `.gallery-item` hatte nur `cursor:zoom-in` + Hover-Scale, KEIN Klick-Handler — Versprechen ohne Funktion | Neue Client-Komponente `RefGallery.tsx` (Lightbox): Klick/Tap öffnet Dialog (`role=dialog aria-modal`), Bild 1–n, Pfeile prev/next, Escape schließt, Fokus-Trap (WCAG 2.1.2), Fokus-Rückgabe an Trigger beim Schließen, Body-Scroll-Lock, Touch-Nav unten auf Mobile; `aria-label` je Bild; CSS `.lightbox*` + z-index-Token | ✅ live (23 gallery-btn, aria-labels „…vergrößern") |
+| **CTA-Band linksbündig**: `leistungen/[slug]` + `stadtteile/[slug]` nutzten `section`/`section-soft` statt `section-dark` (nur home/referenzen/ueber-uns waren zentriert) | Auf `section section-dark` vereinheitlicht (+ `kicker-gold`, `hero-actions-center`) — `.section-dark{text-align:center}` gilt jetzt auf ALLEN 5 CTA-Bändern | ✅ live (section-dark auf allen CTA-Bändern verifiziert) |
+| **Rechtsrecherche §5 DDG (amtlich)**: Impressum vollständig (Name/Anschrift/GF, HRB, USt-IdNr., MStV, Kammer) | **HwO-Zugänglichkeit ergänzt** (§ 5 Abs. 1 Nr. 5c DDG): „berufsrechtliche Regelungen einsehbar unter gesetze-im-internet.de/hwo" | ✅ live |
+| **ODR-Plattform abgeschaltet (20.07.2025, VO 524/2013 aufgehoben)**: toter Link `europa.eu/consumers/odr` + überholter Hinweis im Impressum | Abschnitt „EU-Streitschlichtung" → „Verbraucherstreitbeilegung" mit korrektem Status; VSBG-Erklärung bleibt | ✅ live (0× ODR-Link) |
+| **EU AI Act Art. 50 (anwendbar seit 02.08.2026)**: Chat-Widget wurde entfernt — Datenschutz §6 behauptete aber „Assistent steht zur Verfügung" (sachlich falsch) | §6 auf „derzeit nicht mehr angeboten" korrigiert + Art.-50-Pflicht für künftige Wiedereinführung dokumentiert | ✅ live |
+| **TDDDG §25-Recherche (2026)**: nur technisch notwendige Speicherung (`abau_consent` localStorage) → kein einwilligungspflichtiger Cookie → Hinweis-Banner korrekt; `role="dialog"` → `role="region"` (nicht modal, keine Fokusfalle) | ✅ konform (OLG Köln/VG Hannover-Linie: keine Dark Patterns, keine Tracking-Cookies vorhanden) | ✅ |
+| **BFSG-Recherche**: reine Unternehmenswebsite ohne E-Commerce → nicht unmittelbar BFSG-pflichtig; WCAG 2.2 AA als Standard bereits umgesetzt | dokumentiert | ✅ |
+| **Terminologie/Content-Drift content/ vs src/data/** (Chat-KB-Quelle `ingest.py` liest BEIDE): `content/leistungen.yaml` + `content/stadtteile.yaml` enthielten alte Versionen („Restaurationsarbeiten", „im Abstimmung", Borussia-Text, „Langzeit-Mietern") | content/*.yaml = src/data/*.yaml gesynct (Single Source of Truth, C.8); `content/ueber-uns.md` „Restauration"→„Restaurierung"; Re-Ingest (46 Chunks, 12 Doku) | ✅ KB neu, Chat verneint Borussia korrekt |
+| **Core Web Vitals 2026-Recherche**: INP (ersetzt FID) — statischer Export, kein Client-JS außer Lightbox/CookieBanner, Fonts self-hosted preload | dokumentiert; Browser-Messung offen (kein Tooling im Container) | ⚠️ offen (extern) |
+
+**E2E:** Build ✅ (17 Seiten) · Route-Smoke 19/19 ✅ · Live: Lightbox-Aria, CTA section-dark auf 5 Bändern, Impressum (HwO, VSBG), Datenschutz §6, Chat-KB neu — alles E3 · Re-Ingest 46 Chunks ✅.
+
+**Gegentest (§5.4):** Negativ (kein ODR-Link, kein Borussia im KB, „nicht mehr angeboten" im Datenschutz) ✅ · Regression Runden 1–9 (FAQ, /angebot, CTA, Fonts, tel, no-cache, CSP, Queue) live unverändert ✅ · Fokus-Trap-Logik gegen WCAG 2.1.2 geprüft (Code-Review) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 10)**

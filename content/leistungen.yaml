@@ -2,8 +2,8 @@
 leistungen:
   - id: denkmalrestaurierung
     titel: Restaurierung denkmalgeschützter Bauten
-    kurz: "Anspruchsvolle Restaurationsarbeiten – vom historischen Gebäude bis zur stilgerechten Sanierung. Respekt vor dem Bestehenden, moderne Technik."
-    text: "Mit viel Erfahrung und handwerklichem Feingefühl führen wir anspruchsvolle Restaurationsarbeiten durch – vom historischen Gebäude bis zur stilgerechten Sanierung. Wir verbinden Respekt vor dem Bestehenden mit moderner Technik und sorgen dafür, dass wertvolle Bausubstanz erhalten bleibt. Denkmalpflege ist Vertrauenssache: Wir dokumentieren, planen und arbeiten substanzschonend, mit geprüften Materialien und im Abstimmung mit den Vorgaben des Denkmalschutzes."
+    kurz: "Anspruchsvolle Restaurierungsarbeiten – vom historischen Gebäude bis zur stilgerechten Sanierung. Respekt vor dem Bestehenden, moderne Technik."
+    text: "Mit viel Erfahrung und handwerklichem Feingefühl führen wir anspruchsvolle Restaurierungsarbeiten durch – vom historischen Gebäude bis zur stilgerechten Sanierung. Wir verbinden Respekt vor dem Bestehenden mit moderner Technik und sorgen dafür, dass wertvolle Bausubstanz erhalten bleibt. Denkmalpflege ist Vertrauenssache: Wir dokumentieren, planen und arbeiten substanzschonend, mit geprüften Materialien und in Abstimmung mit den Vorgaben des Denkmalschutzes."
     bild: /assets/denkmal/d11ef292-0817-42b3-8eaa-e60171cd3e74.webp
     punkte: [Fassaden- und Innenraumrestaurierung, Denkmalgerechte Sanierung, Substanzschonende Technik, Abstimmung mit Denkmalschutzbehörden]
   - id: innenausbau
@@ -28,10 +28,10 @@ leistungen:
     titel: Installationen – Strom & Wasser
     kurz: "Sämtliche Installationsarbeiten mit höchster Sorgfalt: von der Rohmontage bis zur fertigen Anlage."
     text: "Ob Strom oder Wasser: Wir übernehmen sämtliche Installationsarbeiten mit höchster Sorgfalt und technischem Know-how. Von der Rohmontage bis zur fertigen Anlage – fachgerecht, zuverlässig und passend zu Ihrem Bauvorhaben. Heizungs-, Wasser- und Elektroinstallationen gehören ebenso zu unserem Leistungsspektrum wie Kabelverlegung im Hochbau."
-    bild: /assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp
+    bild: /assets/sonstiges/151e86b5-8c33-4ccd-be9d-4bc1cd222894.webp
     punkte: [Elektroinstallationen, Wasser- und Heizungsinstallation, Kabelverlegung im Hochbau, Rohmontage bis fertige Anlage]
   - id: sanierung
-    titel: Restauration & Sanierung von Altbauten
+    titel: Sanierung & Restaurierung
     kurz: "Altbauten auf den neuesten Stand – technisch, funktional und optisch, ohne den Charakter zu verlieren."
     text: "Wir bringen Altbauten auf den neuesten Stand – technisch, funktional und optisch. Mit handwerklicher Präzision erneuern wir Bausubstanz, ohne den Charakter zu verlieren. Ob Fassade, Innenraum oder Versorgungstechnik: Wir schaffen neue Qualität im alten Bestand. Dazu gehören Mauer- und Betonarbeiten, Steinmetzarbeiten, Fugarbeiten sowie Asphaltier- und Betonsteinarbeiten im Hochbau."
     bild: /assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp
@@ -40,5 +40,5 @@ leistungen:
     titel: Europaweite Transporte
     kurz: "Direkttransporte mit unserem firmeneigenen Sprinter – flexibel, schnell, direkt."
     text: "Als Bauunternehmen wissen wir, wie wichtig es ist, dass Materialien, Werkzeuge oder Bauteile schnell und zuverlässig dort ankommen, wo sie gebraucht werden. Deshalb bieten wir einen besonderen Service: Direkttransporte mit unserem firmeneigenen Sprinter – europaweit. Jetzt anfragen – wir beraten Sie gerne und finden die passende Lösung für Ihren Transportbedarf."
-    bild: /assets/sonstiges/IMG_1415.webp
+    bild: /assets/sonstiges/PHOTO-2025-02-11-16-15-13.webp
     punkte: [Europaweite Direkttransporte, Firmeneigener Sprinter, Flexible Terminplanung, Baustellenlogistik]

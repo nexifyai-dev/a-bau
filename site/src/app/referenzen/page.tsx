@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { referenzen } from "@/lib/data";
 import { ld } from "@/lib/schema";
+import RefGallery from "@/components/RefGallery";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/referenzen/", languages: { de: "https://a-bau.nexifyai.cloud/referenzen/", "x-default": "https://a-bau.nexifyai.cloud/referenzen/" } },
@@ -33,28 +33,7 @@ export default function Referenzen() {
                 <h2>{r.titel}</h2>
                 <p className="text-2">{r.text}</p>
               </div>
-              <div className="gallery">
-                {r.bilder.map((b: string) => (
-                  <figure className="gallery-item" key={b}>
-                    <Image
-                      src={`/assets/${b}`}
-                      alt={`${r.titel} – A-Bau Meisterbetrieb Mönchengladbach`}
-                      width={640}
-                      height={480}
-                      style={{ objectFit: "cover", width: "100%", height: "100%" }}
-                      sizes="(max-width: 720px) 50vw, 25vw"
-                    />
-                    <figcaption>
-                      {r.titel}
-                      {(r.ort || r.jahr) && (
-                        <span className="gallery-meta">
-                          {[r.ort, r.jahr, r.umfang].filter(Boolean).join(" · ")}
-                        </span>
-                      )}
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
+              <RefGallery titel={r.titel} bilder={r.bilder} altBase={r.titel} />
               {r.video && (
                 <figure className="ref-video">
                   <video

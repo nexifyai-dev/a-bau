@@ -69,9 +69,9 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
         </div>
       </section>
 
-      <section className="section section-soft">
+      <section className="section section-dark">
         <div className="container text-center">
-          <span className="kicker">Kontakt</span>
+          <span className="kicker kicker-gold">Kontakt</span>
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
           <div className="hero-actions hero-actions-center">

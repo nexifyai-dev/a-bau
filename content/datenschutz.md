@@ -60,13 +60,7 @@ Wenn Sie uns über das Kontaktformular kontaktieren, verarbeiten wir die von Ihn
 
 ## 6. KI-Assistent (Chat-Anfrage)
 
-Auf dieser Website steht ein KI-gestützter Assistent zur Verfügung, der Fragen zum Unternehmen, zu Leistungen, Einsatzgebieten und Abläufen beantwortet.
-
-**Funktionsweise:** Der Assistent beantwortet Fragen ausschließlich auf Basis von Website-Inhalten (Retrieval-Augmented Generation, RAG). Ihre Chat-Nachricht wird zur Beantwortung an einen externen KI-Dienstleister übermittelt, dessen Server sich außerhalb der EU befinden können. Es besteht eine Verarbeitungsgrundlage nach Art. 44 ff. DSGVO (Standardvertragsklauseln seitens des Anbieters). Wir weisen ausdrücklich darauf hin: **Geben Sie im Chat keine personenbezogenen Daten (z. B. Namen, Adressen, Kontodaten) an.** Für individuelle Anfragen nutzen Sie bitte das Kontaktformular.
-
-**Zweck:** Verbesserte und schnelle Information von Interessenten und Bestandskunden.
-**Rechtsgrundlage:** Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer effizienten Kundeninformation); Transparenzpflicht nach Art. 50 EU-KI-Verordnung (EU AI Act): Sie kommunizieren mit einer KI.
-**Speicherdauer:** Chatverläufe werden auf unserem Server nicht gespeichert. Anfragen werden nach der Beantwortung nicht archiviert; Server-Logfiles (Zugriffszeilen ohne Nachrichteninhalte) werden nach 7 Tagen gelöscht.
+Ein KI-gestützter Chat-Assistent wird auf dieser Website derzeit **nicht mehr angeboten**. Sofern wir Ihnen zu einem späteren Zeitpunkt wieder einen KI-Assistenten bereitstellen, erfolgt dies gemäß Art. 50 der EU-KI-Verordnung (EU AI Act) mit einem deutlichen Hinweis, dass Sie mit einer KI kommunizieren; diese Datenschutzerklärung wird dann entsprechend aktualisiert.
 
 ## 7. Cookies und lokale Speicherung
 
