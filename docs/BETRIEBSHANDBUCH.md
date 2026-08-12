@@ -2,7 +2,7 @@
 
 **Kunde:** A-Bau Meisterbetrieb GmbH · **Betreiber:** NeXifyAI (VPS 72.62.152.47, Container hermes-webui) · **Stand:** 2026-08-12
 
-**Deploy-Quelle (seit 2026-08-12):** Git-Repo `https://github.com/nexifyai-dev/a-bau.git`, main = `880b019` (GAG-Konzept). Container-Spiegel: `/workspace/nexifyai/repos/a-bau` (bind-mounted → auch Host-seitig sichtbar). Verzeichnis `/workspace/nexifyai/clients/abau` = veralteter Next.js-Zwischenstand (NICHT verwenden, nie gepusht).
+**Deploy-Quelle (seit 2026-08-12):** Git-Repo `https://github.com/nexifyai-dev/a-bau.git`, main = Next.js-16-Stand (GAG-1:1, Design-Referenz `docs/DESIGN-ABAU-v2-2026-08-11.md`). Container-Spiegel: `/workspace/nexifyai/repos/a-bau` (bind-mounted → auch Host-seitig sichtbar). Verzeichnis `/workspace/nexifyai/clients/abau` = Arbeitskopie des Agenten (Next.js-Basis, identisch mit Repo-Stand; historischer Astro-Zwischenstand entfernt).
 
 ## Architektur (1 Dienst, 1 Port)
 ```
@@ -10,7 +10,7 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
   → Cloudflare-Tunnel f0f2b101-ed26-4130-8b04-16c43badf70a (Host)
   → Ingress: a-bau.nexifyai.cloud → http://127.0.0.1:8095
   → chat/server.py (FastAPI, Container-Host-Netz):
-       statische Site (site/dist, Astro-Build) + /api/chat + /api/contact + /health
+       statische Site (site/out, Next.js-Export) + /api/chat + /api/contact + /health
   → 9Router 127.0.0.1:20128 (LLM ds/deepseek-v4-flash, Think-Max)
   → SQLite chat/data/kb.db (FTS5-Retrieval, lokal, tenant-isoliert)
   → Hostinger-SMTP 465 (Formular-Versand an kontakt@a-bau.info)
@@ -18,14 +18,13 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 
 ## Betrieb
 - **Start/Stop:** `cd /workspace/nexifyai/repos/a-bau && PORT=8095 /app/venv/bin/python3 chat/server.py` (Log `/tmp/abau-server.log`). Stop: Prozess `chat/server.py` beenden.
-- **Watchdog (Host):** Hermes-Cron `abau-server-watchdog` (alle 5 min, no-agent): Skript `/root/.hermes/scripts/abau-healthcheck.sh` — startet Service bei Ausfall automatisch, meldet nur bei Aktion.
-  ⚠️ **Offener Punkt (2026-08-12):** Host-Skript zeigt vermutlich noch auf Altpfad `clients/abau` — Container-Zugriff nicht möglich (root-only, kein SSH). Fix: Skript auf `repos/a-bau` + `/app/venv/bin/python3` umstellen, sonst startet Watchdog nach Crash den veralteten Stand.
+- **Watchdog:** KEIN aktiver Auto-Restart (Hermes-Cron-Job `abau-server-watchdog` 34b673d104dc war tot und wurde 2026-08-12 entfernt; kein cron-Daemon im Container). Nach Container-/Prozess-Neustart manuell starten (siehe oben). Host-seitiger Watchdog nicht verifizierbar (kein SSH). Bei Ausfall: Health-Check `curl http://127.0.0.1:8095/health` → falls down, Start-Kommando oben ausführen.
 - **Health:** `curl http://127.0.0.1:8095/health` bzw. `https://a-bau.nexifyai.cloud/health` → `{"status":"ok","chat":true,"kb":true}`.
-- **Backup:** Repo (git) = Backup der Inhalte; `site/dist` ist Build-Artefakt (reproduzierbar); `chat/data/kb.db` aus `chat/ingest.py` regenerierbar.
+- **Backup:** Repo (git) = Backup der Inhalte; `site/out` ist Build-Artefakt (reproduzierbar via `npm run build`); `chat/data/kb.db` aus `chat/ingest.py` regenerierbar.
 
 ## Content-Änderungen
 1. Inhalte editieren: `data/kontakt.yaml` (NAP — EINE Quelle!), `content/*.yaml` + `*.md` (Leistungen/Referenzen/FAQ/Recht).
-2. Site bauen: `cd site && npm install && npm run build` (Node 22; pnpm-Store im Container defekt — npm nutzen).
+2. Site bauen: `cd site && npm run build` (Next.js 16, static export → `out/`; Node 22; pnpm-Store im Container defekt — npm nutzen).
 3. Chat-Wissen aktualisieren: `python3 chat/ingest.py` (Rechtstexte automatisch ausgeschlossen).
 4. Service neu starten (siehe Betrieb).
 5. Verifikation: Routen-200 + ein Chat-Test + `https://a-bau.nexifyai.cloud/health`.
@@ -101,11 +100,11 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 
 | Aufgabe | Datei | Schritt danach |
 |---------|-------|---------------|
-| NAP ändern (Telefon, E-Mail, Adresse) | `site/src/data/kontakt.yaml` | `pnpm build` + Restart |
-| Leistungen ändern | `site/src/data/leistungen.yaml` | `pnpm build` + `ingest.py` + Restart |
-| FAQ ändern | `site/src/data/faq.yaml` | `pnpm build` + `ingest.py` + Restart |
-| Referenzen ändern | `site/src/data/referenzen.yaml` | `pnpm build` + `ingest.py` + Restart |
-| Bilder ersetzen | `site/src/assets/img/` oder `site/public/assets/` | `pnpm build` + Restart |
-| Rechtstexte ändern | `site/src/pages/impressum.astro` etc. | `pnpm build` + Restart (kein Re-Ingest — Rechtstexte absichtlich aus KB ausgeschlossen) |
+| NAP ändern (Telefon, E-Mail, Adresse) | `site/src/data/kontakt.yaml` | `npm run build` + Restart |
+| Leistungen ändern | `site/src/data/leistungen.yaml` | `npm run build` + `ingest.py` + Restart |
+| FAQ ändern | `site/src/data/faq.yaml` | `npm run build` + `ingest.py` + Restart |
+| Referenzen ändern | `site/src/data/referenzen.yaml` | `npm run build` + `ingest.py` + Restart |
+| Bilder ersetzen | `site/public/assets/` | `npm run build` + Restart |
+| Rechtstexte ändern | `site/src/app/impressum/page.tsx`, `datenschutz/`, `cookie-richtlinie/` | `npm run build` + Restart (kein Re-Ingest — Rechtstexte absichtlich aus KB ausgeschlossen) |
 
 **Wichtig:** `kontakt.yaml` ist die **einzige Wahrheitsquelle** für NAP-Daten. Niemals Telefon/E-Mail/Adresse direkt in `.astro`-Dateien oder Template-Strings eintragen.

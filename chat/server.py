@@ -12,7 +12,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse
 
 ROOT = Path(__file__).resolve().parent.parent
-DIST = ROOT / "site" / "dist"
+DIST = ROOT / "site" / "out"
 DB = ROOT / "chat" / "data" / "kb.db"
 LLM_MODEL = "ds/deepseek-v4-flash"
 ROUTER = "http://127.0.0.1:20128/v1"
@@ -22,7 +22,6 @@ RATE_LIMIT = 20  # Anfragen pro Minute pro IP
 app = FastAPI(title="A-Bau Website Service", docs_url=None, redoc_url=None)
 
 # --- Secrets (nur Server, nie in Logs/HTML) ---
-# Reihenfolge: Umgebung -> Dateien (Container-Spiegel zuerst).
 def _secret(names, files=("/home/hermeswebui/.hermes/.env", "/root/.hermes/hermes.env",
                           "/etc/nexifyai/hermes.env", "/root/.hermes/.env")):
     for n in names:
@@ -213,14 +212,31 @@ if DIST.exists():
 
     @app.get("/{path:path}", include_in_schema=False)
     async def spa(path: str):
-        p = (DIST / path).resolve() if path else (DIST / "index.html")
-        if not str(p).startswith(_dist_root):
-            return JSONResponse({"detail": "Not Found"}, status_code=404)
-        if p.is_dir():
-            p = p / "index.html"
-        if p.is_file():
-            return FileResponse(p)
-        return FileResponse(DIST / "404.html", status_code=404)
+        # Next.js-Output: .html-Dateien (out/), robots/sitemap als .body
+        clean = path.strip("/")
+        # robots.txt / sitemap.xml liegen als .body
+        if clean == "robots.txt" and (DIST / "robots.txt.body").is_file():
+            return FileResponse(DIST / "robots.txt.body", media_type="text/plain")
+        if clean == "sitemap.xml" and (DIST / "sitemap.xml.body").is_file():
+            return FileResponse(DIST / "sitemap.xml.body", media_type="application/xml")
+        # Direkte Datei (Bilder, CSS, JS aus public/)
+        direct = (DIST / clean).resolve()
+        if str(direct).startswith(str(DIST)) and direct.is_file():
+            return FileResponse(direct)
+        # Next.js-HTML: /leistungen -> out/leistungen.html
+        html = (DIST / (clean + ".html")).resolve()
+        if str(html).startswith(str(DIST)) and html.is_file():
+            return FileResponse(html)
+        # Root
+        if clean in ("", "index"):
+            idx = DIST / "index.html"
+            if idx.is_file():
+                return FileResponse(idx)
+        # 404
+        nf = DIST / "_not-found.html"
+        if nf.is_file():
+            return FileResponse(nf, status_code=404)
+        return JSONResponse({"detail": "Not Found"}, status_code=404)
 
 if __name__ == "__main__":
     import uvicorn

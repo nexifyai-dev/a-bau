@@ -2,7 +2,7 @@
 
 **Kunde:** A-Bau Meisterbetrieb GmbH · Luisental 69 · 41199 Mönchengladbach (Geistenbeck)
 **Register:** AG Mönchengladbach HRB 18836 · EUID DER1504.HRB18836 · GF: Albert Pfeiffer
-**Status:** Planung (2026-08-10) → Umsetzung (Kanban `nexify`, Task siehe Board)
+**Status:** Umsetzung — Staging live auf `a-bau.nexifyai.cloud` (2026-08-12). Design-Referenz: **GAG Köln 1:1 mit Borussia/MG-Farben** (`docs/DESIGN-ABAU-v2-2026-08-11.md`), Stack: Next.js 16 (static export), Chat-Service FastAPI+FTS5-RAG.
 **Ausgangslage:** Vollanalyse 2026-08-10 (Audit-PDF an mail@nexifyai.cloud) — Alt-Site WordPress/IONOS mit Rechts-, SEO- und Qualitätsdefiziten.
 
 ## Inhalt
@@ -11,7 +11,7 @@
 | `docs/PLAN-ABAU-WEBSITE-2026-08-10.md` | Queen-Mode-Umsetzungsplan (verbindlich) |
 | `docs/RECHERCHE-FIRMENDATEN.md` | Recherchierte Firmendaten mit Quellen + offene Punkte |
 | `docs/ASSETS.md` | Bild-/Video-Inventar (86 Medien) + Zuordnung |
-| `site/` | Neue Website (Astro, bei Umsetzung) |
+| `site/` | Website — Next.js 16, GAG-1:1-Design (Borussia/MG-Farben), static export → `site/out/` |
 | `chat/` | AI-Chatbot-Service 9Router+RAG (bei Umsetzung) |
 | `assets/` | Heruntergeladene Originalmedien (bei Umsetzung) |
 
