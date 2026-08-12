@@ -160,3 +160,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 20
 
 **Repo main:** `0ef1cb6` · **P0-Root-Cause Header-CTA:** Kaskaden-Override durch `.nav-desktop > a` — Fix via Spezifität (0,2,1/0,3,1), Button jetzt dauerhaft Markengrün + weiß (live). · **FAQ 166 Fragen** (Chat-Wissen, KB 67 Chunks). · **AGB + Nutzungsbedingungen** neu (BGB-Bestpraxis, KI-VO Art. 50-Referenz). · **Formular 202+queued** (ehrlich). · **Denkmal-Restaurierung** durchgängig. Restpunkte unverändert; neue Rechtstexte vor Produktiv-Go-Live anwaltlich prüfen lassen (Empfehlung).
+
+# NACHTRAG RUNDE 21
+
+**Repo main:** `117d6b7` · Behoben: AGB/Nutzung-Titel-Dopplung, FAQ 165 (Duplikat + Antwort-Qualität). Verifiziert: .prose-Rendering, Payloads, Chat-7-Fragen-E2E (fachlich korrekt, Boundary intakt). Restpunkte unverändert.

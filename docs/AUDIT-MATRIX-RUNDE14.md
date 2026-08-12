@@ -178,3 +178,13 @@
 **Gegenprobe ohne Fix:** Impressum/Datenschutz vollständig (IHK-§-5-DDG-Checkliste, LDI-NRW, ODR-Abschaltung korrekt).
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Endprüfung der neuen Rechtstexte (Empfehlung).
+
+---
+
+# NACHTRAG RUNDE 21 (2026-08-12) — FAQ-Qualität, Rechtstexte, Chat-E2E
+
+**Neu behoben:** AGB/Nutzungsbedingungen-Titel `absolute` (Dopplung weg, live), FAQ-Duplikat entfernt (165 Fragen), E-Mail-Antwort erweitert.
+
+**Verifiziert ohne Fix:** `.prose`-Rendering (Impressum/AGB/Nutzung), Seiten-Payloads (FAQ 346 KB ok), Chat-7-Fragen-E2E mit 165-Fragen-KB (fachlich korrekt, Boundary, 0 Markdown, 1,8–8,2 s).
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung (Empfehlung).
