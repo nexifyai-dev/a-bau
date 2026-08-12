@@ -1362,3 +1362,24 @@
 **GEGENTEST BESTANDEN (2026-08-12, Runde 57)**
 
 **Offen (Kunde):** Resend-Domain verifizieren + `RESEND_API_KEY` → flush 2 echte · CF-Token-Rotation · `/memory pending` (2 Updates) · NeXifyAI-Rechtstexte (Host-Session) · bookando/carvantooo-Repos/Domains für künftige Scans (ZK-Eintrag).
+
+
+---
+
+## Runde 58 (2026-08-12, Livebetrieb: Doppel-Submit verifiziert, Kundenprojekt-Scan, Startzeit-Diagnose)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + andere Kundenprojekte). Dauerhafte Recherche, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **Doppel-Submit-Guard (Pflichtregel „Buttons während async disabled"):** Verdacht „fehlt" → **ausgeräumt**: `KontaktClient.tsx` (liegt unter `app/kontakt/`, nicht `components/`) hat `disabled={status === "loading"}` + `status`-State idle/loading/ok/err; Fehler-Status erlaubt erneuten Submit | ✅ kein Fix |
+| **Portal-Health:** Dashboard 9119 → 302 (Login) ✓ · WebUI 8787 ✓ · Gateway 8642 ✓ (R57) | ✅ |
+| **Kundenprojekt studienkolleg-aachen:** Prozess 256142 (uvicorn) + watchdog.sh 247223 + mongod 242956 laufen; /health und /docs = 404 (eigene Routen, kein FastAPI-Default) — Server antwortet; ein „000"-Messpunkt war transient (Watchdog-Umlauf), Folge-Checks 404 = Dienst lebt | ✅ kein Eingriff |
+| **Startzeit-Diagnose (Livebetrieb-Wiederanlauf):** `import chat.server` = 22,9 s; Engpass **fastapi-Import 8,4–20,3 s** (2. Lauf 10,3 s — Container-FS-I/O, kein Projekt-Code). Konsequenz: Server-Wiederanlauf 20–30 s; Watchdog (5-min-Intervall) tolerant; **kein Doppelstart-Race** (R55-Handbuch) | 📝 dokumentiert |
+| **Erkenntnis-Pflege:** falscher-Alarm-Lektion (KontaktClient-Pfad) in Handbuch-Betriebsnotiz | 📝 |
+
+**E2E:** QUALITY-CHECK OK · HSTS ✓ · Formular 202 queued · Queue 2 echte · alle Live-Checks oben.
+
+**Gegentest (§5.4):** Negativ: Formular ohne Creds → 202 + klares Log ✅ · Studienkolleg: 000→404 transient verifiziert (2 Folge-Checks) ✅ · Regression: A-Bau unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 58)**

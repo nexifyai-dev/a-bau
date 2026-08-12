@@ -136,3 +136,10 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
   (HSTS existiert erst seit R55 — fehlt er, läuft ein Alt-Prozess).
 - **NICHT:** `uvicorn chat.server:app` parallel starten → address already in use; Doppelstart vermeiden (Race).
 - clients-Spiegel `/workspace/nexifyai/clients/abau/` ist KEIN Live-Pfad (Altstand); nur Repo `/workspace/nexifyai/repos/a-bau` wird betrieben.
+
+## Wiederanlauf-Zeit (R58, Container-Import-Latenz)
+
+- `import chat.server` = ~23 s, Engpass fastapi-Import (8–20 s, Container-FS-I/O — kein Projekt-Code-Fix).
+- Server-Wiederanlauf nach Kill/Crash daher **20–30 s**: Health-Checks direkt nach `start-abau.sh` erst nach
+  ~30 s auswerten (Watchdog-Intervall 5 min ist tolerant). Kein Doppelstart (addrinuse-Race) — einmal starten, warten, dann prüfen.
+- Formular-Guard-Lage: `site/src/app/kontakt/KontaktClient.tsx` (NICHT `components/`) — `disabled` bei `status==="loading"`.
