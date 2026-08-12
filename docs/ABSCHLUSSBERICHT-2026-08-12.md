@@ -5,6 +5,7 @@
 ## 1. STATUS
 **PASS MIT RESTPUNKTEN** — P0/P1 = 0, P2 = 0 (bekannt), Restpunkte ausschließlich extern/Kunde.
 *Runde 5 (Gesamtauftrag-Nachprüfung 2026-08-12): Home-FAQ-Teaser-P0 + 16 weitere P1/P2-Fixes behoben und live verifiziert — siehe QA-PROTOKOLL Runde 5.*
+*Runde 6 (proaktiver Voll-Audit, Pascal-Aufträge 2026-08-12): Lora/Inter-Schriften, CTA-Bänder zentriert, Referenzen-Bilder-Fix (4×404), ref-video preload=none, card-plain-Padding (Formular), NAP-Drift-Guard, 10 externe Links 200, Crawl 0 Fehler, Live=Repo byte-identisch (E3) — QA-PROTOKOLL Runde 6, Repo `016b8db`.*
 
 ## 2. P0
 | Problem | Ursache | Lösung | Test |
