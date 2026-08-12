@@ -30,10 +30,23 @@ export default function ChatWidget() {
   const [error, setError] = useState("");
   const listRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
   }, [msgs, open]);
+
+  // A.28/D.4: Dialog-Fokus — beim Öffnen in den Input, Escape schließt global,
+  // beim Schließen Fokus zurück zum Trigger-Button.
+  useEffect(() => {
+    if (open) {
+      inputRef.current?.focus();
+      const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+      window.addEventListener("keydown", onKey);
+      return () => window.removeEventListener("keydown", onKey);
+    }
+    btnRef.current?.focus();
+  }, [open]);
 
   const send = useCallback(async () => {
     const text = input.trim();
@@ -72,6 +85,7 @@ export default function ChatWidget() {
   return (
     <>
       <button
+        ref={btnRef}
         type="button"
         aria-label={open ? "Chat schließen" : "Chat öffnen"}
         aria-expanded={open}

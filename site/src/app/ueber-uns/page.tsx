@@ -5,7 +5,7 @@ import { ld } from "@/lib/schema";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/ueber-uns/", languages: { de: "https://a-bau.nexifyai.cloud/ueber-uns/", "x-default": "https://a-bau.nexifyai.cloud/ueber-uns/" } },
-  title: "Über uns – A-Bau Bauunternehmen Mönchengladbach",
+  title: { absolute: "Über uns – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "A-Bau Meisterbetrieb GmbH aus Mönchengladbach: eingetragenes Bauunternehmen (HRB 18836), GF Albert Pfeiffer. Restaurierung, Innenausbau, Neubau.",
 };

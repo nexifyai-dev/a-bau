@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!l) return {};
   return {
     alternates: { canonical: `/leistungen/${slug}/`, languages: { de: `https://a-bau.nexifyai.cloud/leistungen/${slug}/`, "x-default": `https://a-bau.nexifyai.cloud/leistungen/${slug}/` } },
-    title: `${l.titel} Mönchengladbach`,
+    title: { absolute: clip(`${l.titel} – A-Bau Meisterbetrieb Mönchengladbach`, 60) },
     description: `${clip(l.kurz, 100)} – A-Bau Meisterbetrieb Mönchengladbach.`,
   };
 }

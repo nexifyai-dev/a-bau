@@ -5,7 +5,7 @@ import { ld } from "@/lib/schema";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/faq/", languages: { de: "https://a-bau.nexifyai.cloud/faq/", "x-default": "https://a-bau.nexifyai.cloud/faq/" } },
-  title: "FAQ | A-Bau Bauunternehmen Mönchengladbach",
+  title: { absolute: "FAQ – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "Häufige Fragen zu Leistungen, Ablauf, Region, Angeboten und Öffnungszeiten von A-Bau Meisterbetrieb in Mönchengladbach.",
 };

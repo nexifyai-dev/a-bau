@@ -7,7 +7,7 @@ import { LEISTUNGS_BILDER } from "@/lib/leistungs-bilder";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/leistungen/", languages: { de: "https://a-bau.nexifyai.cloud/leistungen/", "x-default": "https://a-bau.nexifyai.cloud/leistungen/" } },
-  title: "Leistungen | Bauunternehmen Mönchengladbach – A-Bau",
+  title: { absolute: "Leistungen – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "Alle Leistungen der A-Bau Meisterbetrieb GmbH: Denkmalrestaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen.",
 };

@@ -5,7 +5,7 @@ import { ld } from "@/lib/schema";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/stadtteile/", languages: { de: "https://a-bau.nexifyai.cloud/stadtteile/", "x-default": "https://a-bau.nexifyai.cloud/stadtteile/" } },
-  title: "Stadtteile & Quartiere – A-Bau Mönchengladbach",
+  title: { absolute: "Stadtteile – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "A-Bau in Mönchengladbach: Denkmalrestaurierung, Sanierung und Neubau in allen Stadtteilen – Geistenbeck, Eicken, Rheydt, City und mehr.",
 };

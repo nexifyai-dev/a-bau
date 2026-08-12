@@ -4,9 +4,9 @@ import { KONTAKT } from "@/lib/kontakt";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/kontakt/", languages: { de: "https://a-bau.nexifyai.cloud/kontakt/", "x-default": "https://a-bau.nexifyai.cloud/kontakt/" } },
-  title: "Kontakt – A-Bau Bauunternehmen Mönchengladbach",
+  title: { absolute: "Kontakt – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
-    `Kontakt zur ${KONTAKT.firma}: ${KONTAKT.strasse}, ${KONTAKT.plz} ${KONTAKT.ort}. Tel ${KONTAKT.tel}, ${KONTAKT.email}. Kostenlose Angebote.`,
+    `Kontakt zur ${KONTAKT.firma}: ${KONTAKT.strasse}, ${KONTAKT.plz} ${KONTAKT.ort}. Tel ${KONTAKT.tel}, ${KONTAKT.email}. Angebot anfragen.`,
 };
 
 export default function KontaktPage() {

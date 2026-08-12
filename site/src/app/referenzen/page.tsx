@@ -6,7 +6,7 @@ import RefGallery from "@/components/RefGallery";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/referenzen/", languages: { de: "https://a-bau.nexifyai.cloud/referenzen/", "x-default": "https://a-bau.nexifyai.cloud/referenzen/" } },
-  title: "Referenzen – A-Bau Bauunternehmen Mönchengladbach",
+  title: { absolute: "Referenzen – A-Bau Meisterbetrieb Mönchengladbach" },
   description:
     "Referenzen der A-Bau Meisterbetrieb GmbH: Altbau-Erhaltung, Gesundheitsbau, Raumgestaltung, Schlüsselfertigbau, Badezimmer und Handwerkskunst im Detail.",
 };

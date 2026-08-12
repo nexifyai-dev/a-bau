@@ -503,3 +503,23 @@
 **Gegentest (§5.4):** Negativ: Duplikat-Quellen 0 im Chat, „Rechenzentrum EU" 0 im Live-HTML ✅ · Regression: Chat-Antworten inhaltlich korrekt nach KB-Shrink (5 Fragen nachgereicht), R13–R16-Fixes unverändert ✅ · Datenintegrität: KB-Inhalte identisch (nur dedupliziert), keine Content-Änderung außer §6 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 17)**
+
+---
+
+## Runde 18 (2026-08-12, Fortsetzung Tiefenprüfung — Titel-System, Claims, Dialog-Fokus)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: SEO-Titel-Konsistenz (Template-Dopplung), unbelegte Claims (B.28/B.29), Dialog-Fokus-Management Chat (A.28/D.4), Drawer/Lightbox-A11y-Gegenprobe.
+
+| Befund/Fix | Status |
+|---|---|
+| **Titel-Dopplung durch Layout-Template:** Seiten setzten Strings wie „Kontakt – A-Bau Bauunternehmen Mönchengladbach", Template `%s – A-Bau` hängte an → live „… – A-Bau – A-Bau" (6 Seiten); /leistungen sogar „Leistungen \| Bauunternehmen Mönchengladbach – A-Bau – A-Bau"; Denkmal-Titel 63 Z. > 60 | Alle 7 Seiten-Titel + Leistungs-Details auf `title: { absolute: "<Seite> – A-Bau Meisterbetrieb Mönchengladbach" }` (clip ≤60 bei Details) — einheitliches Suffix, keine Dopplung | ✅ live |
+| **Unbelegter Claim „Kostenlose Angebote"** in /kontakt-Meta-Description (B.28/B.29: nur wenn kaufmännisch garantiert — nicht belegt) | → „Angebot anfragen." | ✅ live (0 Treffer) |
+| **Chat-Dialog ohne Fokus-Management (A.28/D.4):** Fokus blieb am Trigger beim Öffnen; Escape nur bei fokussiertem Input; kein Fokus-Rückkehr | Öffnen → Fokus in Input; globaler Escape-Keydown; Schließen → Fokus zurück zum Trigger-Button | ✅ Code+Build |
+| Drawer-A11y (D.4) | Gegenprobe: Fokus-Transfer (close→toggle), Trap, Escape, Scroll-Lock — **vollständig vorhanden** | ✅ kein Fix |
+| Lightbox (WCAG 2.1.2) | Gegenprobe: role=dialog, aria-modal, Trap, Fokus-Rückkehr — **vollständig** | ✅ kein Fix |
+
+**E2E:** Build ✅ · Live: alle 9 Titel einheitlich („<Seite> – A-Bau Meisterbetrieb Mönchengladbach"), keine „– A-Bau – A-Bau"-Dopplung, alle ≤60 · Kontakt live==Build (nur CF-Mail-Obfuscation) · Route-Smoke ALLE OK · Öffnungszeiten-Test 12/12 · /health ok · Chat ok.
+
+**Gegentest (§5.4):** Negativ: „– A-Bau – A-Bau" = 0 Treffer live, „Kostenlose Angebote" = 0, Pipe-Titel 0 ✅ · Regression: R14–R17-Fixes unverändert (Stadtteil-Titel, JSON-LD, DSGVO, KB) ✅ · Datenintegrität: keine Content-/KB-Änderung ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 18)**
