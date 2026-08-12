@@ -761,3 +761,23 @@
 **Gegentest (§5.4):** Negativ: CRLF-Muster im Flush-Code entfernt (defensiv), keine neuen Secrets gefunden ✅ · Regression: unverändert ✅ · Datenintegrität: Queue 0, keine Content-Änderung ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 28)**
+
+---
+
+## Runde 29 (2026-08-12, Fortsetzung Tiefenprüfung + a-bau.info-Go-Live-Vorbereitung)
+
+**Anlass:** Pascal-Auftrag Tiefenprüfung + OOB „Sorge als erstes dafür, dass die Seite auf a-bau.info online geht" (IONOS-DNS-Stand vom Kunden gezeigt).
+
+| Prüfung/Fix | Status |
+|---|---|
+| **Cookie-Button ohne `type="button"`** (B.7) — außerhalb Formular, aber expliziter Typ sauberer | `type="button"` ergänzt | ✅ live |
+| og:site_name/og:url | siteName im Code vorhanden (R24); `og:url` fehlt global (Next generiert es nicht aus canonical) — Minor, Plattformen fallen auf canonical zurück; dokumentiert statt unnötigem Umbau | ⚠️ Minor |
+| FAQ-Akkordeon-ARIA | natives `<details>/<summary>` — Browser verwaltet expanded/controls; Screenreader-korrekt ohne manuelles ARIA | ✅ kein Fix |
+| Chat-Wissen Detailtexte | KB enthält Leistungs-Detailtexte (Denkmal-Restaurierung 9, Fug 5, Asphalt 2, Innenausbau 16 Chunks); Detailfrage → korrekte Antwort + Quellen | ✅ |
+| **a-bau.info Go-Live:** DNS-Umstellung durch Kunde korrekt (www-CNAME Tunnel, Apex-Forwarding, Mail unangetastet) — **fehlt: Tunnel-Ingress + Custom-Hostname-Zertifikat (Host-Schritt)** | Exakte Anleitung `docs/ABAU-INFO-TUNNEL-HOST-SCHRITT.md` (GET-Config vor PUT — keine blinde Überschreibung; Custom-Hostname-TXT-Ablauf; Test-Suite) — im Container nicht ausführbar (kein CF-Token/cloudflared, E3) | ⚠️ Host (blockierend für Go-Live) |
+
+**E2E:** Build ✅ · Route-Smoke ALLE OK · Öffnungszeiten 12/12 · CHAT-CHECK OK · /health ok · alle 5 Auto-Checks grün.
+
+**Gegentest (§5.4):** Negativ: Cookie-Button-Typ explizit; kein zweiter Config-Ersetzungsweg dokumentiert (nur merge) ✅ · Regression: unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 29)**

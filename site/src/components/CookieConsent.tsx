@@ -19,7 +19,7 @@ export default function CookieConsent() {
         <a href="/cookie-richtlinie/">Cookie-Richtlinie</a>.
       </p>
       <div className="cookie-actions">
-        <button className="btn btn-primary" onClick={() => { localStorage.setItem("abau_consent", "necessary"); setShow(false); }}>
+        <button type="button" className="btn btn-primary" onClick={() => { localStorage.setItem("abau_consent", "necessary"); setShow(false); }}>
           Verstanden
         </button>
       </div>
