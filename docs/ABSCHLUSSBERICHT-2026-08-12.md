@@ -188,3 +188,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 30
 
 **Repo main:** `515dfca` · Behoben: immutable-Cache für _next/static + Icons (A.33, war no-store), /suche-Doku-Fix. Verifiziert: br/gzip-Kompression, Dropdown-Tastatur (Minor Pfeiltasten), Leistungstexte. Restpunkte unverändert (a-bau.info-Host-Schritt vorbereitet).
+
+# NACHTRAG RUNDE 38
+
+**Repo main:** `e90ac7a` · Behoben: Datenschutz §10 (SCC-Behauptung entfernt, konsistent zu §6). Geprüft: PSI-API (429 → Key-Weg dokumentiert), TTFB-Reihe, Cookie-Richtlinie, 404-W3C. Restpunkte unverändert.

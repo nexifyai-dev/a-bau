@@ -264,3 +264,13 @@
 **Verifiziert:** Kompression aktiv (Edge br/gzip), Dropdown-Tastatur erfüllt WAIRA-Menu-Button (Pfeiltasten optional — Minor dokumentiert), Leistungs-Detail-Texte qualitativ stark.
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung (final extern) · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung · Feiertags-Logik · a-bau.info Tunnel-Ingress + Zertifikat (Host-Schritt, Anleitung `docs/ABAU-INFO-TUNNEL-HOST-SCHRITT.md`).
+
+---
+
+# NACHTRAG RUNDE 38 (2026-08-12) — Performance-Messweg, DSGVO-Konsistenz
+
+**Neu behoben:** Datenschutz §10: unbelegte SCC-Behauptung (widersprach §6 Art. 49 lit. b) → konsistente Formulierung (Art. 49 Abs. 1 lit. b). Live verifiziert.
+
+**Neu geprüft:** PSI-API getestet (429 key-los, Tageskontingent) → **A.33/D.9-Messweg konkret dokumentiert: Google-API-Key + pagespeedonline/v5 (mobile+desktop)**; TTFB-Reihe 37–413 ms (Container, kein Befund); Cookie-Richtlinie voll gelesen (TDDDG-konform); 404-W3C 0 Fehler.
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung (final extern) · echte CWV-Messung (PSI-Key) + Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung · Feiertags-Logik · a-bau.info Tunnel-Route (2-min-Dashboard-Schritt).
