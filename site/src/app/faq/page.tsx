@@ -35,6 +35,16 @@ const KAT_REIHENFOLGE = [
   "Kontakt & Service",
 ];
 
+// Anker-Slug mit Umlaut-Transliteration (ä→ae …), damit IDs stabil und sprechend sind
+// (R40: `replace(/\W+/g,"-")` warf Umlaute weg → "#recht-gew-hrleistung")
+function ankerSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 export default function Faq() {
   const gruppen = KAT_REIHENFOLGE
     .map((kat) => ({ kat, fragen: faq.faq.filter((f: any) => (f.kategorie || "Sonstiges") === kat) }))
@@ -55,12 +65,12 @@ export default function Faq() {
           </div>
           <nav className="faq-nav" aria-label="FAQ-Kategorien">
             {gruppen.map((g) => (
-              <a key={g.kat} href={`#${g.kat.replace(/\W+/g, "-").toLowerCase()}`}>{g.kat} ({g.fragen.length})</a>
+              <a key={g.kat} href={`#${ankerSlug(g.kat)}`}>{g.kat} ({g.fragen.length})</a>
             ))}
           </nav>
           {gruppen.map((g) => (
             <div key={g.kat} className="faq-gruppe">
-              <h2 className="faq-gruppen-titel" id={g.kat.replace(/\W+/g, "-").toLowerCase()}>{g.kat}</h2>
+              <h2 className="faq-gruppen-titel" id={ankerSlug(g.kat)}>{g.kat}</h2>
               <div className="faq accordion">
                 {g.fragen.map((f: any) => (
                   <details key={f.f} className="acc-item">

@@ -53,7 +53,7 @@ Die Abnahme erfolgt grundsätzlich gemeinsam; das Abnahmeprotokoll wird vom Auft
 
 Für Bauleistungen gelten die gesetzlichen Gewährleistungsvorschriften der §§ 633 ff. BGB. Die Verjährungsfrist für Mängelansprüche beträgt bei Bauwerken und Bauleistungen fünf Jahre (§ 634a Abs. 1 Nr. 2 BGB), sofern nicht gesetzlich zwingend etwas anderes gilt.
 
-Der Auftraggeber ist verpflichtet, offensichtliche Mängel unverzüglich, spätestens innerhalb von zwei Wochen nach Abnahme, schriftlich zu rügen. Verdeckte Mängel sind nach Entdeckung unverzüglich schriftlich zu melden. Im Rahmen der Nacherfüllung hat der Auftragnehmer nach seiner Wahl Anspruch auf Vornahme der Nacherfüllung; der Auftraggeber kann die Nacherfüllung nur verweigern, wenn die gesetzlichen Voraussetzungen vorliegen.
+Offensichtliche Mängel teilen Sie uns bitte unverzüglich, spätestens innerhalb von zwei Wochen nach Abnahme, schriftlich mit; Ihre gesetzlichen Rechte bleiben hiervon unberührt. Verdeckte Mängel sind nach Entdeckung unverzüglich schriftlich zu melden. Gegenüber Unternehmern im Sinne des § 14 BGB gilt die Untersuchungs- und Rügepflicht nach § 377 HGB entsprechend. Im Rahmen der Nacherfüllung hat der Auftragnehmer nach seiner Wahl Anspruch auf Vornahme der Nacherfüllung; der Auftraggeber kann die Nacherfüllung nur verweigern, wenn die gesetzlichen Voraussetzungen vorliegen.
 
 ## 9. Haftung
 

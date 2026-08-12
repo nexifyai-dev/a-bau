@@ -980,3 +980,25 @@
 **Gegentest (§5.4):** Negativ: www.a-bau.info = 404 (nicht fälschlich „200"), apex = 302 (Forwarding belegt), kein noindex auf Prod-Host ✓ · Regression: Staging unverändert (noindex, alle Routen) ✅ · Datenintegrität: keine KB-/Content-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 39)**
+
+---
+
+## Runde 40 (2026-08-12, Fortsetzung Tiefenprüfung — AGB-Recht, env.example, Anker-Umlaute)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: AGB-Klausel-Recht (B2B/B2C), .env.example (C.15), FAQ-Anker-Konsistenz, Kontakt-SSR.
+
+| Befund/Fix | Status |
+|---|---|
+| **AGB §8: „verpflichtet … innerhalb von zwei Wochen … zu rügen"** — gegenüber Verbrauchern unwirksam (§ 377 HGB gilt nur B2B; § 307 BGB) | Neu: „teilen Sie uns bitte … mit; Ihre gesetzlichen Rechte bleiben unberührt" (B2C) + „§ 377 HGB entsprechend" (B2B) — live verifiziert (alte Formulierung = 0) | ✅ live |
+| **.env.example fehlt (C.15-Bestpraxis)** — Entwickler/Agenten ohne Env-Liste | `.env.example` (nur Key-Namen + Platzhalter, keine Werte; Hinweis auf hermes.env als Quelle) | ✅ |
+| **FAQ-Anker mit Umlaut-Verlust:** `#recht-gew-hrleistung` (ä fiel raus) | `ankerSlug()` mit Transliteration (ä→ae, ö→oe, ü→ue, ß→ss) für IDs UND Links — live: `#recht-gewaehrleistung`, alte Slug = 0, alle 10 Anker haben Ziele | ✅ live |
+| Kontakt-SSR | Formular im SSR-HTML (name/email/nachricht + <form>) — No-JS-Nutzer sehen Formular + noscript-Hinweis | ✅ kein Fix |
+| Chat-Kategorie-Stichproben (Pflege, Kontakt) | Beide korrekt aus neuem KB (Fassadenpflege-Hinweise, Tel + Öffnungszeiten) | ✅ |
+| LD-Typen Home | `["LocalBusiness","HomeAndConstructionBusiness"]` intakt | ✅ |
+| a-bau.info (Prio-Kundenmeldung) | Weiterhin 404 vom Tunnel-Catch-All (cf-ray-Beweis) — **Public-Hostname-Route fehlt im Dashboard** (einziger Schritt; kein CF-Zugriff im Container — E3) | ⚠️ Kunde (1 Klick) |
+
+**E2E:** Build ✅ · AGB/Anker live ✓ · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok.
+
+**Gegentest (§5.4):** Negativ: „verpflichtet, offensichtliche" = 0; `#recht-gew-hrleistung` = 0; Anker-Check: alle Links → existierende IDs (Skip-Link #main ausgenommen) ✅ · Regression: R13–R39 unverändert ✅ · Datenintegrität: keine KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 40)**
