@@ -141,3 +141,15 @@
 **Live verifiziert ohne Fix:** Videos (preload/poster/title/Quellen-Cache-Buster), Referenz-Metadaten bewusst ohne Fake-Daten (YAML-Kommentar), Security-Header komplett, Chat-API `quellen` E3.
 
 **Ehrlich offen (unverändert):** SMTP-Spiegelung (0 Keys im Container, erneut geprüft), Browser-Ebene (System-Libs/Root), Kundendaten, Brain NXDOMAIN.
+
+---
+
+# NACHTRAG RUNDE 17 (2026-08-12) — KB-Integrität, Chat-Qualität, DSGVO-Wahrheit
+
+**Neu behoben:**
+- **Chat-KB-Dedupe (A.29/Retrieval):** ingest.py las content/ + src/data/ (seit R10 identisch) → 46 Chunks mit doppelter Gewichtung und doppelten Quellen-Labels. Fix: content/ kanonisch, src/data/ nur für kontakt.yaml → 25 Chunks/7 Dokumente; Quellen eindeutig (E3).
+- **Datenschutz §6 (A.39/Art. 5 DSGVO):** „Rechenzentrum EU" war für DeepSeek-API (VR China) unbelegt → ehrlicher Drittland-Hinweis (Art. 13 Abs. 1 lit. f, Art. 49 Abs. 1 lit. b DSGVO); Anbieter-Standort final = Infra-Klärung (Restpunkt).
+
+**Verifiziert ohne Fix:** 11 Detailseiten komplett (h1/Titel≤60/canonical==URL/og/JSON-LD), robots.txt vollständig, Sitemap 20/20, JS-Payload ok, Chat-10-Fragen-Protokoll (Preise/Termin/Garantie ehrlich verweigert, Antworten 2–6,5 s).
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (System-Libs/Root) · Kundendaten (Tel-Variante, Referenz-Metadaten, Logo, Rechtstext) · Brain NXDOMAIN · 9Router-Anbieter-Standort final (DeepSeek-China vs. EU-Relay) — für Datenschutz-Garantie von Infra zu bestätigen.

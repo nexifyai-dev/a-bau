@@ -148,3 +148,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 16
 
 **Repo main:** `2cddc6d` · Behoben: Chat-Client-Timeout (B.42), Quellen-Anzeige im Widget (A.29), Nutzerhandbuch-Chat-Stand (C.18), AGENTS-Test-Pflicht (C.16). Verifiziert: Videos/Security-Header/Referenz-Ehrlichkeit. Restpunkte unverändert ehrlich offen (SMTP, Browser-Ebene, Kundendaten, Brain).
+
+# NACHTRAG RUNDE 17
+
+**Repo main:** `e2a86d2` · Behoben: KB-Dedupe (25 Chunks, eindeutige Quellen, E3), Datenschutz §6 Drittland ehrlich. Verifiziert: 11 Detailseiten, robots, Sitemap, Payload, Chat-10-Fragen. Neu dokumentiert: 9Router-Anbieter-Standort als Infra-Restpunkt.
