@@ -903,3 +903,21 @@
 **Gegentest (§5.4):** Negativ: globaler OG-Default = 0 auf Detailseiten (Seitentitel statt Home-Titel) ✅ · Regression: Home-OG unverändert, R13–R34 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 35)**
+
+---
+
+## Runde 36 (2026-08-12, Fortsetzung Tiefenprüfung — Chat-Begrüßung, Boundary-Qualität, a-bau.info-Zone)
+
+**Anlass:** Pascal-Auftrag Tiefenprüfung + OOB „a-bau.info liegt jetzt bei Cloudflare".
+
+| Befund/Fix | Status |
+|---|---|
+| **Chat-UX: „Hallo" → kalter Fallback** („keine Informationen") während „Guten Tag!" freundlich beantwortet wurde — LLM-Varianz; Root-Cause: bei 0 Retrieval-Treffern gab der CODE sofort den Fallback zurück, die Prompt-Regel wurde nie erreicht | Deterministische Begrüßungs-Erkennung im Handler (hallo|hi|hey|moin|servus|guten tag/morgen/abend|grüß gott, re.fullmatch + IGNORECASE) → freundliche Willkommens-Antwort (Vorstellung + Leistungen + Hilfe-Angebot); Prompt-Regel 2a ergänzt (unterstützt, wenn Retrieval doch Treffer liefert) | ✅ live („Hallo" → Willkommen, E3) |
+| Boundary-Gegentest („Pizza in Rom") | KEIN kalter Fallback mehr, sondern ehrliche LLM-Antwort („Pizza-Preise in Rom kennen wir nicht – wir sind Bauunternehmen, kein Reiseführer") + Kontakt-Verweis — Qualität durch FAQ-165-Retrieval gestiegen, keine Halluzination | ✅ kein Fix |
+| **a-bau.info: Zone jetzt bei Cloudflare (brynne.ns.cloudflare.com, E3 via DoH)**; www-CNAME → Tunnel korrekt; Apex A → 217.160.0.117 (IONOS-Forwarding); **www antwortet noch nicht (Tunnel-Route fehlt)** | Anleitung aktualisiert: Dashboard-Weg (Zero Trust → Tunnels → Public Hostnames: www.a-bau.info + a-bau.info → 127.0.0.1:8095), optional Apex-CNAME-Flattening bei CF; Test-Suite; Go-Live-Schritte (SITE_URL + noindex) | ⚠️ Host (2-min-Dashboard-Schritt) |
+
+**E2E:** Health ok · „Hallo/Moin/Guten Morgen" → Willkommen (deterministisch) · Pizza-Boundary ehrlich · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12.
+
+**Gegentest (§5.4):** Negativ: „Hallo" kein Fallback mehr (0× „Dazu habe ich" bei Begrüßung), Pizza-Antwort ohne Preis-Halluzination ✅ · Regression: Fake-Preis-Boundary (chat-check) intakt, R13–R35 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 36)**
