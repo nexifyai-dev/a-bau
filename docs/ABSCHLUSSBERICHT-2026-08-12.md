@@ -6,7 +6,7 @@
 **PASS MIT RESTPUNKTEN** — P0/P1 = 0, P2 = 0 (bekannt), Restpunkte ausschließlich extern/Kunde.
 *Runde 5 (Gesamtauftrag-Nachprüfung 2026-08-12): Home-FAQ-Teaser-P0 + 16 weitere P1/P2-Fixes behoben und live verifiziert — siehe QA-PROTOKOLL Runde 5.*
 *Runde 6 (proaktiver Voll-Audit, Pascal-Aufträge 2026-08-12): Lora/Inter-Schriften, CTA-Bänder zentriert, Referenzen-Bilder-Fix (4×404), ref-video preload=none, card-plain-Padding (Formular), NAP-Drift-Guard, 10 externe Links 200, Crawl 0 Fehler, Live=Repo byte-identisch (E3) — QA-PROTOKOLL Runde 6, Repo `016b8db`.*
-*Runde 7 (Pascal-Aufträge 2026-08-12): Rechtstexte komplett neu (Datenschutz 15 Abschnitte branchenspezifisch Bau, Cookie-Richtlinie 6 Abschnitte, OSM-Zwei-Klick echt, KI-Assistent-Transparenz Art. 50 EU AI Act), Header-CTA-Hover grün/weiß, Chat-401-Lotterie endgültig gefixt (Tuple), HTML no-cache (Browser-Cache), Kontrast btn-primary AA, Drawer-Fokus-Trap, DESC ≤165, 404-Meta — QA Runde 7, Repo siehe HEAD.*
+*Runde 9 (Gesamtauftrag-Kontroll-Audit 2026-08-12): 19-Routen-Smoke live, FAQ-SSR, /angebot, Chat, Formular-Validierung/Rate-Limit verifiziert — **P0 entdeckt: Formular-SMTP-Versand 502** (Regression Container-Umzug: SMTP-Creds nur auf Host, nie in Container-Secret-Quelle gespiegelt; Resend-Key zusätzlich invalid). Fix: Queue-Persistenz `chat/data/contact_queue.jsonl` (kein Datenverlust) + `chat/flush_contact_queue.py` Nachversand; Betriebshandbuch + QA Runde 9 aktualisiert. Restpunkt: SMTP_*-Werte in `/home/hermeswebui/.hermes/.env` spiegeln + Queue leeren.*
 
 ## 2. P0
 | Problem | Ursache | Lösung | Test |
@@ -76,6 +76,7 @@ Deploy: Push → Tunnel → 127.0.0.1:8095. Server: setsid-Start (überlebt Sess
 3. **AVV Art. 28** (Hosting), **a-bau.info-DNS**, **anwaltliche Rechtstexte-Prüfung**, Logo-Freigabe.
 4. **Brain (brain.nexifyai.cloud)**: DNS nicht auflösbar → nicht erreichbar; Wissen in Repo-Doku + AgentMemory gesichert.
 5. Reale Mobile-Gerätetests + Lighthouse-Messung ohne Browser-Tooling im Container.
+6. **Formular-SMTP 502 (Runde 9):** SMTP-Creds nur auf Host; Container-seitig keine Werte → Versand blockiert; Queue-Persistenz verhindert Datenverlust. **Zu erledigen:** SMTP_HOST/SMTP_PORT/SMTP_USER/SMTP_PASSWORD (Werte aus `/etc/nexifyai/hermes.env` auf Host) nach `/home/hermeswebui/.hermes/.env` spiegeln → Server-Neustart → `python3 chat/flush_contact_queue.py`.
 
 ## 15. BRAIN / WISSEN
 Brain nicht erreichbar (DNS). Ersatz gesichert: `docs/decisions/ADR-001..003`, `docs/BETRIEBSHANDBUCH.md`,

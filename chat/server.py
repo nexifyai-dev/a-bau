@@ -235,6 +235,16 @@ async def contact(req: Request):
         await asyncio.to_thread(_send)
         return {"ok": True}
     except Exception as e:
+        # Kein Datenverlust: Nachricht lokal persistieren (Queue) für Nachversand,
+        # sobald SMTP-Creds im Container verfügbar sind (Regression Container-Umzug 2026-08-12).
+        try:
+            q = Path(__file__).resolve().parent / "data" / "contact_queue.jsonl"
+            q.parent.mkdir(parents=True, exist_ok=True)
+            with open(q, "a", encoding="utf-8") as fh:
+                fh.write(json.dumps({"ts": time.time(), "name": name, "email": email,
+                                     "telefon": tel, "nachricht": nachricht}, ensure_ascii=False) + "\n")
+        except OSError:
+            pass
         return JSONResponse({"error": "Versand fehlgeschlagen. Bitte anrufen: +49 2166 9925056.", "detail": str(e)[:120]}, status_code=502)
 
 @app.get("/health")

@@ -300,3 +300,26 @@
 **Gegentest (§5.4):** Negativ (/api/nope 405, GET-API 404, 404-Seite) ✅ · Regression Runden 1–7 (Teaser, FAQ, /angebot, CTA, Fonts, Kontrast, no-cache) unverändert ✅ · Video-Kette aus anderer Richtung: lokal vs. CDN Content-Length verglichen (E3) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 8)**
+
+---
+
+## Proaktive Runde 9 (2026-08-12, Gesamtauftrag-Nachprüfung WebUI-Session)
+
+**Anlass:** Vollständiger Gesamtauftrag (A–D) als Kontroll-Audit übergeben; Live-Statuscodes + Formular-/Chat-/FAQ-E2E neu verifiziert.
+
+| Prüfung | Ergebnis | Status |
+|---|---|---|
+| Routing 19 Routen inkl. Negativ-404 (route-check.sh live) | ALLE OK | ✅ |
+| FAQ SSR | 14 Fragen im initialen HTML (SSR, nicht client-only), FAQPage-JSON-LD | ✅ |
+| /angebot | 200, noindex, Title „Angebot anfragen – A-Bau" (Runde-8-Fix live), Refresh → /kontakt | ✅ |
+| Chat API | Live-Antwort mit Quellen; Injection-/KB-Verhalten sauber | ✅ |
+| Kontaktformular Validierung | leere Pflichtfelder 400, ungültige E-Mail 400, Rate-Limit 429 nach 20/min | ✅ |
+| **Kontaktformular SMTP-Versand** | **P0: 502 „Versand fehlgeschlagen"** — Root Cause: **Regression Container-Umzug**: SMTP_*-Creds liegen nur auf Host (`/etc/nexifyai/*.env`, root-only); Container-lesbare Quellen (`.env`, `/root/…`) enthalten keine SMTP-Keys → `_secret()` leer → `SMTP_SSL("",465)` wirft. Resend-MCP-Key zusätzlich invalid (400). | 🔧 FIX + OFFEN (Creds) |
+| **Fix: Queue-Persistenz** | `chat/server.py`: fehlgeschlagene Formulare → `chat/data/contact_queue.jsonl` (jsonl, gitignored); `chat/flush_contact_queue.py` Nachversand sobald Creds gespiegelt. E2E: POST → 502 ehrlich + Queue-Eintrag (E3, lokal + live); Queue danach geleert (nur Testeinträge). | ✅ |
+| Live = Repo | HEAD-Merkmale Runde 8 (CSP unsafe-inline, /angebot-Title, CTA „Projekt anfragen") live verifiziert | ✅ |
+| Sitemap | 20/20 URLs, alle existieren, keine 404/Redirects in Sitemap | ✅ |
+| Brain A.3 | `brain.nexifyai.cloud` → DNS NXDOMAIN (Hostname existiert nicht; tatsächliches Wissenssystem = AgentMemory healthy) — Doku-Verweis | ⚠️ offen (Infra) |
+
+**Gegentest (§5.4):** Negativfälle (400/429/404/Invalid-Email) ✅ · Datenintegrität: Queue-Eintrag vollständig (Name/E-Mail/Tel/Nachricht/ts), kein Duplikat, Leerung klappt ✅ · Regression Runden 1–8 (FAQ, /angebot, Chat, Honeypot, CSP, Cache) unverändert ✅ · Honeypot-Pfad unverändert ok:true ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 9)** — Restpunkt: SMTP-Creds vom Host in Container-`.env` spiegeln + Queue-Nachversand.
