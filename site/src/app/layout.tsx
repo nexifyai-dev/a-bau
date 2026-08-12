@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     siteName: "A-Bau Meisterbetrieb GmbH",
     // R35: KEIN globales title/description — Next übernimmt je Seite metadata.title/description
     // (sonst hätten alle Detailseiten den Home-Titel als og:title, B.25)
-    images: [{ url: "/logo.png", width: 512, height: 512, alt: "A-Bau Meisterbetrieb GmbH" }],
+    images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: "A-Bau Meisterbetrieb GmbH \u2013 Denkmal-Restaurierung \u00b7 Sanierung \u00b7 Innenausbau \u00b7 Schl\u00fcsselfertigbau, M\u00f6nchengladbach" }],
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },

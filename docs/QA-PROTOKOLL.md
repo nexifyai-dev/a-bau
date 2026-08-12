@@ -1270,3 +1270,25 @@
 **Gegentest (§5.4):** Negativ: `nachricht`/`msg`-Payload → 400 (Server lehnt falsche Felder sauber ab) ✅ · Regression: Kontakt-Formular 202 queued (ohne Key) ✅ · Repo: keine pyc mehr getrackt, Arbeitsbaum clean ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 53)**
+
+
+---
+
+## Runde 54 (2026-08-12, Social-Sharing: OG-Bild 1200×630)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen."
+
+| Befund/Fix | Status |
+|---|---|
+| **Optimierung OG-Bild:** og:image war `logo.png` (512×512) → bei Social-Share (WhatsApp/Facebook/LinkedIn) suboptimal. Neues `site/public/og-image.png` (1200×630, 41 KB) generiert: Brand-Hintergrund `--color-neutral-dark` (#1F1D1B), Logo zentriert, „A-Bau Meisterbetrieb" (weiß), Claim „Denkmal-Restaurierung · Sanierung · Innenausbau · Schlüsselfertigbau" (Gold #F5B800), „Mönchengladbach" (muted), grüner Akzentbalken (#009A44) — CI-Token-Farben, DIN-5008-Zeichen | ✅ |
+| **layout.tsx:** `openGraph.images` → absolute URL `${SITE_URL}/og-image.png`, 1200×630, aussagekräftiger Alt (SITE_URL-Import vorhanden) | ✅ |
+| **Pixel-Verifikation** (Vision nicht verfügbar): Logo-/Titel-/Claim-/Ort-Zonen je Tinte nachgewiesen, Akzentbalken volle Breite; kein Overlap (Font-Höhen kalkuliert) | ✅ |
+| **W3C Produktion nach R52-Änderungen:** Home + datenschutz + agb = 0 Fehler (Footer/Rechtstext-Änderungen valide) | ✅ |
+| **route-check-Abdeckung:** alle 5 Rechtstexte (datenschutz/cookie-richtlinie/impressum/agb/nutzungsbedingungen) im Skript enthalten | ✅ kein Fix |
+| **RESEND_API_KEY:** weiterhin nicht im Container (offener Punkt; Key + Domain-Verifizierung nötig, dann flush 2 Einträge) | ⏳ |
+
+**E2E:** Build ✓ · www 200 · og-image.png 200 (41 KB, 1200×630) · og:image-Tag live im HTML · QUALITY-CHECK OK · Route-Smoke ALLE OK.
+
+**Gegentest (§5.4):** Negativ: og:image URL löst live auf (kein 404) ✅ · Datenintegrität: Logo unverändert (360×355), Favicons unberührt ✅ · Regression: Home 200, Footer intakt, Chat/Kontakt unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 54)**
