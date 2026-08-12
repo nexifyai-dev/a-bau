@@ -1246,3 +1246,27 @@
 **GEGENTEST BESTANDEN (2026-08-12, Runde 52)**
 
 **Offen (Kunde/Key nötig):** Resend-Domain `a-bau.info` verifizieren (DKIM/SPF via Resend-Dashboard; DNS bei Cloudflare — Zone a-bau.info) · `RESEND_API_KEY` in `/home/hermeswebui/.hermes/.env` → danach `python3 chat/flush_contact_queue.py` (2 echte Einträge) · NeXifyAI-eigene Rechtstexte (Hauptrepo nicht lokal klonbar — Anleitung in RECHERCHE-RECHT-2026-08-12.md)
+
+
+---
+
+## Runde 53 (2026-08-12, Audit nach R52: Chat-API, Crons, Repo-Hygiene)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen."
+
+| Befund/Fix | Status |
+|---|---|
+| **Chat-E2E (falsch parametrisiert, kein Prod-Fehler):** API-Feld ist `message` → Antwort `answer` + `quellen`; Test mit `nachricht`/`msg` lieferte korrekt 400 „Leere Nachricht." — Widget (ChatWidget.tsx) nutzt `message` konsistent | ✅ Chat 200, 2,97 s, Quellen, 0 Markdown |
+| **`_secret()`-Verhalten geprüft:** fehlender Key → `""` → `if RESEND_KEY:` guard korrekt (kein API-Call mit leerem Key; 401-Lotterie-Falle nicht zutreffend) | ✅ kein Fix nötig |
+| **Watchdog/start-abau:** absolute Pfade (`/app/venv/bin/python3 chat/server.py`), kein PATH-/node-Problem (Gegenstück zum R52-Quality-Fix) | ✅ |
+| **Cron-Register:** abau-server-watchdog (5 min) ✓, abau-log-cleanup (03:00) ✓, abau-quality-check (04:10) ✓ — alle enabled | ✅ |
+| **noindex:** Staging `noindex, nofollow` ✓, Produktion ohne X-Robots-Tag ✓ (R39 host-basiert intakt) | ✅ |
+| **Secrets-Scan:** 0 Treffer (py/md/sh/tsx, inkl. R52-Änderungen) | ✅ |
+| **P2-Fix Repo-Hygiene:** `chat/__pycache__/*.pyc` war in R52-Commit gelangt (`git add -A` ohne Ignore) → aus Repo entfernt (`git rm -r --cached`), `.gitignore` um `__pycache__/` + `*.pyc` erweitert; Commit `4c56126` | ✅ |
+| **Diff-Review R52 (7768ea5):** server.py/flush/Footer/CSS/datenschutz — Payload lt. Resend-API-Doku, Fallback-Kette intakt, keine Secrets | ✅ |
+
+**E2E:** Chat 200 (message→answer+quellen) · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · health ok · www/Staging 200.
+
+**Gegentest (§5.4):** Negativ: `nachricht`/`msg`-Payload → 400 (Server lehnt falsche Felder sauber ab) ✅ · Regression: Kontakt-Formular 202 queued (ohne Key) ✅ · Repo: keine pyc mehr getrackt, Arbeitsbaum clean ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 53)**
