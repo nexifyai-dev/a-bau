@@ -76,7 +76,11 @@ async def headers_mw(request: Request, call_next):
     # Staging (a-bau.nexifyai.cloud) bleibt noindex; Produktion = www.a-bau.info (indexierbar) — sonst indexiert Google die Staging-URL.
     host = (request.headers.get("host") or "").lower()
     if host and "a-bau.info" in host:
-        resp.headers.pop("X-Robots-Tag", None)
+        # R43: Starlette-MutableHeaders hat KEIN .pop() — 500 auf a-bau.info-Hosts (Bug R39)
+        try:
+            del resp.headers["X-Robots-Tag"]
+        except KeyError:
+            pass
     p = request.url.path
     # R41: Body-Größenlimit für API (Starlette/FastAPI haben keins — ein 100-MB-JSON
     # würde komplett geparst; Formularfelder sind auf 120/4000 begrenzt, 64 KB reichen)

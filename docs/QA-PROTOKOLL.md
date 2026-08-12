@@ -1042,3 +1042,23 @@
 **Gegentest (§5.4):** Negativ: `a-bau.nexifyai.cloud` in canonical/@id/sitemap/robots = 0; alte Domain im KB = 0 ✅ · Regression: Staging-Erreichbarkeit/noindex unverändert ✅ · Datenintegrität: KB 71 Chunks konsistent, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 42)**
+
+---
+
+## Runde 43 (2026-08-12, GO-LIVE www.a-bau.info — ERLEDIGT)
+
+**Anlass:** Kunde stellte CF-Credentials bereit (Account-/Zonen-ID + API-Token) → Tunnel-Route per API gesetzt. **Root-Cause des 500 gefunden: MEIN R39-Bug** — `MutableHeaders.pop()` existiert nicht (Starlette) → 500 nur auf a-bau.info-Hosts.
+
+| Schritt | Status |
+|---|---|
+| Tunnel-Config via CF-API gelesen (MERGE-Basis) | 17 Bestands-Ingress + Catch-All (NeXifyAI-Infra) — nichts überschrieben | ✅ |
+| Ingress erweitert: `www.a-bau.info` + `a-bau.info` → `http://127.0.0.1:8095` | PUT success, 20 Einträge | ✅ |
+| **R39-Bug gefixt:** `resp.headers.pop("X-Robots-Tag")` → `del …` mit try/except | Restart; 500 weg | ✅ |
+| **GO-LIVE-Tests (E3):** www 200 + Titel + canonical www + kein noindex; Apex 200; `/health` 200; **Chat über www funktioniert** (Begrüßung); Formular 202 (Queue, SMTP extern); Staging bleibt noindex | **ALLE GRÜN** | ✅ |
+| Queue-Test-Einträge | Geleert (0) | ✅ |
+| QUALITY-CHECK (Staging) | OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 | ✅ |
+| Credentials-Hygiene | Token nur intern genutzt (nie ausgegeben/gespeichert); Env nach Abschluss bereinigt; **Empfehlung: Tokens rotieren** (waren im Chat) | ⚠️ Kunde |
+
+**Gegentest (§5.4):** Negativ: 500/502 auf www = 0 nach Fix (200); noindex auf www = 0, auf Staging = 1 ✅ · Regression: Staging + alle 17 NeXifyAI-Tunnel-Hostnames unverändert (MERGE) ✅ · Datenintegrität: Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 43 — GO-LIVE)**
