@@ -157,3 +157,21 @@
 | Chat: 9Router 401 | Host-Key-Drift (P0, benötigt Root: `/etc/nexifyai/secrets.env` → `/root/.hermes/.env`) | 🟡 Dokumentiert |
 
 **E2E-Gegentest (§5.4):** 21/22 bestanden (Chat 503 = Key-Drift, siehe Betriebshandbuch). Impressum USt-IdNr + HWK live verifiziert. Schema.org validiert.
+
+### Go-Live-Vorbereitung Runde 3 (2026-08-12, IST-Stand online)
+
+- **Kundendaten live**: USt-IdNr DE327030612, HWK Düsseldorf (Betriebsnummer 1841351) in kontakt.yaml,
+  kontakt.ts, impressum.md, Schema.org (vatID + hasCertification) — Live verifiziert.
+- **Design-Pass live**: Emoji-Icons → SVG (Header, Checkmarks), Inline-Styles → CSS-Klassen (card-city,
+  section-head), Bild-Fixes (transport/Home-Fallback).
+- **P1-Fix**: sitemap.ts hardcodete Stadtteil-Slug `moenchengladbach-city` → Export lieferte
+  `moenchengladbach-city-nordstadt-suedstadt` → Sitemap-Link 404. Slugs jetzt aus YAML abgeleitet
+  (gleiche slugify wie Detailseiten) — 20/20 Sitemap-URLs 200 live.
+- **P1-Fix**: Chat 401 — Root-Cause eingefrorener CUSTOM_API_KEY (Prozessstart 08:39 < Key-Rotation
+  08:46; `_secret()` liest beim Import). Server-Neustart → Chat antwortet mit Quellen. Troubleshooting
+  im Betriebshandbuch (Fall A/B) aktualisiert.
+- **E2E live**: 20/20 Routen (Sitemap), Negativfälle (404/400), Assets 200, `_next/image`=0,
+  Security-Header + noindex aktiv (Staging bis Abnahme), Fremd-Ports unberührt.
+- **GEGENTEST BESTANDEN** (§5.4): Sitemap-Sweep aus anderer Richtung (alle URLs statt Stichprobe),
+  Chat-Negativ (leer → 400), Regression WhatsApp 3000 / Website 8880 / 9Router 20128 / Studienkolleg 8001.
+- **Live-Stand**: main `6fcc210`.
