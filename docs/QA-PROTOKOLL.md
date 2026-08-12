@@ -1534,3 +1534,26 @@
 **Gegentest (§5.4):** Negativ: 21./22. Request → 429 (kein Durchrutschen, keine Queue-Verschmutzung durch Honeypot) ✅ · Datenintegrität: Queue 2 ✅ · Regression: Chat/Formular/Routen ok ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 65)**
+
+
+---
+
+## Runde 66 (2026-08-13, Cache-Audit: og-image/favicons waren no-store → immutable)
+
+**Anlass:** „Weiter. Livebetrieb. Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **Cache-Audit Live:** `/assets/*.webp` korrekt `immutable` (Verdacht widerlegt), Videos 1 Tag — **aber `og-image.png`, `favicon-16.png`, `favicon-32.png` liefen `no-store`** (fehlten in `static_root`, R30-Liste deckte nur logo/apple-touch/icon-192/512/manifest) → Social-Crawler + Browser luden sie bei jedem Zugriff neu | ✅ |
+| **Fix:** `static_root` um `/og-image.png`, `/favicon-16.png`, `/favicon-32.png` erweitert → alle drei jetzt **`public, max-age=31536000, immutable`** (live verifiziert) | ✅ live |
+| **Server-Header:** `server: cloudflare` (kein uvicorn-Leak durch CF) | ✅ kein Fix |
+| **Cache-Strategie gesamt:** HTML/API `no-store` (Frische-Garantie, R19b) · Assets immutable · Videos 1 Tag — konsistent | ✅ |
+| **HTTP-Methoden:** TRACE/PUT/DELETE/PATCH → 405 (keine unerlaubten Methoden) | ✅ kein Fix |
+| **CSP auf API:** `connect-src 'self'` intakt | ✅ |
+| **Health/HSTS nach Restart:** ok · HSTS-Beweis ✓ | ✅ |
+
+**E2E:** og/favicons immutable live · www 200 · QUALITY-CHECK OK.
+
+**Gegentest (§5.4):** Negativ: vorher no-store (Befund), nachher immutable (Fix-Beweis) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: HTML bleibt no-store (kein Frische-Verlust) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 66)**

@@ -123,7 +123,7 @@ async def headers_mw(request: Request, call_next):
             return JSONResponse({"error": "Anfrage zu groß."}, status_code=413)
     # Hashed/statische Assets: lange Cache-Zeit (R30: _next/static fehlte — wurde mit no-store
     # ausgeliefert, Browser lud Chunks bei jeder Navigation neu; A.33)
-    static_root = ("/logo.png", "/apple-touch-icon.png", "/icon-192.png", "/icon-512.png", "/manifest.webmanifest")
+    static_root = ("/logo.png", "/apple-touch-icon.png", "/icon-192.png", "/icon-512.png", "/manifest.webmanifest", "/og-image.png", "/favicon-16.png", "/favicon-32.png")  # R66: og-image + favicon-Varianten immutable
     if p.startswith(("/assets/", "/_next/static/", "/favicon.ico")) or p in static_root:
         if p.endswith(".mp4"):
             resp.headers.update(VIDEO_CACHE)
