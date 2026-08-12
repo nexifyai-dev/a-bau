@@ -58,7 +58,7 @@ HEADERS = {
     "X-Frame-Options": "SAMEORIGIN",
     "Referrer-Policy": "strict-origin-when-cross-origin",
     "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-    "X-Robots-Tag": "noindex, nofollow",
+    "X-Robots-Tag": "noindex, nofollow",  # Basis; Go-Live: Staging-Host-Logik überschreibt unten (R39)
     "Content-Security-Policy": "default-src 'self'; img-src 'self' data:; "
                                "style-src 'self' 'unsafe-inline'; "
                                "script-src 'self' 'unsafe-inline'; "
@@ -72,6 +72,11 @@ VIDEO_CACHE = {"Cache-Control": "public, max-age=86400"}  # Videos: 1 Tag (CDN-P
 async def headers_mw(request: Request, call_next):
     resp = await call_next(request)
     resp.headers.update(HEADERS)
+    # Go-Live (R39): Produktions-Hostnames (a-bau.info/www) indexierbar,
+    # Staging (a-bau.nexifyai.cloud) bleibt noindex — sonst indexiert Google die Staging-URL.
+    host = (request.headers.get("host") or "").lower()
+    if host and "a-bau.info" in host:
+        resp.headers.pop("X-Robots-Tag", None)
     p = request.url.path
     # Hashed/statische Assets: lange Cache-Zeit (R30: _next/static fehlte — wurde mit no-store
     # ausgeliefert, Browser lud Chunks bei jeder Navigation neu; A.33)

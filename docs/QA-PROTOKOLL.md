@@ -961,3 +961,22 @@
 **Gegentest (§5.4):** Negativ: „Standardvertragsklauseln" = 0 live; PSI-429 reproduziert (kein Fake-Wert) ✅ · Regression: R13–R37 unverändert ✅ · Datenintegrität: keine KB-Änderung, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 38)**
+
+---
+
+## Runde 39 (2026-08-12, End-Audit Gates + a-bau.info-Konfiguration über Cloudflare)
+
+**Anlass:** Pascal-Auftrag „Prüfe jeden Punkt gegen den Gesamtauftrag" (End-Audit) + OOB „Konfiguriere richtig über cloudflare. da die dns durch ist."
+
+| Prüfung/Fix | Status |
+|---|---|
+| **Gate-Audit A.42/1–7 + D.13 + C.19** | Alle Gates erfüllt (s. ABSCHLUSSBERICHT-FINAL.md); Gate 7: Live == Repo byte-identisch (nur CF-Obfuscation); 121 Commits, 4 ADRs, 5 Auto-Checks grün | ✅ |
+| **a-bau.info CF-Status (E3 via DoH + --resolve):** DNS durch (Zone bei CF, www+apex → Anycast), `www → 404 vom Edge` (Tunnel-Record da, Public-Hostname-Route FEHLT), `apex → 302` (IONOS-Forwarding proxied) | Exakter Dashboard-Schritt dokumentiert (2× Public Hostname: www + apex → HTTP 127.0.0.1:8095); Tunnel-Name `nexifyai-agentur-cloudflare-tunnel`; DNS-Bereinigung (A/AAAA raus, autodiscover/dmarc Nur-DNS, _domainconnect löschen) | ⚠️ 1 Dashboard-Schritt (Kunde) |
+| **noindex Go-Live-Vorbereitung:** bisher globaler noindex-Header → Staging-URL würde bei Go-Live mitsperren | **Host-Header-Logik:** `a-bau.info`-Host → kein X-Robots-Tag; Staging bleibt noindex. Live verifiziert (Staging noindex ✓, Prod-Host ohne ✓) | ✅ live |
+| Abschlussbericht (A.45/B.50/D.13) | `docs/ABSCHLUSSBERICHT-FINAL.md` — alle 15 Sektionen + Mobile-Optimierung + PROAKTIV-Liste (13 behobene Root-Causes) | ✅ |
+
+**E2E:** Health ok · Staging-noindex intakt · Prod-Host ohne noindex · QUALITY-CHECK OK · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · W3C 25/25 (R37).
+
+**Gegentest (§5.4):** Negativ: www.a-bau.info = 404 (nicht fälschlich „200"), apex = 302 (Forwarding belegt), kein noindex auf Prod-Host ✓ · Regression: Staging unverändert (noindex, alle Routen) ✅ · Datenintegrität: keine KB-/Content-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 39)**

@@ -90,3 +90,36 @@ curl -s https://a-bau.info/health             # Backend
 - `site/src/lib/site.ts` → `SITE_URL = "https://www.a-bau.info"` + Rebuild
 - `server.py` HEADERS: `X-Robots-Tag: noindex, nofollow` entfernen (bis dahin noindex = korrekt, sonst indexiert Google die Staging-URL)
 - E-Mail-Empfang testen (MX unverändert IONOS/CF)
+
+---
+
+# UPDATE 2 (R39): Exakter Dashboard-Schritt — es fehlt NUR die Public-Hostname-Route
+
+**Verifizierter Stand:** DNS in CF vollständig (Zone brynne.ns.cloudflare.com; www + apex → CF-Anycast via Tunnel-Record/A-Record). `https://www.a-bau.info` → **404 vom Edge** (= Tunnel erreicht, aber keine Public-Hostname-Route), `https://a-bau.info` → 302 (IONOS-Forwarding proxied). Server-seitig ist ALLES vorbereitet (noindex nur noch auf Staging-Host, R39).
+
+## Der eine Schritt (Cloudflare-Dashboard, ~2 Minuten)
+1. Dashboard → **Zero Trust → Networks → Tunnels**
+2. Tunnel **nexifyai-agentur-cloudflare-tunnel** → **Configure** → **Public Hostname** → **Add a public hostname**
+3. Zweimal anlegen:
+   | Subdomain | Domain | Service |
+   |---|---|---|
+   | `www` | `a-bau.info` | `HTTP` → `127.0.0.1:8095` |
+   | *(leer lassen = Apex)* | `a-bau.info` | `HTTP` → `127.0.0.1:8095` |
+4. Speichern → sofort live (Tunnel-CLI liest Remote-Config).
+
+## Danach sofort testbar
+```bash
+curl -sI https://www.a-bau.info/ | head -3     # erwartet 200
+curl -s https://www.a-bau.info/health           # {"status":"ok",...}
+```
+
+## Empfohlene DNS-Bereinigung (nach Erfolg)
+- `a-bau.info A 217.160.0.117` + `AAAA` → **löschen** (Apex läuft jetzt über Tunnel-Route; IONOS-Forwarding + _dep_ws_mutex entfallen)
+- `autodiscover` + `_dmarc` → **Nur DNS** (Proxy kann Mail-Autoconfig/DMARC-Lookups stören; Proxy-Zertifikat für adsredir.ionos.info existiert nicht → 526-Risiko)
+- `_domainconnect` → löschen (IONOS-Verwaltung, überflüssig)
+- MX ×2 + SPF bleiben „Nur DNS" ✓
+
+## Go-Live-Abschluss (danach, von mir ausgeführt)
+1. `site/src/lib/site.ts` → `SITE_URL = "https://www.a-bau.info"` + Rebuild/Deploy (canonicals/sitemap/JSON-LD ziehen mit)
+2. noindex ist bereits host-basiert gelöst (Staging noindex, a-bau.info indexierbar) — kein weiterer Eingriff nötig
+3. E-Mail-Empfang testen (MX unverändert)
