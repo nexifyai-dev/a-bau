@@ -78,7 +78,7 @@ Chat-Verläufe werden **nicht** persistiert (kein Chat-Log in der Datenbank); An
 
 ## Rollback-Verfahren
 
-1. **Code-Rollback:** `git revert HEAD` im Repo, dann `pnpm build` + Service-Restart.
+1. **Code-Rollback:** `git revert HEAD` im Repo, dann `npm run build` (site/) + Service-Restart.
 2. **Vollständiger Rollback:** `git checkout <vorheriger-commit>`, Build, Restart.
 3. **DNS-Rollback:** A-Record/CNAME auf alte IP zurücksetzen (TTL beachten, min. 5 min Wartezeit).
 4. **KB-Rollback:** `python3 chat/ingest.py` mit vorherigem Content-Stand neu ausführen.

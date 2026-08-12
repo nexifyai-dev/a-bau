@@ -720,3 +720,25 @@
 **Gegentest (§5.4):** Negativ: kein informatives img ohne alt; keine fixed-width-Overflows ✅ · Regression: unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 26)**
+
+---
+
+## Runde 27 (2026-08-12, Fortsetzung Tiefenprüfung — Screenreader-Chat, No-JS, Doku-Sync)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: Chat-A11y (aria-live), No-JS-Formular (B.31/B.41), Doku-Synchronität (C.14/C.16/C.18), Launch-Checkliste.
+
+| Befund/Fix | Status |
+|---|---|
+| **Chat ohne aria-live (A.28):** Screenreader-Nutzer hörten neue Chat-Antworten nicht | `.abau-chat-msgs` + `aria-live="polite"` + `aria-relevant="additions text"` — live im Chat-Chunk verifiziert | ✅ live |
+| **Formular ohne No-JS-Fallback (B.31/B.41):** bei deaktiviertem JS sendet das Formular nicht (fetch-only), kein Hinweis | `<noscript>`-Hinweis im Formular: Telefon/E-Mail als Alternative | ✅ live |
+| **README veraltet (C.18):** „AI-Chatbot-Service (bei Umsetzung)" — Chat ist seit R12 live | Auf Live-Stand korrigiert (Widget, 165-Fragen-FAQ, DSGVO §6) | ✅ |
+| **Betriebshandbuch Rollback pnpm** (pnpm-Store im Container defekt) | → `npm run build` | ✅ |
+| **AGENTS.md ohne neue Pflicht-Checks (C.16)** | Schritt 6: `content-sync-check.sh` + `chat-check.sh` als Pflicht nach Content-/Chat-Änderungen | ✅ |
+| **Nutzerhandbuch „FAQ (14)" + fehlende Rechtstexte (C.14)** | „FAQ (165)", Seitenliste + AGB + Nutzungsbedingungen | ✅ |
+| **Launch-Checkliste ohne AGB/Nutzung + Nummern-Dopplung** | 2.3 AGB + 2.4 Nutzungsbedingungen (anwaltliche Prüfung OFFEN), 2.5–2.7 umnummeriert | ✅ |
+
+**E2E:** Build ✅ · noscript-Text live · aria-live im Chat-Chunk (E3) · Home live==Build (nur CF-Mail-Obfuscation) · Route-Smoke ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · Öffnungszeiten 12/12 · /health ok.
+
+**Gegentest (§5.4):** Negativ: „(bei Umsetzung)" = 0 im README-Chat-Zeile; pnpm = 0 im Rollback-Abschnitt; „FAQ (14)" = 0 im Nutzerhandbuch ✅ · Regression: R13–R26 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 27)**

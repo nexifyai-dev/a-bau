@@ -4,8 +4,8 @@ Website: https://a-bau.nexifyai.cloud · Repo: `nexifyai-dev/a-bau` (Push = Depl
 
 ## 1. Aufbau
 Next.js 16 (Static Export) + FastAPI (`chat/server.py`, Port 8095). Seiten: Home, Leistungen (7),
-Referenzen, Stadtteile (6), Über uns, FAQ (14), Kontakt, Angebot, Impressum, Datenschutz,
-Cookie-Richtlinie, 404, Suche.
+Referenzen, Stadtteile (6), Über uns, FAQ (165), Kontakt, Angebot, Impressum, Datenschutz,
+AGB, Nutzungsbedingungen, Cookie-Richtlinie, 404, Suche.
 
 ## 2. Inhalte pflegen (ohne Code)
 Alle Texte/Daten liegen in `site/src/data/*.yaml` (eine Quelle je Bereich):

@@ -15,7 +15,9 @@
    `curl -X POST https://a-bau.nexifyai.cloud/api/chat -d '{"message":"test"}'`.
 5. **Öffnungszeiten-Logik (`site/src/lib/kontakt.ts`, A.11): NIE ohne Test ändern** —
    `node scripts/test-oeffnungszeiten.js` (12 Fälle, Berlin-Zeitzone) muss grün bleiben.
-6. QA-Protokoll + ggf. ADR aktualisieren (Code+Doku = ein Change, C.18).
+6. **Nach Content-/Chat-Änderungen:** `bash scripts/content-sync-check.sh` (Drift content/↔src/data) +
+   `bash scripts/chat-check.sh` (Health + Faktenfrage + Fake-Preis-Boundary) — beide müssen OK sein.
+7. QA-Protokoll + ggf. ADR aktualisieren (Code+Doku = ein Change, C.18).
 
 ## Verboten
 - Kein neuer Font/keine neue Farbe ohne `--font-*`/`--color-*`-Token (ADR-003).

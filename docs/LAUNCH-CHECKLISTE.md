@@ -25,9 +25,11 @@
 |---|---------|---------------|--------|
 | 2.1 | **Impressum** (`/impressum/`) anwaltlich prüfen (§ 5 DDG, § 18 MStV, USt-IdNr. ergänzt) | Anwalt / Kunde | 🔴 OFFEN |
 | 2.2 | **Datenschutzerklärung** (`/datenschutz/`) prüfen: DSGVO Art. 12–14, TDDDG § 25, EU AI Act Art. 50 | Anwalt / Kunde | 🔴 OFFEN |
-| 2.3 | **Cookie-Richtlinie** (`/cookie-richtlinie/`) prüfen (nur technisch notwendige Cookies) | Anwalt / Kunde | 🔴 OFFEN |
-| 2.4 | Hinweis: KI-Assistent-Offenlegung (Art. 50 EU AI Act) im Chat-Widget + Datenschutz vorhanden | NeXifyAI | ✅ Umgesetzt |
-| 2.5 | Hinweis: AVV (Auftragsverarbeitungsvertrag) mit Hosting-Anbieter vorhanden? | Kunde + NeXifyAI | 🔴 OFFEN |
+| 2.3 | **AGB** (`/agb/`) prüfen (BGB-Werkvertragsrecht, § 632a, § 634a, Haftungsklauseln) | Anwalt / Kunde | 🔴 OFFEN |
+| 2.4 | **Nutzungsbedingungen** (`/nutzungsbedingungen/`) prüfen (Website-Nutzung, KI-Hinweis Art. 50 KI-VO) | Anwalt / Kunde | 🔴 OFFEN |
+| 2.5 | **Cookie-Richtlinie** (`/cookie-richtlinie/`) prüfen (nur technisch notwendige Cookies) | Anwalt / Kunde | 🔴 OFFEN |
+| 2.6 | Hinweis: KI-Assistent-Offenlegung (Art. 50 EU AI Act) im Chat-Widget + Datenschutz vorhanden | NeXifyAI | ✅ Umgesetzt |
+| 2.7 | Hinweis: AVV (Auftragsverarbeitungsvertrag) mit Hosting-Anbieter vorhanden? | Kunde + NeXifyAI | 🔴 OFFEN |
 
 ---
 

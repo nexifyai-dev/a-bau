@@ -12,7 +12,7 @@
 | `docs/RECHERCHE-FIRMENDATEN.md` | Recherchierte Firmendaten mit Quellen + offene Punkte |
 | `docs/ASSETS.md` | Bild-/Video-Inventar (86 Medien) + Zuordnung |
 | `site/` | Website — Next.js 16, GAG-1:1-Design (Borussia/MG-Farben), static export → `site/out/` |
-| `chat/` | AI-Chatbot-Service 9Router+RAG (bei Umsetzung) |
+| `chat/` | AI-Chatbot-Service 9Router+RAG — **live** (Chat-Widget auf allen Seiten, 165-Fragen-FAQ als Wissensbasis, DSGVO §6) |
 | `assets/` | Heruntergeladene Originalmedien (bei Umsetzung) |
 
 ## Kernziele

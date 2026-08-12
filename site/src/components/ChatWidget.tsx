@@ -113,7 +113,7 @@ export default function ChatWidget() {
               </svg>
             </button>
           </div>
-          <div className="abau-chat-msgs" ref={listRef}>
+          <div className="abau-chat-msgs" ref={listRef} aria-live="polite" aria-relevant="additions text">
             {msgs.map((m, i) => (
               <div key={i} className={`abau-msg ${m.role === "user" ? "abau-msg-user" : "abau-msg-assistant"}`}>
                 {m.text}

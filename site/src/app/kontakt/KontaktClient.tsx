@@ -80,6 +80,11 @@ export default function KontaktClient() {
               {status === "loading" ? "Wird gesendet …" : "Nachricht senden"}
             </button>
             <p className="form-note">* Pflichtfelder. Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.</p>
+            <noscript>
+              <p className="form-note" role="note">
+                Ihr Browser hat JavaScript deaktiviert — das Formular kann nicht abgesendet werden. Bitte rufen Sie uns an: {KONTAKT.tel} oder schreiben Sie an {KONTAKT.email}.
+              </p>
+            </noscript>
           </form>
 
           <div className="contact-info-grid">
