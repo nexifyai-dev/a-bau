@@ -127,3 +127,17 @@
 **Verifiziert, kein Bug (Audit-Artefakte ausgeräumt):** Umlaut-Assets 200 (urllib-HEAD-Encoding), CF-email-decode 200 (HEAD-404 ist CF-Edge-Verhalten), externe Links 6/6 200, Formular-Client komplett konform (B.3–B.7), Cookie-Banner konform (B.31/A.39).
 
 **Ehrlicher Restpunkt (R15 bestätigt):** Browser-Ebene (Console/Hydration/LCP/INP/Mobile-Matrix) im Container nicht testbar — Playwright-Chromium vorhanden, aber 20 System-Libs fehlen, kein Root/apt. Kein Ersatz ohne Host-Zugriff.
+
+---
+
+# NACHTRAG RUNDE 16 (2026-08-12) — Chat-Client (A.29/B.42), Doku-Synchronität (C.14/C.16/C.18)
+
+**Neu behoben:**
+- **B.42 Chat-Client-Timeout:** AbortController 35 s (vorher endloser Busy-State bei Server-Hänger).
+- **A.29 Quellen-Transparenz:** Widget zeigt jetzt „Quelle: FAQ · Leistungen …" je Antwort (Server lieferte `quellen` bereits; System-Prompt-Versprechen „separat angezeigt" war nicht eingelöst).
+- **C.18 Nutzerhandbuch-Synchronität:** §5 behauptete „Chat entfernt" — auf Live-Stand korrigiert (aktiv, ADR-004).
+- **C.16 AGENTS.md:** Öffnungszeiten-Test-Pflicht (`node scripts/test-oeffnungszeiten.js`) verankert.
+
+**Live verifiziert ohne Fix:** Videos (preload/poster/title/Quellen-Cache-Buster), Referenz-Metadaten bewusst ohne Fake-Daten (YAML-Kommentar), Security-Header komplett, Chat-API `quellen` E3.
+
+**Ehrlich offen (unverändert):** SMTP-Spiegelung (0 Keys im Container, erneut geprüft), Browser-Ebene (System-Libs/Root), Kundendaten, Brain NXDOMAIN.

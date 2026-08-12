@@ -144,3 +144,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 15 (Tiefenprüfung, ehrlich)
 
 **Repo main:** `9c5001a` · Behoben: Öffnungsstatus A.11 (Berlin-TZ, SSR-korrekter Init, Unit-Test 12/12 in `scripts/test-oeffnungszeiten.js`), Organization-JSON-LD /ueber-uns (B.21). Ausgeräumte Audit-Artefakte: Umlaut-Assets + CF-email-decode (beide 200, HEAD-Falschpositive). Externe Links 6/6, Formular-Client + Cookie-Banner konform. **Ehrlich offen:** Browser-Ebene (Console/LCP/INP/Mobile-Matrix) mangels System-Libs/Root nicht testbar — nur mit Host-Zugriff lösbar; SMTP-Spiegelung; Kundendaten.
+
+# NACHTRAG RUNDE 16
+
+**Repo main:** `2cddc6d` · Behoben: Chat-Client-Timeout (B.42), Quellen-Anzeige im Widget (A.29), Nutzerhandbuch-Chat-Stand (C.18), AGENTS-Test-Pflicht (C.16). Verifiziert: Videos/Security-Header/Referenz-Ehrlichkeit. Restpunkte unverändert ehrlich offen (SMTP, Browser-Ebene, Kundendaten, Brain).
