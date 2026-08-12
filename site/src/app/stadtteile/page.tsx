@@ -31,7 +31,7 @@ export default function Stadtteile() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <section className="section">
         <div className="container">
-          <div className="section-head" style={{ maxWidth: 720, marginBottom: 48 }}>
+          <div className="section-head">
             <span className="kicker">{s.titel}</span>
             <h1>Stadtteile &amp; Quartiere in Mönchengladbach</h1>
             <p>{s.intro}</p>
@@ -51,7 +51,7 @@ export default function Stadtteile() {
             ))}
           </div>
 
-          <section className="section section-soft" id="baustellen" style={{ borderRadius: "var(--r-lg)", padding: "var(--space-7)", marginTop: "var(--space-7)" }}>
+          <section className="section section-soft card-plain mt-7" id="baustellen" style={{borderRadius:"var(--r-lg)",padding:"var(--space-7)"}}>
             <span className="kicker">Stadt-Info</span>
             <h2>Aktuelle Baustellen &amp; Baumaßnahmen in Mönchengladbach</h2>
             <p>
@@ -63,7 +63,7 @@ export default function Stadtteile() {
                 <li key={l.url}><a href={l.url} target="_blank" rel="noopener noreferrer">{l.titel}</a></li>
               ))}
             </ul>
-            <p className="text-3" style={{ marginTop: "var(--space-4)" }}>
+            <p className="text-3 mt-4">
               A-Bau übernimmt Bauvorhaben in allen Stadtteilen Mönchengladbachs — von Geistenbeck über
               Eicken bis Rheydt. Bei Fragen zu einem konkreten Projekt hilft das{" "}
               <Link href="/kontakt/">Kontaktformular</Link>.

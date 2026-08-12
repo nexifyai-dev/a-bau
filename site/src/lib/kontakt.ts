@@ -18,6 +18,9 @@ export const KONTAKT = {
     { tag: "Samstag", zeit: "08:00–13:00" },
   ],
   servicegebiet: "Mönchengladbach & NRW",
+  ustIdnr: "DE327030612",
+  handwerkskammer: "Handwerkskammer Düsseldorf",
+  handwerkskammerBetriebsnummer: "1841351",
 } as const;
 
 export function telHref(t: string): string {

@@ -40,6 +40,8 @@ const localBusinessSchema = {
   foundingDate: "2019",
   founder: { "@type": "Person", name: "Albert Pfeiffer" },
   priceRange: "Auf Anfrage",
+  vatID: "DE327030612",
+  hasCertification: { "@type": "Certification", name: "Handwerkskammer Düsseldorf", identifier: "1841351" },
 };
 
 const faqSchema = {
@@ -59,7 +61,7 @@ const LEISTUNGS_BILDER: Record<string, string> = {
   schluesselfertigbau: "/assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp",
   installationen: "/assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp",
   sanierung: "/assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp",
-  transport: "/assets/sonstiges/IMG_1415.webp",
+  transport: "/assets/sonstiges/PHOTO-2025-02-11-16-15-13.webp",
 };
 
 const STADTTEILE_TEASER = stadtteile.stadt.quartiere.slice(0, 3);
@@ -133,7 +135,7 @@ export default function Home() {
       {/* LEISTUNGEN (GAG: Portfolio-Cards) */}
       <section className="section" aria-labelledby="leistungen-heading">
         <div className="container">
-          <div className="section-head" style={{ maxWidth: 680, marginBottom: 48 }}>
+          <div className="section-head">
             <span className="kicker">Leistungen</span>
             <h2 id="leistungen-heading">Fachgerechte Bauleistungen von A-Bau</h2>
             <p>
@@ -147,7 +149,7 @@ export default function Home() {
               <Link className="card" href={`/leistungen/${(l.slug || l.id)}/`} key={(l.slug || l.id)}>
                 <div className="card-img">
                   <Image
-                    src={LEISTUNGS_BILDER[(l.slug || l.id)] ?? "/assets/sonstiges/IMG_1416.webp"}
+                    src={LEISTUNGS_BILDER[(l.slug || l.id)] ?? "/assets/sonstiges/FB_IMG_1731877209147.webp"}
                     alt={`${l.titel} – A-Bau Meisterbetrieb Mönchengladbach`}
                     width={800}
                     height={600}
@@ -169,7 +171,7 @@ export default function Home() {
       {/* STADTTEILE (GAG: Quartiere) */}
       <section className="section section-soft" aria-labelledby="stadtteile-heading">
         <div className="container">
-          <div className="section-head" style={{ maxWidth: 680, marginBottom: 48 }}>
+          <div className="section-head">
             <span className="kicker">Stadtteile &amp; Quartiere</span>
             <h2 id="stadtteile-heading">A-Bau in Mönchengladbach</h2>
             <p>
@@ -189,11 +191,11 @@ export default function Home() {
                 </div>
               </div>
             ))}
-            <div className="card card-plain" style={{ background: "var(--color-accent-city)", color: "#fff" }}>
+            <div className="card card-city">
               <div className="card-body">
-                <h3 style={{ color: "#fff" }}>Baustellen in Mönchengladbach</h3>
-                <p style={{ color: "rgba(255,255,255,.85)" }}>Aktuelle Baumaßnahmen der Stadt, mags und NEW — verlinkt zu den offiziellen Quellen.</p>
-                <Link className="card-link" href="/stadtteile/#baustellen" style={{ color: "#fff" }}>Aktuelle Baustellen <span className="arrow">→</span></Link>
+                <h3 >Baustellen in Mönchengladbach</h3>
+                <p >Aktuelle Baumaßnahmen der Stadt, mags und NEW — verlinkt zu den offiziellen Quellen.</p>
+                <Link className="card-link" href="/stadtteile/#baustellen" >Aktuelle Baustellen <span className="arrow">→</span></Link>
               </div>
             </div>
           </div>
@@ -213,10 +215,10 @@ export default function Home() {
               Projekte sicherstellt.
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: "16px 0 0", display: "grid", gap: 10 }}>
-              <li>✓ Eigene Gewerke &amp; geprüfte Partner</li>
-              <li>✓ Transparente Angebote – feste Preise</li>
-              <li>✓ Persönliche Betreuung durch Geschäftsführer Albert Pfeiffer</li>
-              <li>✓ Gewährleistung &amp; saubere Übergabe</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-borussia-green)" strokeWidth="2.5" style={{verticalAlign:"middle",marginRight:8}} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Eigene Gewerke &amp; geprüfte Partner</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-borussia-green)" strokeWidth="2.5" style={{verticalAlign:"middle",marginRight:8}} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Transparente Angebote – feste Preise</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-borussia-green)" strokeWidth="2.5" style={{verticalAlign:"middle",marginRight:8}} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Persönliche Betreuung durch Geschäftsführer Albert Pfeiffer</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-borussia-green)" strokeWidth="2.5" style={{verticalAlign:"middle",marginRight:8}} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>Gewährleistung &amp; saubere Übergabe</li>
             </ul>
             <p className="mt-5"><Link className="btn btn-dark" href="/ueber-uns/">Mehr über uns</Link></p>
           </div>
@@ -235,7 +237,7 @@ export default function Home() {
       {/* REFERENZEN TEASER */}
       <section className="section section-soft" aria-labelledby="referenzen-heading">
         <div className="container">
-          <div className="section-head" style={{ maxWidth: 680, marginBottom: 48 }}>
+          <div className="section-head">
             <span className="kicker">Referenzen</span>
             <h2 id="referenzen-heading">Projekte, die für sich sprechen</h2>
             <p>Einblicke in unsere Arbeit: Restaurierung, Gesundheitsbau, Innenausbau und Neubau.</p>
@@ -291,12 +293,12 @@ export default function Home() {
       {/* CTA-BAND */}
       <section className="section-dark section" aria-labelledby="cta-heading">
         <div className="container text-center">
-          <span className="kicker" style={{ color: "var(--color-mg-gold)" }}>Kontakt</span>
+          <span className="kicker kicker-gold">Kontakt</span>
           <h2 id="cta-heading">Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah mit einer ehrlichen Einschätzung.</p>
-          <div className="hero-actions" style={{ justifyContent: "center" }}>
+          <div className="hero-actions hero-actions-center">
             <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
-            <a className="btn btn-ghost btn-lg" style={{ color: "#fff", borderColor: "rgba(255,255,255,.6)", background: "rgba(255,255,255,.12)" }} href={telHref(KONTAKT.tel)}>
+            <a className="btn btn-ghost btn-lg btn-ghost-dark" href={telHref(KONTAKT.tel)}>
               Rufen Sie an: {KONTAKT.tel}
             </a>
           </div>

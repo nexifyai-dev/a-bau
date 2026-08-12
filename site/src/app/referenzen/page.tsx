@@ -15,7 +15,7 @@ export default function Referenzen() {
     <>
       <section className="section">
         <div className="container">
-          <div className="section-head" style={{ maxWidth: 720, marginBottom: 48 }}>
+          <div className="section-head">
             <span className="kicker">Referenzen</span>
             <h1>Projekte, die für Qualität sprechen</h1>
             <p>
@@ -61,7 +61,7 @@ export default function Referenzen() {
             </div>
           ))}
 
-          <div className="notice" style={{ marginTop: "var(--space-7)", border: "1px solid var(--color-line)", background: "var(--color-bg-soft)", borderRadius: "var(--r-md)", padding: "var(--space-4) var(--space-5)" }}>
+          <div className="notice mt-7">
             <strong>Hinweis:</strong> Konkrete Projektdaten (Ort, Jahr, Umfang) werden nach Freigabe durch den Kunden ergänzt. Die gezeigten Bilder stammen aus dem Projektbestand der A-Bau Meisterbetrieb GmbH.
           </div>
         </div>
@@ -69,10 +69,10 @@ export default function Referenzen() {
 
       <section className="section section-dark">
         <div className="container text-center">
-          <span className="kicker" style={{ color: "var(--color-mg-gold)" }}>Kontakt</span>
+          <span className="kicker kicker-gold">Kontakt</span>
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
-          <div className="hero-actions" style={{ justifyContent: "center" }}>
+          <div className="hero-actions hero-actions-center">
             <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
           </div>
         </div>

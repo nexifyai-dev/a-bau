@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function CookieRichtlinie() {
   return (
     <section className="section">
-      <div className="container prose" style={{ maxWidth: 840 }}>
+      <div className="container prose">
         <h1>Cookie-Richtlinie</h1>
         <p>
           <strong>Stand:</strong> 11. August 2026

@@ -24,8 +24,8 @@ export default function Faq() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <section className="section">
-        <div className="container" style={{ maxWidth: 840 }}>
-          <div className="section-head" style={{ marginBottom: 40 }}>
+        <div className="container container-narrow">
+          <div className="section-head">
             <span className="kicker">FAQ</span>
             <h1>Häufige Fragen &amp; Antworten</h1>
             <p>

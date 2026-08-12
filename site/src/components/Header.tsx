@@ -110,14 +110,14 @@ export default function Header() {
             aria-label={drawerOpen ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={drawerOpen}
             onClick={() => setDrawerOpen(!drawerOpen)}
-          >☰</button>
+          ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
         </div>
       </header>
 
       {/* Mobile Drawer */}
       <div className={`drawer-scrim ${drawerOpen ? "open" : ""}`} onClick={() => setDrawerOpen(false)} aria-hidden="true" />
       <nav className={`drawer ${drawerOpen ? "open" : ""}`} aria-label="Mobile Navigation" aria-hidden={!drawerOpen}>
-        <button className="drawer-close" aria-label="Menü schließen" onClick={() => setDrawerOpen(false)}>✕</button>
+        <button className="drawer-close" aria-label="Menü schließen" onClick={() => setDrawerOpen(false)}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12"/></svg></button>
         <Link href="/" onClick={() => setDrawerOpen(false)}>Start</Link>
         <Link href="/leistungen/" onClick={() => setDrawerOpen(false)}>Leistungen</Link>
         <Link href="/referenzen/" onClick={() => setDrawerOpen(false)}>Referenzen</Link>

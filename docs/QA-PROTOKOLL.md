@@ -128,7 +128,7 @@
 
 **E2E-Gegentest (§5.4):** 404-Pfade → sauber; fehlende Assets → 404; Umlaut-Alt-Slug → 404 (durch ASCII-Slugs ersetzt); 12 Kernrouten live 200 + h1=1; Live-Hash-Abgleich mit lokalem Build identisch.
 
-**Offen (extern):** USt-IdNr./HWK (Kunde), anwaltliche Rechtstexte-Prüfung, Host-Key-Drift Chat-401 (Fix im Betriebshandbuch), a-bau.info-DNS.
+**Offen (extern):** ~~USt-IdNr./HWK (Kunde)~~ → **GELIEFERT 2026-08-12**, anwaltliche Rechtstexte-Prüfung, Host-Key-Drift Chat-401 (Fix im Betriebshandbuch), a-bau.info-DNS.
 
 ### Nachrüst-Runde 2 (2026-08-12, Google-Recherche integriert)
 
@@ -141,3 +141,19 @@
 | Audit: aria-expanded (Drawer/Chat), Chat-503-Fallback mit Telefon, Formular-Reset + Status, Öffnungszeiten-Logik (Mo–Do 8–17, Fr 7–17, Sa 8–13, So zu), Kontakt-OSM-Karte, 404 „Hier wird gebaut", Consent nur notwendig (TDDDG § 25 Abs. 2), sitemap 20/20 URLs | — | ✅ |
 
 **Final-Sweep (E3):** 17/17 Routen (inkl. 404-Check), Fließtext live, keine broken Assets.
+
+### Daten-Update-Runde 2026-08-12 (Kundendaten, Code-Qualität)
+
+| Finding | Fix | Status |
+|---|---|---|
+| P0: USt-IdNr. fehlt (Impressum Pflicht §5 DDG) | DE327030612 (gültig bis 31.10.2026) in kontakt.yaml + kontakt.ts + impressum.md + Schema.org vatID | ✅ |
+| P0: Handwerkskammer fehlt (Impressum Pflicht) | Handwerkskammer Düsseldorf, Betriebsnummer 1841351 in allen Quellen + Schema.org hasCertification | ✅ |
+| P1: 22× `section-head` + `hero-actions` inline styles | CSS-Klassen `.section-head`, `.hero-actions-center` definiert; alle Inline-Styles entfernt (8 Dateien) | ✅ |
+| P1: Emoji-Icons (☰ ✕ ✓) → SVG | Hamburger (3-Linien), X (Close), Checkmark in Header.tsx + page.tsx | ✅ |
+| P2: Schema.org ohne vatID/hasCertification | LokalBusiness-Schema ergänzt | ✅ |
+| Build: 22 Routes (npm run build) | 0 Fehler, Next.js 16 static export | ✅ |
+| KB: ingest.py | 46 Chunks aus 12 Dokumenten (inkl. neuer Daten) | ✅ |
+| Deploy: Server-Restart | Health OK, alle 15 Routen 200 | ✅ |
+| Chat: 9Router 401 | Host-Key-Drift (P0, benötigt Root: `/etc/nexifyai/secrets.env` → `/root/.hermes/.env`) | 🟡 Dokumentiert |
+
+**E2E-Gegentest (§5.4):** 21/22 bestanden (Chat 503 = Key-Drift, siehe Betriebshandbuch). Impressum USt-IdNr + HWK live verifiziert. Schema.org validiert.

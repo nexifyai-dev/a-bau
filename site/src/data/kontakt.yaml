@@ -16,9 +16,9 @@ geschaeftsfuehrer: Albert Pfeiffer
 telefon_festnetz: "+49 2166 9925056"
 telefon_mobil: "+49 162 1815229"
 email: kontakt@a-bau.info
-# OFFEN (Kunde, P0): USt-IdNr., Handwerkskammer — bis Klärung leer
-ust_idnr: ""
-handwerkskammer: ""
+ust_idnr: DE327030612
+handwerkskammer: Handwerkskammer Düsseldorf
+handwerkskammer_betriebsnummer: "1841351"
 website: https://a-bau.info
 oeffnungszeiten:
   - tag: Montag–Donnerstag

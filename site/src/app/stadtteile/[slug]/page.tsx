@@ -73,7 +73,7 @@ export default async function StadtteilPage({ params }: { params: Promise<{ slug
           <span className="kicker">Kontakt</span>
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
-          <div className="hero-actions" style={{ justifyContent: "center" }}>
+          <div className="hero-actions hero-actions-center">
             <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
             <a className="btn btn-ghost btn-lg" href={telHref(KONTAKT.tel)}>Rufen Sie an: {KONTAKT.tel}</a>
           </div>

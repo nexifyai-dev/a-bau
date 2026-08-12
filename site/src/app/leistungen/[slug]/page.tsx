@@ -19,7 +19,7 @@ const LEISTUNGS_BILDER: Record<string, string> = {
   schluesselfertigbau: "/assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp",
   installationen: "/assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp",
   sanierung: "/assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp",
-  transport: "/assets/sonstiges/IMG_1415.webp",
+  transport: "/assets/sonstiges/PHOTO-2025-02-11-16-15-13.webp",
 };
 
 export function generateStaticParams() {
@@ -97,7 +97,7 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
 
       <section className="section section-soft">
         <div className="container">
-          <div className="notice" style={{ border: "1px solid var(--color-line)", background: "var(--color-bg-soft)", borderRadius: "var(--r-md)", padding: "var(--space-4) var(--space-5)" }}>
+          <div className="notice">
             <strong>Hinweis zu Referenzprojekten:</strong> Konkrete Projektdaten (Ort, Jahr, Umfang)
             werden nach Freigabe durch den Kunden ergänzt. Die gezeigten Bilder stammen aus dem
             Projektbestand der A-Bau Meisterbetrieb GmbH.
@@ -110,7 +110,7 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
           <span className="kicker">Kontakt</span>
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
-          <div className="hero-actions" style={{ justifyContent: "center" }}>
+          <div className="hero-actions hero-actions-center">
             <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
             <a className="btn btn-ghost btn-lg" href={telHref(KONTAKT.tel)}>Rufen Sie an: {KONTAKT.tel}</a>
           </div>

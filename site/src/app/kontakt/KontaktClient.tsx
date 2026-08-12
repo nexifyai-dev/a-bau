@@ -37,7 +37,7 @@ export default function KontaktClient() {
   return (
     <section className="section">
       <div className="container">
-        <div className="section-head" style={{ maxWidth: 720, marginBottom: 48 }}>
+        <div className="section-head">
           <span className="kicker">Kontakt</span>
           <h1>Sprechen wir über Ihr Bauvorhaben</h1>
           <p>
@@ -45,7 +45,7 @@ export default function KontaktClient() {
             uns zeitnah mit einer ersten Einschätzung.
           </p>
         </div>
-        <div className="split" style={{ gridTemplateColumns: "1.1fr .9fr" }}>
+        <div className="split">
           <form className="card card-plain form-grid" onSubmit={submit} noValidate>
             <div className="hp-field" aria-hidden="true">
               <label>Firma<input type="text" name="firma" tabIndex={-1} autoComplete="off" /></label>
@@ -66,8 +66,8 @@ export default function KontaktClient() {
               <label htmlFor="k-msg">Ihr Anliegen *</label>
               <textarea id="k-msg" name="nachricht" required maxLength={4000} placeholder="Kurze Beschreibung Ihres Projekts, Ort und Zeitrahmen …" />
             </div>
-            <label style={{ fontSize: ".9rem", display: "flex", gap: 10, alignItems: "flex-start" }}>
-              <input type="checkbox" name="einwilligung" required style={{ marginTop: 3 }} />
+            <label className="consent-label">
+              <input type="checkbox" name="einwilligung" required />
               Ich willige ein, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden. (<a href="/datenschutz/">Datenschutz</a>) *
             </label>
             {status === "ok" && <p className="form-success" role="status" aria-live="polite">{msg}</p>}
@@ -78,27 +78,27 @@ export default function KontaktClient() {
             <p className="form-note">* Pflichtfelder. Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.</p>
           </form>
 
-          <div style={{ display: "grid", gap: 20, alignContent: "start" }}>
-            <div className="card" style={{ background: "var(--color-neutral-dark)", color: "var(--color-text-inv)" }}>
+          <div className="contact-info-grid">
+            <div className="card card-dark">
               <div className="card-body">
-                <h3 style={{ color: "#fff" }}>{KONTAKT.firma}</h3>
-                <p style={{ margin: 0, color: "rgba(255,255,255,.85)" }}>
+                <h3>{KONTAKT.firma}</h3>
+                <p>
                   {KONTAKT.strasse}<br />
                   {KONTAKT.plz} {KONTAKT.ort} ({KONTAKT.stadtteil})
                 </p>
-                <p style={{ margin: 0 }}>
-                  <a href={telHref(KONTAKT.tel)} style={{ color: "var(--color-mg-gold)" }}>Tel: {KONTAKT.tel}</a><br />
-                  <a href={telHref(KONTAKT.telMobil)} style={{ color: "var(--color-mg-gold)" }}>Mobil: {KONTAKT.telMobil}</a><br />
-                  <a href={`mailto:${KONTAKT.email}`} style={{ color: "var(--color-mg-gold)" }}>{KONTAKT.email}</a>
+                <p>
+                  <a href={telHref(KONTAKT.tel)}>Tel: {KONTAKT.tel}</a><br />
+                  <a href={telHref(KONTAKT.telMobil)}>Mobil: {KONTAKT.telMobil}</a><br />
+                  <a href={`mailto:${KONTAKT.email}`}>{KONTAKT.email}</a>
                 </p>
-                <p style={{ margin: 0, fontSize: ".85rem", color: "rgba(255,255,255,.65)" }}>
+                <p className="text-3" style={{color:"rgba(255,255,255,.65)"}}>
                   {KONTAKT.hrb} · {KONTAKT.registergericht} · GF {KONTAKT.gf}
                 </p>
-                <div style={{ marginTop: 10, display: "grid", gap: 6, fontSize: ".95rem" }}>
+                <div className="oeffnungszeiten-list">
                   <b>Öffnungszeiten</b>
                   {KONTAKT.oeffnungszeiten.map((o) => (
-                    <div key={o.tag} style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
-                      <span style={{ color: "rgba(255,255,255,.72)" }}>{o.tag}</span>
+                    <div key={o.tag} className="oeffnungszeiten-row">
+                      <span className="oz-tag">{o.tag}</span>
                       <b>{o.zeit}</b>
                     </div>
                   ))}

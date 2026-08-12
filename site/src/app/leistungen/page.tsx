@@ -17,7 +17,7 @@ const LEISTUNGS_BILDER: Record<string, string> = {
   schluesselfertigbau: "/assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp",
   installationen: "/assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp",
   sanierung: "/assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp",
-  transport: "/assets/sonstiges/IMG_1415.webp",
+  transport: "/assets/sonstiges/PHOTO-2025-02-11-16-15-13.webp",
 };
 
 const schema = {
@@ -43,7 +43,7 @@ export default function Leistungen() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <section className="section">
         <div className="container">
-          <div className="section-head" style={{ maxWidth: 720, marginBottom: 48 }}>
+          <div className="section-head">
             <span className="kicker">Leistungen</span>
             <h1>Fachgerechte Bauleistungen von A-Bau</h1>
             <p>
@@ -57,7 +57,7 @@ export default function Leistungen() {
               <Link className="card" href={`/leistungen/${(l.slug || l.id)}/`} key={(l.slug || l.id)}>
                 <div className="card-img">
                   <Image
-                    src={LEISTUNGS_BILDER[(l.slug || l.id)] ?? "/assets/sonstiges/IMG_1416.webp"}
+                    src={LEISTUNGS_BILDER[(l.slug || l.id)] ?? "/assets/sonstiges/FB_IMG_1731877209147.webp"}
                     alt={`${l.titel} – A-Bau Meisterbetrieb Mönchengladbach`}
                     width={800}
                     height={600}

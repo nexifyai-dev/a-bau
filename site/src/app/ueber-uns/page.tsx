@@ -21,7 +21,7 @@ export default function UeberUns() {
     <>
       <section className="section">
         <div className="container">
-          <div className="section-head" style={{ maxWidth: 720, marginBottom: 48 }}>
+          <div className="section-head">
             <span className="kicker">Über uns</span>
             <h1>Fachmännische Restauration denkmalgeschützter Bauten</h1>
             <p>
@@ -32,7 +32,7 @@ export default function UeberUns() {
             </p>
           </div>
 
-          <div className="split" style={{ marginTop: "var(--space-6)" }}>
+          <div className="split mt-6">
             <div>
               <h2>Historische Baukunst, neu belebt</h2>
               <p>
@@ -63,7 +63,7 @@ export default function UeberUns() {
 
       <section className="section section-soft" aria-labelledby="prozess-heading">
         <div className="container">
-          <div className="section-head" style={{ maxWidth: 680, marginBottom: 48 }}>
+          <div className="section-head">
             <span className="kicker">Prozess</span>
             <h2 id="prozess-heading">So arbeiten wir</h2>
             <p>Vier Schritte – vom ersten Gespräch bis zur Übergabe. Transparent, verlässlich, meisterhaft.</p>
@@ -82,10 +82,10 @@ export default function UeberUns() {
 
       <section className="section section-dark">
         <div className="container text-center">
-          <span className="kicker" style={{ color: "var(--color-mg-gold)" }}>Kontakt</span>
+          <span className="kicker kicker-gold">Kontakt</span>
           <h2>Ihr Projekt in guten Händen</h2>
           <p>Beschreiben Sie uns kurz Ihr Vorhaben – wir melden uns zeitnah.</p>
-          <div className="hero-actions" style={{ justifyContent: "center" }}>
+          <div className="hero-actions hero-actions-center">
             <Link className="btn btn-primary btn-lg" href="/kontakt/">Angebot anfordern</Link>
           </div>
         </div>

@@ -13,7 +13,7 @@ export default function Datenschutz() {
   const raw = fs.readFileSync(path.join(process.cwd(), "..", "content", "datenschutz.md"), "utf8");
   return (
     <section className="section">
-      <div className="container prose" style={{ maxWidth: 840 }}>
+      <div className="container prose">
         <ReactMarkdown>{raw}</ReactMarkdown>
       </div>
     </section>

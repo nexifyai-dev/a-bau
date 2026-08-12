@@ -20,10 +20,11 @@ Registernummer: HRB 18836
 EUID: DER1504.HRB18836
 
 **Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:**  
-[OFFEN – wird nach Kunden-Klärung ergänzt]
+DE327030612
 
-**Zuständige Handwerkskammer / Berufsbezeichnung:**  
-[OFFEN – wird nach Kunden-Klärung ergänzt]  
+**Zuständige Handwerkskammer:**  
+Handwerkskammer Düsseldorf  
+Betriebsnummer: 1841351  
 Die Berufsbezeichnung „Meisterbetrieb" wird in Übereinstimmung mit den Vorschriften der Handwerksordnung (HwO) geführt.
 
 **Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV:**  
