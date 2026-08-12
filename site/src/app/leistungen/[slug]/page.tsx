@@ -64,7 +64,7 @@ export default async function LeistungPage({ params }: { params: Promise<{ slug:
             <span className="kicker">Leistung</span>
             <h1>{l.titel}</h1>
             <p className="lead">{l.subtitel}</p>
-            <p>{l.beschreibung}</p>
+            <p>{l.beschreibung || l.text}</p>
             <ul style={{ listStyle: "none", padding: 0, margin: "16px 0 0", display: "grid", gap: 10 }}>
               {l.punkte.map((p: string) => <li key={p}>✓ {p}</li>)}
             </ul>
