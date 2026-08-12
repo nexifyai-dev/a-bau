@@ -1020,3 +1020,5 @@
 **Gegentest (§5.4):** Negativ: 5000-Name → 400 (kein 202); Queue 0 nach Cleanup ✅ · Regression: R13–R40 unverändert ✅ · Datenintegrität: keine KB-/Content-Änderung ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 41)**
+
+**R41-Nachtrag:** Body-Größenlimit für API ergänzt (Middleware: `/api/*` POST/PUT/PATCH mit Content-Length > 64 KB → **413**; Starlette/FastAPI haben kein Default-Limit — 100-MB-JSON wurde vorher komplett geparst). E3: 70-KB-Body → 413, normal → 202, Queue 0.

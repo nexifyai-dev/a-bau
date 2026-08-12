@@ -78,6 +78,12 @@ async def headers_mw(request: Request, call_next):
     if host and "a-bau.info" in host:
         resp.headers.pop("X-Robots-Tag", None)
     p = request.url.path
+    # R41: Body-Größenlimit für API (Starlette/FastAPI haben keins — ein 100-MB-JSON
+    # würde komplett geparst; Formularfelder sind auf 120/4000 begrenzt, 64 KB reichen)
+    if p.startswith("/api/") and request.method in ("POST", "PUT", "PATCH"):
+        cl = request.headers.get("content-length")
+        if cl and cl.isdigit() and int(cl) > 65536:
+            return JSONResponse({"error": "Anfrage zu groß."}, status_code=413)
     # Hashed/statische Assets: lange Cache-Zeit (R30: _next/static fehlte — wurde mit no-store
     # ausgeliefert, Browser lud Chunks bei jeder Navigation neu; A.33)
     static_root = ("/logo.png", "/apple-touch-icon.png", "/icon-192.png", "/icon-512.png", "/manifest.webmanifest")
