@@ -188,3 +188,13 @@
 **Verifiziert ohne Fix:** `.prose`-Rendering (Impressum/AGB/Nutzung), Seiten-Payloads (FAQ 346 KB ok), Chat-7-Fragen-E2E mit 165-Fragen-KB (fachlich korrekt, Boundary, 0 Markdown, 1,8–8,2 s).
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung (Empfehlung).
+
+---
+
+# NACHTRAG RUNDE 22 (2026-08-12) — Mobile-Nav-A11y, Crawl-Abdeckung, Logs
+
+**Neu behoben:** Drawer `aria-current` (D.4) auf allen 6 Mobile-Nav-Links; route-check.sh um /agb/ + /nutzungsbedingungen/ erweitert (21 Routen + Negativ-404).
+
+**Verifiziert ohne Fix:** HTTP→301, www fehlt bewusst, Lightbox-Alts (Basis + n/N), 22/22 Sitemap-URLs 200, 42 Assets ok (Umlaut-Artefakt 3× ausgeräumt), OG logo.png konsistent (B.25), Log-Scan sauber (nur erwartete, gefangene Fehler), Chat-Final ehrlich (Kosten-Frage ohne Fake-Preis).
+
+**Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung.

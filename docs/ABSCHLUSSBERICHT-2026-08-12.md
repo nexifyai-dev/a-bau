@@ -164,3 +164,7 @@ Code-Ebene: kein Overflow (320px getestet), Drawer tastaturfähig, Floating konf
 # NACHTRAG RUNDE 21
 
 **Repo main:** `117d6b7` · Behoben: AGB/Nutzung-Titel-Dopplung, FAQ 165 (Duplikat + Antwort-Qualität). Verifiziert: .prose-Rendering, Payloads, Chat-7-Fragen-E2E (fachlich korrekt, Boundary intakt). Restpunkte unverändert.
+
+# NACHTRAG RUNDE 22
+
+**Repo main:** `1778e81` · Behoben: Drawer aria-current (D.4), route-check-Abdeckung. Verifiziert: 22/22 Routen, 42 Assets, Redirects, Lightbox-Alts, OG, Logs, Chat. Restpunkte unverändert.
