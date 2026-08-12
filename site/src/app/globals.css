@@ -29,6 +29,7 @@
   --color-text-inv: var(--color-borussia-white);
   --color-text-inv-2: rgba(255, 255, 255, .78);
   --color-accent: var(--color-borussia-green);
+  --color-accent-text: #007a36; /* Text-Links auf Weiß: 5.46:1 (WCAG AA) */
   --color-accent-hover: #007a36;
   --color-accent-city: var(--color-mg-red);
   --color-accent-premium: var(--color-mg-gold);
@@ -91,7 +92,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 img { max-width: 100%; height: auto; display: block; }
-a { color: var(--color-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a { color: var(--color-accent-text); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { color: var(--color-accent-hover); text-decoration-color: currentColor; }
 h1, h2, h3, h4 {
   font-family: var(--font-head); line-height: 1.08; margin: 0 0 .5em;
@@ -175,7 +176,7 @@ button, input, textarea, select { font: inherit; }
 .brand-logo { height: 48px; width: 48px; border-radius: 10px; object-fit: contain; display: block; }
 .brand-text { display: block; }
 .brand-name { display: block; font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; letter-spacing: -.01em; line-height: 1.1; }
-.brand-sub { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-accent); }
+.brand-sub { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-accent-text); }
 .nav-desktop { display: flex; align-items: center; gap: 4px; }
 .nav-desktop > a, .nav-desktop > .nav-dropdown > button {
   padding: 10px 14px; border-radius: var(--r-sm); text-decoration: none; color: var(--color-text);
@@ -254,7 +255,7 @@ button, input, textarea, select { font: inherit; }
 .trust-bar { background: var(--color-neutral-dark-2); color: var(--color-text-inv); }
 .trust-bar .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; padding: 32px 20px; }
 .trust-item { display: flex; gap: 12px; align-items: center; }
-.trust-item .t-ico { font-size: 1.4rem; line-height: 1; }
+.trust-item .t-ico { width: 28px; height: 28px; color: var(--color-accent); display: block; flex-shrink: 0; }
 .trust-item .t-title { font-weight: 700; font-size: .95rem; font-family: var(--font-head); }
 .trust-item .t-sub { font-size: .85rem; color: var(--color-text-inv-2); }
 
