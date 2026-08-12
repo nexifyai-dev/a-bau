@@ -38,6 +38,8 @@ check "/angebot/" 301   # bewusster Redirect (A.5/A.36): 301 → /kontakt/#angeb
 check "/impressum/"
 check "/datenschutz/"
 check "/cookie-richtlinie/"
+check "/agb/"
+check "/nutzungsbedingungen/"
 check "/sitemap.xml"
 check "/robots.txt"
 # Negativ-Gegentest: unbekannte Route MUSS 404 sein

@@ -612,3 +612,27 @@
 **Gegentest (§5.4):** Negativ: Titel-Dopplung „…– A-Bau – A-Bau" = 0 auf AGB/Nutzung; „des Büros"-Frage = 0; Duplikat-Fragen = 0 ✅ · Regression: R13–R20-Fixes unverändert (CTA-Kaskade, Formular-202, Denkmal-Restaurierung, DSGVO) ✅ · Datenintegrität: KB konsistent, Queue 0 ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 21)**
+
+---
+
+## Runde 22 (2026-08-12, Fortsetzung Tiefenprüfung — Mobile-Nav-A11y, Routing-Abdeckung, Voll-Crawl, Logs)
+
+**Anlass:** Pascal-Auftrag „Fahre fort. Tiefenprüfung + ehrliche IST-Analyse" — Fokus: D.4 (Mobile-Nav aria-current), route-check-Abdeckung (AGB/Nutzung), HTTP/www-Redirects, Lightbox-Alts, Voll-Crawl 22 URLs + 42 Assets (GET), OG-Konsistenz, Log-Scan.
+
+| Befund/Fix | Status |
+|---|---|
+| **Drawer ohne aria-current (D.4):** „Aktuelle Seite im Mobile-Menü erkennbar markieren" — Drawer-Links hatten kein aria-current (Desktop-Nav hatte es) | `aria-current={isCurrent(href) ? "page" : undefined}` auf allen 6 Drawer-Links (CSS `.drawer a[aria-current]` existierte bereits) | ✅ live |
+| **route-check ohne neue Rechtstexte** (Regression-Lücke) | `/agb/` + `/nutzungsbedingungen/` ergänzt — Route-Smoke ALLE OK (inkl. neuer Seiten) | ✅ |
+| HTTP→HTTPS | 301 via Cloudflare ✓ (kein Fix) | ✅ |
+| www-Variante | Nicht eingerichtet (kanonisch ohne www, Zertifikat nur a-bau.) — kein Befund | ✅ |
+| Lightbox-Alts (B.26) | `alt` Basis + „Bild n von N" in Lightbox vorhanden | ✅ kein Fix |
+| Voll-Crawl 22 Sitemap-URLs | Alle 200; 42 Assets: 4 Umlaut-Pfade = urllib-Encoding-Artefakt (curl-Encoding 4×200, 3. Gegenprobe) | ✅ kein Bug |
+| OG-Bilder | logo.png auf allen 22 Seiten — konsistent, Brandbild (B.25 erfüllt); seitenindividuelle OG-Bilder optional | ✅ |
+| Log-Scan | 4 Error-Zeilen gesamt, alle erwartet+gefangen (bind-Doppelstart, LLM-Timeout→503, SMTP-Test→Queue); keine Tracebacks/PII | ✅ |
+| Chat-Final | „Kosten Denkmal-Restaurierung" → ehrliche Antwort ohne Fake-Preis, 3 Quellen, 0 Markdown | ✅ live |
+
+**E2E:** Build ✅ · Route-Smoke ALLE OK (21 Routen inkl. AGB/Nutzung + Negativ-404) · Öffnungszeiten 12/12 · /health ok · CSS byte-identisch · aria-current im SSR ✓.
+
+**Gegentest (§5.4):** Negativ: www-Variante liefert nichts (kein Fehlverhalten), Umlaut-Assets via curl 4×200, keine 5xx-Unerwartet ✅ · Regression: R13–R21 unverändert ✅ · Datenintegrität: keine Content-/KB-Änderung, Queue 0 ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 22)**

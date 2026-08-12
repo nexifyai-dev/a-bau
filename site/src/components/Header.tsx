@@ -169,12 +169,12 @@ export default function Header() {
       <div className={`drawer-scrim ${drawerOpen ? "open" : ""}`} onClick={() => setDrawerOpen(false)} aria-hidden="true" />
       <nav className={`drawer ${drawerOpen ? "open" : ""}`} aria-label="Mobile Navigation" aria-hidden={!drawerOpen} ref={drawerRef}>
         <button ref={closeRef} className="drawer-close" aria-label="Menü schließen" onClick={() => setDrawerOpen(false)}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12"/></svg></button>
-        <Link href="/" onClick={() => setDrawerOpen(false)}>Start</Link>
-        <Link href="/leistungen/" onClick={() => setDrawerOpen(false)}>Leistungen</Link>
-        <Link href="/referenzen/" onClick={() => setDrawerOpen(false)}>Referenzen</Link>
-        <Link href="/stadtteile/" onClick={() => setDrawerOpen(false)}>Stadtteile</Link>
-        <Link href="/ueber-uns/" onClick={() => setDrawerOpen(false)}>Über uns</Link>
-        <Link href="/faq/" onClick={() => setDrawerOpen(false)}>FAQ</Link>
+        <Link href="/" aria-current={isCurrent("/") ? "page" : undefined} onClick={() => setDrawerOpen(false)}>Start</Link>
+        <Link href="/leistungen/" aria-current={isCurrent("/leistungen/") ? "page" : undefined} onClick={() => setDrawerOpen(false)}>Leistungen</Link>
+        <Link href="/referenzen/" aria-current={isCurrent("/referenzen/") ? "page" : undefined} onClick={() => setDrawerOpen(false)}>Referenzen</Link>
+        <Link href="/stadtteile/" aria-current={isCurrent("/stadtteile/") ? "page" : undefined} onClick={() => setDrawerOpen(false)}>Stadtteile</Link>
+        <Link href="/ueber-uns/" aria-current={isCurrent("/ueber-uns/") ? "page" : undefined} onClick={() => setDrawerOpen(false)}>Über uns</Link>
+        <Link href="/faq/" aria-current={isCurrent("/faq/") ? "page" : undefined} onClick={() => setDrawerOpen(false)}>FAQ</Link>
         <Link className="btn btn-primary drawer-cta" href="/kontakt/" onClick={() => setDrawerOpen(false)}>Projekt anfragen</Link>
       </nav>
     </>
