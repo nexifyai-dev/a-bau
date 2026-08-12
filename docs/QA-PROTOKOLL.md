@@ -1181,3 +1181,22 @@
 **Gegentest (§5.4):** Negativ: keine Route ohne korrekten Status; Skills enthalten R48-Lektionen (grep-Nachweis) ✅ · Regression: unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 49)**
+
+---
+
+## Runde 50 (2026-08-12, Proaktiv: Kontrast-Audit der neuen zentrierten Elemente + Abschlussprüfungen)
+
+**Anlass:** „Prüfe, fixe und optimiere proaktiv. Dokumentiere und sichere das gesamte Projekt-Wissen." — Fokus: Farbkontraste nach R44-Zentrierung (B.36), Anker-/Sticky-Verhalten (B.16/B.32), Chat-Timeout-Grenzen (B.42).
+
+| Prüfung | Ergebnis |
+|---|---|
+| **Kontrast-Audit (WCAG, Token-aufgelöst):** h2 auf bg 15,97:1 AA · Lead (text-2) 8,36:1 AA · Kicker-Gold auf section-dark 9,39:1 AA · CTA-p (rgba .78) ≈8:1 AA · FAQ-Chips (accent-hover) 5,47:1 AA · Button weiß/brand-green 3,68:1 (UI/Großtext ok) | **Alle AA** — kein Fix | ✅ |
+| FAQ-Anker + Sticky-Header | `[id]{scroll-margin-top:112px/84px}` global (R11/R32) deckt h2-Gruppen-IDs ab — Ziele nicht verdeckt | ✅ |
+| Chat-Timeout-Grenzen | Kaltstart 10,7 s (R48) < Client-Abort 35 s (R16) < Server-LLM 30 s — kein Race | ✅ |
+| Produktions-Routing-Matrix | Komplett: 200/301/404 korrekt (R48/R49) | ✅ |
+
+**E2E:** Keine Code-Änderung (reine Verifikation + Doku) · QUALITY-CHECK OK (Stand R48) · alle Auto-Checks grün.
+
+**Gegentest (§5.4):** Negativ: kein Kontrastpaar < 3:1 (außer dokumentierte UI-Ausnahme Button) ✅ · Regression: unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 50)**
