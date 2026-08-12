@@ -9,7 +9,7 @@ from email.utils import formatdate
 from pathlib import Path
 
 from fastapi import FastAPI, Request
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 
 ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / "site" / "out"
@@ -264,6 +264,9 @@ if DIST.exists():
             return FileResponse(DIST / "robots.txt.body", media_type="text/plain")
         if clean == "sitemap.xml" and (DIST / "sitemap.xml.body").is_file():
             return FileResponse(DIST / "sitemap.xml.body", media_type="application/xml")
+        # /angebot -> /kontakt/#angebot (A.5: sauberer 301 statt nur Meta-Refresh; SEO: noindex + Redirect)
+        if clean in ("angebot", "angebot/"):
+            return RedirectResponse("/kontakt/#angebot", status_code=301)
         # Direkte Datei (Bilder, CSS, JS aus public/)
         direct = (DIST / clean).resolve()
         if str(direct).startswith(str(DIST)) and direct.is_file():

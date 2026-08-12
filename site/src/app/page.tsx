@@ -79,11 +79,11 @@ export default function Home() {
         <div className="hero-inner">
           <div className="container">
             <span className="hero-kicker">Meisterbetrieb · Mönchengladbach &amp; NRW</span>
-            <h1>Mit Vertrauen bauen –<br />mit Qualität leben</h1>
+            <h1>Denkmalrestaurierung &amp; Altbausanierung – Meisterhandwerk aus Mönchengladbach</h1>
             <p className="lead">
-              Wir bauen nicht nur – wir bewahren, gestalten und entwickeln. Von der Restaurierung
-              denkmalgeschützter Bauten bis zum schlüsselfertigen Neubau: Qualität, Verlässlichkeit
-              und echte Handwerkskunst – seit 2019 in Mönchengladbach.
+              A-Bau Meisterbetrieb GmbH: substanzschonende Restaurierung denkmalgeschützter Bauten,
+              Sanierung und Ausbau – persönlich, termintreu, mit geprüften Materialien. Von der
+              ersten Besichtigung bis zur Übergabe: alles aus einer Hand, seit 2019 in Mönchengladbach.
             </p>
             <div className="hero-actions">
               <Link className="btn btn-primary btn-lg" href="/kontakt/">Projekt anfragen</Link>

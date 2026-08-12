@@ -94,6 +94,9 @@
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+/* B.16: Anchor-Ziele nicht unter Sticky-Header verstecken (Header ≈ 112 px Desktop, 80 px Mobile) */
+[id] { scroll-margin-top: 112px; }
+@media (max-width: 720px) { [id] { scroll-margin-top: 84px; } }
 body {
   margin: 0;
   background: var(--color-bg);

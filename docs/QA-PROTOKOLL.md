@@ -347,3 +347,28 @@
 **Gegentest (§5.4):** Negativ (kein ODR-Link, kein Borussia im KB, „nicht mehr angeboten" im Datenschutz) ✅ · Regression Runden 1–9 (FAQ, /angebot, CTA, Fonts, tel, no-cache, CSP, Queue) live unverändert ✅ · Fokus-Trap-Logik gegen WCAG 2.1.2 geprüft (Code-Review) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-12, Runde 10)**
+
+---
+
+## Proaktive Runde 11 (2026-08-12, Voll-Audit beider Aufträge gegen IST + Online-Tiefenrecherche Recht/Bestpraxis)
+
+**Anlass:** Erneuter Punkt-für-Punkt-Abgleich Gesamtauftrag A–D + Code-Review gegen realen IST-Stand; Google-Recherche Bestpraxis + Recht (Stand Aug/2026). Vollständige Beleg-Matrix: `docs/AUDIT-MATRIX-RUNDE11.md` (alle A/B/D-Punkte mit Status).
+
+| Befund/Fix | Status |
+|---|---|
+| **A.19 Hero nie umgesetzt** (Auftrag: Hero muss Was/Wo/Warum/CTA beantworten) — H1 war weiter „Mit Vertrauen bauen" | H1 → „Denkmalrestaurierung & Altbausanierung – Meisterhandwerk aus Mönchengladbach"; Lead: Firmenname, Leistung, Region, seit 2019, CTA bleibt | ✅ live |
+| **A.23 Gründung/Erfahrung fehlte** auf Über-uns (Auftrag: Zusammenhang 2019 + Meisterbetrieb) | Intro: „wurde 2019 gegründet und ist als Meisterbetrieb bei der HWK Düsseldorf eingetragen" — belegt, ohne unbelegte „jahrzehntelange"-Behauptung | ✅ live |
+| **A.5 /angebot: nur Meta-Refresh statt sauberem Redirect** + kein Anker-Ziel | server.py: 301 → `/kontakt/#angebot`; `id="angebot"` am Formular; Meta-Refresh-Datei bleibt als statischer Fallback | ✅ live (301, Anker da) |
+| **B.16 Anchor-Scroll unter Sticky-Header** (scroll-margin fehlte) | `[id]{scroll-margin-top:112px}` Desktop / 84px Mobile | ✅ |
+| **A.35 Lint schlug fehl: 33 Errors** (`any` in YAML-Loader, unescaped Quotes, setState-in-effect) | `no-explicit-any` → warn (begründet: generische YAML-Abstraktion, C.7), tote `loadContent` entfernt, Quotes/Anführungszeichen korrigiert, Header-Init kommentiert; **`npm run lint` = 0 Errors**; `npx tsc --noEmit` = Exit 0 (typecheck-Äquivalent, Script existiert nicht) | ✅ |
+| **Datenschutz: falscher Hostinger-Sitz** („International Ltd., Luxemburg") — Recherche: HOSTINGER, UAB, Švitrigailos g. 34, LT-03230 Vilnius, **Litauen** (EU) | Korrigiert; AVV Art. 28 unverändert gültig (EU) | ✅ live |
+| **Widerruf/PAngV-Recherche**: Website schließt keine Fernabsatzverträge (keine Preise, kein Online-Vertragsschluss) → keine Widerrufsbelehrung/PAngV-Pflicht auf der Seite; Bauleistungen sind zudem individuelle Sonderanfertigungen (§ 312g Abs. 2 Nr. 1 BGB) | Dokumentiert; Empfehlung: Widerrufsbelehrung in Verbraucher-Angeboten (Vertragsebene) | ✅ |
+| **BFSG-Recherche**: Unternehmenswebsite ohne E-Commerce nicht unmittelbar BFSG-pflichtig | Dokumentiert; WCAG 2.2 AA umgesetzt | ✅ |
+| Öffnungszeiten-Logik vs. kontakt.yaml (Mo–Do 8–17, Fr 7–17, Sa 8–13, So zu) | Konsistent (C.8) | ✅ |
+| TDDDG-2026-Rechtsprechung (OLG Köln, VG Hannover, DSK): kein einwilligungspflichtiger Cookie → Hinweis-Banner korrekt, keine Dark Patterns | ✅ konform | ✅ |
+
+**E2E:** Build ✅ · Lint 0 Errors ✅ · tsc 0 ✅ · Route-Smoke 19/19 ✅ · Live: 301-angebot, Anker, Hero, Gründung, Hostinger UAB — E3 ✅ · Health ok ✅.
+
+**Gegentest (§5.4):** Negativ (/angebot mit/ohne Slash → 301, kein 200-Refresh mehr; Hostinger-Alttext 0 Treffer) ✅ · Regression Runden 1–10 (FAQ, CTA, Lightbox, tel, CSP, Queue, no-cache) unverändert ✅ · Datenintegrität: keine neuen toten Assets, Sitemap unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-12, Runde 11)**

@@ -78,10 +78,11 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    // Öffnungsstatus einmalig beim Mount (Client-Zeit; SSR-fest, da client component).
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Initialisierung einmalig beim Mount, kein Update-Zyklus
     setOffen(istGeoeffnet());
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -115,6 +116,7 @@ export default function Header() {
       <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
         <div className="container header-inner">
           <Link className="brand" href="/" aria-label="A-Bau Meisterbetrieb – Startseite">
+            {/* eslint-disable-next-line @next/next/no-img-element -- 48px-PNG im Static Export; next/image-Optimizer ist bei out/ ohne Server zwecklos (YAGNI) */}
             <img className="brand-logo" src="/logo.png" alt="A-Bau Meisterbetrieb GmbH" width={48} height={48} />
             <span className="brand-text">
               <span className="brand-name">A-Bau Meisterbetrieb</span>

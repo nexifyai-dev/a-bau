@@ -9,9 +9,6 @@ const CONTENT_DIR = path.join(process.cwd(), "..", "content");
 function loadData<T = any>(file: string): T {
   return yaml.load(fs.readFileSync(path.join(DATA_DIR, file), "utf8")) as T;
 }
-function loadContent<T = any>(file: string): T {
-  return yaml.load(fs.readFileSync(path.join(CONTENT_DIR, file), "utf8")) as T;
-}
 
 export const kontakt = loadData<any>("kontakt.yaml");
 export const leistungen = loadData<any>("leistungen.yaml");

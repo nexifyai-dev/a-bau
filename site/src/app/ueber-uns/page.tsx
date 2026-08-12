@@ -27,10 +27,10 @@ export default function UeberUns() {
             <span className="kicker">Über uns</span>
             <h1>Fachmännische Restaurierung denkmalgeschützter Bauten</h1>
             <p>
-              Die A-Bau Meisterbetrieb GmbH steht für handwerkliche Qualität, persönliche Betreuung
-              und transparente Kommunikation. Unser Schwerpunkt ist die Erhaltung und Restaurierung
-              historischer Bauwerke – mit einem professionellen Team, das den langfristigen Wert
-              Ihrer Projekte sicherstellt.
+              Die A-Bau Meisterbetrieb GmbH wurde 2019 gegründet und ist als Meisterbetrieb bei der
+              Handwerkskammer Düsseldorf eingetragen. Unser Schwerpunkt ist die Erhaltung und
+              Restaurierung historischer Bauwerke – substanzschonend, mit geprüften Materialien und
+              einem professionellen Team, das den langfristigen Wert Ihrer Projekte sicherstellt.
             </p>
           </div>
 

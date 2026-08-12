@@ -59,7 +59,7 @@ export default function CookieRichtlinie() {
         <h2>4. Kartenansicht (OpenStreetMap)</h2>
         <p>
           Die auf der Kontaktseite eingebundene OpenStreetMap-Karte wird erst nach einem bewussten
-          Klick auf „Karte laden" geladen (Zwei-Klick-Lösung). Durch den Klick wird eine Verbindung
+          Klick auf „Karte laden“ geladen (Zwei-Klick-Lösung). Durch den Klick wird eine Verbindung
           zu den Servern der OpenStreetMap Foundation hergestellt; hierbei wird Ihre IP-Adresse an
           die OSMF übermittelt. Cookies werden dabei nicht gesetzt. Details in der{" "}
           <a href="/datenschutz/">Datenschutzerklärung</a>, Abschnitt 8.
