@@ -241,3 +241,16 @@
 **Verifiziert:** aria-live + aria-relevant im Live-Chat-Chunk (E3), noscript-Text live, Home == Build (nur CF-Obfuscation), alle 5 Auto-Checks grün.
 
 **Ehrlich offen (kumuliert):** SMTP-Spiegelung · Browser-Ebene (Libs/Root) · Kundendaten · Brain NXDOMAIN · 9Router-Standort · anwaltliche Rechtstext-Endprüfung (Launch-Checkliste 2.1–2.5 OFFEN) · Feiertags-Logik · a-bau.info-DNS (Tunnel-Ingress + Custom-Hostname = Host-Schritt).
+
+---
+
+# NACHTRAG RUNDE 27b (2026-08-12) — a-bau.info-DNS-Umstellung (Kunden-IST-Stand)
+
+**Kunden-IST (IONOS, vom Kunden umgesetzt):**
+- ✅ CNAME `www` → `f0f2b101-ed26-4130-8b04-16c43badf70a.cfargotunnel.com` (Tunnel)
+- ✅ A `@` → 217.160.0.117 (IONOS-Webforwarding → https://www.a-bau.info) — **korrekte Apex-Fallback-Lösung** (IONOS ohne Apex-CNAME)
+- ✅ Mail-Records vollständig: MX×2, SPF, DKIM×3, DMARC, autodiscover — E-Mail bleibt IONOS, unangetastet
+- ⚠️ AAAA `@` + TXT `_dep_ws_mutex`: gehören zum aktiven IONOS-Webforwarding → **BEHALTEN** (frühere „raus"-Empfehlung galt für WP-Abbau; solange Forwarding läuft, nötig)
+- CNAME `_domainconnect`: optional (harmlos)
+
+**Blockierender Host-Schritt (Token nur auf Host, nicht im Container — E3):** Tunnel-Ingress kennt `www.a-bau.info` (und `a-bau.info`) noch nicht → Live-Test: keine Antwort (Timeout). Nötig: (1) CF-API `PUT /accounts/{acc}/cfd_tunnel/{tunnel_id}/configurations` — Ingress-Einträge `a-bau.info` + `www.a-bau.info` → `http://127.0.0.1:8095`; (2) Custom-Hostname-Zertifikat (Cloudflare for SaaS) für beide Hostnames — sonst 526/404 am Edge. Exakte Calls: `docs/BETRIEBSHANDBUCH.md` § Deploy-Änderungen.
