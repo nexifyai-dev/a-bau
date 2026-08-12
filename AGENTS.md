@@ -17,7 +17,7 @@
    `node scripts/test-oeffnungszeiten.js` (12 Fälle, Berlin-Zeitzone) muss grün bleiben.
 6. **Nach Content-/Chat-Änderungen:** `bash scripts/content-sync-check.sh` (Drift content/↔src/data) +
    `bash scripts/chat-check.sh` (Health + Faktenfrage + Fake-Preis-Boundary) — beide müssen OK sein.
-7. **Vor Abschluss: `bash ~/.hermes/scripts/abau-quality-check.sh`** (alle 5 Checks; Cron täglich 04:10) — Exit 0 Pflicht.
+7. **Vor Abschluss: `bash /home/hermeswebui/.hermes/scripts/abau-quality-check.sh`** (alle 5 Checks; Cron täglich 04:10) — Exit 0 Pflicht.
 8. QA-Protokoll + ggf. ADR aktualisieren (Code+Doku = ein Change, C.18).
 
 ## Verboten
