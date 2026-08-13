@@ -1601,3 +1601,25 @@
 **Gegentest (§5.4):** Negativ: Skripte vorher nur im Container (Befund) → nachher versioniert (Fix) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Live-Skripte unverändert (Kopien) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 68)**
+
+
+---
+
+## Runde 69 (2026-08-13, P1-Fix: Rate-Limit war GLOBAL — jetzt pro Besucher-IP hinter CF-Tunnel)
+
+**Anlass:** „Weiter. Livebetrieb. Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **P1-Befund:** uvicorn (ohne proxy_headers) sieht hinter dem CF-Tunnel IMMER die VPS-Socket-IP → `req.client.host` identisch für alle Besucher → **Rate-Limit 20/min war GLOBAL**: 20 schnelle Calls EINES Nutzers blockten die gesamte Site (DoS) | ✅ |
+| **Fix:** `_client_ip(request)` — liest `X-Forwarded-For`, nimmt die **letzte gültige öffentliche IP** (CF hängt die echte Client-IP an; Client-Spoofs stehen davor); private/loopback/link-local → ignoriert (Spoof-Schutz), Fallback Socket-IP. Verwendet in `/api/chat` + `/api/contact` | ✅ live |
+| **Isolation-E2E (schnelle Honeypot-Calls am Origin):** IP-A: 20×200+2×429 (eigenes Limit) · **IP-B: 17×200+5×429 — machte 17 NEUE Calls trotz vollem IP-A-Limit → getrennte Counter bewiesen** (5×429 = 5 Resteinträge aus früherem Chat-Burst, Fenster 60 s) · IP-C frisch: 200 · IP-A nach 62 s: 200 (Fenster-Reset) | ✅ bewiesen |
+| **Spoof-Schutz-E2E:** `X-Forwarded-For: 127.0.0.1` → ignoriert (Fallback-Socket-Counter) — kein Limit-Umgehen über private IPs | ✅ |
+| **Origin-Exposure-Check:** `http://72.62.152.47:8095/` → 000 (nicht erreichbar) — nur localhost-Bindung, Tunnel-only | ✅ kein Befund |
+| **Test-Lektion:** Chat-Calls (LLM-Latenz 3–10 s) überschreiten das 60-s-Fenster → Isolation-Tests NUR mit schnellen Honeypot-/health-Calls | 📝 |
+
+**E2E:** QUALITY-CHECK OK · health ✓ · HSTS ✓ (frischer Prozess) · Queue 2 echte unangetastet.
+
+**Gegentest (§5.4):** Negativ: 22 schnelle Calls je IP → 429 ab 21. (eigenes Limit) ✅ · Positiv: 3. IP frei, Fenster-Reset nach 62 s ✅ · Datenintegrität: Queue ✅ · Regression: Chat/Formular ok ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 69)**

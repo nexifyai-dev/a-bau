@@ -3,7 +3,7 @@
 Ein Dienst, ein Port. Läuft auf VPS (127.0.0.1:8095). Tunnel-Routen: a-bau.nexifyai.cloud (Staging, noindex) + www.a-bau.info/a-bau.info (Produktion, R42).
 Retrieval: SQLite FTS5 (BM25) über Website-Wissen — lokal, DSGVO-sauber, keine externen Embeddings.
 Upstage final entfernt (Pascal 2026-08-10) — kein externer Embedding-Provider systemweit."""
-import asyncio, json, os, re, smtplib, sqlite3, time, urllib.request, uuid
+import asyncio, ipaddress, json, os, re, smtplib, sqlite3, time, urllib.request, uuid
 from email.mime.text import MIMEText
 from email.utils import formatdate
 from pathlib import Path
@@ -139,6 +139,21 @@ async def headers_mw(request: Request, call_next):
 # --- Rate-Limit (In-Memory, einfach) ---
 _hits = {}
 _last_cleanup = [0.0]
+def _client_ip(request: Request) -> str:
+    """R69: Echte Besucher-IP hinter CF-Tunnel. CF haengt die echte Client-IP an
+    X-Forwarded-For an (Client-Spoofs stehen davor) -> letzte gueltige oeffentliche IP.
+    Nur globale IPs akzeptieren (private/loopback = Spoof oder Tunnel), sonst Socket-Fallback."""
+    xff = request.headers.get("x-forwarded-for", "")
+    if xff:
+        for part in reversed([x.strip() for x in xff.split(",") if x.strip()]):
+            try:
+                ip = ipaddress.ip_address(part)
+            except ValueError:
+                continue
+            if ip.is_global:
+                return str(ip)
+    return request.client.host if request.client else "?"
+
 def rate_ok(ip: str) -> bool:
     now = time.time()
     if now - _last_cleanup[0] > 3600:  # verhindert unbegrenztes Dict-Wachstum
@@ -216,7 +231,7 @@ def _llm_call(req_body: dict) -> dict:
 
 @app.post("/api/chat")
 async def chat(req: Request):
-    ip = req.client.host if req.client else "?"
+    ip = _client_ip(req)
     if not rate_ok(ip):
         return JSONResponse({"error": "Zu viele Anfragen – bitte kurz warten."}, status_code=429)
     try:
@@ -265,7 +280,7 @@ async def chat(req: Request):
 # --- Kontaktformular -> Resend-API (EU-US-DPF, Art. 45 DSGVO), Fallback Hostinger-SMTP, Fallback Queue ---
 @app.post("/api/contact")
 async def contact(req: Request):
-    ip = req.client.host if req.client else "?"
+    ip = _client_ip(req)
     if not rate_ok(ip):
         return JSONResponse({"error": "Zu viele Anfragen – bitte kurz warten."}, status_code=429)
     try:

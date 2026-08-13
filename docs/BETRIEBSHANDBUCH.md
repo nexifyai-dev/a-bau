@@ -177,3 +177,10 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 - Notiz: Origin kann den Redirect nicht erzwingen (TLS-Terminierung bei Cloudflare).
 
 - CF-Doku-Empfehlung (belegt 13.08.2026): **keine Schema-Redirects am Origin** (Loop-Risiko) — Schema-Redirect übernimmt „Always Use HTTPS“; unsere Host-301 (a-bau.info→www) ist davon unberührt.
+
+## Rate-Limit-IP hinter CF-Tunnel (R69, P1-Fix)
+
+- uvicorn ohne proxy_headers sieht hinter dem Tunnel immer die VPS-Socket-IP → Rate-Limit wäre global gewesen.
+- Fix: `_client_ip()` in server.py — X-Forwarded-For, LETZTE gültige öffentliche IP (CF hängt echte Client-IP an);
+  private/loopback ignoriert (Spoof-Schutz), Fallback Socket-IP. Chat + Contact nutzen sie.
+- Test-Regel: Isolation-Tests NUR mit schnellen Calls (Honeypot), nicht Chat (LLM-Latenz > 60-s-Fenster).
