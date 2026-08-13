@@ -2004,3 +2004,17 @@
 **Gegentest (§5.4):** Negativ: vorher 403/1010 + Queue wuchs (Befund), nachher 200 + Queue 0 ✅ · Datenintegrität: Queue-Einträge erst nach erfolgreichem Versand entfernt (keep-Logik) ✅ · Regression: Health/Chat/23 Öffnungszeiten unverändert grün ✅ · Rollback: RESEND_FROM-Zeile + UA-Header reversibel (eine Zeile je) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 84)**
+
+---
+
+## Runde 84 (2026-08-13, Öffnungszeiten-Tage nicht weiß — Kundenauftrag)
+
+**Anlass:** Kunde: Kontaktseite — „das die Tage nicht in weißer Schrift sind!" (oz-tag war `rgba(255,255,255,.72)` auf card-dark).
+
+**Fix:** `.oeffnungszeiten-row .oz-tag { color: var(--color-mg-gold); }` (globals.css Z.169). Bestehendes Marken-Token (ADR-003-konform, kein neues Token), Kontrast Gold #F5B800 auf #1f1d1b ≈ 9,3:1 → WCAG AA/AAA. Zeiten (b) bleiben weiß (`--color-text-inv`) — vom Kunden nicht beanstandet.
+
+**E2E:** Build ✅ · Live-CSS-Chunk `1p6l399bp_3pq.css` enthält `.oz-tag{color:var(--color-mg-gold)}` (E3, Server serviert out/ direkt) · QUALITY-CHECK OK · Öffnungszeiten 24/24 · /health ok.
+
+**Gegentest (§5.4):** Negativ: `oz-tag{color:rgba(255,255,255,.72)` = 0 im Live-CSS ✅ · Regression: `.card-dark` unverändert (dunkler Grund, weiße Zeiten), übrige Regeln unberührt ✅ · Datenintegrität: reine CSS-Änderung, keine Content-/KB-Änderung ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 84)**

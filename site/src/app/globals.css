@@ -166,7 +166,7 @@ button, input, textarea, select { font: inherit; }
 .card-city a { color: #fff; }
 .contact-info-grid { display: grid; gap: 20px; align-content: start; }
 .oeffnungszeiten-row { display: flex; justify-content: space-between; gap: 12px; }
-.oeffnungszeiten-row .oz-tag { color: rgba(255,255,255,.72); }
+.oeffnungszeiten-row .oz-tag { color: var(--color-mg-gold); } /* 2026-08-13 (Europe/Berlin): Tage nicht weiß (Kundenauftrag) — Gold = Marken-Token, Kontrast >4.5:1 auf card-dark */
 .oeffnungszeiten-list { margin-top: 10px; display: grid; gap: 6px; font-size: .95rem; }
 .consent-label { font-size: .9rem; display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
 .consent-label input { margin-top: 3px; min-width: 18px; min-height: 18px; }
