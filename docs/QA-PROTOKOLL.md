@@ -1623,3 +1623,24 @@
 **Gegentest (§5.4):** Negativ: 22 schnelle Calls je IP → 429 ab 21. (eigenes Limit) ✅ · Positiv: 3. IP frei, Fenster-Reset nach 62 s ✅ · Datenintegrität: Queue ✅ · Regression: Chat/Formular ok ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 69)**
+
+
+---
+
+## Runde 70 (2026-08-13, Kundenprojekt-Scan studienkolleg: gesund; uvicorn-proxy_headers-Recherche; Cron-Erstläufe anstehend)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **Kundenprojekt studienkolleg-aachen (Scan, „000“-Alarm):** Frontend :8800 → **200** (1,4 s) · Backend :8001 → 404 auf / und /docs (eigene Routen, 0,27 s — normal, R58-Befund bestätigt) · mongod :27018 ✓ · Watchdog „already up“ korrekt. Die „000“-Messung = transient (R58-Lektion: 000 wiederholen, nicht sofort „down“). node-Fehler im frontend.log (07:52) = historisch, VOR dem PATH-Fix in start.sh — **kein Eingriff nötig** | ✅ kein Fix |
+| **Recherche uvicorn proxy_headers (belegt):** uvicorn-Doku: proxy_headers „Defaults to enabled, restricted to forwarded-allow-ips“ (Standard 127.0.0.1); unsere Tunnel-Verbindung kommt von VPS-IP → uvicorn-Standard würde XFF ignorieren. **Eigene `_client_ip()` (letzte globale IP + Validierung, R69) = robuster als uvicorn-Standard** (FastAPI-Guard bestätigt Spoofing-Risiko + unseren Ansatz) | ✅ kein Fix |
+| **A-Bau-Smoke:** Chat ok · www 200 · origin health ok · Rate-Fenster nach R69-Tests leer (Site normal nutzbar) | ✅ |
+| **Cron-Erstläufe:** log-cleanup 03:00 + quality 04:10 NOCH NICHT fällig (jetzt ~02:1x; Watchdog-Ticker aktiv) — Beweis in Runde 71 | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin aded0ec · clean | ✅ |
+
+**E2E:** Frontend 200 · Backend antwortet · Chat/Formular A-Bau ok · QUALITY-CHECK OK (manuell).
+
+**Gegentest (§5.4):** Negativ: „000“-Alarm durch Wiederholungs-Checks widerlegt (404/200) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: A-Bau unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 70)**
