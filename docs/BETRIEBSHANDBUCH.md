@@ -184,3 +184,5 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 - Fix: `_client_ip()` in server.py — X-Forwarded-For, LETZTE gültige öffentliche IP (CF hängt echte Client-IP an);
   private/loopback ignoriert (Spoof-Schutz), Fallback Socket-IP. Chat + Contact nutzen sie.
 - Test-Regel: Isolation-Tests NUR mit schnellen Calls (Honeypot), nicht Chat (LLM-Latenz > 60-s-Fenster).
+
+- **SSL-Modus (Recherche 13.08.2026):** Tunnel-Setup → **„Full“** (nicht Strict — Strict verlangt Origin-Zertifikat, das der Tunnel-Origin nicht hat). http→https erzwingt separat **„Always Use HTTPS“** (Edge Certificates); der SSL-Modus allein redirectet nicht.

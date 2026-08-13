@@ -1708,3 +1708,25 @@
 **Gegentest (§5.4):** Negativ: vorher lastmod bei jedem Build (Befund), nachher 0 (Fix) ✅ · Datenintegrität: hreflang/URLs unverändert ✅ · Regression: Crawl/Routen ok ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 73)**
+
+
+---
+
+## Runde 74 (2026-08-13, CRON-ERSTLAUF-BEWEIS log-cleanup ✓; CF-SSL-Modus-Recherche präzisiert HTTPS-Kundenpunkt)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **CRON-ERSTLAUF-BEWEIS (log-cleanup):** Output `2026-08-13_03-00-29.md` + executions.db `completed` (03:00:28→29, 0,5 s, kein Fehler) — **no_agent-Cron lief planmäßig mit node-Fix**; „silent" = keine Logs > 7 Tage (nichts zu löschen, korrekt). Damit: 2 von 3 A-Bau-Crons E3-bewiesen (Watchdog 121×, Cleanup 1×) | ✅ |
+| **Quality-Cron:** fällig 04:10 (Systemzeit nach Korrektur ~01:01; vorherige „02:5x“-Anzeigen = Uhr lief vor, NTP-Korrektur -115 min) — Beweis nächste Runde | ⏳ |
+| **CF-SSL-Modus-Recherche (Root-Cause-Präzisierung, belegt):** „Flexible“-Modus serviert http-Requests still als Plain-HTTP → erklärt den P1-Befund (http://www = 200). Fix bleibt „Always Use HTTPS“ (unabhängig vom SSL-Modus). Zusatz: Tunnel-Setup → SSL-Modus **„Full“** (Strict verlangt Origin-Zertifikat, das der Tunnel nicht hat — Strict würde TLS-Handshake-Fehler riskieren) | ✅ belegt |
+| **Handbuch:** HTTPS-Kundenpunkt um SSL-Modus-Empfehlung (Full + Always Use HTTPS) präzisiert | ✅ |
+| **Systemzeit-Korrektur:** NTP-Stellte die Container-Uhr ~115 min zurück — Auswirkung auf Crons: next_run_at bleibt absolut; keine Laufzeit-Verluste (Watchdog-Ticker lief durch) | 📝 |
+| **Queue/Git:** 2 echte Einträge · origin ee5f032 · clean | ✅ |
+
+**E2E:** Cron-Output + DB-Beweis · www 200 · QUALITY-CHECK OK (manuell).
+
+**Gegentest (§5.4):** Negativ: Cleanup-Lauf silent = korrekt (nichts zu löschen, kein Fehler) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Watchdog weiter completed ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 74)**
