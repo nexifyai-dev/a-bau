@@ -1926,3 +1926,24 @@
 **Gegentest (§5.4):** Negativ: frühere manuelle Quality-Läufe (exit 0) werden jetzt durch den echten Cron reproduziert (automatisiert) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: 23 Öffnungszeiten-Fälle im Cron ✓.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 83)**
+
+
+---
+
+## Runde 83 (2026-08-13, CRON-VOLLBEWEIS (alle 3 E3); pnpm audit 0 Vulns; Package-Manager-Lektion)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **CRON-VOLLBEWEIS (letzter offener Beweis aus R52–R62 geschlossen):** `abau-quality-check` 04:10:55 — ROUTE ALLE OK · CHAT-CHECK OK · SYNC OK · **ÖFFNUNGSZEITEN ALLE 23 PASS** · HEALTH ok · **QUALITY-CHECK OK**; executions.db completed (48 s, kein Fehler). **Damit alle 3 A-Bau-Crons E3-bewiesen** (Watchdog 121×+, Log-Cleanup 03:00, Quality 04:10 — inkl. node-Fix über den echten no_agent-Pfad) | ✅ |
+| **pnpm audit --prod:** **„No known vulnerabilities found“** (Next 16.3.0, React 19.2.8; über corepack pnpm 11.21.0) | ✅ kein Fix |
+| **Lektion (bekannte-Fehler-Vermeidung):** Projekt nutzt **pnpm** (packageManager-Feld + .pnpm-Struktur in node_modules) — `npm audit` crasht am pnpm-Layout (Arborist „Cannot read properties of null (reading 'matches')“). Regel: Package-Manager VOR Audits/Installs aus `packageManager`-Feld bzw. `.pnpm` erkennen, dann `corepack pnpm audit` | 📝 |
+| **Lockfile-Status:** pnpm-lock.yaml vorhanden (Reproduzierbarkeit ✓); kein package-lock (korrekt — kein npm-Manager) | ✅ |
+| **Queue/Git:** 2 echte Einträge · origin 4215464 · clean | ✅ |
+
+**E2E:** Cron-Vollbeweis · audit 0 · www 200 · QUALITY-CHECK OK (automatisch + manuell).
+
+**Gegentest (§5.4):** Negativ: npm audit fehlschlagend (falscher Manager) → pnpm audit 0 (richtiger Weg) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 83)**
