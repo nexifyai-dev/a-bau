@@ -1861,3 +1861,25 @@
 **Gegentest (§5.4):** Negativ: 400/leer → Retry → 200 (transient widerlegt als Dauerfehler) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Chat/Formular ok ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 80)**
+
+
+---
+
+## Runde 81 (2026-08-13, Security: 413-Response ohne Security-Header gefixt; flush-Dry-Run; FAQ-Teaser)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **P2-Security-Befund:** 413-Response (Body > 64 KB, R41) wird IN der Middleware direkt erzeugt → umging `resp.headers.update(HEADERS)` → **keine Security-Header (HSTS/CSP/nosniff) auf 413**. Gleiche Klasse wie Apex-301-R55-Fix | ✅ |
+| **Fix:** `r.headers.update(HEADERS)` auf die 413-Response — live verifiziert (HSTS, nosniff, X-Frame, referrer, CSP alle da; Status 413 korrekt) | ✅ live |
+| **flush-Dry-Run (Datensicherheit E3):** ohne Key → klare Fehlermeldung „weder RESEND_API_KEY noch SMTP-Creds“, exit 1, **Queue 2 echte Einträge unangetastet** | ✅ |
+| **FAQPage-Teaser:** LD = 4 Fragen (R19-Konsistenz „LD == sichtbar“) | ✅ kein Fix |
+| **Quality-Cron (04:10):** Uhr 01:5x — Beweis weiterhin ausstehend (2,2 h) | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin 4f89b55 · clean | ✅ |
+
+**E2E:** 413 + Security-Header live · flush-Verhalten korrekt · www 200 · QUALITY-CHECK OK.
+
+**Gegentest (§5.4):** Negativ: 413 vorher ohne Header (Befund) → nachher vollständig (Fix) ✅ · Datenintegrität: Queue 2 echte (Dry-Run unangetastet) ✅ · Regression: Chat/Formular ok ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 81)**

@@ -120,7 +120,9 @@ async def headers_mw(request: Request, call_next):
     if p.startswith("/api/") and request.method in ("POST", "PUT", "PATCH"):
         cl = request.headers.get("content-length")
         if cl and cl.isdigit() and int(cl) > 65536:
-            return JSONResponse({"error": "Anfrage zu groß."}, status_code=413)
+            r = JSONResponse({"error": "Anfrage zu groß."}, status_code=413)
+            r.headers.update(HEADERS)  # R81: Security-Header auch auf in-Middleware-Responses (413)
+            return r
     # Hashed/statische Assets: lange Cache-Zeit (R30: _next/static fehlte — wurde mit no-store
     # ausgeliefert, Browser lud Chunks bei jeder Navigation neu; A.33)
     static_root = ("/logo.png", "/apple-touch-icon.png", "/icon-192.png", "/icon-512.png", "/manifest.webmanifest", "/og-image.png", "/favicon-16.png", "/favicon-32.png")  # R66: og-image + favicon-Varianten immutable
