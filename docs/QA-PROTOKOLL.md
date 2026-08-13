@@ -1644,3 +1644,25 @@
 **Gegentest (§5.4):** Negativ: „000“-Alarm durch Wiederholungs-Checks widerlegt (404/200) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: A-Bau unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 70)**
+
+
+---
+
+## Runde 71 (2026-08-13, Live-Perf/A11y-Audit: Gallery-Lazy verifiziert; AI-Act-Abgrenzung belegt; Cron-Erstläufe offen)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **Gallery-Lazy (Verdacht ausgeräumt):** RefGallery nutzt `next/image` → lazy by default. Live auf /referenzen/: **23/24 Bilder mit `loading="lazy"`**, das 1. ohne = `/logo.png` (Header-Logo, LCP — korrekt eager). `sizes` 25vw/50vw + 640×480 sauber | ✅ kein Fix |
+| **OSM-Karte:** kein iframe im SSR-HTML von /kontakt/ = korrekt (Zwei-Klick-Design, DSGVO; Karte rendert erst nach Klick client-seitig) | ✅ kein Fix |
+| **Fonts:** 2× preload vorhanden | ✅ |
+| **AI-Act-Abgrenzung (Recherche, belegt):** Art. 50 (live 02.08.2026) = 4 Pflichten: Chatbot-Offenlegung, Synthetic-Content-Marking, Emotionserkennung, Deepfake-Labeling. A-Bau: nur Chatbot einschlägig (R64 umgesetzt, 3 Ebenen); keine synthetischen Medien/Emotionserkennung → b–d nicht betroffen (Quellen: CSA-Research-Note 29.07.2026, chatforest, technology.org) | ✅ belegt |
+| **Cron-Erstläufe:** 03:00/04:10 noch nicht fällig (Uhr ~02:3x; Watchdog-Ticker aktiv) — Output-Beweis nächste Runde | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin 1d0a7db · clean | ✅ |
+
+**E2E:** /referenzen/ 24 Bilder korrekt geladen · www 200 · QUALITY-CHECK OK (manuell).
+
+**Gegentest (§5.4):** Negativ: „alle Bilder eager"-Hypothese durch Live-Count widerlegt (23 lazy) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 71)**
