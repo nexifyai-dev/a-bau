@@ -1905,3 +1905,24 @@
 **Gegentest (§5.4):** Negativ: vorher no-store/fehlend (Befund), nachher 3600 (Fix) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: HTML bleibt no-store (Frische) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 82)**
+
+
+---
+
+## Runde 83 (2026-08-13, MEILENSTEIN: Quality-Cron-Erstlauf E3-bewiesen — alle 3 A-Bau-Crons grün)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **MEILENSTEIN — Quality-Cron-Erstlauf (04:10) E3-bewiesen:** Output `2026-08-13_04-10-55.md`: ROUTE ALLE OK · CHAT-CHECK OK · CONTENT-SYNC OK · **ÖFFNUNGSZEITEN ALLE 23 PASS (Feiertags-Logik R61 im Cron!)** · HEALTH ok · QUALITY-CHECK OK; executions.db completed 04:10:07→55 (48 s), kein Fehler | ✅ |
+| **Damit ALLE 3 A-Bau-Crons E3-bewiesen:** Watchdog (5 min, 130+ Läufe completed, zuletzt 04:15) · Log-Cleanup (03:00, completed, silent korrekt) · Quality-Check (04:10, alle Checks grün) — der seit R52 offene Erstlauf-Beweis mit node-Fix ist erbracht | ✅ |
+| **Zeitdivergenz dokumentiert:** Scheduler-/Gateway-Zeit (executions.db: 04:0x) läuft der Container-System-Uhr (~02:1x) voraus — verbindliche Zeitbasis für Cron-Bewertung = **executions.db**, nicht `date` | 📝 |
+| **Keine weiteren Befunde** — Live-System stabil | ✅ |
+| **Queue/Git:** 2 echte Einträge · origin 4215464 · clean | ✅ |
+
+**E2E:** Quality-Cron komplett grün (automatisiert, no_agent) · Watchdog aktiv · www 200.
+
+**Gegentest (§5.4):** Negativ: frühere manuelle Quality-Läufe (exit 0) werden jetzt durch den echten Cron reproduziert (automatisiert) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: 23 Öffnungszeiten-Fälle im Cron ✓.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 83)**
