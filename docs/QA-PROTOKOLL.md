@@ -1750,3 +1750,26 @@
 **Gegentest (§5.4):** Negativ: BFSG-Pflicht für Informations-Website verneint (Rechtslage belegt) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 75)**
+
+
+---
+
+## Runde 76 (2026-08-13, Meta-Hygiene: doppelte/widersprüchliche robots-Meta auf 404 entfernt)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **Befund (P3-Meta-Hygiene):** 404-Seite hatte DOPPELTES robots-Meta (`noindex` von Next-Automatik + `noindex, nofollow` aus not-found.tsx) und nach Teil-Fix zusätzlich `index, follow` aus dem Layout-Global (Widerspruch im Markup) | ✅ |
+| **Fix 1:** eigenes robots-Metadata aus not-found.tsx entfernt (Next-noindex reicht; interne 404-Links bleiben crawlbar) | ✅ |
+| **Fix 2:** globales Layout-`robots: {index:true, follow:true}` entfernt (index/follow = Browser-Default; überflüssiges Tag; Staging-noindex kommt weiter via X-Robots-Tag aus server.py R39) | ✅ |
+| **Ergebnis live:** 404 = 1× `noindex` (Next) · Home = kein robots-Meta (Default) · Cookie-Richtlinie = eigenes `noindex, nofollow` intakt | ✅ |
+| **Neben-Checks grün:** og:image width/height 1200×630 im HTML · Referrer-Policy auf Assets · /angebot 301 → /kontakt/#angebot | ✅ kein Fix |
+| **Quality-Cron (04:10):** Beweis weiterhin ausstehend (Uhr ~01:1x) | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin 6374572 · clean | ✅ |
+
+**E2E:** 404/Home/Cookie-robots korrekt · www 200 · QUALITY-CHECK OK.
+
+**Gegentest (§5.4):** Negativ: vorher 2–3 robots-Tags (Befund), nachher exakt 1 bzw. 0 (Fix) ✅ · Regression: Cookie-richtlinie-Meta unverändert ✅ · Staging-noindex via Header intakt (server.py unverändert) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 76)**
