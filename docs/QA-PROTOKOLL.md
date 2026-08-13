@@ -1666,3 +1666,25 @@
 **Gegentest (§5.4):** Negativ: „alle Bilder eager"-Hypothese durch Live-Count widerlegt (23 lazy) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 71)**
+
+
+---
+
+## Runde 72 (2026-08-13, Cron-Mechanik-Beweis + SEO/A11y-Live-Checks + hreflang-Doku-Abgleich)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **Cron-Mechanik-Beweis (executions.db):** Watchdog **121 Läufe, alle completed** (02:19–02:29, ~1–2 s, 0 Fehler) — no_agent-Ausführung + DB-Tracking nachweislich intakt. LOG-CLEANUP (Erstlauf 03:00) + QUALITY (04:10): 0 Läufe, fällig in ~25/95 min — Output-Beweis nächste Runde | ✅ Mechanik bewiesen, Erstläufe ⏳ |
+| **Video-Poster:** beide Poster-URLs 200 (IMG_1414.webp, A-BAU_Badezimmer_02) | ✅ kein Fix |
+| **Sitemap/robots:** 22 URLs · 44 hreflang · 0 Staging-URLs · robots mit Sitemap-Zeile + 10 User-Agents | ✅ kein Fix |
+| **JSON-LD Leistungs-Detail:** `Service`-Typ mit korrektem Namen (Denkmal-Restaurierung) | ✅ kein Fix |
+| **hreflang-Doku-Abgleich (Recherche, belegt):** Google Search Central (localized-versions): Sitemap-xhtml:link = dokumentierter Weg — R55-Umsetzung (de + x-default je URL) exakt konform; bei einsprachiger Site optional, nicht schädlich | ✅ belegt |
+| **Queue/Git:** 2 echte Einträge · origin 9088849 · clean | ✅ |
+
+**E2E:** Poster 200 · Sitemap/robots intakt · www 200 · QUALITY-CHECK OK (manuell).
+
+**Gegentest (§5.4):** Negativ: 0 Staging-URLs in Sitemap (kein Leak) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 72)**
