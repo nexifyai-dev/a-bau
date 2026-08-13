@@ -6,16 +6,16 @@ export const KONTAKT = {
   ort: "Mönchengladbach",
   stadtteil: "Geistenbeck",
   tel: "+49 2166 9925056",
-  telMobil: "+49 162 1815229",
   email: "kontakt@a-bau.info",
   hrb: "HRB 18836",
   registergericht: "Amtsgericht Mönchengladbach",
   gf: "Albert Pfeiffer",
   gegruendet: "2019",
   oeffnungszeiten: [
-    { tag: "Montag–Donnerstag", zeit: "08:00–17:00" },
-    { tag: "Freitag", zeit: "07:00–17:00" },
-    { tag: "Samstag", zeit: "08:00–13:00" },
+    { tag: "Montag–Donnerstag", zeit: "08:00–16:00" },
+    { tag: "Freitag", zeit: "08:00–14:00" },
+    { tag: "Samstag", zeit: "Geschlossen" },
+    { tag: "Sonn-/Feiertag", zeit: "Geschlossen" },
   ],
   servicegebiet: "Mönchengladbach & NRW",
   ustIdnr: "DE327030612",
@@ -68,8 +68,8 @@ export function istGeoeffnet(date = new Date()): boolean {
   const h = Number(parts.find((p) => p.type === "hour")?.value ?? -1);
   const tag = ({ Mo: 1, Di: 2, Mi: 3, Do: 4, Fr: 5, Sa: 6, So: 0 } as Record<string, number>)[wd];
   if (tag === undefined) return false;
-  if (tag === 0) return false;
-  if (tag === 6) return h >= 8 && h < 13;
-  if (tag === 5) return h >= 7 && h < 17;
-  return h >= 8 && h < 17;
+  // 2026-08-13 (Europe/Berlin): Neue Zeiten Kundenauftrag — Mo–Do 08–16, Fr 08–14, Sa+So zu.
+  if (tag === 0 || tag === 6) return false;
+  if (tag === 5) return h >= 8 && h < 14;
+  return h >= 8 && h < 16;
 }

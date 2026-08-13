@@ -14,7 +14,6 @@ import { SITE_URL } from "@/lib/site";
 // Bei Abweichung bricht der Build — verhindert die FAQ-Fehlerklasse (Feldnamen-Drift) für Kontaktdaten.
 if (
   kontaktYaml?.telefon_festnetz !== KONTAKT.tel ||
-  kontaktYaml?.telefon_mobil !== KONTAKT.telMobil ||
   kontaktYaml?.email !== KONTAKT.email ||
   kontaktYaml?.ust_idnr !== KONTAKT.ustIdnr ||
   `${kontaktYaml?.register ?? ""} ${kontaktYaml?.hrb ?? ""}` !== `${KONTAKT.registergericht} ${KONTAKT.hrb}`

@@ -42,7 +42,6 @@ export default function Footer() {
             <h2 className="footer-title">Kontakt</h2>
             <nav>
               <Link href={telHref(KONTAKT.tel)}>Tel. {KONTAKT.tel}</Link>
-              <Link href={telHref(KONTAKT.telMobil)}>Mobil: {KONTAKT.telMobil}</Link>
               <Link href={`mailto:${KONTAKT.email}`}>{KONTAKT.email}</Link>
               <Link href="/kontakt/">Kontaktformular</Link>
             </nav>

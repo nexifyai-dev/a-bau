@@ -98,7 +98,6 @@ export default function KontaktClient() {
                 </p>
                 <p>
                   <a href={telHref(KONTAKT.tel)}>Tel. {KONTAKT.tel}</a><br />
-                  <a href={telHref(KONTAKT.telMobil)}>Mobil: {KONTAKT.telMobil}</a><br />
                   <a href={`mailto:${KONTAKT.email}`}>{KONTAKT.email}</a>
                 </p>
                 <p className="text-3 text-inv-muted">
