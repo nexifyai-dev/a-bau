@@ -1794,3 +1794,27 @@
 **Gegentest (§5.4):** Negativ: Fake-Preis-Prompt → keine Euro-Angabe (Halluzinations-Guard) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 77)**
+
+
+---
+
+## Runde 78 (2026-08-13, Präventiv-Härtung: Turbopack-Build-Cache aus (Next-16.3-Bekanntfehler); KB/W3C/Transfer-Checks)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **Recherche-Treffer (bekannter Fehler, unsere Version):** Next 16.3.0 Default `experimental.turbopackFileSystemCacheForBuild=true` kann **stale Artefakte nach .next/cache-Restore** wiederherstellen (Vercel-Issue #87283; Doku 03.08.2026, v16.3.0 = Default für Builds) — exakt unsere R61-Symptomklasse | ✅ |
+| **Fix (präventiv, belegt):** `turbopackFileSystemCacheForBuild: false` in next.config.ts (Kommentar + Quelle) — deterministische Kunden-Deploys; Build 11–25 s unkritisch | ✅ live |
+| **Build-Beweis mit Cache aus:** rm -rf .next out + Build → out korrekt, 44 hreflang, www 200, Quality exit 0 | ✅ |
+| **KB-Stichprobe (3 Kategorien):** Stadtteile 481 Z (2 Quellen) · Sanierungsablauf 825 Z (1 Quelle) · Denkmal-Restaurierung 571 Z (2 Quellen) — alle 0 Markdown, fachlich korrekt | ✅ kein Fix |
+| **W3C-404:** 0 Fehler nach R76-Meta-Fix | ✅ |
+| **Transfergröße Home (komprimiert):** 355 KB gesamt (HTML 75,5 KB + 11 Assets) — Bilder-dominant, lazy ✓ | ✅ kein Fix |
+| **Quality-Cron (04:10):** Uhr 01:2x — Beweis weiterhin ausstehend | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin 298bbba · clean | ✅ |
+
+**E2E:** Build deterministisch · www 200 · QUALITY-CHECK OK · 44 hreflang.
+
+**Gegentest (§5.4):** Negativ: Cache-aus-Build reproduzierbar (2 Läufe identisch) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Sitemap/Assets unverändert ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 78)**
