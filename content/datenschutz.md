@@ -1,6 +1,6 @@
 # Datenschutzerklärung
 
-**Stand:** 12. August 2026
+**Stand:** 13. August 2026
 
 ## 1. Verantwortlicher
 
@@ -10,7 +10,6 @@ Luisental 69
 Deutschland
 
 Telefon: +49 2166 9925056  
-Mobil: +49 162 1815229  
 E-Mail: kontakt@a-bau.info
 
 Vertreten durch: Geschäftsführer Albert Pfeiffer  
@@ -148,6 +147,6 @@ Eine automatisierte Entscheidungsfindung einschließlich Profiling im Sinne des 
 
 ## 15. Aktualität und Änderungen
 
-Diese Datenschutzerklärung hat den Stand 12. August 2026. Durch die Weiterentwicklung unserer Website oder geänderte gesetzliche bzw. behördliche Vorgaben kann eine Anpassung erforderlich werden. Die jeweils aktuelle Fassung finden Sie jederzeit auf dieser Seite.
+Diese Datenschutzerklärung hat den Stand 13. August 2026. Durch die Weiterentwicklung unserer Website oder geänderte gesetzliche bzw. behördliche Vorgaben kann eine Anpassung erforderlich werden. Die jeweils aktuelle Fassung finden Sie jederzeit auf dieser Seite.
 
 *Hinweis: Dieser Entwurf wurde durch NeXifyAI auf Grundlage der DSGVO, des BDSG und des TDDDG erstellt. Vor Veröffentlichung bitte durch eine Rechtsanwältin/einen Rechtsanwalt prüfen lassen.*

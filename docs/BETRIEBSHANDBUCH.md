@@ -29,6 +29,7 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 1. Inhalte editieren: `data/kontakt.yaml` (NAP — EINE Quelle!), `content/*.yaml` + `*.md` (Leistungen/Referenzen/FAQ/Recht).
 2. Site bauen: `cd site && npm run build` (Next.js 16, static export → `out/`; Node 22; pnpm-Store im Container defekt — npm nutzen).
 3. Chat-Wissen aktualisieren: `python3 chat/ingest.py` (liest `content/` + `site/src/data/`, inkl. `kontakt.yaml`; Rechtstexte automatisch ausgeschlossen).
+3a. **SYSTEM-Prompt mitpflegen (Lektion 2026-08-13):** `chat/server.py` Z.216–229 enthält „Firmen-Basisdaten" (Telefon, Öffnungszeiten) hart codiert — bei NAP-/Zeiten-Änderungen IMMER auch hier ändern, sonst antwortet der Chat weiter mit Alt-Daten (unabhängig von KB). Danach Server-Neustart PFLICHT: Prozess auf Port 8095 läuft als **root** (Host-Start) — Neustart via Host-SSH `nexify-admin@127.0.0.1 -p 2222` + `docker exec hermes-webui pkill -f 'chat/server.py'` + docker-exec-Neustart aus `repos/a-bau`; Hermes-Watchdog kann Root-Prozess nicht killen (EPERM).
 4. Service neu starten (siehe Betrieb).
 5. Verifikation: Routen-200 + ein Chat-Test + `https://a-bau.nexifyai.cloud/health`.
 
