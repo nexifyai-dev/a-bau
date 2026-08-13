@@ -1730,3 +1730,23 @@
 **Gegentest (§5.4):** Negativ: Cleanup-Lauf silent = korrekt (nichts zu löschen, kein Fehler) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Watchdog weiter completed ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 74)**
+
+
+---
+
+## Runde 75 (2026-08-13, Compliance-Recherche BFSG + SOLL-Verankerung SOUL/HERMES verifiziert)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **BFSG-Recherche (belegt):** Barrierefreiheitsstärkungsgesetz gilt seit 28.06.2025 für BESTIMMTE Produkte/Dienstleistungen (elektronische Handelsdienstleistungen = Online-Vertragsschluss mit Verbrauchern, Bank, Transport etc. — Bundesfachstelle/IHK). **A-Bau-Website: nicht BFSG-pflichtig** (Kontakt-/Informations-Website, kein Verbraucher-Vertragsschluss online; Angebotsanfrage = Kontakt). Norm EN 301 549/WCAG 2.2 AA bleibt als Qualitätsstandard umgesetzt (A11y-Runden R27/R63 etc.) | ✅ belegt, kein Fix |
+| **SOLL-Verankerung verifiziert (Systemvorgabe „Setze die Codierungsanweisungen in soul.md und hermes.md ein“):** `/home/hermeswebui/.hermes/SOUL.md` = **komplette Arbeitsvorgaben v3.6b** (627 Zeilen, 45 Marker) · `/home/hermeswebui/.hermes/HERMES.md` = **bindende Referenz** (DEPENDS + Kanon-Pfad `docs/standards/ARBEITSVORGABEN-v3.6.md` = SOUL.md) — beide SOLL-Punkte erfüllt | ✅ kein Fix |
+| **Quality-Cron (04:10):** Uhr 01:06 — Beweis weiterhin ausstehend (nächste Runde; Mechanik + 2/3 Crons E3-bewiesen) | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin ee021c3 · clean | ✅ |
+
+**E2E:** SOUL/HERMES-Verankerung nachgewiesen · www 200 · QUALITY-CHECK OK (manuell).
+
+**Gegentest (§5.4):** Negativ: BFSG-Pflicht für Informations-Website verneint (Rechtslage belegt) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 75)**
