@@ -15,7 +15,7 @@ euid: DER1504.HRB18836
 geschaeftsfuehrer: Albert Pfeiffer
 telefon_festnetz: "+49 2166 9925056"
 # 2026-08-13 15:48 (Europe/Berlin): telefon_mobil entfernt (Kundenauftrag A-Bau)
-email: kontakt@a-bau.info
+email: e.pfeiffer@a-bau.info
 # OFFEN (Kunde, P0): USt-IdNr., Handwerkskammer — bis Klärung leer
 ust_idnr: ""
 handwerkskammer: ""
@@ -32,5 +32,5 @@ oeffnungszeiten:
 servicegebiet: Mönchengladbach & NRW
 hinweise:
   - "Telefonnummer: Festnetz +49 2166 9925056 (11880, inhaber-bestätigt). Mobil-Nummer 2026-08-13 entfernt (Kundenauftrag)."
-  - "E-Mail kontakt@a-bau.info (Domain aktiv). Alt-Adresse e.pfeiffer@a-bau.de ist tot (a-bau.de = NXDOMAIN) — nicht verwenden."
+  - "E-Mail e.pfeiffer@a-bau.info (Kunde bestätigt 2026-08-13). kontakt@a-bau.info war falsch; e.pfeiffer@a-bau.de tot (a-bau.de = NXDOMAIN)."
   - "Register-Anschrift historisch: Viersener Str. 53 (2023) / Pastorsgasse — Alt-Einträge beim Kunden bereinigen (Cylex)."

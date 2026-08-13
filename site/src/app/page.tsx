@@ -20,7 +20,7 @@ const localBusinessSchema = {
   "@id": `${SITE_URL}/#business`,
   name: "A-Bau Meisterbetrieb GmbH",
   description:
-    "Bauunternehmen und Meisterbetrieb in Mönchengladbach: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen und europaweite Transporte.",
+    "Bauunternehmen und Meisterbetrieb in Mönchengladbach: Denkmal-Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung und Installationen.",
   url: `${SITE_URL}`,
   telephone: KONTAKT.tel,
   email: KONTAKT.email,

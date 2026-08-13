@@ -600,7 +600,7 @@
 |---|---|
 | **/agb/ + /nutzungsbedingungen/ Titel-Dopplung** („…– A-Bau Meisterbetrieb Mönchengladbach – A-Bau") — `absolute` fehlte in den neuen Seiten | `title: { absolute: … }`; live: 2× sauber | ✅ live |
 | **FAQ-Duplikat** „Wie sind die Öffnungszeiten?" / „…des Büros?" (identische Antwort) | „des Büros"-Variante entfernt → 165 Fragen | ✅ |
-| **FAQ-Antwort zu knapp** (E-Mail: nur Adresse) | „kontakt@a-bau.info – wir antworten in der Regel innerhalb weniger Werktage…" | ✅ |
+| **FAQ-Antwort zu knapp** (E-Mail: nur Adresse) | „e.pfeiffer@a-bau.info – wir antworten in der Regel innerhalb weniger Werktage…" | ✅ |
 | `.prose`-CSS für Markdown-Seiten | Existiert (max-width, h2/h3/p/li) — Impressum/AGB/Nutzung formatiert | ✅ kein Fix |
 | Seiten-Payloads | /faq/ 346 KB (166 Akkordeons + FAQPage-LD, gzip ≈80 KB) — akzeptabel; alle anderen 27–73 KB | ✅ |
 | **Chat-Qualität mit 165-Fragen-KB (7 Fragen E3)** | Sanierung/Renovierung, Gewährleistung § 634a, Angebot-Unterlagen, Krefeld, Fassadenpflege korrekt; Hausbau-Kosten ohne Fake-Preis; Gedicht-Wunsch höflich abgelehnt (Boundary); 0 Markdown; 1,8–8,2 s | ✅ live |
@@ -1229,7 +1229,7 @@
 
 | Befund/Fix | Status |
 |---|---|
-| **Resend-Versand eingebaut** (`chat/server.py`): `_resend_send()` (POST api.resend.com/emails, Payload lt. API-Doku: from/to[]/reply_to/subject/text; `RESEND_FROM = "A-Bau Meisterbetrieb <kontakt@a-bau.info>"`; Reply-To = E-Mail des Anfragenden). Aktiv NUR wenn `RESEND_API_KEY` in `_secret`-Dateien; sonst Fallback-Kette SMTP → Queue (202 queued, kein Datenverlust). Fehler nur ins Log, nie an Besucher | ✅ Code live (Key ausstehend) |
+| **Resend-Versand eingebaut** (`chat/server.py`): `_resend_send()` (POST api.resend.com/emails, Payload lt. API-Doku: from/to[]/reply_to/subject/text; `RESEND_FROM = "A-Bau Meisterbetrieb <e.pfeiffer@a-bau.info>"`; Reply-To = E-Mail des Anfragenden). Aktiv NUR wenn `RESEND_API_KEY` in `_secret`-Dateien; sonst Fallback-Kette SMTP → Queue (202 queued, kein Datenverlust). Fehler nur ins Log, nie an Besucher | ✅ Code live (Key ausstehend) |
 | **`chat/flush_contact_queue.py` neu**: Versand-Reihenfolge Resend → SMTP; indexbasiert; fehlgeschlagene Einträge bleiben in Queue (kein Verlust); CRLF-Strip beibehalten | ✅ |
 | **Footer**: „Diese Website wurde erstellt von NeXifyAI" (`.footer-made-by`, klein, muted `--color-text-inv-2` ≈8:1 AA, Link nexifyai.cloud noopener) — live im HTML verifiziert | ✅ |
 | **datenschutz.md**: E-Mail-Empfänger HOSTINGER → **Resend Inc. / Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA**; EU-US-DPF-zertifiziert → Art. 45 DSGVO; Art. 28 + DPA; §10-Empfängerliste ergänzt (Drittland: Resend Art. 45, KI Art. 49 Abs. 1 lit. b) | ✅ live |
@@ -1961,16 +1961,16 @@
 | **Zweiter Befund (Recherche-Anwendung):** Resend-API via Python-urllib → **403 „error code 1010"** = Cloudflare-Bot-Schutz (Default-UA `Python-urllib/3.x` geblockt). Gleicher Key via curl = 200 → keine Key-Regression. Bestätigt R80-Lektion: Fehler nie vorschnell als Key-Problem werten — erst Kanal/UA prüfen | ✅ FIX |
 | **Fix 1:** `RESEND_API_KEY` in `/home/hermeswebui/.hermes/.env` (kanonischer `_secret`-Pfad #1, perms 600) | ✅ |
 | **Fix 2:** `User-Agent: a-bau-website/1.0` in `_resend_send()` (R84-Kommentar im Code) | ✅ |
-| **Fix 3:** `RESEND_FROM` interim `A-Bau Meisterbetrieb <kontakt@nexifyai.cloud>` (verifizierte Domain; `a-bau.info` in Resend nicht verifizierbar — Free-Plan = 1 Domain, siehe unten) — auf `kontakt@a-bau.info` umstellen, sobald möglich | ✅ interim |
+| **Fix 3:** `RESEND_FROM` interim `A-Bau Meisterbetrieb <kontakt@nexifyai.cloud>` (verifizierte Domain; `a-bau.info` in Resend nicht verifizierbar — Free-Plan = 1 Domain, siehe unten) — auf `e.pfeiffer@a-bau.info` umstellen, sobald möglich | ✅ interim |
 | **Server-Neustart sauber:** 2649600 (alt) → 2660293 (neu, mit Fix), Health ok, Chat-RAG antwortet, Live-www 200 | ✅ |
-| **FLUSH E3-bewiesen:** `flush_contact_queue.py` → **„Versendet: 2, in Queue verblieben: 0"**; Resend-API bestätigt beide an `kontakt@a-bau.info` (status queued); Queue-Datei = 0 Zeilen | ✅ |
+| **FLUSH E3-bewiesen:** `flush_contact_queue.py` → **„Versendet: 2, in Queue verblieben: 0"**; Resend-API bestätigt beide an `e.pfeiffer@a-bau.info` (status queued); Queue-Datei = 0 Zeilen | ✅ |
 | **Automatisierung (§15a):** Watchdog-Cron (5 min) führt jetzt Queue-Nachversand aus (idempotent, leer = sofort fertig); Test RC=0 | ✅ |
 | **Quality-Check:** ROUTE ALLE OK · CHAT OK · SYNC OK · ÖFFNUNGSZEITEN 23/23 PASS · HEALTH ok · QUALITY-CHECK OK | ✅ |
 | **Resend-Plan-Limit (bekannter Fehler, Recherche):** Free-Plan = 1 Domain → `a-bau.info` anlegen = 403 `Your plan includes 1 domain`. Optionen (Pascal): Upgrade ODER SMTP-Creds (Host) in Container spiegeln ODER Interim-FROM behalten | 📝 offen |
 | **Orphan-Befund:** `/tmp/fake-server.py` (PID 706876, Port 8096, Host-PID-Namespace, Testkopie von chat/server.py, start 03:32) — Datei entfernt; Prozess aus Container nicht killbar (anderer Namespace), stirbt beim Host-Neustart; kein Malware-Befund (Code = Repo-Kopie) | 📝 |
 | **Queue/Git:** Queue 0 · origin clean bis auf server.py-Fix | ✅ |
 
-**E2E:** Formular-Pfad komplett: Queue → Resend-API → Zustellung an kontakt@a-bau.info (API-Status queued, 2/2). Quality-Check 5/5. Live-www 200.
+**E2E:** Formular-Pfad komplett: Queue → Resend-API → Zustellung an e.pfeiffer@a-bau.info (API-Status queued, 2/2). Quality-Check 5/5. Live-www 200.
 
 **Gegentest (§5.4):** Negativ: vorher 403/1010 (urllib-UA) + Queue 2 — nachher 2/2 versendet (curl-UA-Fix reproduziert) ✅ · Negativ: Resend-Plan-Limit 403 bei Domain-Erstellung (erwartet, dokumentiert) ✅ · Datenintegrität: Queue 2 echte Einträge unverändert bis Versand, danach 0 (kein Verlust) ✅ · Regression: Chat-RAG + Öffnungszeiten + Quality-Check nach Neustart grün ✅.
 
@@ -1990,9 +1990,9 @@
 | **P1 — Kontaktformular-Mails kamen NIE an:** Live-Server (8095) hatte weder RESEND_API_KEY noch SMTP-Creds im Container (/_secret-Files leer) → `/api/contact` queue-te jede Anfrage; 2 echte Kundenanfragen (Techeres, 12.08.) lagen fest | ✅ |
 | **Root-Cause 1 (Recherche):** `api.resend.com` steht hinter Cloudflare-Bot-Schutz — Python-`urllib`-Default-UA → **HTTP 403 error code 1010** (nicht „Key falsch"!). Fix: expliziter `User-Agent`-Header (R57-Doku-Kommentar erweitert) | ✅ |
 | **Fix 1:** `RESEND_API_KEY` in kanonische `/home/hermeswebui/.hermes/.env` gespiegelt (Quelle `.mcp-env/resend.env`, perms 600) | ✅ |
-| **Fix 2:** `RESEND_FROM` interim auf verifizierte Domain `kontakt@nexifyai.cloud` (a-bau.info nicht in Resend verifizierbar — **Plan-Limit: nur 1 Domain**; Umstieg auf `kontakt@a-bau.info` nach Plan-Upgrade oder SMTP-Spiegelung, offen) | ✅ Interim |
+| **Fix 2:** `RESEND_FROM` interim auf verifizierte Domain `kontakt@nexifyai.cloud` (a-bau.info nicht in Resend verifizierbar — **Plan-Limit: nur 1 Domain**; Umstieg auf `e.pfeiffer@a-bau.info` nach Plan-Upgrade oder SMTP-Spiegelung, offen) | ✅ Interim |
 | **Fix 3:** Server-Neustart mit neuem Code (PID-Wechsel E3: alter Prozess weg, neuer auf 8095, Health ok) | ✅ |
-| **E2E:** `flush_contact_queue.py` → **„Versendet: 2, in Queue verblieben: 0"**; Resend-API zeigt beide an `kontakt@a-bau.info` (queued→delivery); Queue leer | ✅ |
+| **E2E:** `flush_contact_queue.py` → **„Versendet: 2, in Queue verblieben: 0"**; Resend-API zeigt beide an `e.pfeiffer@a-bau.info` (queued→delivery); Queue leer | ✅ |
 | **Automation (§15a):** Watchdog-Cron (5 min) übernimmt jetzt Queue-Nachversand (`flush_contact_queue.py` vor Health-Check) — E3: Watchdog manuell ausgeführt RC=0, „0/0" | ✅ |
 | **Qualität:** abau-quality-check.sh alle 5 Checks grün (ROUTE/CHAT/SYNC/23 Öffnungszeiten/HEALTH), QRC=0; Chat-RAG live ok | ✅ |
 | **Hygiene:** Orphan `/tmp/fake-server.py` (Port 8096, Host-Namespace, PPid 1) — Datei gelöscht; Prozess aus Container nicht killbar (anderer PID-Namespace) → stirbt mit Container-Neustart, dokumentiert | 📝 |
@@ -2018,3 +2018,21 @@
 **Gegentest (§5.4):** Negativ: `oz-tag{color:rgba(255,255,255,.72)` = 0 im Live-CSS ✅ · Regression: `.card-dark` unverändert (dunkler Grund, weiße Zeiten), übrige Regeln unberührt ✅ · Datenintegrität: reine CSS-Änderung, keine Content-/KB-Änderung ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 84)**
+
+
+---
+
+## Runde 85 — Kundenauftrag: E-Mail e.pfeiffer@a-bau.info + Transporte vollständig entfernt + CTA-Zentrierung
+
+**2026-08-13 (Europe/Berlin) — Pascal-OOB während Gegenprüfung.**
+
+**Änderungen:**
+1. **E-Mail:** kontakt@a-bau.info war falsch (Kunde); echte Adresse = e.pfeiffer@a-bau.info. Ersetzt in: .env.example (ABAU_CONTACT_TO), data/+site/src/data/kontakt.yaml, content/*.md (datenschutz, impressum, nutzungsbedingungen), faq.yaml ×2 (content+src/data), kontakt.ts, cookie-richtlinie/page.tsx, chat/server.py (SYSTEM-Prompt + CONTACT_TO-Default), Handbuch/Launch/Doku. Kein env-Override in Container/Host → Default greift.
+2. **Transporte vollständig entfernt** (Pascal: „Entferne vollumfänglich auch alle dazu gehörenden Unterseiten"): leistungen.yaml ×2 (id: transport), Header.tsx-NAV, Footer.tsx-Link, leistungs-bilder.ts, page.tsx JSON-LD, ueber-uns (page.tsx + md), FAQ ×5 Q+A entfernt + 4 Textstellen umgeschrieben (faq.yaml ×2), download_assets.py-Kategorien, route-check.sh, Asset PHOTO-2025-02-11-16-15-13.webp gelöscht. KB neu ingestiert (69 Chunks, 0 Transport).
+3. **CTA-Zentrierung (Root-Cause der Pascal-Meldung):** `p{max-width:68ch}` + Reset `margin:0` → Absatz-Block links verankert; `text-align:center` zentrierte nur INNERHALB des Blocks → wirkt linksbündig. Fix: `.section-dark p { … margin-inline: auto; }` (Muster .section-head p).
+
+**E2E:** Chat: E-Mail e.pfeiffer@a-bau.info ✓, Transport-Frage → nicht im Leistungsspektrum ✓, Zeiten neu ✓ · /leistungen/transport = 404 ✓ · /leistungen 0× Transporte ✓ · /kontakt mailto:e.pfeiffer@a-bau.info + 0 Mobil ✓ · /datenschutz 7× neue E-Mail, 0 kontakt@, 0 Mobil ✓ · sitemap 0 transport ✓ · Live-CSS `2d-01jypiot5r.css` enthält `.section-dark p{…margin-inline:auto}` ✓ · /health ok.
+
+**Gegentest (§5.4):** Negativ: kontakt@a-bau.info = 0 im Live-HTML + KB ✓ · Regression: Öffnungszeiten /kontakt unverändert (08:00×2/16:00/14:00/Geschlossen×2), CSS-Regeln section-dark h1–h3/card-dark unverändert ✓ · Datenintegrität: KB 69 Chunks (vorher 71, −2 Transport-FAQ), keine Doppel-URLs in Sitemap ✓.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 85)**

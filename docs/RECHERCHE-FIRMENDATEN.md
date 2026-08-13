@@ -11,7 +11,7 @@ Alle Angaben mit Quelle + Evidenzklasse (E3 = Live verifiziert). Offene Punkte u
 | Geschäftsführer | Albert Pfeiffer (seit Eintragung 04.06.2019), 1 GF | NorthData (Publikation 5450577667) |
 | Stammkapital | 25.000 € | NorthData |
 | Register-Gegenstand | Akustik-/Trockenbau, Fliesen/Platten/Mosaik/Estrich/Bodenleger, Betonstein/Terrazzo, Steinmetz/Steinbildhauer, Mauer-/Beton-/Metallbau (Metallsandstrahlen), Fugerarbeiten, Kabelverlegung, Asphaltierer (ohne Straßenbau), genormte Baufertigteile, Raumausstatter, Gebäudereinigung, Garten-/Landschaftsbau, Heizungs-/Wasser-/Elektroinstallation | NorthData |
-| E-Mail (aktiv) | kontakt@a-bau.info | ProvenExpert |
+| E-Mail (aktiv) | e.pfeiffer@a-bau.info | ProvenExpert |
 | E-Mail (tot!) | e.pfeiffer@a-bau.de — Domain a-bau.de = NXDOMAIN (E3: DNS-Fehler -5) | Live-DNS 2026-08-10 |
 | Telefon A | (02166) 9925056 / +49 2166 99 25 056 | 11880 („vom Inhaber bestätigt"), Footer a-bau.info |
 | Telefon B | 0162 18 15 229 (Mobil) | a-bau.info/kontakt |
@@ -26,7 +26,7 @@ Alle Angaben mit Quelle + Evidenzklasse (E3 = Live verifiziert). Offene Punkte u
 4. Schlüsselfertigbau / Neubau
 5. Installationen Strom & Wasser
 6. Restaurationen / Sanierung Altbau (technisch, funktional, optisch)
-7. Europaweite Direkttransporte (firmeneigener Sprinter)
+7. ~~Europaweite Direkttransporte (firmeneigener Sprinter)~~ — 2026-08-13 auf Kundenwunsch vollständig entfernt
 + laut Register-Gegenstand: Trockenbau, Estrich/Boden, Steinmetz, Fassade, Garten-/Landschaftsbau (Details mit Kunde abgleichen)
 
 ## Portfolio-Kategorien (Alt-Site, Bilder vorhanden)
@@ -52,7 +52,7 @@ Altbau-Erhaltung (Restauration historisch) · Gesundheitsbau-Projekt · Raumgest
 
 ## Offene Datenpunkte (P0, blockieren Phase 2)
 1. Verbindliche Telefonnummer (Festnetz 02166 9925056 vs Mobil 0162 18 15 229 — beide? Hauptnummer?)
-2. Verbindliche E-Mail (Empfehlung: kontakt@a-bau.info — Domain aktiv; a-bau.de tot)
+2. Verbindliche E-Mail (Empfehlung: e.pfeiffer@a-bau.info — Domain aktiv; a-bau.de tot)
 3. USt-IdNr. (Impressum-Pflicht)
 4. Handwerkskammer + Meisterbrief-Nachweis (Impressum: zuständige Kammer)
 5. Echte Referenzprojekte je Kategorie (Ort, Jahr, Umfang, ggf. Bilder-Freigabe)
@@ -73,7 +73,7 @@ Altbau-Erhaltung (Restauration historisch) · Gesundheitsbau-Projekt · Raumgest
 | Handwerkskammer | **HWK Düsseldorf, Betriebsnummer 1841351** — im Impressum (HwO-Referenz); Meisterbrief-Nachweis weiterhin Kunde |
 | Telefon-Hauptnummer | **Entscheidung dokumentiert: beide Nummern aktiv** — Festnetz +49 2166 9925056 (Haupt, 11880-bestätigt) + Mobil +49 162 1815229; tel:-Links auf allen Seiten; Öffnungsstatus nutzt Festnetz |
 | Öffnungszeiten | 11880-Basis (04.07.2026) im System: Mo–Do 8–17, Fr 7–17, Sa 8–13, So zu (Berlin-Zeitzone, 12-Fälle-Test) |
-| E-Mail | kontakt@a-bau.info (aktiv); e.pfeiffer@a-bau.de tot (a-bau.de NXDOMAIN) — nur aktive Adresse im Einsatz |
+| E-Mail | e.pfeiffer@a-bau.info (aktiv, Kunde bestätigt 2026-08-13); kontakt@a-bau.info war falsch; e.pfeiffer@a-bau.de tot (NXDOMAIN) im Einsatz |
 | Register | HRB 18836, EUID, GF Albert Pfeiffer, Stammkapital 25.000 €, Register-Gegenstand — wie oben (E3) |
 
 ## Nach wie vor OFFEN (Kunde)

@@ -23,7 +23,6 @@ export default function Footer() {
               <Link href="/leistungen/schluesselfertigbau/">Schlüsselfertigbau</Link>
               <Link href="/leistungen/sanierung/">Sanierung</Link>
               <Link href="/leistungen/installationen/">Installationen</Link>
-              <Link href="/leistungen/transport/">Transporte</Link>
             </nav>
           </div>
           <div>

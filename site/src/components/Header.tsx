@@ -12,7 +12,6 @@ const LEISTUNGEN = [
   { href: "/leistungen/schluesselfertigbau/", title: "Schlüsselfertigbau", sub: "Neubau aus einer Hand" },
   { href: "/leistungen/sanierung/", title: "Sanierung & Restaurierung", sub: "Altbau auf neuestem Stand" },
   { href: "/leistungen/installationen/", title: "Installationen", sub: "Strom & Wasser" },
-  { href: "/leistungen/transport/", title: "Transporte", sub: "Europaweite Direkttransporte" },
 ];
 const STADTTEILE = [
   { href: "/stadtteile/geistenbeck/", title: "Geistenbeck", sub: "Unser Heimat-Stadtteil" },

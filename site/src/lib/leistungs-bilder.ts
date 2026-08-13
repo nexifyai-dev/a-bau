@@ -9,5 +9,4 @@ export const LEISTUNGS_BILDER: Record<string, string> = {
   schluesselfertigbau: "/assets/schlüsselfertig/313A5EC4-6A48-4A73-9700-47398D4304B4.webp",
   installationen: "/assets/sanierung/5ae308ff-8eee-4589-bb1b-427ca3aa858a.webp",
   sanierung: "/assets/sanierung/f344eb61-0eff-4ae1-bd94-0d1a0bc4fec1.webp",
-  transport: "/assets/sonstiges/PHOTO-2025-02-11-16-15-13.webp",
 };

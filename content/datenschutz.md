@@ -10,7 +10,7 @@ Luisental 69
 Deutschland
 
 Telefon: +49 2166 9925056  
-E-Mail: kontakt@a-bau.info
+E-Mail: e.pfeiffer@a-bau.info
 
 Vertreten durch: Geschäftsführer Albert Pfeiffer  
 Registergericht: Amtsgericht Mönchengladbach, HRB 18836  
@@ -24,7 +24,7 @@ Diese Website wird auf Servern in Deutschland (Frankfurt am Main, NeXifyAI, Rech
 
 ## 3. Verantwortliche Stelle für den Datenschutz
 
-Ein betrieblicher Datenschutzbeauftragter ist für unser Unternehmen gesetzlich nicht erforderlich (Art. 37 DSGVO). Für Fragen zum Datenschutz erreichen Sie uns direkt unter kontakt@a-bau.info oder postalisch über die unter Ziffer 1 genannte Anschrift.
+Ein betrieblicher Datenschutzbeauftragter ist für unser Unternehmen gesetzlich nicht erforderlich (Art. 37 DSGVO). Für Fragen zum Datenschutz erreichen Sie uns direkt unter e.pfeiffer@a-bau.info oder postalisch über die unter Ziffer 1 genannte Anschrift.
 
 ## 4. Server-Logfiles
 
@@ -52,7 +52,7 @@ Wenn Sie uns über das Kontaktformular kontaktieren, verarbeiten wir die von Ihn
 
 **Zweck:** Bearbeitung und Beantwortung Ihrer Anfrage, insbesondere Erstellung von Angeboten, Terminvereinbarungen, Besichtigungsterminen und erste Projektplanung. Als Bauunternehmen verarbeiten wir im Rahmen von Anfragen regelmäßig auch Angaben zu Ihrem Bauvorhaben (z. B. Gebäudeart, Standort, Umfang, Zeitrahmen).
 **Rechtsgrundlage:** Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen zur Anbahnung eines Bau- oder Handwerkervertrags); im Übrigen Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bearbeitung Ihrer Anfrage).
-**Empfänger:** Ihre Angaben werden per E-Mail über unseren E-Mail-Versanddienst (Resend Inc. / Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA) an unser Postfach kontakt@a-bau.info übermittelt und von uns ausschließlich intern verarbeitet. Resend ist im EU-US-Data-Privacy-Framework (DPF) zertifiziert; die Übermittlung in die USA beruht auf dem Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) und erfolgt nach Art. 28 DSGVO (Auftragsverarbeitung, Data Processing Addendum von Resend).
+**Empfänger:** Ihre Angaben werden per E-Mail über unseren E-Mail-Versanddienst (Resend Inc. / Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA) an unser Postfach e.pfeiffer@a-bau.info übermittelt und von uns ausschließlich intern verarbeitet. Resend ist im EU-US-Data-Privacy-Framework (DPF) zertifiziert; die Übermittlung in die USA beruht auf dem Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) und erfolgt nach Art. 28 DSGVO (Auftragsverarbeitung, Data Processing Addendum von Resend).
 **Speicherdauer:** Ihre Anfrage und die zugehörige Korrespondenz werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Für Bauprojekte gilt: Projektbezogene Unterlagen (Angebote, Auftragsbestätigungen, Gewährleistungsunterlagen, Rechnungen) unterliegen handels- und steuerrechtlichen Aufbewahrungsfristen von bis zu 10 Jahren (§ 147 AO, § 257 HGB) sowie gewährleistungsbezogenen Fristen von bis zu 5 Jahren (§§ 634a, 438 BGB).
 
 **Spamschutz:** Das Formular enthält ein verstecktes Feld (Honeypot), um automatisierte Spam-Anfragen zu erkennen. Personenbezogene Daten werden hierdurch nicht verarbeitet.
@@ -63,7 +63,7 @@ Auf dieser Website bieten wir einen KI-gestützten Chat-Assistenten an („A-Bau
 
 **Was wird verarbeitet?** Ihre im Chat eingegebenen Nachrichten werden an einen KI-Dienst (Large Language Model) übermittelt, der als Auftragsverarbeiter nach Art. 28 DSGVO eingebunden ist, um Ihre Frage auf Basis des Inhalts dieser Website zu beantworten. Die Antworten werden aus den Website-Inhalten (Wissensbasis) generiert.
 
-**Hinweis zu Drittland-Übermittlung:** Der eingesetzte KI-Dienst kann Verarbeitungen außerhalb der EU/des EWR vornehmen (insbesondere Standorte in Drittländern ohne Angemessenheitsbeschluss der EU-Kommission). Wir weisen hierauf nach Art. 13 Abs. 1 lit. f DSGVO hin; soweit eine solche Übermittlung erfolgt, geschieht sie nur im Rahmen der Beantwortung Ihrer konkreten Chat-Anfrage (Art. 49 Abs. 1 lit. b DSGVO). Nähere Auskünfte zu Anbieter und Standorten erteilen wir auf Anfrage unter kontakt@a-bau.info.
+**Hinweis zu Drittland-Übermittlung:** Der eingesetzte KI-Dienst kann Verarbeitungen außerhalb der EU/des EWR vornehmen (insbesondere Standorte in Drittländern ohne Angemessenheitsbeschluss der EU-Kommission). Wir weisen hierauf nach Art. 13 Abs. 1 lit. f DSGVO hin; soweit eine solche Übermittlung erfolgt, geschieht sie nur im Rahmen der Beantwortung Ihrer konkreten Chat-Anfrage (Art. 49 Abs. 1 lit. b DSGVO). Nähere Auskünfte zu Anbieter und Standorten erteilen wir auf Anfrage unter e.pfeiffer@a-bau.info.
 
 **Speicherung:** Chat-Verläufe werden serverseitig nicht gespeichert. Ihre Nachrichten werden nur für die Dauer der Beantwortung verarbeitet und nicht mit Ihrer Person verknüpft (keine Konten, keine Cookies).
 
@@ -134,7 +134,7 @@ Sie haben gegenüber uns folgende Rechte:
 - **Widerruf** erteilter Einwilligungen mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)
 - **Beschwerde** bei einer Datenschutz-Aufsichtsbehörde (Art. 77 DSGVO)
 
-Zur Ausübung Ihrer Rechte genügt eine formlose Nachricht an kontakt@a-bau.info oder an die unter Ziffer 1 genannte Postanschrift. Wir werden Ihre Anfrage unverzüglich, spätestens innerhalb eines Monats, beantworten (Art. 12 Abs. 3 DSGVO).
+Zur Ausübung Ihrer Rechte genügt eine formlose Nachricht an e.pfeiffer@a-bau.info oder an die unter Ziffer 1 genannte Postanschrift. Wir werden Ihre Anfrage unverzüglich, spätestens innerhalb eines Monats, beantworten (Art. 12 Abs. 3 DSGVO).
 
 **Zuständige Aufsichtsbehörde:**
 Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)  

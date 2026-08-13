@@ -19,7 +19,7 @@
 | Geschäftsführer | Albert Pfeiffer |
 | Stammkapital | 25.000 € |
 | Sitz | Luisental 69, 41199 Mönchengladbach |
-| Leistungsspektrum | Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen, Transporte |
+| Leistungsspektrum | Restaurierung, Innenausbau, Krankenhausbau, Schlüsselfertigbau, Sanierung, Installationen |
 
 ## So arbeiten wir
 

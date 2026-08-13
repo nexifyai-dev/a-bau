@@ -24,7 +24,6 @@ cats = {
     "innenausbau": ("innen", "raum", "wohn", "b1b985", "e8147d", "b56a42", "8fefc1", "92d2c3", "a2e996", "f251fe", "9d72ec", "8cac8b", "97e8c2"),
     "schlüsselfertig": ("schlüssel", "neubau", "313a5e", "739ff7", "c641d5", "263589", "b689b7", "c9a379", "13aa27", "03e891", "bd7ae7", "82fbaa", "583dbb", "3531ed"),
     "sanierung": ("sanier", "fassade", "dach", "f344eb", "bd9a7c", "75", "5ae308"),
-    "transport": ("sprinter", "transport"),
     "sonstiges": (),
 }
 video_ext = (".mp4", ".mov", ".webm")
@@ -64,7 +63,6 @@ for m in media:
         "innenausbau": "Innenausbau Projekt – A-Bau Meisterbetrieb Mönchengladbach",
         "schlüsselfertig": "Schlüsselfertiger Neubau – A-Bau Meisterbetrieb Mönchengladbach",
         "sanierung": "Sanierung Altbau – A-Bau Meisterbetrieb Mönchengladbach",
-        "transport": "Transportservice – A-Bau Meisterbetrieb Mönchengladbach",
         "sonstiges": "Bauprojekt – A-Bau Meisterbetrieb Mönchengladbach",
     }[cat]
     manifest.append({"id": m["id"], "date": (m.get("date") or "")[:10], "file": fn, "cat": cat, "webp": f"{cat}/{os.path.splitext(fn)[0]}.webp", "w": im.size[0], "h": im.size[1], "alt": alt, "orig_bytes": len(raw)})

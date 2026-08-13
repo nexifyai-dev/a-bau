@@ -12,7 +12,7 @@
 | 1.1 | **USt-IdNr.** im Impressum eintragen (§ 5 DDG Pflichtangabe) | Kunde | 🔴 OFFEN |
 | 1.2 | **Handwerkskammer** (zuständige HWK) + Meisterbrief-Nachweis im Impressum ergänzen | Kunde | 🔴 OFFEN |
 | 1.3 | **Verbindliche Hauptnummer** bestätigen: Festnetz (02166) 9925056 oder Mobil 0162 18 15 229 | Kunde | 🔴 OFFEN |
-| 1.4 | E-Mail-Adresse `kontakt@a-bau.info` bestätigen (Domain a-bau.info aktiv, Hostinger-SMTP) | Kunde | 🟡 Recherchiert (E3) |
+| 1.4 | E-Mail-Adresse `e.pfeiffer@a-bau.info` bestätigen (Domain a-bau.info aktiv, Hostinger-SMTP) | Kunde | 🟡 Recherchiert (E3) |
 | 1.5 | **Logo-Freigabe** durch Kunde (SVG-Logo in Header/Footer, Favicon) | Kunde | 🔴 OFFEN |
 | 1.6 | Gründungsjahr der Firma (für Schema.org / Über-uns) bestätigen | Kunde | 🔴 OFFEN |
 | 1.7 | Fotos/Referenzdaten prüfen: keine echten Kundendaten/Adressen öffentlich sichtbar? | Kunde + NeXifyAI | 🔴 OFFEN |

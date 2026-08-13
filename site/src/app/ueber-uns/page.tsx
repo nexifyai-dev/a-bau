@@ -45,7 +45,7 @@ export default function UeberUns() {
               </p>
               <p>
                 Darüber hinaus realisieren wir Innenausbauten, schlüsselfertige Neubauten,
-                Krankenhausbau, Sanierungen, Installationen und europaweite Direkttransporte.
+                Krankenhausbau, Sanierungen und Installationen.
                 Jedes Projekt – ob groß oder klein – wird mit Sorgfalt und Engagement umgesetzt.
               </p>
             </div>

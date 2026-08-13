@@ -133,7 +133,7 @@ button, input, textarea, select { font: inherit; }
 .section-soft { background: var(--color-bg-soft); }
 .section-dark { background: var(--color-neutral-dark); color: var(--color-text-inv); text-align: center; }
 .section-dark h1, .section-dark h2, .section-dark h3 { color: #fff; }
-.section-dark p { color: var(--color-text-inv-2); text-align: center; }
+.section-dark p { color: var(--color-text-inv-2); text-align: center; margin-inline: auto; }
 .section-dark a:not(.btn) { color: var(--color-mg-gold); }
 .kicker {
   display: inline-block; font-family: var(--font-head); font-size: .78rem; font-weight: 700;

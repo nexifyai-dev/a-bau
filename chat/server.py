@@ -49,10 +49,10 @@ def _secret(names, files=("/home/hermeswebui/.hermes/.env", "/root/.hermes/herme
 API_KEY = _secret(("CUSTOM_API_KEY", "DEEPSEEK_API_KEY"))
 SMTP = dict(host=_secret({"SMTP_HOST"}), port=int(_secret({"SMTP_PORT"}) or 465),
             user=_secret({"SMTP_USER"}), pw=_secret({"SMTP_PASSWORD"}))
-CONTACT_TO = os.environ.get("ABAU_CONTACT_TO", "kontakt@a-bau.info")
+CONTACT_TO = os.environ.get("ABAU_CONTACT_TO", "e.pfeiffer@a-bau.info")
 CONTACT_FROM = SMTP["user"] or "mail@nexifyai.cloud"
 RESEND_KEY = _secret({"RESEND_API_KEY"})
-RESEND_FROM = "A-Bau Meisterbetrieb <kontakt@nexifyai.cloud>"  # R84 Interim: a-bau.info noch nicht in Resend verifiziert (403 sonst); auf kontakt@a-bau.info umstellen, sobald Domain verifiziert (Resend-DNS in CF-Zone a-bau.info, Token noetig)
+RESEND_FROM = "A-Bau Meisterbetrieb <kontakt@nexifyai.cloud>"  # R84 Interim: a-bau.info noch nicht in Resend verifiziert (403 sonst); auf e.pfeiffer@a-bau.info umstellen, sobald Domain verifiziert (Resend-DNS in CF-Zone a-bau.info, Token noetig)
 
 def _resend_send(text: str, subject: str, to: str, reply_to: str) -> None:
     """Formular-Mail über Resend-API (EU-US-DPF-zertifiziert; Key nur aus .env, nie loggen).
@@ -218,7 +218,7 @@ def _parse_last_json(raw: str):
 SYSTEM = f"""Du bist der KI-Assistent der A-Bau Meisterbetrieb GmbH (Mönchengladbach). Du antwortest ausschließlich auf Deutsch, charmant und sachlich.
 Firmen-Basisdaten (immer bekannt, unabhängig vom WISSEN-Abschnitt):
 - Adresse: Luisental 69, 41199 Mönchengladbach (Stadtteil Geistenbeck), Nordrhein-Westfalen
-- Telefon: +49 2166 9925056, E-Mail: kontakt@a-bau.info
+- Telefon: +49 2166 9925056, E-Mail: e.pfeiffer@a-bau.info
 - Öffnungszeiten: Mo–Do 08:00–16:00, Fr 08:00–14:00, Sa/So geschlossen
 - HRB 18836 Amtsgericht Mönchengladbach, USt-IdNr. DE327030612, Handwerkskammer Düsseldorf, GF Albert Pfeiffer
 Regeln:

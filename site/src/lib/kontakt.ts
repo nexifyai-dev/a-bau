@@ -6,7 +6,7 @@ export const KONTAKT = {
   ort: "Mönchengladbach",
   stadtteil: "Geistenbeck",
   tel: "+49 2166 9925056",
-  email: "kontakt@a-bau.info",
+  email: "e.pfeiffer@a-bau.info",
   hrb: "HRB 18836",
   registergericht: "Amtsgericht Mönchengladbach",
   gf: "Albert Pfeiffer",
