@@ -1883,3 +1883,25 @@
 **Gegentest (§5.4):** Negativ: 413 vorher ohne Header (Befund) → nachher vollständig (Fix) ✅ · Datenintegrität: Queue 2 echte (Dry-Run unangetastet) ✅ · Regression: Chat/Formular ok ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 81)**
+
+
+---
+
+## Runde 82 (2026-08-13, Perf: robots.txt/sitemap.xml kurze Cache-TTL; KB-Kontext sicher; Formular-Instanzen geprüft)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **P3-Perf-Befund:** `sitemap.xml` lief `no-store` (Crawler holt bei jedem Besuch frisch vom Origin) + `robots.txt` OHNE Cache-Header (kein Edge-Cache). Beide ändern sich selten | ✅ |
+| **Fix:** `SHORT_CACHE = public, max-age=3600` für `/robots.txt` + `/sitemap.xml` (1-h-TTL; Content-Änderungen greifen binnen 1 h, bei Bedarf purgebar) — live verifiziert (Origin + CF) | ✅ live |
+| **KB-Kontext abgesichert (Recherche-Anwendung):** WISSEN-Block = 47.360 Zeichen ≈ **11.840 Tokens** — weit unter dem 64k+-Kontext von v4-flash; kein Truncation-Risiko (RAG-Prompt sicher) | ✅ kein Fix |
+| **Formular-Instanzen:** KontaktClient nur auf /kontakt/ eingebunden (Grep-Treffer der Vorrunden = Footer-/Stadtteil-Links, keine Duplikat-Formulare); keine ID-Kollisionen | ✅ kein Fix |
+| **Quality-Cron (04:10):** Uhr 01:5x — Beweis weiterhin ausstehend | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin e8bea0d · clean | ✅ |
+
+**E2E:** sitemap/robots 3600 live · www 200 · QUALITY-CHECK OK.
+
+**Gegentest (§5.4):** Negativ: vorher no-store/fehlend (Befund), nachher 3600 (Fix) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: HTML bleibt no-store (Frische) ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 82)**

@@ -93,6 +93,7 @@ HEADERS = {
 }
 ASSET_CACHE = {"Cache-Control": "public, max-age=31536000, immutable"}
 VIDEO_CACHE = {"Cache-Control": "public, max-age=86400"}  # Videos: 1 Tag (CDN-Purge-Falle vermeiden)
+SHORT_CACHE = {"Cache-Control": "public, max-age=3600"}  # R82: robots.txt/sitemap.xml (ändern sich selten, kurze TTL)
 
 @app.middleware("http")
 async def headers_mw(request: Request, call_next):
@@ -131,6 +132,8 @@ async def headers_mw(request: Request, call_next):
             resp.headers.update(VIDEO_CACHE)
         else:
             resp.headers.update(ASSET_CACHE)
+    elif p in ("/robots.txt", "/sitemap.xml"):
+        resp.headers.update(SHORT_CACHE)  # R82: Crawler-Dateien kurz cachen (kein no-store nötig)
     else:
         # HTML/API nie cachen (auch nicht per Revalidation): Browser-Tab zeigte
         # mehrfach alten Stand trotz no-cache -> no-store erzwingt Frische je Navigation
