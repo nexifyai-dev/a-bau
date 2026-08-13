@@ -1688,3 +1688,23 @@
 **Gegentest (§5.4):** Negativ: 0 Staging-URLs in Sitemap (kein Leak) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 72)**
+
+
+---
+
+## Runde 73 (2026-08-13, SEO: lastmod-Falschsignal entfernt; Recherche sitemaps.org/Google belegt)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **SEO-P3-Befund (Recherche belegt):** `lastModified: new Date()` in sitemap.ts → bei JEDEM Build (≈150 Deploys) bekamen alle 22 URLs ein neues lastmod = falsches Re-Crawl-Signal (Google-Doku-Beispiel: festes Datum; sitemaps.org: lastmod = echtes Änderungsdatum, optional). Fix: **lastModified entfernt** — keine Lüge, Google nutzt Crawl-Daten | ✅ live |
+| **Verifiziert:** Live-Sitemap 0× lastmod · 22 URLs · 44 hreflang (de+x-default bleiben) · W3C/XML intakt | ✅ |
+| **Cron-Erstläufe:** weiterhin nicht fällig (Uhr ~02:5x; 03:00/04:10) — Watchdog-Mechanik bewiesen (121 completed), Output-Beweis folgt | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin 15913b1 · clean | ✅ |
+
+**E2E:** Sitemap ohne lastmod live · www 200 · QUALITY-CHECK OK.
+
+**Gegentest (§5.4):** Negativ: vorher lastmod bei jedem Build (Befund), nachher 0 (Fix) ✅ · Datenintegrität: hreflang/URLs unverändert ✅ · Regression: Crawl/Routen ok ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 73)**
