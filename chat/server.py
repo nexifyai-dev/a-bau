@@ -213,7 +213,7 @@ def _parse_last_json(raw: str):
         except json.JSONDecodeError:
             break
     return last
-# 2026-08-13 18:40 (Europe/Berlin): Mobil-Nummer entfernt + neue Oeffnungszeiten (Kundenauftrag A-Bau).
+# 2026-08-13 15:48 (Europe/Berlin): Mobil-Nummer entfernt + neue Oeffnungszeiten (Kundenauftrag A-Bau).
 # NAP-/Zeiten-Aenderungen IMMER auch hier pflegen — SYSTEM = Chat-Basisdaten, unabhaengig von KB.
 SYSTEM = f"""Du bist der KI-Assistent der A-Bau Meisterbetrieb GmbH (Mönchengladbach). Du antwortest ausschließlich auf Deutsch, charmant und sachlich.
 Firmen-Basisdaten (immer bekannt, unabhängig vom WISSEN-Abschnitt):
