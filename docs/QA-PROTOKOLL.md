@@ -2036,3 +2036,25 @@
 **Gegentest (§5.4):** Negativ: kontakt@a-bau.info = 0 im Live-HTML + KB ✓ · Regression: Öffnungszeiten /kontakt unverändert (08:00×2/16:00/14:00/Geschlossen×2), CSS-Regeln section-dark h1–h3/card-dark unverändert ✓ · Datenintegrität: KB 69 Chunks (vorher 71, −2 Transport-FAQ), keine Doppel-URLs in Sitemap ✓.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 85)**
+
+
+---
+
+## Runde 85 — ABSCHLUSS (Finale E3-Batterie, 2026-08-13, Europe/Berlin)
+
+**Final-Scan (Sitemap, 21 URLs, beide Domains):** Mobil-Nummer 0 Treffer · kontakt@a-bau.info 0 Treffer · Transport/Sprinter 0 Treffer (einzig „Abtransportmöglichkeiten" in AGB = juristischer Begriff, bewusst behalten).
+
+**Trust-Bar-Fix:** Homepage-Trust-Item „Alles aus einer Hand" hatte noch „Bau, Ausbau, Installation, Transport" (page.tsx Z.102, hardcodiert — erst im Final-Scan gefunden) → „Bau, Ausbau, Installation". Rebuild → live (Server liest out/ pro Request, kein Restart nötig).
+
+**Finale Batterie (E3):**
+- Routen: 15× 200 (/, kontakt, leistungen, referenzen, stadtteile, ueber-uns, faq, agb, datenschutz, impressum, nutzungsbedingungen, cookie-richtlinie, angebot, 2 Detailseiten) + /leistungen/transport = 404 ✓
+- /kontakt: mailto:e.pfeiffer@a-bau.info, Zeiten 08:00/16:00/14:00, Geschlossen Sa+So (+ Header-Status-Chip = korrekt 3. Vorkommen), 0 Mobil
+- CSS `2d-01jypiot5r.css`: `.section-dark p{…text-align:center;margin-inline:auto}` + h1–h3 #fff + card-dark + 7× text-align:center
+- Favicon: 2813 B, ICO type 1, 16×16 + 32×32
+- KB: 69 Chunks, 0 Mobil, 0 kontakt@, 3× e.pfeiffer, 0 Transport, 0 Alt-Zeiten
+- Chat: nur Festnetz, E-Mail e.pfeiffer, Zeiten neu, Transport „bieten wir nicht als eigenen Service" ✓
+- Health: `{"status":"ok","chat":true,"kb":true}`
+
+**Git:** a-bau `377cc22` + Trust-Bar-Fix-Commit; nexify-agentur-plattform ZK-Row R85. Beide `main...origin/main` in sync.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 85 Abschluss)**
