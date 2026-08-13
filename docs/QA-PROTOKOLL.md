@@ -1839,3 +1839,25 @@
 **Gegentest (§5.4):** Negativ: Überlast → 503 statt Hänger (Doku-Verhalten, Config gesetzt) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Chat/Formular/Routen ok ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 79)**
+
+
+---
+
+## Runde 80 (2026-08-13, Regression-Matrix + 9Router-Transient-Erkenntnis; KB-Integrität)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **Formular-Matrix Regression (nach XFF-R69/limit_concurrency-R79):** Honeypot 200 · Invalid-Email 400 · Fehlende Einwilligung 400 · Normal 202 — komplett grün; Queue 2 echte unangetastet | ✅ kein Fix |
+| **KB-Integrität:** 71 Chunks aus 7 Dokumenten, FTS5-Match (Sanierung) OK | ✅ kein Fix |
+| **9Router-Transient-Erkenntnis (E3):** kurzer Zustand mit 400/leerem Body auf /v1/models + completion (SIZE=0); danach mit identischem Key+Payload wieder 200 (SSE). Lektion: **9Router-400/leer = wiederholen, nicht als Key-Regression interpretieren** (analog „000 wiederholen“ R70). Live-Chat lief durchgehend | ✅ kein Fix (transient) |
+| **Key-Matrix belegt:** `CUSTOM_API_KEY` (9Router) → 200 · `DEEPSEEK_API_KEY` (Direkt) → 401 gegen 9Router (erwartet, §15a-Klasse „9Router lehnt Direkt-Keys ab“ — Server-Reihenfolge CUSTOM zuerst ist korrekt) | ✅ belegt |
+| **Log-Scan:** 1 Treffer in letzten 40 Zeilen = erwarteter SMTP-Fallback-Log vom Formular-Test (R56-Meldung) | ✅ kein Fix |
+| **Quality-Cron (04:10):** Uhr 01:4x — Beweis weiterhin ausstehend | ⏳ |
+
+**E2E:** Matrix 4/4 · KB-FTS5 · 9Router 200 (Retry) · Chat ok · www 200 · QUALITY-CHECK OK.
+
+**Gegentest (§5.4):** Negativ: 400/leer → Retry → 200 (transient widerlegt als Dauerfehler) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Chat/Formular ok ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 80)**
