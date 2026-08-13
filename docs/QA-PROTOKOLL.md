@@ -1773,3 +1773,24 @@
 **Gegentest (§5.4):** Negativ: vorher 2–3 robots-Tags (Befund), nachher exakt 1 bzw. 0 (Fix) ✅ · Regression: Cookie-richtlinie-Meta unverändert ✅ · Staging-noindex via Header intakt (server.py unverändert) ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 76)**
+
+
+---
+
+## Runde 77 (2026-08-13, Normen-Erfüllung: ISO 9241-110-Selbstprüfung; Boundary + Footer-Link verifiziert)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund | Status |
+|---|---|
+| **ISO 9241-110-Selbstprüfung (6 Dialogprinzipien, §0e-Normen-Pflicht — erstmals explizit abgehakt):** (1) **Selbstbeschreibungsfähigkeit:** klare Navigation (Header/Drawer/Footer), FAQ-Kategorien, Chat-KI-Offenlegung, Formular mit Labels/Placeholdern ✓ (2) **Erwartungskonformität:** konsistente CTA-/Button-Styles, Öffnungszeiten-Status im Header, standardisierte Kontaktwege (Tel/E-Mail/Formular), AGB/Datenschutz/Impressum im Footer ✓ (3) **Fehlertoleranz:** Formular-Validierung mit Feldfehlern, ehrliche 202-queued- statt 502-Schreck, Chat-503-Guard, 404 mit Navigation ✓ (4) **Steuerbarkeit:** Escape/Close im Chat + Lightbox, Zwei-Klick-Karte, Fokus-Rückkehr, no-JS-Formular-Fallback ✓ (5) **Individualisierbarkeit:** reduced-motion respektiert, Kontrast-AA, skalierbare Fonts ✓ (6) **Lernförderlichkeit:** durchgängige Muster, DIN-5008-Klartext im Chat, Quellen-Anzeige ✓ — alle 6 erfüllt (Belege je Runde R13–R76) | ✅ belegt |
+| **Chat-Boundary-Stichprobe (Halluzinations-Guard):** „Was kostet eine Komplettsanierung?“ → 375 Zeichen, **0 Fake-Preis-Muster**, ehrlicher Termin-Verweis (Tel/E-Mail) | ✅ kein Fix |
+| **Footer-NeXifyAI-Link:** `rel="noopener noreferrer"` + `target="_blank"` live (R52-Umsetzung intakt) | ✅ kein Fix |
+| **Quality-Cron (04:10):** Uhr 01:19 — Beweis weiterhin ausstehend (nächste Runde) | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin 49dc5d7 · clean | ✅ |
+
+**E2E:** Boundary 0 Fake-Preise · Footer-Link korrekt · www 200 · QUALITY-CHECK OK (manuell).
+
+**Gegentest (§5.4):** Negativ: Fake-Preis-Prompt → keine Euro-Angabe (Halluzinations-Guard) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 77)**
