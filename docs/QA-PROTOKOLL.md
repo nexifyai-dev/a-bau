@@ -1947,3 +1947,33 @@
 **Gegentest (§5.4):** Negativ: npm audit fehlschlagend (falscher Manager) → pnpm audit 0 (richtiger Weg) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: frei ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 83)**
+
+
+---
+
+## Runde 84 (2026-08-13, P0-FIX: Kontaktformular-Mailversand wieder live — Queue geleert)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **P0-BEFUND — Kontaktformular-Mailversand TOT:** Live-Chat-Server (8095) hatte im Container weder RESEND_API_KEY noch SMTP-Creds (`.mcp-env/` liegt NICHT in den `_secret()`-Lesepfaden; Root-hermes.env existiert im Container nicht) → `/api/contact` sammelte in Queue: **2 echte Anfragen (Techeres, 12.08.)** | ✅ FIX |
+| **Zweiter Befund (Recherche-Anwendung):** Resend-API via Python-urllib → **403 „error code 1010"** = Cloudflare-Bot-Schutz (Default-UA `Python-urllib/3.x` geblockt). Gleicher Key via curl = 200 → keine Key-Regression. Bestätigt R80-Lektion: Fehler nie vorschnell als Key-Problem werten — erst Kanal/UA prüfen | ✅ FIX |
+| **Fix 1:** `RESEND_API_KEY` in `/home/hermeswebui/.hermes/.env` (kanonischer `_secret`-Pfad #1, perms 600) | ✅ |
+| **Fix 2:** `User-Agent: a-bau-website/1.0` in `_resend_send()` (R84-Kommentar im Code) | ✅ |
+| **Fix 3:** `RESEND_FROM` interim `A-Bau Meisterbetrieb <kontakt@nexifyai.cloud>` (verifizierte Domain; `a-bau.info` in Resend nicht verifizierbar — Free-Plan = 1 Domain, siehe unten) — auf `kontakt@a-bau.info` umstellen, sobald möglich | ✅ interim |
+| **Server-Neustart sauber:** 2649600 (alt) → 2660293 (neu, mit Fix), Health ok, Chat-RAG antwortet, Live-www 200 | ✅ |
+| **FLUSH E3-bewiesen:** `flush_contact_queue.py` → **„Versendet: 2, in Queue verblieben: 0"**; Resend-API bestätigt beide an `kontakt@a-bau.info` (status queued); Queue-Datei = 0 Zeilen | ✅ |
+| **Automatisierung (§15a):** Watchdog-Cron (5 min) führt jetzt Queue-Nachversand aus (idempotent, leer = sofort fertig); Test RC=0 | ✅ |
+| **Quality-Check:** ROUTE ALLE OK · CHAT OK · SYNC OK · ÖFFNUNGSZEITEN 23/23 PASS · HEALTH ok · QUALITY-CHECK OK | ✅ |
+| **Resend-Plan-Limit (bekannter Fehler, Recherche):** Free-Plan = 1 Domain → `a-bau.info` anlegen = 403 `Your plan includes 1 domain`. Optionen (Pascal): Upgrade ODER SMTP-Creds (Host) in Container spiegeln ODER Interim-FROM behalten | 📝 offen |
+| **Orphan-Befund:** `/tmp/fake-server.py` (PID 706876, Port 8096, Host-PID-Namespace, Testkopie von chat/server.py, start 03:32) — Datei entfernt; Prozess aus Container nicht killbar (anderer Namespace), stirbt beim Host-Neustart; kein Malware-Befund (Code = Repo-Kopie) | 📝 |
+| **Queue/Git:** Queue 0 · origin clean bis auf server.py-Fix | ✅ |
+
+**E2E:** Formular-Pfad komplett: Queue → Resend-API → Zustellung an kontakt@a-bau.info (API-Status queued, 2/2). Quality-Check 5/5. Live-www 200.
+
+**Gegentest (§5.4):** Negativ: vorher 403/1010 (urllib-UA) + Queue 2 — nachher 2/2 versendet (curl-UA-Fix reproduziert) ✅ · Negativ: Resend-Plan-Limit 403 bei Domain-Erstellung (erwartet, dokumentiert) ✅ · Datenintegrität: Queue 2 echte Einträge unverändert bis Versand, danach 0 (kein Verlust) ✅ · Regression: Chat-RAG + Öffnungszeiten + Quality-Check nach Neustart grün ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 84)**
+
+**Offen (Kunde/System):** ① CF SSL-Modus Full + Always Use HTTPS: http→301 + HSTS (max-age=15552000; includeSubDomains; preload) live bestätigt; Zone-Setting per API braucht `CLOUDFLARE_API_TOKEN` — fehlt im Container (nur Host-hermes.env) → Pascal: Token hinterlegen oder Host-Session ② CF-Token-Rotation (gleicher Blocker) ③ a-bau.info als Resend-Absender (Plan-Limit/Upgrade) ④ `/memory pending` (12d6f436, 7e2f2dad) ⑤ NeXifyAI-Rechtstexte (Host-Session) ⑥ pnpm audit: R83.2 erledigt (0 Vulns, Lockfile vorhanden).

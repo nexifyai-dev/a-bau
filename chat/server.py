@@ -52,7 +52,7 @@ SMTP = dict(host=_secret({"SMTP_HOST"}), port=int(_secret({"SMTP_PORT"}) or 465)
 CONTACT_TO = os.environ.get("ABAU_CONTACT_TO", "kontakt@a-bau.info")
 CONTACT_FROM = SMTP["user"] or "mail@nexifyai.cloud"
 RESEND_KEY = _secret({"RESEND_API_KEY"})
-RESEND_FROM = "A-Bau Meisterbetrieb <kontakt@a-bau.info>"
+RESEND_FROM = "A-Bau Meisterbetrieb <kontakt@nexifyai.cloud>"  # R84 Interim: a-bau.info noch nicht in Resend verifiziert (403 sonst); auf kontakt@a-bau.info umstellen, sobald Domain verifiziert (Resend-DNS in CF-Zone a-bau.info, Token noetig)
 
 def _resend_send(text: str, subject: str, to: str, reply_to: str) -> None:
     """Formular-Mail über Resend-API (EU-US-DPF-zertifiziert; Key nur aus .env, nie loggen).
@@ -64,6 +64,7 @@ def _resend_send(text: str, subject: str, to: str, reply_to: str) -> None:
         data=json.dumps({"from": RESEND_FROM, "to": [to], "reply_to": [reply_to],
                          "subject": subject, "text": text}).encode("utf-8"),
         headers={"Authorization": f"Bearer {RESEND_KEY}", "Content-Type": "application/json",
+                 "User-Agent": "a-bau-website/1.0",  # R84: api.resend.com hinter CF-Bot-Schutz — Default-UA (Python-urllib/3.x) → 403 error code 1010; expliziter UA noetig
                  "Idempotency-Key": str(uuid.uuid4())})
     try:
         with urllib.request.urlopen(req, timeout=25) as resp:
