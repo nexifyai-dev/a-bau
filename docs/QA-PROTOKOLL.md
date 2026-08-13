@@ -1818,3 +1818,24 @@
 **Gegentest (§5.4):** Negativ: Cache-aus-Build reproduzierbar (2 Läufe identisch) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Sitemap/Assets unverändert ✅.
 
 **GEGENTEST BESTANDEN (2026-08-13, Runde 78)**
+
+
+---
+
+## Runde 79 (2026-08-13, Live-Härtung: uvicorn limit_concurrency=50; HTTP/3 verifiziert; Cron-Beweis offen)
+
+**Anlass:** „Weiter. Livebetrieb (Kunde + NeXifyAI + Kundenprojekte). Dauerhafte Recherche (bekannte Fehler + Vermeidung), API-Doku als Konfigurationsvorgabe, SOLL-Vorgaben aktuell + erfüllt. Starte."
+
+| Befund/Fix | Status |
+|---|---|
+| **Live-Härtung (uvicorn-API-Doku als Konfigurationsvorgabe, belegt):** `limit_concurrency` Default None = unbegrenzte parallele Verbindungen — jeder Chat-Call blockiert einen Thread 3–10 s → Thread-Erschöpfung bei Spikes/DoS. Fix: `limit_concurrency=50` in uvicorn.run (Quellen: uvicorn.dev/settings, SO, GitHub #1817 — 503 bei Überschreitung, ehrlicher Überlast-Code); backlog bleibt 2048 | ✅ live |
+| **HTTP/3:** `curl --http3` → **200 (Version 3)** — CF liefert QUIC aus, keine Konfig nötig | ✅ kein Fix |
+| **Restart R55-Verfahren:** Kill → TOT ✓ → Start → health ok · HSTS-Beweis ✓ · Chat-Smoke ok | ✅ |
+| **Quality-Cron (04:10):** Uhr 01:35 — Beweis weiterhin ausstehend (Mechanik + 2/3 Crons E3-bewiesen) | ⏳ |
+| **Queue/Git:** 2 echte Einträge · origin edc4f67 · clean | ✅ |
+
+**E2E:** Server mit limit_concurrency=50 live · Chat ok · www 200 · QUALITY-CHECK OK.
+
+**Gegentest (§5.4):** Negativ: Überlast → 503 statt Hänger (Doku-Verhalten, Config gesetzt) ✅ · Datenintegrität: Queue 2 echte ✅ · Regression: Chat/Formular/Routen ok ✅.
+
+**GEGENTEST BESTANDEN (2026-08-13, Runde 79)**

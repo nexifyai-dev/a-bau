@@ -387,4 +387,7 @@ if DIST.exists():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("PORT", "8095")))
+    # R79 (uvicorn-Doku belegt): limit_concurrency=50 — Default None = unbegrenzte parallele
+    # Verbindungen (jeder Chat-Call blockiert einen Thread 3–10 s → Thread-Erschöpfung bei Spikes);
+    # bei Überschreitung ehrlicher 503 (uvicorn.dev/SO/GitHub #1817). backlog bleibt 2048.
+    uvicorn.run(app, host="127.0.0.1", port=int(os.environ.get("PORT", "8095")), limit_concurrency=50)
