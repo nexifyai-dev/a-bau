@@ -11,7 +11,7 @@ Deutschland
 
 **Kontakt:**  
 Telefon: +49 2166 9925056  
-E-Mail: e.pfeiffer@a-bau.info
+E-Mail: e.pfeiffer@a-bau.de
 
 **Registereintrag:**  
 Eintragung im Handelsregister  

@@ -78,7 +78,7 @@ export default function CookieRichtlinie() {
         <h2>6. Kontakt</h2>
         <p>
           Bei Fragen zu dieser Cookie-Richtlinie oder zur Datenverarbeitung auf dieser Website
-          erreichen Sie uns unter e.pfeiffer@a-bau.info oder über die im{" "}
+          erreichen Sie uns unter e.pfeiffer@a-bau.de oder über die im{" "}
           <a href="/impressum/">Impressum</a> genannten Kontaktdaten.
         </p>
       </div>

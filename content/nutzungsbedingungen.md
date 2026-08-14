@@ -32,4 +32,4 @@ Unsere Website enthält Links zu externen Websites Dritter. Für die Inhalte und
 
 Wir behalten uns vor, diese Website sowie diese Nutzungsbedingungen jederzeit mit Wirkung für die Zukunft anzupassen. Die jeweils aktuelle Fassung ist unter dieser Adresse abrufbar.
 
-Bei Fragen zu diesen Nutzungsbedingungen erreichen Sie uns unter e.pfeiffer@a-bau.info oder telefonisch unter +49 2166 9925056.
+Bei Fragen zu diesen Nutzungsbedingungen erreichen Sie uns unter e.pfeiffer@a-bau.de oder telefonisch unter +49 2166 9925056.

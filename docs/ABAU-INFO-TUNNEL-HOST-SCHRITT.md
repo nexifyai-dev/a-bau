@@ -51,7 +51,7 @@ curl -s -X POST "https://api.cloudflare.com/client/v4/zones/<ZONE_ID>/custom_hos
 curl -sI https://www.a-bau.info/ | head -3          # erwartet 200
 curl -sI https://a-bau.info/ | head -3              # erwartet 301 → https://www.a-bau.info
 curl -s https://a-bau.nexifyai.cloud/health         # Backend lebt
-# E-Mail-Empfang testen (MX unverändert IONOS): Testmail an e.pfeiffer@a-bau.info
+# E-Mail-Empfang testen (MX unverändert IONOS): Testmail an e.pfeiffer@a-bau.de
 ```
 
 ## 4. Danach (Kunde)

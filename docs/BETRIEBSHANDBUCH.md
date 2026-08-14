@@ -13,7 +13,7 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
        statische Site (site/out, Next.js-Export) + /api/chat + /api/contact + /health
   → 9Router 127.0.0.1:20128 (LLM ds/deepseek-v4-flash, Think-Max)
   → SQLite chat/data/kb.db (FTS5-Retrieval, lokal, tenant-isoliert)
-  → Hostinger-SMTP 465 (Formular-Versand an e.pfeiffer@a-bau.info)
+  → Hostinger-SMTP 465 (Formular-Versand an e.pfeiffer@a-bau.de)
 ```
 
 ## Betrieb
@@ -49,7 +49,7 @@ Browser → a-bau.nexifyai.cloud (Cloudflare, proxied)
 
 ## Go-Live-Freigabe (Kunde)
 1. Rechtstexte anwaltlich prüfen; USt-IdNr./HWK im Impressum ergänzen.
-2. Verbindliche Kontaktdaten bestätigen (Festnetz 02166 9925056 vs. Mobil 0162 18 15 229; E-Mail e.pfeiffer@a-bau.info).
+2. Verbindliche Kontaktdaten bestätigen (Festnetz 02166 9925056 vs. Mobil 0162 18 15 229; E-Mail e.pfeiffer@a-bau.de).
 3. `noindex, nofollow` in `chat/server.py` HEADERS entfernen → Rebuild + Restart.
 4. Kunden-Abnahme-Report (PDF) via `nexify-pdf-ci-report` + Versand (Hostinger-SMTP + IMAP-Nachweis).
 
@@ -120,7 +120,7 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
 
 ## Kontaktformular-Versand (Resend → Fallback SMTP → Queue) — R52
 
-- **Primär:** Resend-API (`POST https://api.resend.com/emails`), aktiv sobald `RESEND_API_KEY` in einer `_secret`-Datei steht (z. B. `/home/hermeswebui/.hermes/.env`). Absender `A-Bau Meisterbetrieb <e.pfeiffer@a-bau.info>`, Reply-To = E-Mail des Anfragenden.
+- **Primär:** Resend-API (`POST https://api.resend.com/emails`), aktiv sobald `RESEND_API_KEY` in einer `_secret`-Datei steht (z. B. `/home/hermeswebui/.hermes/.env`). Absender `A-Bau Meisterbetrieb <e.pfeiffer@a-bau.de>`, Reply-To = E-Mail des Anfragenden.
 - **Voraussetzung:** Domain `a-bau.info` bei Resend verifiziert (DKIM/SPF; DNS in Cloudflare-Zone a-bau.info). Solange NICHT verifiziert: API antwortet 403 → Fallback.
 - **Fallback-Kette:** Resend-Fehler → Hostinger-SMTP (falls Creds) → sonst Queue `chat/data/contact_queue.jsonl` + HTTP 202 `{"ok":true,"queued":true}` (ehrlich: „sicher eingegangen, Nachversand geplant").
 - **Nachversand:** `/app/venv/bin/python3 chat/flush_contact_queue.py` (Resend zuerst; fehlgeschlagene bleiben in Queue; Exit 0 = alles versendet, 2 = teils/ganz fehlgeschlagen).
@@ -165,7 +165,7 @@ Empfehlung vor Go-Live: Security-Header-Test via [securityheaders.com](https://s
    Watchdog (5 min) übernimmt.
 6. **Nachversand der 2 echten Queue-Einträge:**
    `/app/venv/bin/python3 chat/flush_contact_queue.py` (Resend-first; Exit 0 = alles versendet).
-7. **Test:** Kontaktformular absenden → Mail an e.pfeiffer@a-bau.info (Reply-To = Absender).
+7. **Test:** Kontaktformular absenden → Mail an e.pfeiffer@a-bau.de (Reply-To = Absender).
    Log: `[contact-resend-error]` darf nicht erscheinen; kein `queued` mehr im 202er (nur `{"ok":true}`).
 
 **Fehlerbilder:** 403 `domain not verified` = Schritt 2/3 offen · 401 = Key falsch (Schritt 4/5).

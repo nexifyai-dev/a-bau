@@ -11,7 +11,7 @@ Erstellt: 2026-08-12 (Runde 52). Quellen sind Datum-verifiziert („Last update"
 | EU-US-Datentransfer | **EU-US Data Privacy Framework (DPF) zertifiziert** (inkl. UK Extension) → Art. 45 DSGVO-Angemessenheitsbeschluss | resend.com/changelog/data-privacy-framework-certification + dataprivacyframework.gov, Abruf 2026-08-12 |
 | Auftragsverarbeitung | DPA (Data Processing Addendum) mit **Standard Contractual Clauses** als Annex; Art. 28 DSGVO-konform | resend.com/legal/dpa (Last update: December 31st, 2025) |
 | Weitere Nachweise | SOC II (Type I/II), GDPR-konforme Verarbeitung | resend.com/security + LinkedIn-Ankündigung (DPF certified, SOC II, GDPR) |
-| Datenumfang A-Bau | Nur Formular-Felder (Name, E-Mail, Telefon, Nachricht) für Einzel-Versand an e.pfeiffer@a-bau.info; keine Liste/Kampagnen | Implementierung chat/server.py (R52) |
+| Datenumfang A-Bau | Nur Formular-Felder (Name, E-Mail, Telefon, Nachricht) für Einzel-Versand an e.pfeiffer@a-bau.de; keine Liste/Kampagnen | Implementierung chat/server.py (R52) |
 | Aufbewahrung | Versand-Logs/API-Logs bei Resend (Zustell-Infrastruktur); keine dauerhafte Speicherung der Formularinhalte durch A-Bau (Queue wird nach Versand geleert) | DPA-Doku; Implementierung |
 
 **Konsequenz (umgesetzt):** datenschutz.md §5 Empfänger auf Resend umgestellt (DPF → Art. 45, Art. 28 + DPA), §10-Empfängerliste ergänzt. Formulierung s. commit R52.
